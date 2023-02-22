@@ -1,0 +1,5 @@
+*.js linguagem=javascript
+*.gql linguagem=graphql
+*.html linguagem=html
+*.css linguagem=css
+*.json linguagem=json
