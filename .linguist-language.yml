@@ -1,0 +1,5 @@
+# .linguist-language.yml
+
+overrides:
+  '*.gql':
+    language: GraphQL
