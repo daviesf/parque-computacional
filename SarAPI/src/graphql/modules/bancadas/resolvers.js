@@ -7,7 +7,7 @@ export default {
         },
 
         bancadas: async (_, {idBancada}) => {
-            const bancada = await Bancada.findById(idBancada);
+            const bancada = await knex('bancadas').where('idBancada', idBancada).first();
             return bancada;
         },
     },
@@ -19,8 +19,9 @@ export default {
         return novaBancada;
       },
       updateBancada: async (_, { idBancada, data }) => {
-        const bancadaAtualizada = await knex('bancadas').where('idBancada', idBancada).update(data).returning('*');
-        return bancadaAtualizada;
+        const bancadaAtualizada = await knex('bancadas').where('idBancada', idBancada).update(data);
+        const bancada = await knex('bancadas').where('idBancada', idBancada).first();
+        return bancada;
       },
       deleteBancada: async (_, { idBancada }) => {
         await knex('bancadas').where('idBancada', idBancada).del();
