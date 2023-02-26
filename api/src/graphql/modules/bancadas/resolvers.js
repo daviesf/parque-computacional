@@ -2,14 +2,22 @@ const knex = require('../../../mysql');
 export default { 
     
     Query:{
-        bancada: async () => {
+        bancadas: async () => {
             return knex('bancadas').select('*');
         },
 
-        bancadas: async (_, {idBancada}) => {
+        bancada: async (_, {idBancada}) => {
             const bancada = await knex('bancadas').where('idBancada', idBancada).first();
             return bancada;
         },
+        bancadasByLocal: async (_, {local}) => {
+            const bancadas = await knex('bancadas').where('local', local);
+            return bancadas;
+        },
+        bancadasByStatus: async (_, {status}) => {
+            const bancadas = await knex('bancadas').where('status', status);
+            return bancadas;
+        }
     },
   
     Mutation: {

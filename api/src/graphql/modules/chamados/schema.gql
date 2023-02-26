@@ -4,11 +4,15 @@ type Chamado {
     detalhes: String!
     idBancada: Int!
     status: Int!
+    idFuncionario: Int!
 }
 
 type Query {
     chamado: [Chamado]!
     chamados(idChamado: ID!): Chamado!
+    chamadosFuncionario(idFuncionario: Int!): [Chamado]!
+    chamadosPatrimonio(idPatrimonio: Int!): [Chamado]!
+    chamadosStatus(status: Int!): [Chamado]!
 }
 
 input DadosChamado {

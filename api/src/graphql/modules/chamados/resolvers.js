@@ -9,6 +9,18 @@ export default {
         chamados: async (_, { idChamado }) => {
             const chamado = await knex('chamados').where('idChamado', idChamado).first();
             return chamado;
+        },
+        chamadosStatus: async (_, { status }) => {
+            const chamados = await knex('chamados').where('status', status);
+            return chamados;
+        },
+        chamadosPatrimonio: async (_, { patrimonio }) => {
+            const chamados = await knex('chamados').where('idPatrimonio', patrimonio);
+            return chamados;
+        },
+        chamadosFuncionario: async (_, { funcionario }) => {
+            const chamados = await knex('chamados').where('idFuncionario', funcionario);
+            return chamados;
         }
     },
 

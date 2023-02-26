@@ -5,8 +5,10 @@ type Bancada {
 }
 
 type Query {
-  bancada: [Bancada]!
-  bancadas(idBancada: ID!): Bancada!
+  bancadas: [Bancada]!
+  bancada(idBancada: ID!): Bancada!
+  bancadasByLocal(local: String!): [Bancada]!
+  bancadasByStatus(status: Int!): [Bancada]!  
 }
 
 input DadosBancada {

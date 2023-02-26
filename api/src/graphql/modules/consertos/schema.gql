@@ -7,7 +7,21 @@ type Conserto {
 }
 
 type Query {
-    
-    conserto(idConserto: ID!): Conserto 
+    conserto(idConserto: ID!): Conserto!
     consertos: [Conserto]
+    consertosByStatus(status: String!): [Conserto]
+    consertosByPatrimonio(idPatrimonio: Int!): [Conserto]
+}
+
+input DadosConserto {
+    detalhes: String!
+    dataHora: String!
+    idPatrimonio: Int!
+    idFuncionario: Int!
+}
+
+type Mutation {
+    createConserto(dadosConserto: DadosConserto!): Conserto!
+    updateConserto(idConserto: ID!, dadosConserto: DadosConserto!): Conserto!
+    deleteConserto(idConserto: ID!): Boolean
 }
