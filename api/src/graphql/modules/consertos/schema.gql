@@ -1,0 +1,13 @@
+type Conserto {
+    idConserto: ID!
+    detalhes: String!
+    dataHora: String!
+    idPatrimonio: Int!
+    idFuncionario: Int!
+}
+
+type Query {
+    
+    conserto(idConserto: ID!): Conserto 
+    consertos: [Conserto]
+}

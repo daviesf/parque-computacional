@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{js,json,md}\"",
-    "dev": "npx nodemon --exec babel-node SarAPI/src/index.js -e js,gql"
+    "dev": "npx nodemon --exec babel-node api/src/index.js -e js,gql"
   },
   "repository": {
     "type": "git",

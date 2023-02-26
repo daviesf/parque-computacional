@@ -1,0 +1,25 @@
+type Chamado {
+    idChamado: ID!
+    dataHora: String!
+    detalhes: String!
+    idBancada: Int!
+    status: Int!
+}
+
+type Query {
+    chamado: [Chamado]!
+    chamados(idChamado: ID!): Chamado!
+}
+
+input DadosChamado {
+    dataHora: String!
+    detalhes: String!
+    idBancada: Int!
+    status: Int!
+}
+
+type Mutation {
+    createChamado(data: DadosChamado!): Chamado!
+    updateChamado(idChamado: ID!, data: DadosChamado!): Chamado!
+    deleteChamado(idChamado: ID!): Boolean
+}

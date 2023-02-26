@@ -1,5 +1,5 @@
-const knex = require('../../../startMYSQLServer');
-export default {
+const knex = require('../../../mysql');
+export default { 
     
     Query:{
         bancada: async () => {
@@ -26,6 +26,6 @@ export default {
       deleteBancada: async (_, { idBancada }) => {
         await knex('bancadas').where('idBancada', idBancada).del();
         return true;
-      },
-    },
+      }
+    }
   };
