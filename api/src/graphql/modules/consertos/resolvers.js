@@ -9,12 +9,8 @@ export default {
             const conserto = await knex('consertos').where('idConserto', idConserto).first();
             return conserto;
         },
-        consertosByStatus: async (_, {status}) => {
-            const consertos = await knex('consertos').where('status', status);
-            return consertos;
-        },
-        consertosByPatrimonio: async (_, {patrimonio}) => {
-            const consertos = await knex('consertos').where('idPatrimonio', patrimonio);
+        consertosByPatrimonio: async (_, {idPatrimonio}) => {
+            const consertos = await knex('consertos').where('idPatrimonio', idPatrimonio);
             return consertos;
         }
     },

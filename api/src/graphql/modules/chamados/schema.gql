@@ -8,10 +8,10 @@ type Chamado {
 }
 
 type Query {
-    chamado: [Chamado]!
-    chamados(idChamado: ID!): Chamado!
+    chamados: [Chamado]!
+    chamado(idChamado: ID!): Chamado!
     chamadosFuncionario(idFuncionario: Int!): [Chamado]!
-    chamadosPatrimonio(idPatrimonio: Int!): [Chamado]!
+    chamadosBancada(idBancada: Int!): [Chamado]!
     chamadosStatus(status: Int!): [Chamado]!
 }
 

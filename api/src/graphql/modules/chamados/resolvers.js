@@ -2,11 +2,11 @@ const knex = require('../../../mysql');
 
 export default {
     Query: {
-        chamado: async () => {
+        chamados: async () => {
             return knex('chamados').select('*');
         },
 
-        chamados: async (_, { idChamado }) => {
+        chamado: async (_, { idChamado }) => {
             const chamado = await knex('chamados').where('idChamado', idChamado).first();
             return chamado;
         },
@@ -14,12 +14,12 @@ export default {
             const chamados = await knex('chamados').where('status', status);
             return chamados;
         },
-        chamadosPatrimonio: async (_, { patrimonio }) => {
-            const chamados = await knex('chamados').where('idPatrimonio', patrimonio);
+        chamadosBancada: async (_, { idBancada }) => {
+            const chamados = await knex('chamados').where('idBancada', idBancada);
             return chamados;
         },
-        chamadosFuncionario: async (_, { funcionario }) => {
-            const chamados = await knex('chamados').where('idFuncionario', funcionario);
+        chamadosFuncionario: async (_, { idFuncionario }) => {
+            const chamados = await knex('chamados').where('idFuncionario', idFuncionario);
             return chamados;
         }
     },

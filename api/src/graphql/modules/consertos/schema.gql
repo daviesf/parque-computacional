@@ -9,7 +9,6 @@ type Conserto {
 type Query {
     conserto(idConserto: ID!): Conserto!
     consertos: [Conserto]
-    consertosByStatus(status: String!): [Conserto]
     consertosByPatrimonio(idPatrimonio: Int!): [Conserto]
 }
 
