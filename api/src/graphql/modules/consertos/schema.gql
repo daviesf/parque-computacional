@@ -20,7 +20,7 @@ input DadosConserto {
 }
 
 type Mutation {
-    createConserto(dadosConserto: DadosConserto!): Conserto!
-    updateConserto(idConserto: ID!, dadosConserto: DadosConserto!): Conserto!
+    createConserto(data: DadosConserto!): Conserto!
+    updateConserto(idConserto: ID!, data: DadosConserto!): Conserto!
     deleteConserto(idConserto: ID!): Boolean
 }

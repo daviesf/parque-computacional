@@ -5,11 +5,11 @@ export default {
         consertos: async () => {
             return knex('consertos').select('*');
         },
-        conserto: async (_, {idConserto}) => {
+        conserto: async (_, { idConserto }) => {
             const conserto = await knex('consertos').where('idConserto', idConserto).first();
             return conserto;
         },
-        consertosByPatrimonio: async (_, {idPatrimonio}) => {
+        consertosByPatrimonio: async (_, { idPatrimonio }) => {
             const consertos = await knex('consertos').where('idPatrimonio', idPatrimonio);
             return consertos;
         }
