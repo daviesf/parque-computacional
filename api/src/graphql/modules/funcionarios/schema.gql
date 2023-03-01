@@ -1,0 +1,29 @@
+type Funcionario {
+    idFuncionario: ID!
+    status: String!
+    nome: String!
+    tipo: String!
+    usuario: String!
+    senha: Int!
+}
+
+type Query {
+    funcionarios: [Funcionario]!
+    funcionario(idFuncionario: ID!): Funcionario!
+    funcionariosByNome(nome: String!): [Funcionario]!
+    funcionariosByStatus(status: String!): [Funcionario]!
+}
+
+input DadosFuncionario{
+    status: String!
+    nome: String!
+    tipo: String!
+    usuario: String!
+    senha: Int!
+}
+
+type Mutation {
+    createFuncionario(data: DadosFuncionario!): Funcionario!
+    updateFuncionario(idFuncionario: ID!, data: DadosFuncionario!): Funcionario!
+    deleteFuncionario(idFuncionario: ID!): Boolean!
+}

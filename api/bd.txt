@@ -1,0 +1,8 @@
+bancadas
+chamados
+consertos
+funcionarios
+patrimonios
+_auditoria
+_exceptions
+_logins

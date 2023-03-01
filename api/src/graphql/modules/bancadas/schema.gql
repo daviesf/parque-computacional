@@ -19,5 +19,5 @@ input DadosBancada {
 type Mutation {
   createBancada(data: DadosBancada!): Bancada!
   updateBancada(idBancada: ID!, data: DadosBancada!): Bancada!
-  deleteBancada(idBancada: ID!): Boolean
+  deleteBancada(idBancada: ID!): Boolean!
 }
