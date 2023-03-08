@@ -17,7 +17,8 @@ export default {
     bancadasByStatus: async (_, { status }) => {
       const bancadas = await knex('bancadas').where('status', status);
       return bancadas;
-    }
+    },
+    
   },
 
   Mutation: {

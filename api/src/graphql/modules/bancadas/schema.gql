@@ -2,13 +2,15 @@ type Bancada {
   idBancada: ID!
   local: String!
   status: Int!
+  patrimonios: [Patrimonio]!
 }
 
 type Query {
   bancadas: [Bancada]!
   bancada(idBancada: ID!): Bancada!
   bancadasByLocal(local: String!): [Bancada]!
-  bancadasByStatus(status: Int!): [Bancada]!  
+  bancadasByStatus(status: Int!): [Bancada]!
+  
 }
 
 input DadosBancada {
