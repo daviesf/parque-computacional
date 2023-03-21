@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="semantic/semantic.min.css">
+    <script src="semantic/semantic.min.js"></script>
+    <script src="home.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="sidebar navbar">
+        <div class="logo-details">
+            <i class="desktop icon"></i>
+            <div class="logo_name">Parque Computacional</div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+            <li>
+                <a href="#">
+                    <i class="home icon"></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="keyboard outline icon"></i>
+                    <span class="links_name">Patrimônio</span>
+                </a>
+                <span class="tooltip">Patrimônio</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="server icon"></i>
+                    <span class="links_name">Bancada</span>
+                </a>
+                <span class="tooltip">Bancada</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="wrench icon"></i>
+                    <span class="links_name">HelpDesk</span>
+                </a>
+                <span class="tooltip">HelpDesk</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="user outline icon"></i>
+                    <span class="links_name">Usuário</span>
+                </a>
+                <span class="tooltip">Usuário</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Setting</span>
+                </a>
+                <span class="tooltip">Setting</span>
+            </li>
+        </ul>
+    </div>
+    <div class="background-home">
+    <section class="home-section">
+        <div class="text">Bem-vindo {user}</div>
+    </section>
+    <div class="ui huge header text-home">Últimas Notícias</div>
+    <div class="ui link cards home-section card-container">
+        <div class="card">
+          <div class="image">
+            <img src="../media/unicamp-fca.png">
+          </div>
+          <div class="content">
+            <div class="header">Matt Giampietro</div>
+            <div class="meta">
+              <a>Friends</a>
+            </div>
+            <div class="description">
+              Matthew is an interior designer living in New York.
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              Joined in 2013
+            </span>
+            <span>
+              <i class="user icon"></i>
+              75 Friends
+            </span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="image">
+            <img src="../media/unicamp-fca.png">
+          </div>
+          <div class="content">
+            <div class="header">Molly</div>
+            <div class="meta">
+              <span class="date">Coworker</span>
+            </div>
+            <div class="description">
+              Molly is a personal assistant living in Paris.
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              Joined in 2011
+            </span>
+            <span>
+              <i class="user icon"></i>
+              35 Friends
+            </span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="image">
+            <img src="../media/unicamp-fca.png">
+          </div>
+          <div class="content">
+            <div class="header">Elyse</div>
+            <div class="meta">
+              <a>Coworker</a>
+            </div>
+            <div class="description">
+              Elyse is a copywriter working in New York.
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              Joined in 2014
+            </span>
+            <span>
+              <i class="user icon"></i>
+              151 Friends
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+let sidebar = document.querySelector(".sidebar");
+let closeBtn = document.querySelector("#btn");
+let searchBtn = document.querySelector(".bx-search");
+closeBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+})
+searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+})
+// following are the code to change sidebar button(optional)
+function menuBtnChange() {
+    if (sidebar.classList.contains("open")) {
+        closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+    } else {
+        closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");//replacing the iocns class
+    }
+}
+</script>
+</html>
