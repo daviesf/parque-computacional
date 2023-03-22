@@ -66,6 +66,7 @@ body {
    box-sizing: border-box;
    font-family: "Poppins" , sans-serif;
  }
+
  .sidebar{
    position: fixed;
    left: 0;
@@ -308,3 +309,13 @@ body {
      display: none;
    }
  }
+
+ .card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+}
