@@ -27,7 +27,7 @@ body {
 
 .form_container {
   width: 50vh;
-  height: fit-content;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,13 +43,10 @@ body {
 }
 
 .logo_container {
-  box-sizing: border-box;
-  height: 50px;
+  display: flex;
   width: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('../media/logo.png');
-  border-radius: 11px;
+  justify-content: center;
+  align-items: center;
 }
 
 .title_container {
@@ -64,7 +61,7 @@ body {
   font-family: SFProBold;
 
   margin: 0;
-  font-size: 4.5rem;
+  font-size: 5rem;
   font-weight: 800;
   color: #212121;
 }
