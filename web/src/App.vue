@@ -1,18 +1,16 @@
 <template>
-    <div>
-      <h1>Meu aplicativo Vue</h1>
-    </div>
+    <NavBar/>
   </template>
   
   <script>
+  import NavBar from './components/nav.vue';
+
   export default {
     name: 'App',
+    components: { NavBar }
   };
   </script>
   
   <style>
-    h1 {
-        background-color: lightcyan;
-    }
   </style>
   
