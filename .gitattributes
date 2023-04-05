@@ -3,3 +3,4 @@
 *.html linguagem=html
 *.css linguagem=css
 *.json linguagem=json
+*.vue linguagem=vue
