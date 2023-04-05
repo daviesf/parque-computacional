@@ -22,6 +22,9 @@
 .sidebar.open {
   width: 250px;
 }
+/* Para fazer a navbar ser responsiva,
+apenas alterar a width acima para 100% com
+a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 
 .sidebar .logo-details {
   height: 60px;

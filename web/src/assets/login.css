@@ -14,7 +14,7 @@ body {
 
 @font-face {
   font-family: SFProRegular;
-  src: url(../fonts/SFPRODISPLAYREGULAR.OTF);
+  src: url(./fonts/SFPRODISPLAYREGULAR.OTF);
 }
 
 .bg-login {
