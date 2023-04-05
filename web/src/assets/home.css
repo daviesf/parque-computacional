@@ -261,8 +261,6 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 
 .home-section {
   position: relative;
-  background: #E4E9F7;
-  min-height: 100vh;
   top: 0;
   left: 78px;
   width: calc(100% - 78px);

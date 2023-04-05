@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../src/assets/semantic/semantic.min.css">
+    <script src="../src/assets/semantic/semantic.min.js"></script>
+    <link rel="stylesheet" href="../src/assets/home.css">
+    <link rel="stylesheet" href="../src/assets/patrimonio.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="sidebar navbar">
+        <div class="logo-details">
+            <i class="desktop icon"></i>
+            <div class="logo_name">Parque Computacional</div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+            <li>
+                <a href="#">
+                    <i class="home icon"></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="keyboard outline icon"></i>
+                    <span class="links_name">Patrimônio</span>
+                </a>
+                <span class="tooltip">Patrimônio</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="server icon"></i>
+                    <span class="links_name">Bancada</span>
+                </a>
+                <span class="tooltip">Bancada</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="wrench icon"></i>
+                    <span class="links_name">HelpDesk</span>
+                </a>
+                <span class="tooltip">HelpDesk</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="user outline icon"></i>
+                    <span class="links_name">Usuário</span>
+                </a>
+                <span class="tooltip">Usuário</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Setting</span>
+                </a>
+                <span class="tooltip">Setting</span>
+            </li>
+        </ul>
+    </div>
+
+    <section class="home-section">
+        <div class="ui container margemtop">
+          <table class="ui compact celled definition table">
+            <thead>
+              <tr>
+                <td class="collapsing">
+                    <div class="ui fitted checkbox">
+                      <input type="checkbox"> <label></label>
+                    </div>
+                </td>
+                <th>Name</th>
+                <th>Registration Date</th>
+                <th>E-mail address</th>
+                <th>Premium Plan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox"> <label></label>
+                  </div>
+                </td>
+                <td>John Lilki</td>
+                <td>September 14, 2013</td>
+                <td>jhlilk22@yahoo.com</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox"> <label></label>
+                  </div>
+                </td>
+                <td>Jamie Harington</td>
+                <td>January 11, 2014</td>
+                <td>jamieharingonton@yahoo.com</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox"> <label></label>
+                  </div>
+                </td>
+                <td>Jill Lewis</td>
+                <td>May 11, 2014</td>
+                <td>jilsewris22@yahoo.com</td>
+                <td>Yes</td>
+              </tr>
+            </tbody>
+            <tfoot class="full-width">
+              <tr>
+                <th></th>
+                <th colspan="4">
+                  <div class="ui right floated small primary labeled icon button">
+                    <i class="user icon"></i> Adicionar Patrimônio
+                  </div>
+                  <div class="ui small button">
+                    Approve
+                  </div>
+                  <div class="ui small  disabled button">
+                    Approve All
+                  </div>
+                </th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+      
+      
+    
+</body>
+<script type="text/javascript">
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
+    closeBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        menuBtnChange();//calling the function(optional)
+    })
+    searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
+        sidebar.classList.toggle("open");
+        menuBtnChange(); //calling the function(optional)
+    })
+    // following are the code to change sidebar button(optional)
+    function menuBtnChange() {
+        if (sidebar.classList.contains("open")) {
+            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+        } else {
+            closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");//replacing the iocns class
+        }
+    }
+</script>
+</html>
