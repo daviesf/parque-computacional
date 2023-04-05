@@ -8,9 +8,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{js,json,md}\"",
-    "dev": "npx nodemon --exec babel-node api/src/index.js -e js,gql",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "dev": "npx nodemon --exec babel-node api/src/index.js -e js,gql"
   },
   "repository": {
     "type": "git",
