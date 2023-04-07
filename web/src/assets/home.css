@@ -162,11 +162,13 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   opacity: 0;
   pointer-events: none;
   transition: 0.4s;
+  transform: translateX(-100%);
 }
 
 .sidebar.open li a .links_name {
   opacity: 1;
   pointer-events: auto;
+  transform: translateX(0%);
 }
 
 .sidebar li a:hover .links_name,
