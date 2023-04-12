@@ -139,7 +139,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   width: 100%;
 }
 
-.sidebar li a {
+.sidebar li router-link {
   display: flex;
   height: 100%;
   width: 100%;
@@ -150,11 +150,11 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   background: #11101D;
 }
 
-.sidebar li a:hover {
+.sidebar li router-link:hover {
   background: #FFF;
 }
 
-.sidebar li a .links_name {
+.sidebar li router-link .links_name {
   color: #fff;
   font-size: 15px;
   font-weight: 400;
@@ -165,14 +165,14 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   transform: translateX(-100%);
 }
 
-.sidebar.open li a .links_name {
+.sidebar.open li router-link .links_name {
   opacity: 1;
   pointer-events: auto;
   transform: translateX(0%);
 }
 
-.sidebar li a:hover .links_name,
-.sidebar li a:hover i {
+.sidebar li router-link:hover .links_name,
+.sidebar li router-link:hover i {
   transition: all 0.5s ease;
   color: #11101D;
 }

@@ -1,14 +1,44 @@
-// import { createRouter, createWebHistory } from 'vue-router'
+import VueRouter from 'vue-router';
+import home from '../views/home.vue';
+import patrimonio from '../views/patrimonio.vue';
+import bancada from '../views/bancada.vue';
+import helpDesk from '../views/helpDesk.vue';
+import usuario from '../views/usuario.vue';
+import setting from '../views/setting.vue';
 
-// const router = createRouter({
-//   history: createWebHistory(import.meta.env.BASE_URL),
-//   routes: [
-//     {
-//       path: '/',
-//       name: 'home',
-//       component: HomeView
-//     }
-//   ]
-// })
+const routes = [
+    {
+      path: '/home',
+      name: 'home',
+      component: home
+    },
+    {
+      path: '/patrimonio',
+      name: 'patrimonio',
+      component: patrimonio
+    },
+    {
+      path: '/bancada',
+      name: 'bancada',
+      component: bancada
+    },
+    {
+      path: '/helpDesk',
+      name: 'helpDesk',
+      component: helpDesk
+    },
+    {
+      path: '/usuario',
+      name: 'usuario',
+      component: usuario
+    },
+    {
+      path: '/setting',
+      name: 'setting',
+      component: setting
+    }
+  ]
 
-// export default router
+const router = new VueRouter({
+  routes
+});
