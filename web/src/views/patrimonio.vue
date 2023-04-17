@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: 'patrimonio'
+    name: 'patrimonioView'
 }
 </script>
 

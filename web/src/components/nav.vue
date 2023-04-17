@@ -49,12 +49,20 @@
         <span class="tooltip">Setting</span>
       </li>
     </ul>
+    <div class="router-view-wrapper">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
+import { routerLink } from 'vue-router'
+
 export default {
-  name: 'NavBar'
+  name: 'NavBar', 
+  directives: {
+    'router-link': routerLink,
+  },
 };
 
 document.addEventListener('DOMContentLoaded', function() {

@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router';
-import home from '../views/home.vue';
-import patrimonio from '../views/patrimonio.vue';
+import homeView from '../views/home.vue';
+import patrimonioView from '../views/patrimonio.vue';
 import bancada from '../views/bancada.vue';
 import helpDesk from '../views/helpDesk.vue';
 import usuario from '../views/usuario.vue';
@@ -10,12 +10,12 @@ const routes = [
     {
       path: '/home',
       name: 'home',
-      component: home
+      component: homeView
     },
     {
       path: '/patrimonio',
       name: 'patrimonio',
-      component: patrimonio
+      component: patrimonioView
     },
     {
       path: '/bancada',
@@ -42,3 +42,5 @@ const routes = [
 const router = new VueRouter({
   routes
 });
+
+export default router;
