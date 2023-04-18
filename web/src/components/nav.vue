@@ -7,54 +7,62 @@
     </div>
     <ul class="nav-list">
       <li>
-        <a href="#">
+        <router-link to="/">
           <i class="home icon"></i>
           <span class="links_name">Home</span>
-        </a>
+        </router-link>
         <span class="tooltip">Home</span>
       </li>
       <li>
-        <a href="#">
+        <router-link to="/patrimonio">
           <i class="keyboard outline icon"></i>
           <span class="links_name">Patrimônio</span>
-        </a>
+        </router-link>
         <span class="tooltip">Patrimônio</span>
       </li>
       <li>
-        <a href="#">
+        <router-link to="/bancada">
           <i class="server icon"></i>
           <span class="links_name">Bancada</span>
-        </a>
+        </router-link>
         <span class="tooltip">Bancada</span>
       </li>
       <li>
-        <a href="#">
+        <router-link to="/helpDesk">
           <i class="wrench icon"></i>
           <span class="links_name">HelpDesk</span>
-        </a>
+        </router-link>
         <span class="tooltip">HelpDesk</span>
       </li>
       <li>
-        <a href="#">
+        <router-link to="/usuario">
           <i class="user outline icon"></i>
           <span class="links_name">Usuário</span>
-        </a>
+        </router-link>
         <span class="tooltip">Usuário</span>
       </li>
       <li>
-        <a href="#">
+        <router-link to="/setting">
           <i class="bx bx-cog"></i>
           <span class="links_name">Setting</span>
-        </a>
+        </router-link>
         <span class="tooltip">Setting</span>
       </li>
     </ul>
+    <div class="router-view-wrapper">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
+import { routerLink } from 'vue-router'
+
 export default {
-  name: 'NavBar'
+  name: 'NavBar', 
+  directives: {
+    'router-link': routerLink,
+  },
 };
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -79,7 +87,5 @@ function menuBtnChange() {
 }
 });
 </script>
-
-
 
 <style src="../assets/home.css"></style>

@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{js,json,md}\"",
-    "dev": "npx nodemon --exec babel-node api/src/index.js -e js,gql"
+    "dev": "npx nodemon --exec babel-node src/index.js -e js,gql"
   },
   "repository": {
     "type": "git",
@@ -33,18 +33,14 @@
     "graphql": "^16.6.0",
     "graphql-tools": "^8.3.18",
     "knex": "^2.4.2",
-    "mysql2": "^3.1.2",
-    "vue": "^3.2.47",
-    "vue-template-compiler": "^2.7.14"
+    "mysql2": "^3.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
-    "@vue/cli-service": "^5.0.8",
     "eslint": "^8.34.0",
-    "eslint-plugin-react": "^7.32.2",
     "nodemon": "^2.0.20",
     "prettier": "^2.8.4"
   }
