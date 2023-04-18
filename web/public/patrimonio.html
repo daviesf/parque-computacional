@@ -15,6 +15,39 @@
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="../src/assets/main.css">
 
+  <style>
+    .open {
+      display: block !important;
+    }
+
+    .ui.container.add-form {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      z-index: 999;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+    }
+
+    .ui.container.add-form h2.ui {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .ui.container.add-form input[type="text"],
+    .ui.container.add-form select {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .ui.container.add-form .ui.submit.button {
+      margin-top: 20px;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -81,6 +114,10 @@
                 <label></label>
               </div>
             </td>
+            <th>Bancada</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Tipo</th>
             <th>Tipo</th>
             <th>Marca</th>
             <th>Modelo</th>
@@ -98,6 +135,7 @@
             <td>John Lilki</td>
             <td>September 14, 2013</td>
             <td>jhlilk22@yahoo.com</td>
+            <td>No</td>
             <td>5</td>
             <td>Ativo</td>
           </tr>
@@ -110,6 +148,9 @@
             <td>Jamie Harington</td>
             <td>January 11, 2014</td>
             <td>jamieharingonton@yahoo.com</td>
+            <td>Yes</td>
+            <td>Ativo</td>
+          </tr>
             <td>8</td>
             <td>Ativo</td>
           </tr>         
@@ -122,6 +163,20 @@
             <td>Jill Lewis</td>
             <td>May 11, 2014</td>
             <td>jilsewris22@yahoo.com</td>
+            <td>Yes</td>
+            <td>Ativo</td>
+          </tr>
+          <tr>
+            <td class="collapsing">
+              <div class="ui fitted checkbox">
+                <input type="checkbox" class="select-checkbox"> <label></label>
+              </div>
+            </td>
+            <td>Ativo</td>
+            <td>May 11, 2014</td>
+            <td>jilsewris22@yahoo.com</td>
+            <td>Yes</td>
+            <td>Ativo</td>
             <td>12</td>
             <td>Inativo</td>
           </tr>
@@ -134,19 +189,53 @@
                 <i class="user icon"></i> Adicionar Patrimônio
               </div>
               <div class="ui small button">
-                Approve
+                Excluir
               </div>
-              <div class="ui small  disabled button">
-                Approve All
+              <div class="ui small button">
+                Ativar
+              </div>
+              <div class="ui small button">
+                Desativar
               </div>
             </th>
           </tr>
         </tfoot>
       </table>
     </div>
+      <div class="ui container add-form" style="display: none;">
+        <h2 class="ui">Adicionar Patrimônio</h2>
+        <form class="ui form">
+          <div class="fields">
+            <div class="field">
+              <label>Bancada</label>
+              <input type="text" name="bancada">
+            </div>
+            <div class="field">
+              <label>Marca</label>
+              <input type="text" name="marca">
+            </div>
+            <div class="field">
+              <label>Modelo</label>
+              <input type="text" name="modelo">
+            </div>
+            <div class="field">
+              <label>Tipo</label>
+              <select name="tipo">
+                <option value="1">Tipo 1</option>
+                <option value="2">Tipo 2</option>
+                <option value="3">Tipo 3</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Status</label>
+              <input type="text" name="status">
+            </div>
+            <div class="ui blue submit button">Adicionar</div>
+          </div>
+        </form>
+      </div>
+
   </section>
-
-
 
 </body>
 <script type="text/javascript">
@@ -168,6 +257,20 @@
     });
   }
 
+  const addButton = document.querySelector('.ui.primary.labeled.icon.button');
+  const modal = document.querySelector('.add-form');
+  const closeModal = document.querySelector('.close-modal');
+
+  addButton.addEventListener('click', () => {
+    modal.classList.add('open');
+  });
+
+  closeModal.addEventListener('click', () => {
+    modal.classList.remove('open');
+  });
+
+
 </script>
 <script src="../src/assets/home.js"></script>
+
 </html>
