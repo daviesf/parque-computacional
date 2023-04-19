@@ -1,10 +1,12 @@
 <template>
-  <h1>sua tia</h1>
+  <section class="home-section">
+    <h1>Testes</h1>
+  </section>
 </template>
 
 <script>
 export default {
-    name: 'patrimonioView'
+    name: 'Patrimonio'
 }
 </script>
 

@@ -1,46 +1,46 @@
-import VueRouter from 'vue-router';
-import homeView from '../views/home.vue';
-import patrimonioView from '../views/patrimonio.vue';
-import bancada from '../views/bancada.vue';
-import helpDesk from '../views/helpDesk.vue';
-import usuario from '../views/usuario.vue';
-import setting from '../views/setting.vue';
+import { createRouter, createWebHistory } from 'vue-router'
 
-const routes = [
+import Home from './views/Home.vue'
+import Patrimonio from './views/Patrimonio.vue'
+import Bancada from './views/Bancada.vue'
+import HelpDesk from './views/HelpDesk.vue'
+import Usuario from './views/Usuario.vue'
+import Setting from './views/Setting.vue'
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
     {
-      path: '/home',
-      name: 'home',
-      component: homeView
+      path: '/',
+      name: 'Home',
+      component: Home
     },
     {
       path: '/patrimonio',
-      name: 'patrimonio',
-      component: patrimonioView
+      name: 'Patrimonio',
+      component: Patrimonio
     },
     {
       path: '/bancada',
-      name: 'bancada',
-      component: bancada
+      name: 'Bancada',
+      component: Bancada
     },
     {
       path: '/helpDesk',
-      name: 'helpDesk',
-      component: helpDesk
+      name: 'HelpDesk',
+      component: HelpDesk
     },
     {
       path: '/usuario',
-      name: 'usuario',
-      component: usuario
+      name: 'Usuario',
+      component: Usuario
     },
     {
       path: '/setting',
-      name: 'setting',
-      component: setting
+      name: 'Setting',
+      component: Setting
     }
   ]
+})
 
-const router = new VueRouter({
-  routes
-});
-
-export default router;
+export default router
