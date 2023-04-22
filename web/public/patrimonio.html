@@ -14,11 +14,15 @@
   <link rel="stylesheet" href="../src/assets/patrimonio.css">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="../src/assets/main.css">
-
   <style>
     .open {
       display: block !important;
     }
+
+    select.placeholder {
+      color: rgba(0, 0, 0, 0.3);
+    }
+
 
     .ui.container.add-form {
       position: fixed;
@@ -46,11 +50,50 @@
     .ui.container.add-form .ui.submit.button {
       margin-top: 20px;
     }
+
+    .dimmer {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 999;
+    }
+
+    .popup {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      z-index: 1000;
+    }
+
+    .popup h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .popup form input[type="text"],
+    .popup form select {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .popup form button[type="submit"] {
+      margin-top: 20px;
+    }
   </style>
 
 </head>
 
 <body>
+  <!-- Navbar -->
   <div class="sidebar navbar">
     <div class="logo-details">
       <i class="desktop icon"></i>
@@ -103,6 +146,7 @@
     </ul>
   </div>
 
+  <!-- Tabela -->
   <section class="home-section">
     <div class="ui container table-p">
       <table class="ui compact celled definition table">
@@ -144,7 +188,7 @@
             <td>Logitech</td>
             <td>G-213</td>
             <td>Teclado</td>
-            <td>Ativo</td>       
+            <td>Ativo</td>
           <tr>
             <td class="collapsing">
               <div class="ui fitted checkbox">
@@ -174,7 +218,7 @@
           <tr>
             <th></th>
             <th colspan="5">
-              <div class="ui right floated small primary labeled icon button">
+              <div class="ui right floated small primary labeled icon button" id="add-patrimonio">
                 <i class="keyboard outline icon"></i> Adicionar Patrimônio
               </div>
               <div class="ui small button">
@@ -194,42 +238,56 @@
         </tfoot>
       </table>
     </div>
-      <div class="ui container add-form" style="display: none; margin-top: 20px;">
-        <h2 class="ui">Adicionar Patrimônio</h2>
-        <form class="ui form">
-          <div class="fields">
-            <div class="field">
-              <label>Bancada</label>
-              <input type="text" name="bancada">
-            </div>
-            <div class="field">
-              <label>Marca</label>
-              <input type="text" name="marca">
-            </div>
-            <div class="field">
-              <label>Modelo</label>
-              <input type="text" name="modelo">
-            </div>
-            <div class="field">
-              <label>Tipo</label>
-              <select name="tipo">
-                <option value="1">Tipo 1</option>
-                <option value="2">Tipo 2</option>
-                <option value="3">Tipo 3</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Status</label>
-              <input type="text" name="status">
-            </div>
-            <div class="ui blue submit button">Adicionar</div>
-          </div>
-        </form>
-      </div>
-
   </section>
-
+  <!-- Pop-up de cadastro de patrimônio -->
+  <div class="dimmer">
+    <div class="ui container add-form">
+      <h2 class="ui dividing header">Adicionar Patrimônio</h2>
+      <form class="ui form">
+        <div class="field">
+          <label>Bancada</label>
+          <select name="tipo">
+            <option class="placeholder" disabled selected class="placeholder" disabled selected>Selecione a bancada</option>
+            <option value="b1">Nenhuma (ID: 0)</option>
+            <option value="b2">ID: 22 | Bancada de Informática</option>
+            <option value="b3">ID: 23 | Bancada de Almoxarifado</option>
+            <option value="b4">ID: 24 | Bancada do RU</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Marca</label>
+          <input type="text" name="marca" placeholder="Marca">
+        </div>
+        <div class="field">
+          <label>Modelo</label>
+          <input type="text" name="modelo" placeholder="Modelo">
+        </div>
+        <div class="field">
+          <label>Tipo</label>
+          <select name="tipo">
+            <option class="placeholder" disabled selected>Selecione o tipo</option>
+            <option value="desktop">Desktop</option>
+            <option value="notebook">Notebook</option>
+            <option value="impressora">Impressora</option>
+            <option value="monitor">Monitor</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <select name="status">
+            <option class="placeholder" disabled selected>Selecione o status</option>
+            <option value="ativo">Ativo</option>
+            <option value="inativo">Inativo</option>
+            <option value="manutencao">Em manutenção</option>
+          </select>
+        </div>
+        <button class="ui submit button" type="submit">Adicionar</button>
+        <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
+      </form>
+    </div>
+  </div>
 </body>
+
 <script type="text/javascript">
   // Selecione todos os checkboxes quando o checkbox geral é selecionado
   document.getElementById("select-all").addEventListener("click", function () {
@@ -249,16 +307,51 @@
     });
   }
 
-  const addButton = document.querySelector('.ui.primary.labeled.icon.button');
-  const modal = document.querySelector('.add-form');
-  const closeModal = document.querySelector('.close-modal');
-
-  addButton.addEventListener('click', () => {
-    modal.classList.add('open');
+  // Exibe o pop-pup ao clicar no botão "Adicionar Patrimônio"
+  $(document).ready(function () {
+    $('#add-patrimonio').on('click', function () {
+      $('.add-form').addClass('open');
+    });
   });
 
-  closeModal.addEventListener('click', () => {
-    modal.classList.remove('open');
+  // Faz o dimmer aparecer ao clicar no botão "Adicionar Patrimônio" e desaparecer ao clicar fora do pop-up.
+  $(document).ready(function () {
+    $("#add-patrimonio").click(function (e) {
+      e.preventDefault();
+      $(".dimmer").fadeIn();
+    });
+
+    $(".dimmer").click(function (e) {
+      if ($(e.target).hasClass("dimmer")) {
+        $(this).fadeOut();
+      }
+    });
+  });
+
+  // Oculta o pop-up e o dimmer ao clicar no botão "Cancelar"
+  $(document).ready(function () {
+    $('.cancel-button').click(function () {
+      $('.popup').hide();
+      $('.dimmer').hide();
+    });
+
+    // Oculta o pop-up e o dimmer ao pressionar a tecla "Esc"
+    $(document).keydown(function (event) {
+      if (event.keyCode == 27) {
+        $('.popup').hide();
+        $('.dimmer').hide();
+      }
+    });
+  });
+
+  // Placeholder
+  const tipoSelect = document.querySelector('select[name="tipo"]');
+  tipoSelect.addEventListener('change', () => {
+    if (tipoSelect.value === '') {
+      tipoSelect.classList.add('placeholder');
+    } else {
+      tipoSelect.classList.remove('placeholder');
+    }
   });
 
 
