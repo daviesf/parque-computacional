@@ -6,7 +6,7 @@
           <tr>
             <td class="collapsing">
               <div class="ui fitted checkbox">
-                <input type="checkbox" id="select-all">
+                <input type="checkbox" id="select-all" />
                 <label></label>
               </div>
             </td>
@@ -21,7 +21,7 @@
           <tr>
             <td class="collapsing">
               <div class="ui fitted checkbox">
-                <input type="checkbox" class="select-checkbox"> <label></label>
+                <input type="checkbox" class="select-checkbox" /> <label></label>
               </div>
             </td>
             <td>5</td>
@@ -33,7 +33,7 @@
           <tr>
             <td class="collapsing">
               <div class="ui fitted checkbox">
-                <input type="checkbox" class="select-checkbox"> <label></label>
+                <input type="checkbox" class="select-checkbox" /> <label></label>
               </div>
             </td>
             <td>8</td>
@@ -45,7 +45,7 @@
           <tr>
             <td class="collapsing">
               <div class="ui fitted checkbox">
-                <input type="checkbox" class="select-checkbox"> <label></label>
+                <input type="checkbox" class="select-checkbox" /> <label></label>
               </div>
             </td>
             <td>12</td>
@@ -57,7 +57,7 @@
           <tr>
             <td class="collapsing">
               <div class="ui fitted checkbox">
-                <input type="checkbox" class="select-checkbox"> <label></label>
+                <input type="checkbox" class="select-checkbox" /> <label></label>
               </div>
             </td>
             <td>2</td>
@@ -74,18 +74,10 @@
               <div class="ui right floated small primary labeled icon button" id="add-patrimonio">
                 <i class="keyboard outline icon"></i> Adicionar Patrimônio
               </div>
-              <div class="ui small button">
-                Excluir
-              </div>
-              <div class="ui small button">
-                Alterar
-              </div>
-              <div class="ui small button">
-                Ativar
-              </div>
-              <div class="ui small button">
-                Desativar
-              </div>
+              <div class="ui small button">Excluir</div>
+              <div class="ui small button">Alterar</div>
+              <div class="ui small button">Ativar</div>
+              <div class="ui small button">Desativar</div>
             </th>
           </tr>
         </tfoot>
@@ -99,8 +91,7 @@
         <div class="field">
           <label>Bancada</label>
           <select name="tipo">
-            <option class="placeholder" disabled selected>Selecione a bancada
-            </option>
+            <option class="placeholder" disabled selected>Selecione a bancada</option>
             <option value="b1">Nenhuma (ID: 0)</option>
             <option value="b2">ID: 22 | Bancada de Informática</option>
             <option value="b3">ID: 23 | Bancada de Almoxarifado</option>
@@ -109,11 +100,11 @@
         </div>
         <div class="field">
           <label>Marca</label>
-          <input type="text" name="marca" placeholder="Marca">
+          <input type="text" name="marca" placeholder="Marca" />
         </div>
         <div class="field">
           <label>Modelo</label>
-          <input type="text" name="modelo" placeholder="Modelo">
+          <input type="text" name="modelo" placeholder="Modelo" />
         </div>
         <div class="field">
           <label>Tipo</label>
@@ -142,7 +133,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'Patrimonio'
 }

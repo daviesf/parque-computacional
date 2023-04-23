@@ -11,7 +11,7 @@
   top: 0;
   height: 100%;
   width: 78px;
-  background: #11101D;
+  background: #11101d;
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
@@ -31,7 +31,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 .sidebar .logo-details .icon {
   opacity: 0;
   transition: all 0.5s ease;
-  transform: translateX(-100%)
+  transform: translateX(-100%);
 }
 
 .sidebar .logo-details .logo_name {
@@ -40,13 +40,13 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   font-weight: 600;
   opacity: 0;
   transition: all 0.5s ease;
-  transform: translateX(-100%)
+  transform: translateX(-100%);
 }
 
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name {
   opacity: 1;
-  transform: translateX(0%)
+  transform: translateX(0%);
 }
 
 .sidebar .logo-details #btn {
@@ -109,7 +109,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 }
 .sidebar input {
   font-size: 15px;
-  color: #FFF;
+  color: #fff;
   font-weight: 400;
   outline: none;
   height: 50px;
@@ -133,10 +133,10 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   align-items: center;
   text-decoration: none;
   transition: all 0.4s ease;
-  background: #11101D;
+  background: #11101d;
 }
 .sidebar li a:hover {
-  background: #FFF;
+  background: #fff;
 }
 .sidebar li a .links_name {
   color: #fff;
@@ -154,7 +154,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 .sidebar li a:hover .links_name,
 .sidebar li a:hover i {
   transition: all 0.5s ease;
-  color: #11101D;
+  color: #11101d;
 }
 .sidebar li i {
   height: 50px;
@@ -222,7 +222,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   transition: all 0.5s ease;
   z-index: 2;
 }
-.sidebar.open~.home-section {
+.sidebar.open ~ .home-section {
   left: 250px;
   width: calc(100% - 250px);
 }
@@ -231,7 +231,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   color: #11101d;
   font-size: 25px;
   font-weight: 500;
-  margin: 18px
+  margin: 18px;
 }
 @media (max-width: 420px) {
   .sidebar li .tooltip {
