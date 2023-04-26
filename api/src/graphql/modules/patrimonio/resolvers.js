@@ -32,16 +32,46 @@ export default {
         .orWhere("modelo", modelo);
       return patrimonios;
     },
-  },
+    searchPatrimonios: async (_, { filter }) => {
+      const patrimonios = await knex("patrimonio")
+        .where((builder) => {
+          if (filter.marca) {
+            builder.where("marca", filter.marca);
+          }
+          if (filter.modelo) {
+            builder.where("modelo", filter.modelo);
+          }
+          if (filter.status) {
+            builder.where("status", filter.status);
+          }
+          if (filter.idBancada) {
+            builder.where("idBancada", filter.idBancada);
+          }
+          if (filter.tipo) {
+            builder.where("tipo", filter.tipo);
+          }
+          if (filter.processador) {
+            builder.where("processador", filter.processador);
+          }
+          if (filter.memROM) {
+            builder.where("memROM", filter.memROM);
+          }
+          if (filter.memRAM) {
+            builder.where("memRAM", filter.memRAM);
+          }
+        });
+      return patrimonios;
+    }
+},
 
-  Mutation: {
-    createPatrimonio: async (_, { data }) => {
-      const [id] = await knex("patrimonio").insert(data);
-      const novoPatrimonio = await knex("patrimonio")
-        .where("idPatrimonio", id)
-        .first();
-      return novoPatrimonio;
-    },
+Mutation: {
+  createPatrimonio: async (_, { data }) => {
+    const [id] = await knex("patrimonio").insert(data);
+    const novoPatrimonio = await knex("patrimonio")
+      .where("idPatrimonio", id)
+      .first();
+    return novoPatrimonio;
+  },
     updatePatrimonio: async (_, { idPatrimonio, data }) => {
       const patrimonioAtualizado = await knex("patrimonio")
         .where("idPatrimonio", idPatrimonio)
@@ -51,9 +81,9 @@ export default {
         .first();
       return patrimonio;
     },
-    deletePatrimonio: async (_, { idPatrimonio }) => {
-      await knex("patrimonio").where("idPatrimonio", idPatrimonio).del();
-      return true;
-    },
+      deletePatrimonio: async (_, { idPatrimonio }) => {
+        await knex("patrimonio").where("idPatrimonio", idPatrimonio).del();
+        return true;
+      },
   },
 };

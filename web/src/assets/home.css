@@ -5,6 +5,11 @@
   box-sizing: border-box;
   font-family: SFProRegular;
 }
+
+.titlep {
+  width: 100%;
+  text-align: center;
+}
 .sidebar {
   position: fixed;
   left: 0;

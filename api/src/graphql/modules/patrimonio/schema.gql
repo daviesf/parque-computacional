@@ -17,6 +17,15 @@ type Query{
     patrimoniosByStatus(status: String!): [Patrimonio]!
     patrimoniosByBancada(idBancada: Int!): [Patrimonio]!
     patrimoniosByMarcaModelo(marca: String!, modelo: String!): [Patrimonio]!
+    searchPatrimonios(filter: PatrimonioFilter): [Patrimonio]!
+}
+
+input PatrimonioFilter {
+  marca: String
+  modelo: String
+  status: String
+  idBancada: Int
+  tipo: String
 }
 
 input dadosPatrimonio{
