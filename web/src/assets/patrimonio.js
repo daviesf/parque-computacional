@@ -53,12 +53,3 @@ $(document).ready(function () {
   })
 })
 
-// Placeholder
-const tipoSelect = document.querySelector('select[name="tipo"]')
-tipoSelect.addEventListener('change', () => {
-  if (tipoSelect.value === '') {
-    tipoSelect.classList.add('placeholder')
-  } else {
-    tipoSelect.classList.remove('placeholder')
-  }
-})
