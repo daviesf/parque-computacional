@@ -1,4 +1,5 @@
 const knex = require("../../../mysql");
+
 export default {
   Query: {
     bancadas: async () => {
@@ -19,26 +20,37 @@ export default {
       const bancadas = await knex("bancadas").where("status", status);
       return bancadas;
     },
+    searchBancadas: async (_, { filter }) => {
+      const bancadas = await knex("bancadas").where((builder) => {
+        if (filter.local) {
+          builder.where("local", "like", `%${filter.local}%`);
+        }
+        if (filter.status) {
+          builder.where("status", filter.status);
+        }
+      });
+      return bancadas;
+    },
   },
 
-  Mutation: {
-    createBancada: async (_, { data }) => {
-      const [id] = await knex("bancadas").insert(data);
-      const novaBancada = await knex("bancadas").where("idBancada", id).first();
-      return novaBancada;
+    Mutation: {
+      createBancada: async (_, { data }) => {
+        const [id] = await knex("bancadas").insert(data);
+        const novaBancada = await knex("bancadas").where("idBancada", id).first();
+        return novaBancada;
+      },
+      updateBancada: async (_, { idBancada, data }) => {
+        const bancadaAtualizada = await knex("bancadas")
+          .where("idBancada", idBancada)
+          .update(data);
+        const bancada = await knex("bancadas")
+          .where("idBancada", idBancada)
+          .first();
+        return bancada;
+      },
+      deleteBancada: async (_, { idBancada }) => {
+        await knex("bancadas").where("idBancada", idBancada).del();
+        return true;
+      },
     },
-    updateBancada: async (_, { idBancada, data }) => {
-      const bancadaAtualizada = await knex("bancadas")
-        .where("idBancada", idBancada)
-        .update(data);
-      const bancada = await knex("bancadas")
-        .where("idBancada", idBancada)
-        .first();
-      return bancada;
-    },
-    deleteBancada: async (_, { idBancada }) => {
-      await knex("bancadas").where("idBancada", idBancada).del();
-      return true;
-    },
-  },
-};
+  };

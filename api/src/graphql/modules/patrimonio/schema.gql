@@ -5,9 +5,9 @@ type Patrimonio{
     status: String!
     idBancada: Int!
     tipo: String!
-    processador: String!
-    memROM:String!
-    memRAM: String!
+    processador: String
+    memROM:String
+    memRAM: String
 }
 
 type Query{

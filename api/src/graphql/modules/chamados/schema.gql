@@ -15,6 +15,13 @@ type Query {
     chamadosStatus(status: Int!): [Chamado]!
 }
 
+input FilterChamados {
+    idFuncionario: Int
+    idBancada: Int
+    status: Int
+    detalhes: String
+}
+
 input DadosChamado {
     dataHora: String!
     detalhes: String!

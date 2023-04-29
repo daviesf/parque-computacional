@@ -27,6 +27,23 @@ export default {
       );
       return chamados;
     },
+    searchChamados: async (_, { filter }) => {
+      const chamados = await knex("chamados").where((builder) => {
+        if (filter.idBancada) {
+          builder.where("idBancada", filter.idBancada);
+        }
+        if (filter.idFuncionario) {
+          builder.where("idFuncionario", filter.idFuncionario);
+        }
+        if (filter.status) {
+          builder.where("status", filter.status);
+        }
+        if (filter.detalhes) {
+          builder.where("detalhes", "like", `%${filter.detalhes}%`);
+        }
+      });
+      return chamados;
+    }
   },
 
   Mutation: {
