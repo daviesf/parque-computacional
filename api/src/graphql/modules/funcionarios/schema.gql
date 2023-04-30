@@ -23,7 +23,6 @@ input FuncionarioFilter {
 
 input Login {
     usuario: String!
-    senha: Int!
 }
 
 input DadosFuncionario{
