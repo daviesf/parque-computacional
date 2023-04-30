@@ -28,11 +28,11 @@
         <span class="tooltip">Bancada</span>
       </li>
       <li>
-        <router-link to="/helpDesk">
+        <router-link to="/manutencao">
           <i class="wrench icon"></i>
-          <span class="links_name">HelpDesk</span>
+          <span class="links_name">Manutenção</span>
         </router-link>
-        <span class="tooltip">HelpDesk</span>
+        <span class="tooltip">Manutenção</span>
       </li>
       <li>
         <router-link to="/usuario">

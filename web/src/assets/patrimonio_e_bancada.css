@@ -23,6 +23,45 @@ input[type='checkbox'] {
   margin-right: 5px;
 }
 
+.accordion {
+  border: 1px solid #efefef;
+
+}
+
+.accordion-header {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  background-color: #ffffff;
+  cursor: pointer;
+  padding: 15px;
+}
+
+.accordion-icon {
+  font-size: 25px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.accordion.active .accordion-icon {
+  transform: rotate(45deg);
+}
+
+.accordion-body {
+  display: none;
+  padding: 10px;
+}
+
+.accordion.active .accordion-body {
+  display: block;
+}
+
+.ui.vertical.menu {
+  width: 280px;
+}
+
 .open {
   display: block !important;
 }
@@ -30,6 +69,7 @@ input[type='checkbox'] {
 select.placeholder {
   color: rgba(0, 0, 0, 0.3);
 }
+
 
 .ui.container.add-form {
   position: fixed;
@@ -48,7 +88,7 @@ select.placeholder {
   margin-bottom: 20px;
 }
 
-.ui.container.add-form input[type='text'],
+.ui.container.add-form input[type="text"],
 .ui.container.add-form select {
   width: 100%;
   margin-bottom: 20px;
@@ -86,12 +126,12 @@ select.placeholder {
   margin-bottom: 20px;
 }
 
-.popup form input[type='text'],
+.popup form input[type="text"],
 .popup form select {
   width: 100%;
   margin-bottom: 20px;
 }
 
-.popup form button[type='submit'] {
+.popup form button[type="submit"] {
   margin-top: 20px;
 }
