@@ -3,7 +3,7 @@ import { mergeTypeDefs } from "@graphql-tools/merge";
 import path from "path";
 
 const typesArray = loadFilesSync(
-  path.join(__dirname, "modules", "**", "*.gql")
+	path.join(__dirname, "modules", "**", "*.gql")
 );
 const typeDefs = mergeTypeDefs(typesArray);
 

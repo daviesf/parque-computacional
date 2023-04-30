@@ -1,0 +1,30 @@
+type Bancada {
+  idBancada: ID!
+  local: String!
+  status: Int!
+}
+
+type Query {
+  bancadas: [Bancada]!
+  bancada(idBancada: ID!): Bancada!
+  bancadasByLocal(local: String!): [Bancada]!
+  bancadasByStatus(status: Int!): [Bancada]!
+  searchBancadas(filter: BancadaFilter): [Bancada]!
+}
+
+input DadosBancada {
+  local: String!
+  status: Int!
+}
+
+input BancadaFilter {
+  idBancada: ID
+  local: String
+  status: Int
+}
+
+type Mutation {
+  createBancada(data: DadosBancada!): Bancada!
+  updateBancada(idBancada: ID!, data: DadosBancada!): Bancada!
+  deleteBancada(idBancada: ID!): Boolean!
+}
