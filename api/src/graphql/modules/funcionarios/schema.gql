@@ -13,16 +13,12 @@ type Query {
     funcionariosByNome(nome: String!): [Funcionario]!
     funcionariosByStatus(status: String!): [Funcionario]!
     searchFuncionarios(filter: FuncionarioFilter): [Funcionario]!
-    confereLogin(login: Login!): Funcionario!
+    confereLogin(usuario: String!): Funcionario
 }
 
 input FuncionarioFilter {
     status: String
     nome: String
-}
-
-input Login {
-    usuario: String!
 }
 
 input DadosFuncionario{

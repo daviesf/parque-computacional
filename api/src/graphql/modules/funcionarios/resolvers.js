@@ -31,10 +31,8 @@ export default {
 			});
 			return funcionarios;
 		},
-		confereLogin: async (_, { login }) => {
-			const funcionario = await knex("funcionarios")
-				.where("usuario", login)
-				.first();
+		confereLogin: async (_, { usuario }) => {
+			const funcionario = await knex("funcionarios").where("usuario", usuario).first();
 			return funcionario;
 		},
 	},
