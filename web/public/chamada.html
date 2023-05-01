@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="ui container">
+      <h1 class="ui header">Chamados</h1>
+      <div class="ui segment">
+        <h3 class="ui header">Novo Chamado</h3>
+        <form id="form" class="ui form">
+          <div class="field">
+            <label>Nome</label>
+            <input type="text" name="name" placeholder="Nome completo" />
+          </div>
+          <div class="field">
+            <label>E-mail</label>
+            <input type="email" name="email" placeholder="E-mail" />
+          </div>
+          <div class="field">
+            <label>Assunto</label>
+            <input type="text" name="subject" placeholder="Assunto" />
+          </div>
+          <div class="field">
+            <label>Descrição</label>
+            <textarea name="description" rows="2" class="auto-expand"></textarea>
+          </div>
+          <button type="submit" class="ui button">Enviar</button>
+        </form>
+      </div>
+      <div class="ui segment">
+        <h3 class="ui header">Chamados Anteriores</h3>
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Assunto</th>
+              <th>Descrição</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<script>
+    const form = $("#form");
+const tableBody = $("#tableBody");
+
+form.submit(function (event) {
+  event.preventDefault();
+
+  const formData = form.serializeArray();
+
+  const data = {};
+  for (let i = 0; i < formData.length; i++) {
+    data[formData[i].name] = formData[i].value;
+  }
+
+  addRow(data);
+    })
+
+$(".auto-expand").on("input", function () {
+  this.style.height = "auto";
+  this.style.height = this.scrollHeight + "px";
+});
+
+function addRow(data) {
+  const newRow = $("<tr>");
+
+  const name = $("<td>").text(data.name);
+  const email = $("<td>").text(data.email);
+  const subject = $("<td>").text(data.subject);
+  const description = $("<td>").text(data.description);
+  const status = $("<td>").text("Pendente");
+
+  newRow.append(name);
+  newRow.append(email);
+  newRow.append(subject);
+  newRow.append(description);
+  newRow.append(status);
+
+  tableBody.append(newRow);
+}
+
+
+</script>
