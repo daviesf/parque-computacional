@@ -3,8 +3,8 @@ type Funcionario {
     status: String!
     nome: String!
     tipo: String!
-    usuario: String!
-    senha: Int!
+    email: String!
+    idSession: String
 }
 
 type Query {
@@ -13,7 +13,7 @@ type Query {
     funcionariosByNome(nome: String!): [Funcionario]!
     funcionariosByStatus(status: String!): [Funcionario]!
     searchFuncionarios(filter: FuncionarioFilter): [Funcionario]!
-    confereLogin(usuario: String!): Funcionario
+    confereLogin(email: String!): Funcionario
 }
 
 input FuncionarioFilter {
@@ -22,15 +22,16 @@ input FuncionarioFilter {
 }
 
 input DadosFuncionario{
-    status: String!
-    nome: String!
-    tipo: String!
-    usuario: String!
-    senha: Int!
+    status: String
+    nome: String
+    tipo: String
+    email: String
+    idSession: String
 }
 
 type Mutation {
     createFuncionario(data: DadosFuncionario!): Funcionario!
     updateFuncionario(idFuncionario: ID!, data: DadosFuncionario!): Funcionario!
+    updateIdSession(idFuncionario: ID!, idSession: String!): Funcionario!
     deleteFuncionario(idFuncionario: ID!): Boolean!
 }

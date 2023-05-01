@@ -20,7 +20,6 @@
 
 <body>
     <div class="bg-login">
-        <img src="../src/assets/media/bg-login.png" alt="green backgroud sar">
     </div>
     <form class="form_container">
         <div class="logo_container">
@@ -31,8 +30,9 @@
             <span class="subtitle">Entre com sua conta da Unicamp para ter acesso aos serviços SAR.</span>
         </div>
         <div id="buttonDiv"></div>
-        <p class="note">Ajuda</p>
+        <p class="note" onclick="showPopup()">Ajuda</p>
     </form>
+
     <div id="login-failed">
         <div id="login-failed-content">
             <div id="login-failed-header">
@@ -43,8 +43,21 @@
                 novamente.</p>
         </div>
     </div>
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2>Ajuda?</h2>
+            </div>
+            <div class="popup-description">
+                <p>Você deve entrar com a sua conta institucional <b>Unicamp</b> para ter acesso aos serviços SAR, como
+                    abrir chamados técnicos na plataforma HelpDesk.</p>
+                <p>Em caso de problemas, contate um administrador.</p>
+            </div>
+            <button class="ok-button" onclick="hidePopup()">Ok</button>
+        </div>
+    </div>
 
-    <script src="../src/assets/google.js"></script>
+    <script src="../src/assets/login.js"></script>
     <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 </body>
 
