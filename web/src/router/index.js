@@ -1,12 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Home from './views/Home.vue'
-import Patrimonio from './views/Patrimonio.vue'
-import Bancada from './views/Bancada.vue'
-import Manutencao from './views/Manutencao.vue'
-import HelpDesk from '.views/HelpDesk'
-import Usuario from './views/Usuario.vue'
-import Setting from './views/Setting.vue'
+import Home from './views/home.vue'
+import Patrimonio from './views/patrimonio.vue'
+import Bancada from './views/bancada.vue'
+import Manutencao from './views/manutencao.vue'
+import HelpDesk from '.views/helpDesk'
+import Usuario from './views/usuario.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -40,11 +39,6 @@ const router = createRouter({
       path: '/usuario',
       name: 'Usuario',
       component: Usuario
-    },
-    {
-      path: '/setting',
-      name: 'Setting',
-      component: Setting
     }
   ]
 })

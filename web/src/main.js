@@ -3,13 +3,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
-import Home from './views/Home.vue'
-import Patrimonio from './views/Patrimonio.vue'
-import Bancada from './views/Bancada.vue'
+import Home from './views/home.vue'
+import Patrimonio from './views/patrimonio.vue'
+import Bancada from './views/bancada.vue'
 import Manutencao from './views/manutencao.vue'
 // import HelpDesk from './views/HelpDesk.vue'
 // import Usuario from './views/Usuario.vue'
-// import Setting from './views/Setting.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,7 +19,6 @@ const router = createRouter({
     { path: '/manutencao', component: Manutencao },
     // { path: '/helpDesk', component: HelpDesk },
     // { path: '/usuario', component: Usuario },
-    // { path: '/setting', component: Setting },
   ]
 })
 

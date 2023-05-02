@@ -211,6 +211,27 @@
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Bancada',
+  methods() {
+    // Placeholder
+    const tipoSelect = document.querySelector('select[name="tipo"]')
+    tipoSelect.addEventListener('change', () => {
+      if (tipoSelect.value === '') {
+        tipoSelect.classList.add('placeholder')
+      } else {
+        tipoSelect.classList.remove('placeholder')
+      }
+    })
+
+    // Filtro
+    const accordions = document.querySelectorAll('.accordion')
+
+    accordions.forEach((accordion) => {
+      const accordionHeader = accordion.querySelector('.accordion-header')
+      accordionHeader.addEventListener('click', () => {
+        accordion.classList.toggle('active')
+      })
+    })
+  },
   mounted() {
     // Selecione todos os checkboxes quando o checkbox geral é selecionado
     document.getElementById('select-all').addEventListener('click', function () {
@@ -279,26 +300,6 @@ export default {
           // eslint-disable-next-line no-undef
           $('.dimmer').hide()
         }
-      })
-    })
-
-    // Placeholder
-    const tipoSelect = document.querySelector('select[name="tipo"]')
-    tipoSelect.addEventListener('change', () => {
-      if (tipoSelect.value === '') {
-        tipoSelect.classList.add('placeholder')
-      } else {
-        tipoSelect.classList.remove('placeholder')
-      }
-    })
-
-    // Filtro
-    const accordions = document.querySelectorAll('.accordion')
-
-    accordions.forEach((accordion) => {
-      const accordionHeader = accordion.querySelector('.accordion-header')
-      accordionHeader.addEventListener('click', () => {
-        accordion.classList.toggle('active')
       })
     })
   }
