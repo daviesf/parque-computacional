@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import Login from './views/Login.vue'
 import Home from './views/home.vue'
 import Patrimonio from './views/patrimonio.vue'
 import Bancada from './views/bancada.vue'
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/usuario',
       name: 'Usuario',
       component: Usuario
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })

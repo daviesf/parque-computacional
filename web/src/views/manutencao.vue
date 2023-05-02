@@ -306,5 +306,5 @@ export default {
 }
 </script>
   
-<style src="../assets/patrimonio_e_bancada.css"></style>
+<style src="../assets/pages.css"></style>
   
