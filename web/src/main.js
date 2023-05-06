@@ -8,7 +8,7 @@ import Home from './views/home.vue'
 import Patrimonio from './views/patrimonio.vue'
 import Bancada from './views/bancada.vue'
 import Manutencao from './views/manutencao.vue'
-import HelpDesk from './views/helpDesk.vue'
+import HelpDeskAdm from './views/helpDeskAdm.vue'
 import Usuario from './views/usuario.vue'
 
 const router = createRouter({
@@ -19,7 +19,7 @@ const router = createRouter({
     { path: '/patrimonio', component: Patrimonio },
     { path: '/bancada', component: Bancada },
     { path: '/manutencao', component: Manutencao },
-    { path: '/helpDesk', component: HelpDesk },
+    { path: '/helpDeskAdm', component: HelpDeskAdm },
     { path: '/usuario', component: Usuario },
   ]
 })

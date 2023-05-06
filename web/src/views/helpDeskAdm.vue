@@ -1,32 +1,17 @@
 <template>
   <section class="home-section">
-    <span class="text titlep"><h1>Tela de Bancadas Cadastradas</h1></span>
+    <span class="text titlep">
+        <h1>Tela de Chamados de HelpDesk</h1>
+      </span>
     <div class="ui container table-p">
       <div class="ui stackable grid">
-        <div class="five wide column" style="margin-top: 30px">
+        <div class="five wide column" style="margin-top: 20px">
           <div class="ui vertical menu">
             <div class="header item">Filtros</div>
 
             <div class="accordion">
               <div class="accordion-header">
-                <span>Bancada</span>
-                <span class="accordion-icon">+</span>
-              </div>
-              <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Maior</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Menor</label>
-                </div>
-              </div>
-            </div>
-            <div class="accordion">
-              <div class="accordion-header">
-                <span>Apelido</span>
+                <span>Nome</span>
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
@@ -43,7 +28,41 @@
             </div>
             <div class="accordion">
               <div class="accordion-header">
-                <span>Local</span>
+                <span>Número</span>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-body">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Maior</label>
+                </div>
+                <br /><br />
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Menor</label>
+                </div>
+              </div>
+            </div>
+            <div class="accordion">
+              <div class="accordion-header">
+                <span>Data e Hora</span>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-body">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Recente</label>
+                </div>
+                <br /><br />
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Antigo</label>
+                </div>
+              </div>
+            </div>
+            <div class="accordion">
+              <div class="accordion-header">
+                <span>Descrição</span>
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
@@ -66,17 +85,12 @@
               <div class="accordion-body">
                 <div class="ui checkbox">
                   <input type="checkbox" name="example" />
-                  <label>Ativo</label>
+                  <label>Pendente</label>
                 </div>
                 <br /><br />
                 <div class="ui checkbox">
                   <input type="checkbox" name="example" />
-                  <label>Inativo</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Em manutenção</label>
+                  <label>Resolvido</label>
                 </div>
               </div>
             </div>
@@ -90,7 +104,7 @@
           </div>
         </div>
 
-        <div class="eleven wide column" style="margin-top: 30px">
+        <div class="eleven wide column" style="margin-top: 20px">
           <table class="ui compact celled definition table">
             <thead>
               <tr>
@@ -100,9 +114,10 @@
                     <label></label>
                   </div>
                 </td>
+                <th>Nome</th>
                 <th>Bancada</th>
-                <th>Apelido</th>
-                <th>Local</th>
+                <th>Data e hora</th>
+                <th>Descrição</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -113,10 +128,11 @@
                     <input type="checkbox" class="select-checkbox" /> <label></label>
                   </div>
                 </td>
-                <td>5</td>
-                <td>Jeferson</td>
-                <td>Escritório 8</td>
-                <td>Ativo</td>
+                <td>Pedro Alves</td>
+                <td>22</td>
+                <td>01/01/1998 & 06:00</td>
+                <td>Impressora não funciona, chamar um tecnico</td>
+                <td>Pendente</td>
               </tr>
               <tr>
                 <td class="collapsing">
@@ -124,10 +140,11 @@
                     <input type="checkbox" class="select-checkbox" /> <label></label>
                   </div>
                 </td>
-                <td>8</td>
-                <td>Bruno</td>
-                <td>R.U.</td>
-                <td>Em manutenção</td>
+                <td>Maria Eduarda</td>
+                <td>32</td>
+                <td>12/02/2023 & 07:30</td>
+                <td>Deve-se chamar um tecnico capacitado para instalar RTX4090</td>
+                <td>Resolvido</td>
               </tr>
 
               <tr>
@@ -136,10 +153,11 @@
                     <input type="checkbox" class="select-checkbox" /> <label></label>
                   </div>
                 </td>
-                <td>12</td>
-                <td>Adm</td>
-                <td>FCA</td>
-                <td>Desativado</td>
+                <td>Davie Schimdt</td>
+                <td>13</td>
+                <td>20/03/2023 & 09:47</td>
+                <td>Comprar nova memória</td>
+                <td>Pendente</td>
               </tr>
               <tr>
                 <td class="collapsing">
@@ -147,10 +165,11 @@
                     <input type="checkbox" class="select-checkbox" /> <label></label>
                   </div>
                 </td>
-                <td>2</td>
-                <td>Adm2</td>
-                <td>SAR</td>
-                <td>Ativo</td>
+                <td>Samuel Pereira</td>
+                <td>17</td>
+                <td>19/04/2023 & 11:16</td>
+                <td>Chamar tecnico capacitado para intalar Icore13900k</td>
+                <td>Resolvido</td>
               </tr>
             </tbody>
             <tfoot class="full-width">
@@ -161,12 +180,11 @@
                     class="ui right floated small primary labeled icon button"
                     id="add-patrimonio"
                   >
-                    <i class="server icon"></i> Adicionar Bancada
+                    <i class="keyboard outline icon"></i> Resolver chamada
                   </div>
-                  <div class="ui small button">Excluir</div>
-                  <div class="ui small button">Alterar</div>
-                  <div class="ui small button">Ativar</div>
-                  <div class="ui small button">Desativar</div>
+                  <div class="ui small button">Visualizar</div>
+                  <div class="ui small button">Tornar Pendente</div>
+                  <div class="ui small button">Remover Chamada</div>
                 </th>
               </tr>
             </tfoot>
@@ -174,62 +192,12 @@
         </div>
       </div>
     </div>
-    <!-- Pop-up de cadastro de patrimônio -->
-    <div class="dimmer">
-      <div class="ui container add-form">
-        <h2 class="ui dividing header">Adicionar Bancada</h2>
-        <form class="ui form">
-          <div class="field">
-            <label>Apelido</label>
-            <input type="text" name="marca" placeholder="Apelido" />
-          </div>
-          <div class="field">
-            <label>Local</label>
-            <input type="text" name="modelo" placeholder="Local" />
-          </div>
-
-          <div class="field">
-            <label>Status</label>
-            <select name="status">
-              <option class="placeholder" disabled selected>Selecione o status</option>
-              <option value="ativo">Ativo</option>
-              <option value="inativo">Inativo</option>
-              <option value="manutencao">Em manutenção</option>
-            </select>
-          </div>
-          <button class="ui submit button" type="submit">Adicionar</button>
-          <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
-        </form>
-      </div>
-    </div>
   </section>
 </template>
-
+  
 <script>
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Bancada',
-  methods() {
-    // Placeholder
-    const tipoSelect = document.querySelector('select[name="tipo"]')
-    tipoSelect.addEventListener('change', () => {
-      if (tipoSelect.value === '') {
-        tipoSelect.classList.add('placeholder')
-      } else {
-        tipoSelect.classList.remove('placeholder')
-      }
-    })
-
-    // Filtro
-    const accordions = document.querySelectorAll('.accordion')
-
-    accordions.forEach((accordion) => {
-      const accordionHeader = accordion.querySelector('.accordion-header')
-      accordionHeader.addEventListener('click', () => {
-        accordion.classList.toggle('active')
-      })
-    })
-  },
+  name: 'HelpDeskAdm',
   mounted() {
     // Selecione todos os checkboxes quando o checkbox geral é selecionado
     document.getElementById('select-all').addEventListener('click', function () {
@@ -249,69 +217,7 @@ export default {
       })
     }
 
-    // Exibe o pop-pup ao clicar no botão "Adicionar Bancada"
-    // eslint-disable-next-line no-undef
-    $(document).ready(function () {
-      // eslint-disable-next-line no-undef
-      $('#add-patrimonio').on('click', function () {
-        // eslint-disable-next-line no-undef
-        $('.add-form').addClass('open')
-      })
-    })
-
-    // Faz o dimmer aparecer ao clicar no botão "Adicionar Bancada" e desaparecer ao clicar fora do pop-up.
-    // eslint-disable-next-line no-undef
-    $(document).ready(function () {
-      // eslint-disable-next-line no-undef
-      $('#add-patrimonio').click(function (e) {
-        e.preventDefault()
-        // eslint-disable-next-line no-undef
-        $('.dimmer').fadeIn()
-      })
-      // eslint-disable-next-line no-undef
-      $('.dimmer').click(function (e) {
-        // eslint-disable-next-line no-undef
-        if ($(e.target).hasClass('dimmer')) {
-          // eslint-disable-next-line no-undef
-          $(this).fadeOut()
-        }
-      })
-    })
-
-    // Oculta o pop-up e o dimmer ao clicar no botão "Cancelar"
-    // eslint-disable-next-line no-undef
-    $(document).ready(function () {
-      // eslint-disable-next-line no-undef
-      $('.cancel-button').click(function () {
-        // eslint-disable-next-line no-undef
-        $('.popup').hide()
-        // eslint-disable-next-line no-undef
-        $('.dimmer').hide()
-      })
-
-      // Oculta o pop-up e o dimmer ao pressionar a tecla "Esc"
-      // eslint-disable-next-line no-undef
-      $(document).keydown(function (event) {
-        if (event.keyCode == 27) {
-          // eslint-disable-next-line no-undef
-          $('.popup').hide()
-          // eslint-disable-next-line no-undef
-          $('.dimmer').hide()
-        }
-      })
-    })
-
-    // Placeholder
-    const tipoSelect = document.querySelector('select[name="tipo"]')
-    tipoSelect.addEventListener('change', () => {
-      if (tipoSelect.value === '') {
-        tipoSelect.classList.add('placeholder')
-      } else {
-        tipoSelect.classList.remove('placeholder')
-      }
-    })
-
-    // Filtro
+    //filtros
     const accordions = document.querySelectorAll('.accordion')
 
     accordions.forEach((accordion) => {
@@ -323,5 +229,6 @@ export default {
   }
 }
 </script>
-
-<style src="../assets/pages.css"></style>
+  
+  <style src="../assets/pages.css">
+</style>

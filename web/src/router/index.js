@@ -32,8 +32,8 @@ const router = createRouter({
       component: Manutencao
     },
     {
-      path: '/helpDesk',
-      name: 'HelpDesk',
+      path: '/helpDeskAdm',
+      name: 'HelpDeskAdm',
       component: HelpDesk
     },
     {

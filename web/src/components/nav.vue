@@ -35,7 +35,7 @@
         <span class="tooltip">Manutenção</span>
       </li>
       <li>
-        <router-link to="/helpDesk">
+        <router-link to="/helpDeskAdm">
           <i class="laptop icon"></i>
           <span class="links_name">HelpDesk</span>
         </router-link>

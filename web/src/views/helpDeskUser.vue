@@ -47,7 +47,7 @@
 
 <script>
 export default {
-  name: 'HelpDesk',
+  name: 'HelpDeskUser',
   mounted() {
     // eslint-disable-next-line no-undef
     const form = $('#form')
