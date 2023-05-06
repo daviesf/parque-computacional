@@ -35,18 +35,18 @@
         <span class="tooltip">Manutenção</span>
       </li>
       <li>
+        <router-link to="/helpDesk">
+          <i class="laptop icon"></i>
+          <span class="links_name">HelpDesk</span>
+        </router-link>
+        <span class="tooltip">Helpdesk</span>
+      </li>
+      <li>
         <router-link to="/usuario">
           <i class="user outline icon"></i>
           <span class="links_name">Usuário</span>
         </router-link>
         <span class="tooltip">Usuário</span>
-      </li>
-      <li>
-        <router-link to="/setting">
-          <i class="bx bx-cog"></i>
-          <span class="links_name">Setting</span>
-        </router-link>
-        <span class="tooltip">Setting</span>
       </li>
     </ul>
   </div>
@@ -56,27 +56,27 @@
 import { RouterLink } from 'vue-router'
 
 export default {
-  name: 'NavBar', 
+  name: 'NavBar',
   components: {
     RouterLink
   },
   mounted() {
-    let sidebar = document.querySelector(".sidebar");
-    let closeBtn = document.querySelector("#btn");
-    closeBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
-        menuBtnChange();//calling the function(optional)
+    let sidebar = document.querySelector('.sidebar')
+    let closeBtn = document.querySelector('#btn')
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('open')
+      menuBtnChange() //calling the function(optional)
     })
     // following are the code to change sidebar button(optional)
     function menuBtnChange() {
-        if (sidebar.classList.contains("open")) {
-            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
-        } else {
-            closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");//replacing the iocns class
-        }
+      if (sidebar.classList.contains('open')) {
+        closeBtn.classList.replace('bx-menu', 'bx-menu-alt-right') //replacing the iocns class
+      } else {
+        closeBtn.classList.replace('bx-menu-alt-right', 'bx-menu') //replacing the iocns class
+      }
     }
-  },
-};
+  }
+}
 </script>
 
-<style src="../assets/home.css"></style>
+<style src="../assets/pages.css"></style>

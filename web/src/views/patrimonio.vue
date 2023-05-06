@@ -1,208 +1,206 @@
 <template>
-  <div>
-    <section class="home-section">
-      <span class="text titlep"><h1>Tela de Patrimônios Cadastrados</h1></span>
-      <div class="ui container table-p">
-        <div class="ui stackable grid">
-          <div class="five wide column" style="margin-top: 30px">
-            <div class="ui vertical menu">
-              <div class="header item">Filtros</div>
+  <section class="home-section">
+    <span class="text titlep"><h1>Tela de Patrimônios Cadastrados</h1></span>
+    <div class="ui container table-p">
+      <div class="ui stackable grid">
+        <div class="five wide column" style="margin-top: 30px">
+          <div class="ui vertical menu">
+            <div class="header item">Filtros</div>
 
-              <div class="accordion">
-                <div class="accordion-header">
-                  <span>Bancada</span>
-                  <span class="accordion-icon">+</span>
-                </div>
-                <div class="accordion-body">
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Maior</label>
-                  </div>
-                  <br /><br />
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Menor</label>
-                  </div>
-                </div>
+            <div class="accordion">
+              <div class="accordion-header">
+                <span>Bancada</span>
+                <span class="accordion-icon">+</span>
               </div>
-              <div class="accordion">
-                <div class="accordion-header">
-                  <span>Marca</span>
-                  <span class="accordion-icon">+</span>
+              <div class="accordion-body">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Maior</label>
                 </div>
-                <div class="accordion-body">
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Maior</label>
-                  </div>
-                  <br /><br />
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Menor</label>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion">
-                <div class="accordion-header">
-                  <span>Modelo</span>
-                  <span class="accordion-icon">+</span>
-                </div>
-                <div class="accordion-body">
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Maior</label>
-                  </div>
-                  <br /><br />
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Menor</label>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion">
-                <div class="accordion-header">
-                  <span>Tipo</span>
-                  <span class="accordion-icon">+</span>
-                </div>
-                <div class="accordion-body">
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Impressora</label>
-                  </div>
-                  <br /><br />
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Teclado</label>
-                  </div>
-                  <br /><br />
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Mouse</label>
-                  </div>
-                  <br /><br />
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Notebook</label>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion">
-                <div class="accordion-header">
-                  <span>Status</span>
-                  <span class="accordion-icon">+</span>
-                </div>
-                <div class="accordion-body">
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Ativo</label>
-                  </div>
-                  <br /><br />
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="example" />
-                    <label>Inativo</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
-                  <i class="search icon"></i>
+                <br /><br />
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Menor</label>
                 </div>
               </div>
             </div>
-          </div>
+            <div class="accordion">
+              <div class="accordion-header">
+                <span>Marca</span>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-body">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Maior</label>
+                </div>
+                <br /><br />
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Menor</label>
+                </div>
+              </div>
+            </div>
+            <div class="accordion">
+              <div class="accordion-header">
+                <span>Modelo</span>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-body">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Maior</label>
+                </div>
+                <br /><br />
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Menor</label>
+                </div>
+              </div>
+            </div>
+            <div class="accordion">
+              <div class="accordion-header">
+                <span>Tipo</span>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-body">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Impressora</label>
+                </div>
+                <br /><br />
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Teclado</label>
+                </div>
+                <br /><br />
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Mouse</label>
+                </div>
+                <br /><br />
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Notebook</label>
+                </div>
+              </div>
+            </div>
+            <div class="accordion">
+              <div class="accordion-header">
+                <span>Status</span>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-body">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Ativo</label>
+                </div>
+                <br /><br />
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Inativo</label>
+                </div>
+              </div>
+            </div>
 
-          <div class="eleven wide column" style="margin-top: 30px">
-            <table class="ui compact celled definition table">
-              <thead>
-                <tr>
-                  <td class="collapsing">
-                    <div class="ui fitted checkbox">
-                      <input type="checkbox" id="select-all" />
-                      <label></label>
-                    </div>
-                  </td>
-                  <th>Bancada</th>
-                  <th>Marca</th>
-                  <th>Modelo</th>
-                  <th>Tipo</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="collapsing">
-                    <div class="ui fitted checkbox">
-                      <input type="checkbox" class="select-checkbox" /> <label></label>
-                    </div>
-                  </td>
-                  <td>5</td>
-                  <td>HP</td>
-                  <td>HP-750</td>
-                  <td>Impressora</td>
-                  <td>Ativo</td>
-                </tr>
-                <tr>
-                  <td class="collapsing">
-                    <div class="ui fitted checkbox">
-                      <input type="checkbox" class="select-checkbox" /> <label></label>
-                    </div>
-                  </td>
-                  <td>8</td>
-                  <td>Logitech</td>
-                  <td>G-213</td>
-                  <td>Teclado</td>
-                  <td>Ativo</td>
-                </tr>
-
-                <tr>
-                  <td class="collapsing">
-                    <div class="ui fitted checkbox">
-                      <input type="checkbox" class="select-checkbox" /> <label></label>
-                    </div>
-                  </td>
-                  <td>12</td>
-                  <td>Multilaser</td>
-                  <td>MT-687</td>
-                  <td>Mouse</td>
-                  <td>Inativo</td>
-                </tr>
-                <tr>
-                  <td class="collapsing">
-                    <div class="ui fitted checkbox">
-                      <input type="checkbox" class="select-checkbox" /> <label></label>
-                    </div>
-                  </td>
-                  <td>2</td>
-                  <td>Samsung</td>
-                  <td>Book X50</td>
-                  <td>Notebook</td>
-                  <td>Ativo</td>
-                </tr>
-              </tbody>
-              <tfoot class="full-width">
-                <tr>
-                  <th></th>
-                  <th colspan="5">
-                    <div
-                      class="ui right floated small primary labeled icon button"
-                      id="add-patrimonio"
-                    >
-                      <i class="keyboard outline icon"></i> Adicionar Patrimônio
-                    </div>
-                    <div class="ui small button">Excluir</div>
-                    <div class="ui small button">Alterar</div>
-                    <div class="ui small button">Ativar</div>
-                    <div class="ui small button">Desativar</div>
-                  </th>
-                </tr>
-              </tfoot>
-            </table>
+            <div class="item">
+              <div class="ui icon input fluid">
+                <input type="text" placeholder="Pesquisar..." class="fluid" />
+                <i class="search icon"></i>
+              </div>
+            </div>
           </div>
         </div>
+
+        <div class="eleven wide column" style="margin-top: 30px">
+          <table class="ui compact celled definition table">
+            <thead>
+              <tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" id="select-all" />
+                    <label></label>
+                  </div>
+                </td>
+                <th>Bancada</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Tipo</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>5</td>
+                <td>HP</td>
+                <td>HP-750</td>
+                <td>Impressora</td>
+                <td>Ativo</td>
+              </tr>
+              <tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr>
+
+              <tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>12</td>
+                <td>Multilaser</td>
+                <td>MT-687</td>
+                <td>Mouse</td>
+                <td>Inativo</td>
+              </tr>
+              <tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>2</td>
+                <td>Samsung</td>
+                <td>Book X50</td>
+                <td>Notebook</td>
+                <td>Ativo</td>
+              </tr>
+            </tbody>
+            <tfoot class="full-width">
+              <tr>
+                <th></th>
+                <th colspan="5">
+                  <div
+                    class="ui right floated small primary labeled icon button"
+                    id="add-patrimonio"
+                  >
+                    <i class="keyboard outline icon"></i> Adicionar Patrimônio
+                  </div>
+                  <div class="ui small button">Excluir</div>
+                  <div class="ui small button">Alterar</div>
+                  <div class="ui small button">Ativar</div>
+                  <div class="ui small button">Desativar</div>
+                </th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
-    </section>
+    </div>
     <!-- Pop-up de cadastro de patrimônio -->
     <div class="dimmer">
       <div class="ui container add-form">
@@ -250,7 +248,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
