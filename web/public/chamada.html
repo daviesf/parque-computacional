@@ -2,12 +2,71 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Help Desk</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../src/assets/home.css">
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!--NavBar-->
+       <!-- Navbar -->
+       <div class="sidebar navbar">
+        <div class="logo-details">
+            <i class="desktop icon"></i>
+            <div class="logo_name">Parque Computacional</div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+            <li>
+                <a href="#">
+                    <i class="home icon"></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="keyboard outline icon"></i>
+                    <span class="links_name">Patrimônio</span>
+                </a>
+                <span class="tooltip">Patrimônio</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="server icon"></i>
+                    <span class="links_name">Bancada</span>
+                </a>
+                <span class="tooltip">Bancada</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="wrench icon"></i>
+                    <span class="links_name">HelpDesk</span>
+                </a>
+                <span class="tooltip">HelpDesk</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="user outline icon"></i>
+                    <span class="links_name">Usuário</span>
+                </a>
+                <span class="tooltip">Usuário</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Setting</span>
+                </a>
+                <span class="tooltip">Setting</span>
+            </li>
+        </ul>
+    </div>
+
+    <!--Codigo html da chamada-->
+
     <div class="ui container">
       <h1 class="ui header">Chamados</h1>
       <div class="ui segment">
@@ -18,12 +77,12 @@
             <input type="text" name="name" placeholder="Nome completo" />
           </div>
           <div class="field">
-            <label>E-mail</label>
-            <input type="email" name="email" placeholder="E-mail" />
+            <label>Bancada</label>
+            <input type="number" name="number" placeholder="Número da Bancada" />
           </div>
           <div class="field">
-            <label>Assunto</label>
-            <input type="text" name="subject" placeholder="Assunto" />
+            <label>Data e Hora</label>
+            <input type="date" name="date"/>
           </div>
           <div class="field">
             <label>Descrição</label>
@@ -38,8 +97,8 @@
           <thead>
             <tr>
               <th>Nome</th>
-              <th>E-mail</th>
-              <th>Assunto</th>
+              <th>Bancada</th>
+              <th>Data e Hora</th>
               <th>Descrição</th>
               <th>Status</th>
             </tr>
@@ -90,19 +149,19 @@ function addRow(data) {
   const newRow = $("<tr>");
 
   const name = $("<td>").text(data.name);
-  const email = $("<td>").text(data.email);
-  const subject = $("<td>").text(data.subject);
+  const number = $("<td>").text(data.number);
+  const date = $("<td>").text(data.date);
   const description = $("<td>").text(data.description);
   const status = $("<td>").text("Pendente");
 
   newRow.append(name);
-  newRow.append(email);
-  newRow.append(subject);
+  newRow.append(number);
+  newRow.append(date);
   newRow.append(description);
   newRow.append(status);
 
   tableBody.append(newRow);
 }
-
-
 </script>
+
+<script src="../../src/assets/home.js"></script>
