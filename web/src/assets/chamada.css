@@ -1,21 +1,20 @@
 .ui.container {
-    margin-top: 20px;
-  }
-  
-  .ui.header {
-    margin-bottom: 20px;
-  }
-  
-  .ui.form .field textarea {
-    height: 100px;
-  }
-  
-  .ui.segment {
-    margin-bottom: 20px;
-  }
-  
-  .ui.celled.table td,
-  .ui.celled.table th {
-    text-align: center;
-  }
-  
+  margin-top: 20px;
+}
+
+.ui.header {
+  margin-bottom: 20px;
+}
+
+.ui.form .field textarea {
+  height: 100px;
+}
+
+.ui.segment {
+  margin-bottom: 20px;
+}
+
+.ui.celled.table td,
+.ui.celled.table th {
+  text-align: center;
+}

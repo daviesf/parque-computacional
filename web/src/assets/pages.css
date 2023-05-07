@@ -254,7 +254,6 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 }
 /* Fim Navbar */
 
-
 /* Inicio das pages */
 .table-p {
   padding: 20px;
@@ -283,7 +282,6 @@ input[type='checkbox'] {
 
 .accordion {
   border: 1px solid #efefef;
-
 }
 
 .accordion-header {
@@ -328,7 +326,6 @@ select.placeholder {
   color: rgba(0, 0, 0, 0.3);
 }
 
-
 .ui.container.add-form {
   position: fixed;
   top: 50%;
@@ -346,7 +343,7 @@ select.placeholder {
   margin-bottom: 20px;
 }
 
-.ui.container.add-form input[type="text"],
+.ui.container.add-form input[type='text'],
 .ui.container.add-form select {
   width: 100%;
   margin-bottom: 20px;
@@ -384,13 +381,13 @@ select.placeholder {
   margin-bottom: 20px;
 }
 
-.popup form input[type="text"],
+.popup form input[type='text'],
 .popup form select {
   width: 100%;
   margin-bottom: 20px;
 }
 
-.popup form button[type="submit"] {
+.popup form button[type='submit'] {
   margin-top: 20px;
 }
 

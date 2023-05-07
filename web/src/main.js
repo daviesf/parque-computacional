@@ -20,7 +20,7 @@ const router = createRouter({
     { path: '/bancada', component: Bancada },
     { path: '/manutencao', component: Manutencao },
     { path: '/helpDeskAdm', component: HelpDeskAdm },
-    { path: '/usuario', component: Usuario },
+    { path: '/usuario', component: Usuario }
   ]
 })
 

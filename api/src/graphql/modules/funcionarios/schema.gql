@@ -14,6 +14,7 @@ type Query {
     funcionariosByStatus(status: String!): [Funcionario]!
     searchFuncionarios(filter: FuncionarioFilter): [Funcionario]!
     confereLogin(email: String!): Funcionario
+    confereSession(idSession: String!): Funcionario
 }
 
 input FuncionarioFilter {

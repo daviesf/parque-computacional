@@ -1,8 +1,8 @@
 <template>
   <section class="home-section">
     <span class="text titlep">
-        <h1>Tela de Chamados de HelpDesk</h1>
-      </span>
+      <h1>Tela de Chamados de HelpDesk</h1>
+    </span>
     <div class="ui container table-p">
       <div class="ui stackable grid">
         <div class="five wide column" style="margin-top: 20px">
@@ -194,7 +194,7 @@
     </div>
   </section>
 </template>
-  
+
 <script>
 export default {
   name: 'HelpDeskAdm',
@@ -229,6 +229,5 @@ export default {
   }
 }
 </script>
-  
-  <style src="../assets/pages.css">
-</style>
+
+<style src="../assets/pages.css"></style>

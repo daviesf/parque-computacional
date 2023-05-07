@@ -100,5 +100,4 @@ export default {
 }
 </script>
 
-<style src="../assets/pages.css">
-</style>
+<style src="../assets/pages.css"></style>

@@ -30,7 +30,7 @@
             <span class="subtitle">Entre com sua conta da Unicamp para ter acesso aos serviços SAR.</span>
         </div>
         <div id="buttonDiv"></div>
-        <p class="note" onclick="showPopup()">Ajuda</p>
+        <p class="note" id="ajuda">Ajuda</p>
     </form>
 
     <div id="login-failed">
@@ -57,7 +57,8 @@
         </div>
     </div>
 
-    <script src="../src/assets/login.js"></script>
+    <script type="module" src="../src/assets/login.js"></script>
+    <script type="module" src="../src/assets/session.js"></script>
     <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 </body>
 

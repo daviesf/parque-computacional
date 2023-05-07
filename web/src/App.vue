@@ -13,7 +13,7 @@ import NavBar from './components/nav.vue'
 export default {
   name: 'App',
   components: {
-    NavBar,
+    NavBar
     // Rodape
   }
 }

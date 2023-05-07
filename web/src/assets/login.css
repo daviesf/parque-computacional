@@ -28,11 +28,10 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-image: url("../assets/media/bg-login.png");
+  background-image: url('../assets/media/bg-login.png');
   background-size: cover;
   background-position: center;
 }
-
 
 .bg-login img {
   max-width: 100vw;
@@ -110,7 +109,7 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #FF3B30;
+  background-color: #ff3b30;
   color: white;
   font-family: SFProRegular, sans-serif;
   font-size: 16px;

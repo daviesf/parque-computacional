@@ -45,6 +45,10 @@ export default {
 			const funcionario = await knex("funcionarios").where("email", email).first();
 			return funcionario;
 		},
+		confereSession: async (_, { idSession }) => {
+			const funcionario = await knex("funcionarios").where("idSession", idSession).first();
+			return funcionario;
+		},
 	},
 
 	Mutation: {
