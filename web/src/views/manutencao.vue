@@ -153,10 +153,7 @@
               <tr>
                 <th></th>
                 <th colspan="5">
-                  <div
-                    class="ui right floated small primary labeled icon button"
-                    id="add-patrimonio"
-                  >
+                  <div class="ui right floated small primary labeled icon button" id="add-patrimonio">
                     <i class="wrench icon"></i> Adicionar Manutenção
                   </div>
                   <div class="ui small button">Excluir</div>

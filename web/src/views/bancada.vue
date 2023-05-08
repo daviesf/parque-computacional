@@ -210,15 +210,6 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Bancada',
   methods() {
-    // Placeholder
-    const tipoSelect = document.querySelector('select[name="tipo"]')
-    tipoSelect.addEventListener('change', () => {
-      if (tipoSelect.value === '') {
-        tipoSelect.classList.add('placeholder')
-      } else {
-        tipoSelect.classList.remove('placeholder')
-      }
-    })
 
     // Filtro
     const accordions = document.querySelectorAll('.accordion')
@@ -299,16 +290,6 @@ export default {
           $('.dimmer').hide()
         }
       })
-    })
-
-    // Placeholder
-    const tipoSelect = document.querySelector('select[name="tipo"]')
-    tipoSelect.addEventListener('change', () => {
-      if (tipoSelect.value === '') {
-        tipoSelect.classList.add('placeholder')
-      } else {
-        tipoSelect.classList.remove('placeholder')
-      }
     })
 
     // Filtro
