@@ -3,6 +3,7 @@
 
 function handleCredentialResponse(response) {
   const data = jwt_decode(response.credential)
+  console.log(data)
   comparaAPI(data)
 }
 
@@ -30,6 +31,7 @@ function comparaAPI(data) {
       if (user) {
         console.log('Login verificado com sucesso')
         registerSession(user, data)
+        window.location.replace("/public/home.html")
       } else {
         console.log('Falha no login')
         document.getElementById('login-failed').style.display = 'block'
