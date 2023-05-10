@@ -49,6 +49,16 @@
         <span class="tooltip">Usuário</span>
       </li>
     </ul>
+    <ul>
+      <li>
+        <div class="logout-button">
+          <router-link to="">
+            <i class="sign out icon"></i>
+          </router-link>
+          <span class="tooltip">Fazer logout</span>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 

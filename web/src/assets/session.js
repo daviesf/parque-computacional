@@ -24,7 +24,15 @@ if (cookie) {
             const user = response.data.data.confereSession
             if (user) {
                 console.log('Sessão verificada com sucesso')
-                window.location.replace("/public/home.html");
+                if (user.tipo == 0) {
+                    console.log("eu sou adm")
+                    // window.location.replace("home adm");
+                } else if (user.tipo == 1) {
+                    console.log("eu sou usuário comum")
+                    // window.location.replace("página user comum")
+                } else {
+                    console.log("Erro na verificação do tipo.")
+                }
             } else {
                 if (!window.location.href.endsWith('/login.html')) {
                     window.location.replace("/public/login.html");

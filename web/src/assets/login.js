@@ -31,7 +31,16 @@ function comparaAPI(data) {
       if (user) {
         console.log('Login verificado com sucesso')
         registerSession(user, data)
-        window.location.replace("/public/home.html")
+        if (user.tipo == 0) {
+          console.log("eu sou adm")
+          // window.location.replace("home adm");
+        } else if (user.tipo == 1) {
+          console.log("eu sou usuário comum")
+          // window.location.replace("página user comum")
+        } else {
+          console.log("Erro na verificação do tipo.")
+        }
+        // window.location.replace("/public/home.html")
       } else {
         console.log('Falha no login')
         document.getElementById('login-failed').style.display = 'block'

@@ -28,4 +28,5 @@ export default {
 .custom-footer {
   background: #4c41c2;
 }
+
 </style>
