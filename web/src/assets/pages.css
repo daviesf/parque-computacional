@@ -27,6 +27,13 @@
   font-size: 18px;
 } */
 
+.logout-list {
+  position: relative;
+  padding-top: 15em; /* Ajuste a distância conforme necessário */
+  width: 100%;
+}
+
+
 .sidebar {
   position: fixed;
   left: 0;

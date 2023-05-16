@@ -168,7 +168,7 @@
                 <td>Samuel Pereira</td>
                 <td>17</td>
                 <td>19/04/2023 & 11:16</td>
-                <td>Chamar tecnico capacitado para intalar Icore13900k</td>
+                <td>Chamar tecnico capacitado para instalar Icore13900k</td>
                 <td>Resolvido</td>
               </tr>
             </tbody>

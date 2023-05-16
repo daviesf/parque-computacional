@@ -1,19 +1,21 @@
 <template>
   <div>
-    <section class="home-section">
-      <div class="ui inverted vertical custom-footer footer segment">
+    <!-- Conteúdo principal da página -->
+
+    <footer class="rodape">
+      <div class="ui inverted vertical footer segment rodape-segment">
         <div class="ui container">
           <div class="ui stackable inverted divided equal height stackable grid">
             <div class="sixteen wide column">
               <p class="ui inverted center aligned segment">
-                Secretaria de Administração Regional - Limeira (SP) | 2023 © Todos os direitos
-                reservados <br />Desenvolvido por Davie, Júnior, Neto e Samuel
+                Secretaria de Administração Regional - Limeira (SP) | 2023 © Todos os direitos reservados <br />
+                Desenvolvido por Davie, Júnior, Neto e Samuel
               </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </footer>
   </div>
 </template>
 
@@ -24,9 +26,22 @@ export default {
 }
 </script>
 
-<style scoped>
-.custom-footer {
-  background: #4c41c2;
+<style>
+html, body {
+  height: 100%;
+  margin: 0;
 }
 
+.rodape {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #4c41c2;
+  padding-top: 10px;
+  z-index: -9999; /* Valor do z-index para garantir sobreposição */
+}
+
+.rodape-segment {
+  background: #4c41c2;
+}
 </style>
