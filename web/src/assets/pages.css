@@ -27,6 +27,41 @@
   transition: all 0.5s ease;
 }
 
+.bgimg {
+  position: fixed;
+  z-index: -99;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url('./media/bg-main.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.bgimg-second {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.2) 100%);
+  opacity: 1;
+  animation: gradient 5s linear forwards;
+}
+
+@keyframes gradient {
+  from {
+    opacity: 1;
+  } 
+  to {
+    opacity: 0.2;
+  }
+}
+
+
+
 .logout-list {
   margin-top: calc(100vh - 500px);
 }
@@ -203,7 +238,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 }
 
 .rodape-segment {
-  background: #1e1c31 !important;
+  background: #171525 !important;
 }
 
 .home-section .text {
