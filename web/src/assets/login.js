@@ -1,4 +1,3 @@
-
 /* global google */
 
 function handleCredentialResponse(response) {
@@ -32,13 +31,13 @@ function comparaAPI(data) {
         console.log('Login verificado com sucesso')
         registerSession(user, data)
         if (user.tipo == 0) {
-          console.log("eu sou adm")
+          console.log('eu sou adm')
           // window.location.replace("home adm");
         } else if (user.tipo == 1) {
-          console.log("eu sou usuário comum")
+          console.log('eu sou usuário comum')
           // window.location.replace("página user comum")
         } else {
-          console.log("Erro na verificação do tipo.")
+          console.log('Erro na verificação do tipo.')
         }
         // window.location.replace("/public/home.html")
       } else {
@@ -69,10 +68,10 @@ function registerSession(user, data) {
     .then((response) => {
       const updatedUser = response.data.data.updateIdSession
       if (updatedUser) {
-        const isSecure = window.location.protocol === "https:";
+        const isSecure = window.location.protocol === 'https:'
         document.cookie = `AKJA12=${updatedUser.idSession}; expires=${new Date(
           Date.now() + 172800000
-        ).toUTCString()}; path=/`;
+        ).toUTCString()}; path=/`
 
         console.log('Sessão registrada')
         console.log(document.cookie)
@@ -97,7 +96,7 @@ window.onload = function () {
       type: 'standard',
       shape: 'pill',
       text: 'signin_with.',
-      logo_alignment: 'center',
+      logo_alignment: 'center'
     } // customization attributes
   )
 }
@@ -107,8 +106,8 @@ document.getElementById('login-failed-close').onclick = function () {
   document.querySelector('#login-failed').style.right = '-100%'
 }
 
-const popup = document.getElementById('popup');
-const helpButton = document.getElementById('ajuda');
+const popup = document.getElementById('popup')
+const helpButton = document.getElementById('ajuda')
 
 helpButton.addEventListener('click', () => {
   popup.classList.add('visible')

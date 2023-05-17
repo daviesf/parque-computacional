@@ -154,7 +154,382 @@
                 <td>Teclado</td>
                 <td>Ativo</td>
               </tr>
-
+              <tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr>
+              <tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr><tr>
+                <td class="collapsing">
+                  <div class="ui fitted checkbox">
+                    <input type="checkbox" class="select-checkbox" /> <label></label>
+                  </div>
+                </td>
+                <td>8</td>
+                <td>Logitech</td>
+                <td>G-213</td>
+                <td>Teclado</td>
+                <td>Ativo</td>
+              </tr>
               <tr>
                 <td class="collapsing">
                   <div class="ui fitted checkbox">

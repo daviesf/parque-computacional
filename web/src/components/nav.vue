@@ -49,24 +49,15 @@
         <span class="tooltip">Usuário</span>
       </li>
       <li>
-        <!-- <div class="logout-list"> -->
+        <div class="logout-list">
           <router-link to="">
             <i class="sign out icon"></i>
             <span class="links_name">Log out</span>
           </router-link>
           <span class="tooltip">Fazer log out</span>
-        <!-- </div> -->
+        </div>
       </li>
     </ul>
-    <!-- <ul class="nav-list">
-      <li>
-          <router-link to="">
-            <i class="sign out icon"></i>
-            <span class="links_name">Log out</span>
-          </router-link>
-          <span class="tooltip">Fazer log out</span>
-      </li>
-    </ul> -->
   </div>
 </template>
 
