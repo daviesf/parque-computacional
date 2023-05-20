@@ -268,8 +268,9 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 }
 
 .rodape {
-  height: 9vh;
+  height: 8vh;
   position: fixed;
+  left: 78px;
   bottom: 0;
   width: 100%;
   z-index: -9999;
