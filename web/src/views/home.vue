@@ -6,8 +6,6 @@
 
   <div class="ui container">
     <div class="ui center aligned grid page-container">
-    <div class="row"></div>
-    <div class="row"></div>
       <div class="row">
         <div class="column">
           <h1 class="ui header titulo1">~Apelido~</h1>
