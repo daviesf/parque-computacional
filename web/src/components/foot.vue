@@ -2,9 +2,7 @@
   <div>
     <!-- Conteúdo principal da página -->
 
-    <footer class="rodape rodape-segment">
-
-        <div class="ui container">
+    <footer ui container class="rodape rodape-segment">
           <div class="ui stackable inverted divided equal height stackable grid">
             <div class="sixteen wide column">
               <p class="ui inverted center aligned segment rodape-segment">
@@ -14,7 +12,6 @@
               </p>
             </div>
           </div>
-        </div>
     </footer>
   </div>
 </template>
