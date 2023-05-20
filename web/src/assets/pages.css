@@ -1,5 +1,6 @@
 /* NavBar */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -19,7 +20,8 @@
   position: fixed;
   left: 0;
   top: 0;
-  bottom: 0; /* Adicione essa propriedade para ocupar toda a altura da página */
+  bottom: 0;
+  /* Adicione essa propriedade para ocupar toda a altura da página */
   width: 78px;
   background: #11101d;
   padding: 6px 14px;
@@ -46,17 +48,18 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.2) 100%);
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(70, 101, 107) 100%);
   opacity: 1;
-  animation: gradient 5s linear forwards;
+  animation: gradient 2s linear forwards;
 }
 
 @keyframes gradient {
   from {
     opacity: 1;
-  } 
+  }
+
   to {
-    opacity: 0.2;
+    opacity: 0.4;
   }
 }
 
@@ -69,6 +72,7 @@
 .sidebar.open {
   width: 250px;
 }
+
 /* Para fazer a navbar ser responsiva,
 apenas alterar a width acima para 100% com
 a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
@@ -78,6 +82,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   align-items: center;
   position: relative;
 }
+
 .sidebar .logo-details .icon {
   opacity: 0;
   transition: all 0.5s ease;
@@ -111,9 +116,11 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   cursor: pointer;
   transition: all 0.5s ease;
 }
+
 .sidebar.open .logo-details #btn {
   text-align: right;
 }
+
 .sidebar i {
   color: #fff;
   height: 60px;
@@ -122,15 +129,18 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   text-align: center;
   line-height: 60px;
 }
+
 .sidebar .nav-list {
   margin-top: 20px;
   flex-grow: 1;
 }
+
 .sidebar li {
   position: relative;
   margin: 8px 0;
   list-style: none;
 }
+
 .sidebar li .tooltip {
   position: absolute;
   top: -20px;
@@ -147,6 +157,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   pointer-events: none;
   transition: 0s;
 }
+
 .sidebar li:hover .tooltip {
   opacity: 1;
   pointer-events: auto;
@@ -154,9 +165,11 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   top: 50%;
   transform: translateY(-50%);
 }
+
 .sidebar.open li .tooltip {
   display: none;
 }
+
 .sidebar input {
   font-size: 15px;
   color: #fff;
@@ -170,6 +183,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   transition: all 0.5s ease;
   background: #1d1b31;
 }
+
 .sidebar.open input {
   padding: 0 20px 0 50px;
   width: 100%;
@@ -185,9 +199,11 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   transition: all 0.4s ease;
   background: #11101d;
 }
+
 .sidebar li a:hover {
   background: #fff;
 }
+
 .sidebar li a .links_name {
   color: #fff;
   font-size: 15px;
@@ -197,15 +213,18 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   pointer-events: none;
   transition: 0.4s;
 }
+
 .sidebar.open li a .links_name {
   opacity: 1;
   pointer-events: auto;
 }
+
 .sidebar li a:hover .links_name,
 .sidebar li a:hover i {
   transition: all 0.5s ease;
   color: #11101d;
 }
+
 .sidebar li i {
   height: 50px;
   line-height: 50px;
@@ -221,7 +240,8 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   transition: all 0.5s ease;
   z-index: 2;
 }
-.sidebar.open ~ .home-section {
+
+.sidebar.open~.home-section {
   left: 250px;
   width: calc(100% - 250px);
 }
@@ -230,15 +250,34 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   padding-bottom: 50px;
 }
 
+.page-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 60vh !important;
+}
+
+.titulo1 {
+  font-size: 65px !important;
+  color: white !important;
+}
+
+.titulo2 {
+  font-size: 30px !important;
+  color: white !important;
+}
+
 .rodape {
+  height: 9vh;
   position: fixed;
   bottom: 0;
   width: 100%;
-  z-index: -9999; /* Valor do z-index para garantir sobreposição */
+  z-index: -9999;
+  /* Valor do z-index para garantir sobreposição */
 }
 
 .rodape-segment {
-  background: #171525 !important;
+  background: #5c7f83 !important;
 }
 
 .home-section .text {
@@ -248,19 +287,23 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   font-weight: 500;
   margin: 18px;
 }
+
 @media (max-width: 420px) {
   .sidebar li .tooltip {
     display: none;
   }
 }
+
 .card-container {
   display: flex;
   justify-content: center;
 }
+
 .header {
   display: flex;
   justify-content: center;
 }
+
 /* Fim Navbar */
 
 /* Inicio das pages */
@@ -360,6 +403,16 @@ select.placeholder {
 
 .ui.container.add-form .ui.submit.button {
   margin-top: 20px;
+}
+
+.button1 {
+  font-size: 1.42857143rem !important;
+  margin-right: 5px !important;
+}
+
+.button2 {
+  font-size: 1.42857143rem !important;
+  margin-left: 5px !important;
 }
 
 .dimmer {

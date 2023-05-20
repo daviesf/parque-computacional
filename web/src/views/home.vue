@@ -4,16 +4,32 @@
     </div>
     <div class="bgimg-second"></div>
 
-    <div class="ui container">
-      <h1 class="ui inverted header">
-        <span class="library">
-          Semantic UI
-        </span>
-        <span class="tagline">
-          User Interface is the language of the web
-        </span>
-      </h1>
+  <div class="ui container">
+    <div class="ui center aligned grid page-container">
+    <div class="row"></div>
+    <div class="row"></div>
+      <div class="row">
+        <div class="column">
+          <h1 class="ui header titulo1">~Apelido~</h1>
+          <p class="ui header titulo2">Seja bem-vindo novamente</p>
+        </div>
+      </div>
+      <div class="row">
+        <router-link to="/patrimonio">
+          <a class="ui inverted button button1">Patrimônio</a>
+        </router-link>
+        <router-link to="/bancada">
+          <a class="ui inverted button button2">Bancada</a>
+        </router-link>
+      </div>
     </div>
+  </div>
+
+
+
+
+
+
 
 
 
