@@ -15,7 +15,6 @@ if (cookie) {
       }
     }
     `
-
   const variables = {
     idSession: cookie
   }
@@ -25,6 +24,12 @@ if (cookie) {
     .then((response) => {
       console.log('Resposta da API')
       const user = response.data.data.confereSession
+      if (!window.localStorage.getItem('user') == user) {
+        window.localStorage.setItem('user', JSON.stringify(user))
+      } else {
+        console.log('Usuário já está no localStorage')
+      }
+
       if (user) {
         console.log('Sessão verificada com sucesso')
         if (user.tipo == 0) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar navbar">
+  <div class="sidebar navbar" v-show="showNavbar">
     <div class="logo-details">
       <i class="desktop icon"></i>
       <div class="logo_name">Parque Computacional</div>
@@ -69,6 +69,7 @@ export default {
   components: {
     RouterLink
   },
+  props: ['showNavbar'],
   mounted() {
     let sidebar = document.querySelector('.sidebar')
     let closeBtn = document.querySelector('#btn')
