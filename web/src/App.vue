@@ -1,7 +1,9 @@
 <template>
   <div>
-    <NavBar />
-    <router-view />
+    <NavBar :showNavbar="showNavbar" />
+    <div class="bg-dimmer"></div>
+    <router-view @hideNavbar="hideNavbar" />
+
     <section class="home-section">
       <Rodape />
     </section>
@@ -17,6 +19,16 @@ export default {
   components: {
     NavBar,
     Rodape
-  }
+  },
+  data() {
+    return {
+      showNavbar: true,
+    };
+  },
+  methods: {
+    hideNavbar(value) {
+      this.showNavbar = !value;
+    },
+  },
 }
 </script>
