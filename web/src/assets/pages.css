@@ -220,8 +220,9 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 .home-section {
   position: relative;
   top: 0;
-  left: 0px;
-  width: calc(100vw - 78px);
+  left: 78px;
+  right: 0;
+  width: 100vw;
   transition: all 0.5s ease;
   padding-bottom: 50px;
   display: flex;
@@ -232,23 +233,34 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 .sidebar.open~.bg-dimmer {
   backdrop-filter: blur(10px);
   opacity: 0.8;
-  transition: all 0.5s ease;
+  z-index: 50;
   background-color: black;
+  animation: display 0.5s ease forwards;
+}
+
+@keyframes display {
+  to {
+    display: none;
+  }
+
+  from {
+    display: block;
+  }
 }
 
 .bg-dimmer {
   transition: all 0.5s ease;
   position: fixed;
-  z-index: 95;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   opacity: 1;
+  z-index: -5;
 }
 
 .rodape {
-  height: 8vh;
+  height: 10vh;
   position: fixed;
   left: 78px;
   bottom: 0;
@@ -257,7 +269,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 }
 
 .rodape-segment {
-  background: #5c7f83 !important;
+  background: #596061 !important;
 }
 
 .home-section .text {
@@ -483,6 +495,13 @@ select.placeholder {
   border: 2px solid #11101d;
   background-color: #30344c;
   padding: 10px;
+  transition: 0.5s;
+}
+
+/* hover em card_info sobe um pouco ele usando transform */
+.card_info:hover {
+  transform: translateY(-10px);
+  transition: 0.5s;
 }
 
 .card_content {
