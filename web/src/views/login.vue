@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="login-body">
         <div class="bgimg">
         </div>
         <div class="bgimg-second"></div>

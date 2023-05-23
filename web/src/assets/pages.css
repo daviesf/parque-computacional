@@ -39,6 +39,7 @@
   background-image: url('./media/bg-main.jpg');
   background-size: cover;
   background-position: center;
+  transform: rotate(0deg);
 }
 
 .bgimg-second {

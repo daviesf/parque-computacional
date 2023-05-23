@@ -3,15 +3,7 @@
     <div class="home_title">
       <div id="saude" class="hello">Olá, [nome]</div>
       <div class="welcome">Seja bem-vindo novamente!</div>
-      <div class="linkful">Acompanhe os links rápidos:
-        <ul>
-          <li><router-link to="/patrimonio"><i class='bx bx-link'></i> Patrimônio</router-link></li>
-          <li><router-link to="/bancada"><i class='bx bx-link'></i> Bancada</router-link></li>
-          <li><router-link to="/manutencao"><i class='bx bx-link'></i> Manutenção</router-link></li>
-          <li><router-link to="/helpdesk"><i class='bx bx-link'></i> HelpDesk</router-link></li>
-          <li><router-link to="/usuario"><i class='bx bx-link'></i> Usuários</router-link></li>
-        </ul>
-      </div>
+      
 
     </div>
     <div>
@@ -60,8 +52,8 @@ export default {
       const name = JSON.parse(localStorage.getItem("user")).name;
       document.getElementById("saude").innerHTML = "Olá, " + name;
     } else {
-      document.getElementById("saude").innerHTML = "Olá, visitante não identificado, bugou o sistema, foi?";
-      // this.$router.push("/login");
+      document.getElementById("saude").innerHTML = "Olá, querido!";
+      this.$router.push("/login");
     }
   }
 };
