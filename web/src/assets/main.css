@@ -1,3 +1,7 @@
+body {
+  background-color: #F8F8FF  ;
+}
+
 @font-face {
   font-family: SFProBold;
   src: url(../fonts/SFPRODISPLAYBOLD.OTF);
