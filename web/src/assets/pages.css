@@ -8,6 +8,10 @@
   font-family: SFProRegular;
 }
 
+body {
+  background: color #f9f9f5;;
+}
+
 .titlep {
   width: 100%;
   text-align: center;
@@ -23,7 +27,7 @@
   bottom: 0;
   /* Adicione essa propriedade para ocupar toda a altura da página */
   width: 78px;
-  background: #11101d;
+  background: rgb(0, 70, 84);
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
@@ -49,7 +53,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(70, 101, 107) 100%);
+  background: linear-gradient(0deg, rgb(70, 113, 122) 0%, rgb(77, 178, 198) 100%);
   opacity: 1;
   animation: gradient 4s ease-in-out infinite;
 }
@@ -60,7 +64,7 @@
   }
 
   50% {
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   100% {
@@ -183,7 +187,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   align-items: center;
   text-decoration: none;
   transition: all 0.4s ease;
-  background: #11101d;
+  /* background: rgb(1, 64, 78); */
 }
 
 .sidebar li a:hover {
@@ -270,7 +274,8 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 }
 
 .rodape-segment {
-  background: #596061 !important;
+  background: rgb(0, 45, 54) !important;
+  color: white;
 }
 
 .home-section .text {
@@ -454,7 +459,7 @@ select.placeholder {
 }
 
 .home_title {
-  font-size: 50px;
+  font-size: 6em;
   line-height: 1.2;
   font-weight: 700;
   color: #11101d;
@@ -489,7 +494,9 @@ select.placeholder {
 }
 
 .card_info {
-  width: 300px;
+  line-height: 1.2;
+  width: 40em;
+  height: 8em;
   margin-top: 15px;
   margin-left: 10px;
   border-radius: 10px;
@@ -497,6 +504,9 @@ select.placeholder {
   background-color: #30344c;
   padding: 10px;
   transition: 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* hover em card_info sobe um pouco ele usando transform */
@@ -509,11 +519,12 @@ select.placeholder {
   padding: 10px;
   width: 100%;
   color: white;
+  font-size: 1.5em;
 }
 
 .card_title {
   padding: 5px;
-  font-size: 20px;
+  font-size: 2em;
   font-family: SFProBold;
   color: #c0c3d7;
 }
@@ -524,4 +535,8 @@ select.placeholder {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-around;
+}
+
+#filter {
+  width: 100%;
 }

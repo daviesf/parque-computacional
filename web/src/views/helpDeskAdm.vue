@@ -24,6 +24,11 @@
                   <input type="checkbox" name="example" />
                   <label>Z-A</label>
                 </div>
+                <br /><br />
+                <div class="ui icon input fluid">
+                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <i class="search icon"></i>
+                </div>
               </div>
             </div>
             <div class="accordion">
@@ -41,22 +46,10 @@
                   <input type="checkbox" name="example" />
                   <label>Menor</label>
                 </div>
-              </div>
-            </div>
-            <div class="accordion">
-              <div class="accordion-header">
-                <span>Data e Hora</span>
-                <span class="accordion-icon">+</span>
-              </div>
-              <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Recente</label>
-                </div>
                 <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Antigo</label>
+                <div class="ui icon input fluid">
+                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <i class="search icon"></i>
                 </div>
               </div>
             </div>
@@ -74,6 +67,11 @@
                 <div class="ui checkbox">
                   <input type="checkbox" name="example" />
                   <label>Z-A</label>
+                </div>
+                <br /><br />
+                <div class="ui icon input fluid">
+                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <i class="search icon"></i>
                 </div>
               </div>
             </div>
@@ -97,8 +95,9 @@
 
             <div class="item">
               <div class="ui icon input fluid">
-                <input type="text" placeholder="Pesquisar..." class="fluid" />
-                <i class="search icon"></i>
+                <div class="ui floated small primary labeled icon button" id="filter">
+                  <i class="search icon"></i> Aplicar Filtro
+                </div>
               </div>
             </div>
           </div>
