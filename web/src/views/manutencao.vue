@@ -159,8 +159,8 @@
                   >
                     <i class="wrench icon"></i> Adicionar Manutenção
                   </div>
-                  <div class="ui small button">Excluir</div>
-                  <div class="ui small button">Alterar</div>
+                  <div class="ui left floated small button">Excluir</div>
+                  <div class="ui left floated small button">Alterar</div>
                 </th>
               </tr>
             </tfoot>

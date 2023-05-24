@@ -182,9 +182,9 @@
                   >
                     <i class="keyboard outline icon"></i> Resolver chamada
                   </div>
-                  <div class="ui small button">Visualizar</div>
-                  <div class="ui small button">Tornar Pendente</div>
-                  <div class="ui small button">Remover Chamada</div>
+                  <div class="ui left floated small button">Visualizar</div>
+                  <div class="ui left floated small button">Tornar Pendente</div>
+                  <div class="ui left floated small button">Remover Chamada</div>
                 </th>
               </tr>
             </tfoot>

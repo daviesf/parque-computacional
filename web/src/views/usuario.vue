@@ -185,10 +185,10 @@
                   >
                     <i class="user outline icon"></i> Adicionar Funcionário
                   </div>
-                  <div class="ui small button">Excluir</div>
-                  <div class="ui small button">Alterar</div>
-                  <div class="ui small button">Ativar</div>
-                  <div class="ui small button">Desligar</div>
+                  <div class="ui left floated small button">Excluir</div>
+                  <div class="ui left floated small button">Alterar</div>
+                  <div class="ui left floated small button">Ativar</div>
+                  <div class="ui left floated small button">Desligar</div>
                 </th>
               </tr>
             </tfoot>
