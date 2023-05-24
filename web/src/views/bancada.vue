@@ -23,10 +23,10 @@
                   <label>Menor</label>
                 </div>
                 <br /><br />
-              <div class="ui icon input fluid">
-                <input type="text" placeholder="Pesquisar..." class="fluid" />
-                <i class="search icon"></i>
-              </div>
+                <div class="ui icon input fluid">
+                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <i class="search icon"></i>
+                </div>
               </div>
             </div>
             <div class="accordion">
@@ -44,6 +44,11 @@
                   <input type="checkbox" name="example" />
                   <label>Z-A</label>
                 </div>
+                <br /><br />
+                <div class="ui icon input fluid">
+                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <i class="search icon"></i>
+                </div>
               </div>
             </div>
             <div class="accordion">
@@ -60,6 +65,11 @@
                 <div class="ui checkbox">
                   <input type="checkbox" name="example" />
                   <label>Z-A</label>
+                </div>
+                <br /><br />
+                <div class="ui icon input fluid">
+                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <i class="search icon"></i>
                 </div>
               </div>
             </div>
@@ -89,8 +99,8 @@
             <div class="item">
               <div class="ui icon input fluid">
                 <div class="ui floated small primary labeled icon button" id="filter">
-              <i class="search icon"></i> Aplicar Filtro
-            </div>
+                  <i class="search icon"></i> Aplicar Filtro
+                </div>
               </div>
             </div>
           </div>
