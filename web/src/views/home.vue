@@ -53,7 +53,7 @@ export default {
       document.getElementById("saude").innerHTML = "Olá, " + name;
     } else {
       document.getElementById("saude").innerHTML = "Olá, querido!";
-      this.$router.push("/login");
+      // this.$router.push("/login");
     }
   }
 };

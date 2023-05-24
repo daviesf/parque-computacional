@@ -2,10 +2,10 @@
   <div>
     <NavBar :showNavbar="showNavbar" />
     <div class="bg-dimmer"></div>
-    <router-view @hideNavbar="hideNavbar" />
+    <router-view @hideNavbar="hideNavbar" @hideFooter="hideFooter" />
 
-    <section class="home-section">
-      <Rodape />
+    <section class="home-section"> 
+      <Rodape v-if="showFooter" />
     </section>
   </div>
 </template>
@@ -23,12 +23,16 @@ export default {
   data() {
     return {
       showNavbar: true,
+      showFooter: true
     };
   },
   methods: {
     hideNavbar(value) {
       this.showNavbar = !value;
     },
-  },
+    hideFooter(value) {
+      this.showFooter = !value;
+    }
+  }
 }
 </script>
