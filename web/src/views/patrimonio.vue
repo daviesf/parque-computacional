@@ -581,10 +581,10 @@
                   >
                     <i class="keyboard outline icon"></i> Adicionar Patrimônio
                   </div>
-                  <div class="ui small button">Excluir</div>
-                  <div class="ui small button">Alterar</div>
-                  <div class="ui small button">Ativar</div>
-                  <div class="ui small button">Desativar</div>
+                  <div class="ui left floated small button">Excluir</div>
+                  <div class="ui left floated small button">Alterar</div>
+                  <div class="ui left floated small button">Ativar</div>
+                  <div class="ui left floated small button">Desativar</div>
                 </th>
               </tr>
             </tfoot>

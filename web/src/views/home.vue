@@ -19,12 +19,12 @@
       </div>
       <div class="cards">
         <div class="card_info">
-          <div class="card_title">Patrimônios cadastrados:</div>
-          <div class="card_content">25 patrimônios.</div>
+          <div class="card_title">Patrimônios em manutenção:</div>
+          <div class="card_content">2 patrimônios.</div>
         </div>
         <div class="card_info">
-          <div class="card_title">Chamados pendentes:</div>
-          <div class="card_content">12 chamados.</div>
+          <div class="card_title">Patrimônios Inoperantes:</div>
+          <div class="card_content">3 patrimônios.</div>
         </div>
       </div>
       <div class="cards">

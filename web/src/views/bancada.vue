@@ -1,6 +1,8 @@
 <template>
   <section class="home-section">
-    <span class="text titlep"><h1>Tela de Bancadas Cadastradas</h1></span>
+    <span class="text titlep">
+      <h1>Tela de Bancadas Cadastradas</h1>
+    </span>
     <div class="ui container table-p">
       <div class="ui stackable grid">
         <div class="five wide column" style="margin-top: 30px">
@@ -173,16 +175,13 @@
               <tr>
                 <th></th>
                 <th colspan="5">
-                  <div
-                    class="ui right floated small primary labeled icon button"
-                    id="add-patrimonio"
-                  >
+                  <div class="ui right floated small primary labeled icon button" id="add-patrimonio">
                     <i class="server icon"></i> Adicionar Bancada
                   </div>
-                  <div class="ui small button">Excluir</div>
-                  <div class="ui small button">Alterar</div>
-                  <div class="ui small button">Ativar</div>
-                  <div class="ui small button">Desativar</div>
+                  <div class="ui left floated small button">Excluir</div>
+                  <div class="ui left floated small button">Alterar</div>
+                  <div class="ui left floated small button">Ativar</div>
+                  <div class="ui left floated small button">Desativar</div>
                 </th>
               </tr>
             </tfoot>
