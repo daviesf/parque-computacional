@@ -5,7 +5,7 @@
         <div class="bgimg-second"></div>
         <form class="form_container">
             <div class="logo_container">
-                <img src="../src/assets/media/logo.png" alt="">
+                <img src="../assets/media/logo.png" alt="">
             </div>
             <div class="title_container">
                 <p class="title">Olá!</p>
@@ -47,10 +47,13 @@ export default {
     name: 'Login',
     created() {
         this.$emit('hideNavbar', true); // Emitir o evento para ocultar a navbar
+        this.$emit('hideFooter', true);
     },
     destroyed() {
         this.$emit('hideNavbar', false); // Emitir o evento para mostrar a navbar novamente
+        this.$emit('hideFooter', false);
     },
+    
 }
 </script>
 

@@ -19,7 +19,8 @@
 <script>
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Rodape'
+  name: 'Rodape',
+  props: ['showNavbar'],
 }
 </script>
 
