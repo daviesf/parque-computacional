@@ -46,6 +46,7 @@
 export default {
   name: 'Home',
 
+<<<<<<< Updated upstream
   mounted() {
     // localStorage.setItem("user", JSON.stringify({ name: "João" }));
     if (localStorage.getItem("user") != null) {
@@ -56,6 +57,9 @@ export default {
       // this.$router.push("/login");
     }
   }
+=======
+ 
+>>>>>>> Stashed changes
 };
 
 </script>

@@ -261,12 +261,12 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 }
 
 .rodape {
-  height: 10vh;
+  height: 7vh;
   position: fixed;
-  left: 78px;
+  left: 0;
   bottom: 0;
   width: 100%;
-  z-index: -9999;
+  z-index: 1;
 }
 
 .rodape-segment {
@@ -519,6 +519,7 @@ select.placeholder {
 }
 
 .home-sec {
+  height: calc(100vh - 7vh);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

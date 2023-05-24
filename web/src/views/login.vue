@@ -42,6 +42,7 @@
 </template>
 
 <script>
+
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'Login',
@@ -53,8 +54,14 @@ export default {
         this.$emit('hideNavbar', false); // Emitir o evento para mostrar a navbar novamente
         this.$emit('hideFooter', false);
     },
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
 }
 </script>
+
+
 
 <style src="../assets/login.css"></style>
