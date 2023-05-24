@@ -16,7 +16,6 @@
   </div>
 </template>
 
-<<<<<<< Updated upstream
 <script>
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -24,10 +23,6 @@ export default {
   props: ['showNavbar'],
 }
 </script>
-=======
-<script></script>
-
->>>>>>> Stashed changes
 
 <style src="../assets/pages.css"></style>
 

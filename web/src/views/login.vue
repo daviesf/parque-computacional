@@ -54,11 +54,7 @@ export default {
         this.$emit('hideNavbar', false); // Emitir o evento para mostrar a navbar novamente
         this.$emit('hideFooter', false);
     },
-<<<<<<< Updated upstream
     
-=======
-
->>>>>>> Stashed changes
 }
 </script>
 
