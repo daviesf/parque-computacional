@@ -78,7 +78,7 @@
   width: 250px;
 }
 
-/* Para fazer a navbar ser responsiva,
+/* Para fazer a navbar ser responsiva,nav
 apenas alterar a width acima para 100% com
 a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 .sidebar .logo-details {
@@ -261,7 +261,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 }
 
 .rodape {
-  height: 7vh;
+  height: 8vh;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -482,6 +482,13 @@ select.placeholder {
   line-height: 1.5;
   font-size: 0.9em;
 }
+.containercolor{
+
+}
+
+.custom-icon {
+  color: #00000083;
+}
 
 .cards {
   display: flex;
@@ -491,13 +498,10 @@ select.placeholder {
 
 .card_info {
   line-height: 1.2;
-  width: 40em;
-  height: 8em;
-  margin-top: 15px;
+  width: 13em;
+  height: 10em;
   margin-left: 10px;
   border-radius: 10px;
-  border: 2px solid #11101d;
-  background-color: #30344c;
   padding: 10px;
   transition: 0.5s;
   display: flex;
@@ -514,25 +518,68 @@ select.placeholder {
 .card_content {
   padding: 10px;
   width: 100%;
-  color: white;
-  font-size: 1.5em;
+  color: rgb(0, 0, 0);
+  font-size: 1.8em;
+  font-weight: bold;
 }
 
 .card_title {
   padding: 5px;
-  font-size: 2em;
+  font-size: 1em;
   font-family: SFProBold;
-  color: #c0c3d7;
+  color: #00000083;
 }
 
 .home-sec {
-  height: calc(100vh - 7vh);
+  height: calc(100vh - 8vh);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 #filter {
   width: 100%;
+}
+
+.button1 {
+  margin-right: 10px;
+  margin-left: 10px;
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  width: 8vw;
+  border-radius: 0.7rem;
+  background: #00000083;
+  color: #ffffff;
+  border: none;
+}
+
+.button1:hover::before {
+  transform: scaleX(1);
+}
+
+.button1-content {
+  font-size: 1.1em;
+  font-family: SFProBold;
+  position: relative;
+  z-index: 1;
+}
+
+.button1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 100%;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(
+    82.3deg,
+    rgb(71, 134, 136) 10%,
+    rgb(0, 89, 107) 90%
+  );
+  transition: all 0.3s;
 }
