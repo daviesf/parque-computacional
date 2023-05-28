@@ -68,8 +68,6 @@
   }
 }
 
-
-
 .logout-list {
   margin-top: calc(100vh - 500px);
 }
@@ -231,7 +229,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   align-items: center;
 }
 
-.sidebar.open~.bg-dimmer {
+.sidebar.open ~ .bg-dimmer {
   backdrop-filter: blur(10px);
   opacity: 0.8;
   z-index: 50;
@@ -496,7 +494,7 @@ select.placeholder {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 .card_info {
@@ -562,7 +560,6 @@ select.placeholder {
   transition: all 0.3s ease-in-out;
   font-family: SFProBold;
   font-size: 1.1em;
-  
 }
 
 .button1:hover::before {
@@ -586,10 +583,6 @@ select.placeholder {
   width: 100%;
   height: inherit;
   border-radius: inherit;
-  background: linear-gradient(
-    82.3deg,
-    rgb(71, 134, 136) 10%,
-    rgb(0, 89, 107) 90%
-  );
+  background: linear-gradient(82.3deg, rgb(71, 134, 136) 10%, rgb(0, 89, 107) 90%);
   transition: all 0.3s;
 }

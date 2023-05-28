@@ -4,7 +4,7 @@
     <div class="bg-dimmer"></div>
     <router-view @hideNavbar="hideNavbar" @hideFooter="hideFooter" />
 
-    <section class="home-section"> 
+    <section class="home-section">
       <Rodape v-if="showFooter" />
     </section>
   </div>
@@ -24,14 +24,14 @@ export default {
     return {
       showNavbar: true,
       showFooter: true
-    };
+    }
   },
   methods: {
     hideNavbar(value) {
-      this.showNavbar = !value;
+      this.showNavbar = !value
     },
     hideFooter(value) {
-      this.showFooter = !value;
+      this.showFooter = !value
     }
   }
 }
