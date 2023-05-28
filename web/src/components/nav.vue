@@ -49,12 +49,12 @@
         <span class="tooltip">Usuário</span>
       </li>
       <li>
-        <div class="logout-list">
-          <router-link to="">
+        <div class="logout-list" id="logout-list">
+          <router-link to="/logout">
             <i class="sign out icon"></i>
-            <span class="links_name">Log out</span>
+            <span class="links_name">Log-out</span>
           </router-link>
-          <span class="tooltip">Fazer log out</span>
+          <span class="tooltip">Fazer log-out</span>
         </div>
       </li>
     </ul>
@@ -85,7 +85,10 @@ export default {
         closeBtn.classList.replace('bx-menu-alt-right', 'bx-menu') //replacing the iocns class
       }
     }
-  }
+  },
+
+
+
 }
 </script>
 

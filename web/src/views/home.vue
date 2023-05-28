@@ -1,9 +1,9 @@
 <template>
   <section class="home-section home-sec">
-    <div class="container-fluid containercolor">
+    <div class="container-fluid">
       <div class="ui container">
         <div class="ui grid centered">
-          <div class="ui twelve wide grid">
+          <div class="ui twelve center-cards">
             <div class="card_info">
               <i class="computer bill alternate icon custom-icon"></i>
               <div class="card_title">Patrimônios cadastrados:</div>
@@ -25,13 +25,11 @@
               <div class="card_title">Patrimônios Inoperantes:</div>
               <div class="card_content">3</div>
             </div>
-
             <div class="card_info">
               <i class="sync bill alternate icon custom-icon"></i>
               <div class="card_title">Bancadas operando:</div>
               <div class="card_content">1</div>
             </div>
-
             <div class="card_info">
               <i class="eye icon custom-icon"></i>
               <div class="card_title">Manutenções realizadas:</div>
@@ -48,7 +46,7 @@
     </div>
 
 
-    <div class="ui container" style="margin-top: 120px;">
+    <div class="ui container">
       <div class="ui grid centered">
         <router-link to="/patrimonio">
           <button class="button1">
@@ -86,7 +84,26 @@ export default {
   name: 'Home',
 
   mounted() {
-    // localStorage.setItem("user", JSON.stringify({ name: "João" }));
+    // Essa função não é de fato necessária, mas é como funcionaria.
+    var names = ["João", "Maria", "José", "Ana", "Pedro"];
+    function shuffle(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex;
+      while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+      return array;
+    }
+
+    var shuffledNames = shuffle(names);
+    var nextName = shuffledNames.pop();
+
+    // Salva o nome no localStorage
+    localStorage.setItem("user", JSON.stringify({ name: nextName }));
+    // A partir daqui é o que realmente importa pra carregar o nome na home.
     if (localStorage.getItem("user") != null) {
       const name = JSON.parse(localStorage.getItem("user")).name;
       document.getElementById("saude").innerHTML = "Olá, " + name;
@@ -95,8 +112,11 @@ export default {
       // this.$router.push("/login");
     }
   }
+
+  
 };
 
 </script>
 
 <style src="../assets/pages.css"></style>
+
