@@ -147,14 +147,15 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody id="patrimonio-table-body">
-
-            </tbody>
+            <tbody id="patrimonio-table-body"></tbody>
             <tfoot class="full-width">
               <tr>
                 <th></th>
                 <th colspan="5">
-                  <div class="ui right floated small primary labeled icon button" id="add-patrimonio">
+                  <div
+                    class="ui right floated small primary labeled icon button"
+                    id="add-patrimonio"
+                  >
                     <i class="keyboard outline icon"></i> Adicionar Patrimônio
                   </div>
                   <div class="ui left floated small button">Excluir</div>
@@ -242,13 +243,9 @@ export default {
     }
 
     // Exibe o pop-pup ao clicar no botão "Adicionar Patrimônio"
-    // eslint-disable-next-line no-undef
-    $(document).ready(function () {
+    document.getElementById('add-patrimonio').addEventListener('click', () => {
       // eslint-disable-next-line no-undef
-      $('#add-patrimonio').on('click', function () {
-        // eslint-disable-next-line no-undef
-        $('.add-form').addClass('open')
-      })
+      $('.add-form').addClass('open')
     })
 
     // Faz o dimmer aparecer ao clicar no botão "Adicionar Patrimônio" e desaparecer ao clicar fora do pop-up.
@@ -324,56 +321,57 @@ export default {
   }
 }`
 
-    axios.post('http://localhost:4000', { query }).then((result) => {
-      // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-      const patrimonios = result.data.data.patrimonios;
+    axios.post('http://localhost:4000', { query }).then(
+      (result) => {
+        // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+        const patrimonios = result.data.data.patrimonios
 
-      const tbody = document.getElementById("patrimonio-table-body");
+        const tbody = document.getElementById('patrimonio-table-body')
 
-      patrimonios.forEach(patrimonio => {
-        const tr = document.createElement("tr");
+        patrimonios.forEach((patrimonio) => {
+          const tr = document.createElement('tr')
 
-        const tdCheckbox = document.createElement("td");
-        tdCheckbox.className = "collapsing";
-        const checkbox = document.createElement("div");
-        checkbox.className = "ui fitted checkbox";
-        const inputCheckbox = document.createElement("input");
-        inputCheckbox.type = "checkbox";
-        inputCheckbox.className = "select-checkbox";
-        const labelCheckbox = document.createElement("label");
-        checkbox.appendChild(inputCheckbox);
-        checkbox.appendChild(labelCheckbox);
-        tdCheckbox.appendChild(checkbox);
+          const tdCheckbox = document.createElement('td')
+          tdCheckbox.className = 'collapsing'
+          const checkbox = document.createElement('div')
+          checkbox.className = 'ui fitted checkbox'
+          const inputCheckbox = document.createElement('input')
+          inputCheckbox.type = 'checkbox'
+          inputCheckbox.className = 'select-checkbox'
+          const labelCheckbox = document.createElement('label')
+          checkbox.appendChild(inputCheckbox)
+          checkbox.appendChild(labelCheckbox)
+          tdCheckbox.appendChild(checkbox)
 
-        const tdBancada = document.createElement("td");
-        tdBancada.textContent = patrimonio.idBancada;
+          const tdBancada = document.createElement('td')
+          tdBancada.textContent = patrimonio.idBancada
 
-        const tdMarca = document.createElement("td");
-        tdMarca.textContent = patrimonio.marca;
+          const tdMarca = document.createElement('td')
+          tdMarca.textContent = patrimonio.marca
 
-        const tdModelo = document.createElement("td");
-        tdModelo.textContent = patrimonio.modelo;
+          const tdModelo = document.createElement('td')
+          tdModelo.textContent = patrimonio.modelo
 
-        const tdTipo = document.createElement("td");
-        tdTipo.textContent = patrimonio.tipo;
+          const tdTipo = document.createElement('td')
+          tdTipo.textContent = patrimonio.tipo
 
-        const tdStatus = document.createElement("td");
-        tdStatus.textContent = patrimonio.status;
+          const tdStatus = document.createElement('td')
+          tdStatus.textContent = patrimonio.status
 
-        tr.appendChild(tdCheckbox);
-        tr.appendChild(tdBancada);
-        tr.appendChild(tdMarca);
-        tr.appendChild(tdModelo);
-        tr.appendChild(tdTipo);
-        tr.appendChild(tdStatus);
+          tr.appendChild(tdCheckbox)
+          tr.appendChild(tdBancada)
+          tr.appendChild(tdMarca)
+          tr.appendChild(tdModelo)
+          tr.appendChild(tdTipo)
+          tr.appendChild(tdStatus)
 
-        tbody.appendChild(tr);
-      });
-
-    }, (error) => {
-      console.log(error)
-    })
-
+          tbody.appendChild(tr)
+        })
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
   }
 }
 </script>

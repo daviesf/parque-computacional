@@ -5,7 +5,7 @@ var knex = require("knex")({
   connection: {
     host: "152.67.40.125",
     user: "neto",
-    password: "SenhadoNeto12!",
+    password: "Neto2022!",
     database: "tcc",
     port: 3306
   }

@@ -196,7 +196,7 @@
 
 <script>
 export default {
-  name: 'HelpDeskAdm',
+  name: 'HelpDesk',
   mounted() {
     // Selecione todos os checkboxes quando o checkbox geral é selecionado
     document.getElementById('select-all').addEventListener('click', function () {
