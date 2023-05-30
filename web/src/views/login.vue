@@ -1,8 +1,5 @@
 <template>
     <div class="login-body">
-        <div class="bgimg">
-        </div>
-        <div class="bgimg-second"></div>
         <form class="form_container">
             <div class="logo_container">
                 <img src="../assets/media/logo.png" alt="">
@@ -25,7 +22,7 @@
                     novamente.</p>
             </div>
         </div>
-        <div class="popup" id="popup">
+        <div class="popup1" id="popup1">
             <div class="popup-content">
                 <div class="popup-header">
                     <h2>Ajuda?</h2>
@@ -35,7 +32,7 @@
                         abrir chamados técnicos na plataforma HelpDesk.</p>
                     <p>Em caso de problemas, contate um administrador.</p>
                 </div>
-                <button class="ok-button" onclick="hidePopup()">Ok</button>
+                <button class="ok-button" id="ok-button">Ok</button>
             </div>
         </div>
     </div>

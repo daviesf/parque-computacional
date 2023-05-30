@@ -101,13 +101,15 @@ window.onload = function () {
   )
 }
 
-document.getElementById('login-failed-close').onclick = function () {
-  document.querySelector('#login-failed').style.transition = 'all 1s ease-in-out'
-  document.querySelector('#login-failed').style.right = '-100%'
-}
+window.addEventListener('load', function () {
+  document.getElementById('login-failed-close').addEventListener('click', function () {
+    document.querySelector('#login-failed').style.transition = 'all 1s ease-in-out';
+    document.querySelector('#login-failed').style.right = '-100%';
+  });
 
-const popup = document.getElementById('popup')
+const popup = document.getElementById('popup1')
 const helpButton = document.getElementById('ajuda')
+document.getElementById('ok-button').addEventListener('click', hidePopup);
 
 helpButton.addEventListener('click', () => {
   popup.classList.add('visible')
@@ -132,3 +134,5 @@ function closePopupOnClickOutside(event) {
     hidePopup()
   }
 }
+
+});
