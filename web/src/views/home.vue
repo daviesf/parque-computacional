@@ -5,12 +5,12 @@
         <div class="ui grid centered">
           <div class="ui twelve center-cards">
             <div class="card_info">
-              <i class="computer bill alternate icon custom-icon"></i>
+              <i class="keyboard outline icon"></i>
               <div class="card_title">Patrimônios cadastrados:</div>
               <div class="card_content">25</div>
             </div>
             <div class="card_info">
-              <i class="server icon custom-icon"></i>
+              <i class="laptop icon"></i>
               <div class="card_title">Chamados pendentes:</div>
               <div class="card_content">12</div>
             </div>
@@ -26,12 +26,12 @@
               <div class="card_content">3</div>
             </div>
             <div class="card_info">
-              <i class="sync bill alternate icon custom-icon"></i>
+              <i class="server icon"></i>
               <div class="card_title">Bancadas operando:</div>
               <div class="card_content">1</div>
             </div>
             <div class="card_info">
-              <i class="eye icon custom-icon"></i>
+              <i class="check circle outline icon"></i>
               <div class="card_title">Manutenções realizadas:</div>
               <div class="card_content">1</div>
             </div>
@@ -81,6 +81,7 @@
 <script>
 
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Home',
 
   mounted() {
