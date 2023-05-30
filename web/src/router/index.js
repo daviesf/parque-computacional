@@ -7,6 +7,7 @@ import Bancada from './views/bancada.vue'
 import Manutencao from './views/manutencao.vue'
 import HelpDesk from '.views/helpDesk'
 import Usuario from './views/usuario.vue'
+import Logout from './views/logout.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -45,6 +46,11 @@ const router = createRouter({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/logout',
+      name: 'Logout',
+      component: Logout
     }
   ]
 })

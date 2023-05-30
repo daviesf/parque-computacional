@@ -147,19 +147,8 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>5</td>
-                <td>HP</td>
-                <td>HP-750</td>
-                <td>Impressora</td>
-                <td>Ativo</td>
-              </tr>
+            <tbody id="patrimonio-table-body">
+
             </tbody>
             <tfoot class="full-width">
               <tr>
@@ -325,7 +314,65 @@ export default {
     })
 
     // load data
-    const query = ``
+    const query = `query Query {
+  patrimonios {
+    idBancada
+    marca
+    modelo
+    tipo
+    status
+  }
+}`
+
+    axios.post('http://localhost:4000', { query }).then((result) => {
+      // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+      const patrimonios = result.data.data.patrimonios;
+
+      const tbody = document.getElementById("patrimonio-table-body");
+
+      patrimonios.forEach(patrimonio => {
+        const tr = document.createElement("tr");
+
+        const tdCheckbox = document.createElement("td");
+        tdCheckbox.className = "collapsing";
+        const checkbox = document.createElement("div");
+        checkbox.className = "ui fitted checkbox";
+        const inputCheckbox = document.createElement("input");
+        inputCheckbox.type = "checkbox";
+        inputCheckbox.className = "select-checkbox";
+        const labelCheckbox = document.createElement("label");
+        checkbox.appendChild(inputCheckbox);
+        checkbox.appendChild(labelCheckbox);
+        tdCheckbox.appendChild(checkbox);
+
+        const tdBancada = document.createElement("td");
+        tdBancada.textContent = patrimonio.idBancada;
+
+        const tdMarca = document.createElement("td");
+        tdMarca.textContent = patrimonio.marca;
+
+        const tdModelo = document.createElement("td");
+        tdModelo.textContent = patrimonio.modelo;
+
+        const tdTipo = document.createElement("td");
+        tdTipo.textContent = patrimonio.tipo;
+
+        const tdStatus = document.createElement("td");
+        tdStatus.textContent = patrimonio.status;
+
+        tr.appendChild(tdCheckbox);
+        tr.appendChild(tdBancada);
+        tr.appendChild(tdMarca);
+        tr.appendChild(tdModelo);
+        tr.appendChild(tdTipo);
+        tr.appendChild(tdStatus);
+
+        tbody.appendChild(tr);
+      });
+
+    }, (error) => {
+      console.log(error)
+    })
 
   }
 }
