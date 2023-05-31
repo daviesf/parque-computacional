@@ -9,6 +9,7 @@ import HelpDesk from '.views/helpDeskAdm'
 import HelpDeskUser from '.views/helpDeskUser'
 import Usuario from './views/usuario.vue'
 import Logout from './views/logout.vue'
+import NotFound from './views/notFound.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -57,7 +58,13 @@ const router = createRouter({
       path: '/logout',
       name: 'Logout',
       component: Logout
+    },
+    {
+      path: '/:pathMatch(.*)',
+      name: 'NotFound',
+      component: NotFound
     }
+
   ]
 })
 

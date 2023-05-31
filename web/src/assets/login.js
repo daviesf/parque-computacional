@@ -1,5 +1,3 @@
-/* global google */
-
 function handleCredentialResponse(response) {
   const data = jwt_decode(response.credential)
   console.log(data)
