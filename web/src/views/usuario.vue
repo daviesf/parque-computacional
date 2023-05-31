@@ -133,11 +133,11 @@
                     <label></label>
                   </div>
                 </td>
-                <th>Nome</th>
+                <th class="wide-150">Nome</th>
                 <th>E-mail</th>
-                <th>Bancada</th>
-                <th>Tipo</th>
-                <th>Status</th>
+                <th class="wide-80">Bancada</th>
+                <th class="wide-100">Tipo</th>
+                <th class="wide-100">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -216,41 +216,46 @@
     <div class="dimmer">
       <div class="ui container add-form">
         <h2 class="ui dividing header">Adicionar Funcionário</h2>
-        <form class="ui form">
+        <form class="ui form" id="form">
           <div class="field">
             <label>Nome</label>
-            <input type="text" name="nome" placeholder="Nome" />
+            <input type="text" name="nome" placeholder="Nome" class="required" id="campo" oninput="nomeValidate()"/>
+            <span class="span-required">Insira o Nome</span>
           </div>
           <div class="field">
             <label>E-mail</label>
-            <input type="email" name="email" placeholder="E-mail" />
+            <input type="email" name="email" placeholder="E-mail" class="required" id="campo" oninput="emailValidate()" />
+            <span class="span-required">Insira um e-mail válido</span>
           </div>
           <div class="field">
             <label>Bancada</label>
-            <select name="tipo">
+            <select name="tipo" class="required" id="campo" oninput="bancadaValidate()">
               <option class="placeholder" disabled selected>Selecione a bancada</option>
               <option value="b1">Nenhuma (ID: 0)</option>
               <option value="b2">ID: 22 | Bancada de Informática</option>
               <option value="b3">ID: 23 | Bancada de Almoxarifado</option>
               <option value="b4">ID: 24 | Bancada do RU</option>
             </select>
+            <span class="span-required">Selecione alguma Bancada</span>
           </div>
           <div class="field">
             <label>Tipo</label>
-            <select name="tipo">
+            <select name="tipo" class="required" id="campo" oninput="tipoValidate()">
               <option class="placeholder" disabled selected>Selecione o tipo</option>
               <option value="Gerente">Gerente</option>
               <option value="Estagiário">Estagiário</option>
               <option value="CLT">CLT</option>
             </select>
+            <span class="span-required">Selecione algum Tipo</span>
           </div>
           <div class="field">
             <label>Status</label>
-            <select name="status">
+            <select name="status" class="required" id="campo" oninput="statusValidate()">
               <option class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="desligado">Desligado</option>
             </select>
+            <span class="span-required">Selecione algum Status</span>
           </div>
           <button class="ui submit button" type="submit">Adicionar</button>
           <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
@@ -354,6 +359,75 @@ export default {
         accordion.classList.toggle('active')
       })
     })
+
+    //Validação do form
+    const form = document.getElementById('form')
+    const campos = document.querySelectorAll('.required')
+    const spans = document.querySelectorAll('.span-required')
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      validateForm()
+    })
+
+    campos.forEach((campo, index) => {
+      campo.addEventListener('input', () => {
+        removeError(index)
+      })
+    })
+
+    function setError(index) {
+      campos[index].style.border = '2px solid #e63636'
+      spans[index].style.display = 'block'
+    }
+
+    function removeError(index) {
+      campos[index].style.border = ''
+      spans[index].style.display = 'none'
+    }
+
+    function validateForm() {
+      const validations = [
+        { index: 0, isValid: nomeValidate },
+        { index: 1, isValid: emailValidate },
+        { index: 2, isValid: bancadaValidate },
+        { index: 3, isValid: tipoValidate },
+        { index: 4, isValid: statusValidate }
+      ]
+
+      validations.forEach((validation) => {
+        const { index, isValid } = validation
+        if (!isValid()) {
+          setError(index)
+        } else {
+          removeError(index)
+        }
+      })
+    }
+
+    function nomeValidate() {
+      return campos[0].value.length > 0
+    }
+
+    function emailValidate() {
+  const emailValue = campos[1].value;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  return emailRegex.test(emailValue);
+}
+
+
+    function bancadaValidate() {
+      return campos[2].value !== 'Selecione a bancada'
+    }
+
+    function tipoValidate() {
+      return campos[3].value !== 'Selecione o tipo'
+    }
+
+    function statusValidate() {
+      return campos[4].value !== 'Selecione o status'
+    }
   }
 }
 </script>

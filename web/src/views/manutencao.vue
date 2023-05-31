@@ -107,10 +107,10 @@
                     <label></label>
                   </div>
                 </td>
-                <th>ID de Manutenção</th>
-                <th>Patrimônio</th>
-                <th>Funcionário</th>
-                <th>Data</th>
+                <th class="wide-80">ID</th>
+                <th class="wide-150">Patrimônio</th>
+                <th class="wide-150">Funcionário</th>
+                <th class="wide-100">Data</th>
                 <th>Detalhes</th>
               </tr>
             </thead>
@@ -188,34 +188,45 @@
     <div class="dimmer">
       <div class="ui container add-form">
         <h2 class="ui dividing header">Adicionar Manutenção</h2>
-        <form class="ui form">
+        <form class="ui form" id="form">
           <div class="field">
             <label>Patrimônio</label>
-            <select name="tipo">
-              <option class="placeholder" disabled selected>Selecione o patrimônio</option>
+            <select name="tipo" class="required" id="campo" onselect="patrimonioValidate()">
+              <option class="placeholder" disabled selected>Selecione o Patrimônio</option>
               <option value="b1">Nenhuma (ID: 0)</option>
               <option value="b2">ID: 22 | Mouse</option>
               <option value="b3">ID: 23 | Notebook</option>
               <option value="b4">ID: 24 | Impressora</option>
             </select>
+            <span class="span-required">Selecione algum Patrimônio</span>
           </div>
           <div class="field">
             <label>Detalhes da Manutenção</label>
-            <input type="text" name="detalhes" placeholder="Detalhes" />
+            <input
+              type="text"
+              name="detalhes"
+              placeholder="Detalhes"
+              class="required"
+              id="campo"
+              oninput="detalhesValidate()"
+            />
+            <span class="span-required">Insira os Detalhes</span>
           </div>
           <div class="field">
             <label>Data</label>
-            <input type="date" name="modelo" placeholder="Modelo" />
+            <input type="date" name="data" class="required" id="campo" oninput="dataValidate()" />
+            <span class="span-required">Insira a Data</span>
           </div>
           <div class="field">
             <label>Pertencente ao Funcionário:</label>
-            <select name="tipo">
+            <select name="tipo" class="required" id="campo" onselect="funcionarioValidate()">
               <option class="placeholder" disabled selected>Selecione o Funcionário</option>
               <option value="Jeferson">Jeferson</option>
               <option value="Camila">Camila</option>
               <option value="Murilo">Murilo</option>
               <option value="Ernesto">Ernesto</option>
             </select>
+            <span class="span-required">Selecione algum Funcionário</span>
           </div>
           <button class="ui submit button" type="submit">Adicionar</button>
           <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
@@ -319,6 +330,69 @@ export default {
         accordion.classList.toggle('active')
       })
     })
+
+    //Validação do form
+    const form = document.getElementById('form')
+    const campos = document.querySelectorAll('.required')
+    const spans = document.querySelectorAll('.span-required')
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      validateForm()
+    })
+
+    campos.forEach((campo, index) => {
+      campo.addEventListener('input', () => {
+        removeError(index)
+      })
+    })
+
+    function setError(index) {
+      campos[index].style.border = '2px solid #e63636'
+      spans[index].style.display = 'block'
+    }
+
+    function removeError(index) {
+      campos[index].style.border = ''
+      spans[index].style.display = 'none'
+    }
+
+    function validateForm() {
+      const validations = [
+        { index: 0, isValid: patrimonioValidate },
+        { index: 1, isValid: detalhesValidate },
+        { index: 2, isValid: dataValidate },
+        { index: 3, isValid: funcionarioValidate }
+      ]
+
+      validations.forEach((validation) => {
+        const { index, isValid } = validation
+        if (!isValid()) {
+          setError(index)
+        } else {
+          removeError(index)
+        }
+      })
+    }
+
+    function patrimonioValidate() {
+      return campos[0].value !== 'Selecione o Patrimônio'
+    }
+
+    function detalhesValidate() {
+      return campos[1].value.length > 0
+    }
+
+    function dataValidate() {
+      const dateValue = campos[2].value
+      const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/ // Expressão regular para o formato "dd/mm/aaaa"
+
+      return dateRegex.test(dateValue)
+    }
+
+    function funcionarioValidate() {
+      return campos[3].value !== 'Selecione o Funcionário'
+    }
   }
 }
 </script>

@@ -532,3 +532,49 @@ select.placeholder {
   background: linear-gradient(82.3deg, rgb(71, 134, 136) 10%, rgb(0, 89, 107) 90%);
   transition: all 0.3s;
 }
+
+label {
+  font-size: 25px; /* Altere o tamanho da fonte conforme necessário */
+}
+
+
+.span-required {
+  font-size: 1.1em;
+  color: #e63636;
+  display: none;
+}
+
+#campo{
+  padding: 8px 5px;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid rgb(156, 156, 156);
+  width: 100%;
+  box-sizing: border-box;
+  transition: .3s;
+}
+
+#campo:focus{
+  border-color: rgb(0, 70, 84);
+}
+
+/* Código de espaçamento dos campos da tabela */
+.wide-200 {
+  width: 200px;
+}
+
+.wide-150 {
+  width: 150px;
+}
+
+.wide-100 {
+  width: 100px;
+}
+
+.wide-80 {
+  width: 80px;
+}
+
+.wide-130 {
+  width: 130px;
+}

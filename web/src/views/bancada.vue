@@ -118,10 +118,10 @@
                     <label></label>
                   </div>
                 </td>
-                <th>Bancada</th>
-                <th>Apelido</th>
-                <th>Local</th>
-                <th>Status</th>
+                <th class="wide-100">Bancada</th>
+                <th class="wide-200">Apelido</th>
+                <th class="wide-200">Local</th>
+                <th class="wide-150">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -189,28 +189,31 @@
         </div>
       </div>
     </div>
-    <!-- Pop-up de cadastro de patrimônio -->
+    <!-- Pop-up de cadastro de bancada -->
     <div class="dimmer">
       <div class="ui container add-form">
         <h2 class="ui dividing header">Adicionar Bancada</h2>
-        <form class="ui form">
+        <form class="ui form" id="form">
           <div class="field">
             <label>Apelido</label>
-            <input type="text" name="marca" placeholder="Apelido" />
+            <input type="text" name="marca" placeholder="Apelido" class="required" id="campo" oninput="apelidoValidate()"/>
+            <span class="span-required">Inisira o Apelido</span>
           </div>
           <div class="field">
             <label>Local</label>
-            <input type="text" name="modelo" placeholder="Local" />
+            <input type="text" name="modelo" placeholder="Local" class="required" id="campo" oninput="localValidate()"/>
+            <span class="span-required">Inisira o Local</span>
           </div>
 
           <div class="field">
             <label>Status</label>
-            <select name="status">
+            <select name="status" class="required" id="campo" oninput="statusValidate()">
               <option class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="inativo">Inativo</option>
               <option value="manutencao">Em manutenção</option>
             </select>
+            <span class="span-required">Selecione algum Status</span>
           </div>
           <button class="ui submit button" type="submit">Adicionar</button>
           <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
@@ -315,6 +318,61 @@ export default {
         accordion.classList.toggle('active')
       })
     })
+
+    //Validação do form
+    const form = document.getElementById('form')
+    const campos = document.querySelectorAll('.required')
+    const spans = document.querySelectorAll('.span-required')
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      validateForm()
+    })
+
+    campos.forEach((campo, index) => {
+      campo.addEventListener('input', () => {
+        removeError(index)
+      })
+    })
+
+    function setError(index) {
+      campos[index].style.border = '2px solid #e63636'
+      spans[index].style.display = 'block'
+    }
+
+    function removeError(index) {
+      campos[index].style.border = ''
+      spans[index].style.display = 'none'
+    }
+
+    function validateForm() {
+      const validations = [
+        { index: 0, isValid: apelidoValidate },
+        { index: 1, isValid: localValidate },
+        { index: 2, isValid: statusValidate }
+      ]
+
+      validations.forEach((validation) => {
+        const { index, isValid } = validation
+        if (!isValid()) {
+          setError(index)
+        } else {
+          removeError(index)
+        }
+      })
+    }
+
+    function apelidoValidate() {
+      return campos[0].value.length > 0
+    }
+
+    function localValidate() {
+      return campos[1].value.length > 0
+    }
+
+    function statusValidate() {
+      return campos[2].value !== 'Selecione o status'
+    }
   }
 }
 </script>

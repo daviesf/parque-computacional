@@ -11,6 +11,28 @@
 
             <div class="accordion">
               <div class="accordion-header">
+                <span>Código</span>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-body">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Maior</label>
+                </div>
+                <br /><br />
+                <div class="ui checkbox">
+                  <input type="checkbox" name="example" />
+                  <label>Menor</label>
+                </div>
+                <br /><br />
+                <div class="ui icon input fluid">
+                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <i class="search icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="accordion">
+              <div class="accordion-header">
                 <span>Bancada</span>
                 <span class="accordion-icon">+</span>
               </div>
@@ -140,10 +162,11 @@
                     <label></label>
                   </div>
                 </td>
-                <th>Bancada</th>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Tipo</th>
+                <th class="wide-100">Código</th>
+                <th class="wide-100">Bancada</th>
+                <th class="wide-130">Marca</th>
+                <th class="wide-130">Modelo</th>
+                <th class="wide-130">Tipo</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -151,7 +174,7 @@
             <tfoot class="full-width">
               <tr>
                 <th></th>
-                <th colspan="5">
+                <th colspan="6">
                   <div
                     class="ui right floated small primary labeled icon button"
                     id="add-patrimonio"
@@ -173,43 +196,74 @@
     <div class="dimmer">
       <div class="ui container add-form">
         <h2 class="ui dividing header">Adicionar Patrimônio</h2>
-        <form class="ui form">
+        <form class="ui form" id="form">
+          <div class="field">
+            <label>Código</label>
+            <input
+              type="text"
+              name="codigo"
+              placeholder="Código do Patrimônio"
+              class="required"
+              id="campo"
+              oninput="codigoValidate()"
+            />
+            <span class="span-required">Inisra o código do Patrimônio</span>
+          </div>
           <div class="field">
             <label>Bancada</label>
-            <select name="tipo">
+            <select name="tipo" class="required" id="campo" oninput="bancadaValidate()">
               <option class="placeholder" disabled selected>Selecione a bancada</option>
               <option value="b1">Nenhuma (ID: 0)</option>
               <option value="b2">ID: 22 | Bancada de Informática</option>
               <option value="b3">ID: 23 | Bancada de Almoxarifado</option>
               <option value="b4">ID: 24 | Bancada do RU</option>
             </select>
+            <span class="span-required">Selecione 1 Bancada</span>
           </div>
           <div class="field">
             <label>Marca</label>
-            <input type="text" name="marca" placeholder="Marca" />
+            <input
+              type="text"
+              name="marca"
+              placeholder="Marca"
+              class="required"
+              id="campo"
+              oninput="marcaValidate()"
+            />
+            <span class="span-required">Inisira a Marca</span>
           </div>
           <div class="field">
             <label>Modelo</label>
-            <input type="text" name="modelo" placeholder="Modelo" />
+            <input
+              type="text"
+              name="modelo"
+              placeholder="Modelo"
+              class="required"
+              id="campo"
+              oninput="modeloValidate()"
+            />
+            <span class="span-required">Insira o Modelo</span>
           </div>
           <div class="field">
             <label>Tipo</label>
-            <select name="tipo">
+            <select name="tipo" class="required" id="campo" oninput="tipoValidate()">
               <option class="placeholder" disabled selected>Selecione o tipo</option>
               <option value="desktop">Desktop</option>
               <option value="notebook">Notebook</option>
               <option value="impressora">Impressora</option>
               <option value="monitor">Monitor</option>
             </select>
+            <span class="span-required">Selecione um tipo</span>
           </div>
           <div class="field">
             <label>Status</label>
-            <select name="status">
+            <select name="status" class="required" id="campo" oninput="statusValidate()">
               <option class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="inativo">Inativo</option>
               <option value="manutencao">Em manutenção</option>
             </select>
+            <span class="span-required">Selecione o Status</span>
           </div>
           <button class="ui submit button" type="submit">Adicionar</button>
           <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
@@ -309,6 +363,76 @@ export default {
         accordion.classList.toggle('active')
       })
     })
+
+    //Validação do form
+    const form = document.getElementById('form')
+    const campos = document.querySelectorAll('.required')
+    const spans = document.querySelectorAll('.span-required')
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      validateForm()
+    })
+
+    campos.forEach((campo, index) => {
+      campo.addEventListener('input', () => {
+        removeError(index)
+      })
+    })
+
+    function setError(index) {
+      campos[index].style.border = '2px solid #e63636'
+      spans[index].style.display = 'block'
+    }
+
+    function removeError(index) {
+      campos[index].style.border = ''
+      spans[index].style.display = 'none'
+    }
+
+    function validateForm() {
+      const validations = [
+        { index: 0, isValid: codigoValidate },
+        { index: 1, isValid: bancadaValidate },
+        { index: 2, isValid: marcaValidate },
+        { index: 3, isValid: modeloValidate },
+        { index: 4, isValid: tipoValidate },
+        { index: 5, isValid: statusValidate }
+      ]
+
+      validations.forEach((validation) => {
+        const { index, isValid } = validation
+        if (!isValid()) {
+          setError(index)
+        } else {
+          removeError(index)
+        }
+      })
+    }
+
+    function codigoValidate() {
+      return campos[0].value.length > 0
+    }
+
+    function bancadaValidate() {
+      return campos[1].value !== 'Selecione a bancada'
+    }
+
+    function marcaValidate() {
+      return campos[2].value.length > 0
+    }
+
+    function modeloValidate() {
+      return campos[3].value.length > 0
+    }
+
+    function tipoValidate() {
+      return campos[4].value !== 'Selecione o tipo'
+    }
+
+    function statusValidate() {
+      return campos[5].value !== 'Selecione o status'
+    }
 
     // load data
     const query = `query Query {

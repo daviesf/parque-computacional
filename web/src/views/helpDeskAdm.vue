@@ -113,11 +113,11 @@
                     <label></label>
                   </div>
                 </td>
-                <th style="width: 16%"> Nome </th>
-                <th style="width: 12%"> Bancada </th>
-                <th style="width: 20%"> Data e hora </th>
-                <th style="width: 42%"> Descrição </th>
-                <th style="width: 10%">Status</th>
+                <th class="wide-100"> Nome </th>
+                <th class="wide-80"> Bancada </th>
+                <th class="wide-100"> Data e hora </th>
+                <th class="wide-200"> Descrição </th>
+                <th class="wide-100">Status</th>
               </tr>
             </thead>
             <tbody>
