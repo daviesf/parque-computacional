@@ -675,7 +675,7 @@
               A página que você está procurando não existe. Como você chegou aqui é realmente um mistério.
               <br> Mas você pode clicar no botão abaixo e voltar para a página inicial!
             </p>
-            <button class="btn green">HOME</button>
+            <router-view to='/home'><button class="btn green">HOME</button></router-view>
           </div>
     </main>
   </div>
