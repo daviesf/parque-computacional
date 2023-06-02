@@ -670,10 +670,10 @@
           </div>
           <div class="text-index">
             <h1>404</h1>
-            <h2>UH OH! You're lost.</h2>
+            <h2>Opa, não tem nada aqui!</h2>
             <p>
-              The page you are looking for does not exist. How you got here is a mystery. But you
-              can click the button below to go back to the homepage.
+              A página que você está procurando não existe. Como você chegou aqui é realmente um mistério.
+              <br> Mas você pode clicar no botão abaixo e voltar para a página inicial!
             </p>
             <button class="btn green">HOME</button>
           </div>
@@ -766,15 +766,6 @@ export default {
       delay: 2
     })
 
-    const burger = document.querySelector('.burger')
-    const nav = document.querySelector('nav')
-
-    burger.addEventListener('click', (e) => {
-      burger.dataset.state === 'closed'
-        ? (burger.dataset.state = 'open')
-        : (burger.dataset.state = 'closed')
-      nav.dataset.state === 'closed' ? (nav.dataset.state = 'open') : (nav.dataset.state = 'closed')
-    })
   }
 }
 </script>
