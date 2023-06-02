@@ -26,7 +26,8 @@ const router = createRouter({
     { path: '/helpDeskUser', component: HelpDeskUser },
     { path: '/usuario', component: Usuario },
     { path: '/logout', component: Logout },
-    { path: '/:pathMatch(.*)', component: NotFound }
+    { path: '/404', component: NotFound },
+    { path: '/:pathMatch(.*)', redirect: '/404' }
   ]
 })
 
