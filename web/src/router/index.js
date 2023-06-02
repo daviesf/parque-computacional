@@ -60,9 +60,14 @@ const router = createRouter({
       component: Logout
     },
     {
-      path: '/:pathMatch(.*)',
+      path: '/404',
       name: 'NotFound',
       component: NotFound
+    },
+    {
+      path: '/:pathMatch(.*)',
+      name: 'NotFound',
+      redirect: '/404'
     }
 
   ]
