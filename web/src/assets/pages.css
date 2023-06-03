@@ -532,6 +532,11 @@ select.placeholder {
   transition: all 0.3s;
 }
 
+.bg-button {
+  background: rgb(0, 70, 84);
+  color: white;
+}
+
 label {
   font-size: 25px; /* Altere o tamanho da fonte conforme necessário */
 }
@@ -543,7 +548,7 @@ label {
   display: none;
 }
 
-#campo{
+.campo{
   padding: 8px 5px;
   outline: none;
   border-radius: 5px;
@@ -553,7 +558,7 @@ label {
   transition: .3s;
 }
 
-#campo:focus{
+.campo:focus{
   border-color: rgb(0, 70, 84);
 }
 

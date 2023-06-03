@@ -141,12 +141,11 @@
                 </div>
               </div>
             </div>
-
             <div class="item">
               <div class="ui icon input fluid">
-                <div class="ui floated small primary labeled icon button" id="filter">
-                  <i class="search icon"></i> Aplicar Filtro
-                </div>
+                <button class="button1" id="filter">
+                  <span class="button1-content"><i class="search icon"></i>Aplicar Filtro</span>
+                </button>
               </div>
             </div>
           </div>
@@ -175,8 +174,10 @@
               <tr>
                 <th></th>
                 <th colspan="6">
-                  <div class="ui right floated small primary labeled icon button" id="add-patrimonio">
-                    <i class="keyboard outline icon"></i> Adicionar Patrimônio
+                  <div class="bg-button">
+                    <div class="ui right floated small labeled icon button" id="add-patrimonio">
+                      <i class="keyboard outline icon"></i> Adicionar Patrimônio
+                    </div>
                   </div>
                   <div class="ui left floated small button">Excluir</div>
                   <div class="ui left floated small button">Alterar</div>
@@ -203,14 +204,13 @@
               placeholder="Código do Patrimônio"
               class="required"
               id="campo"
-              oninput="codigoValidate()"
+              @input="codigoValidate"
             />
             <span class="span-required">Insira o código do Patrimônio</span>
-
           </div>
           <div class="field">
             <label>Bancada</label>
-            <select name="tipo" class="required" id="bancada" oninput="bancadaValidate()">
+            <select name="tipo" class="required" id="bancada" @change="bancadaValidate">
               <option class="placeholder" disabled selected>Selecione a bancada</option>
               <option value="0">Nenhuma (ID: 0)</option>
               <option value="1">ID: 1 | Bancada de Informática</option>
@@ -221,17 +221,31 @@
           </div>
           <div class="field">
             <label>Marca</label>
-            <input type="text" name="marca" placeholder="Marca" class="required" id="marca" oninput="marcaValidate()" />
+            <input
+              type="text"
+              name="marca"
+              placeholder="Marca"
+              class="required"
+              id="marca"
+              @input="marcaValidate"
+            />
             <span class="span-required">Inisira a Marca</span>
           </div>
           <div class="field">
             <label>Modelo</label>
-            <input type="text" name="modelo" placeholder="Modelo" class="required" id="modelo" />
+            <input
+              type="text"
+              name="modelo"
+              placeholder="Modelo"
+              class="required"
+              id="modelo"
+              @input="modeloValidate"
+            />
             <span class="span-required">Insira o Modelo</span>
           </div>
           <div class="field">
             <label>Tipo</label>
-            <select name="tipo" class="required" id="tipo" oninput="tipoValidate()">
+            <select name="tipo" class="required" id="tipo" @change="tipoValidate">
               <option class="placeholder" disabled selected>Selecione o tipo</option>
               <option value="desktop">Desktop</option>
               <option value="notebook">Notebook</option>
@@ -242,7 +256,7 @@
           </div>
           <div class="field">
             <label>Status</label>
-            <select name="status" class="required" id="status" oninput="statusValidate()">
+            <select name="status" class="required" id="status" @change="statusValidate">
               <option class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="inativo">Inativo</option>
@@ -375,26 +389,6 @@ export default {
       spans[index].style.display = 'none'
     }
 
-    function validateForm() {
-      const validations = [
-        { index: 0, isValid: codigoValidate },
-        { index: 1, isValid: bancadaValidate },
-        { index: 2, isValid: marcaValidate },
-        { index: 3, isValid: modeloValidate },
-        { index: 4, isValid: tipoValidate },
-        { index: 5, isValid: statusValidate }
-      ]
-
-      validations.forEach((validation) => {
-        const { index, isValid } = validation
-        if (!isValid()) {
-          setError(index)
-        } else {
-          removeError(index)
-        }
-      })
-    }
-
     function codigoValidate() {
       return campos[0].value.length > 0
     }
@@ -417,6 +411,26 @@ export default {
 
     function statusValidate() {
       return campos[5].value !== 'Selecione o status'
+    }
+
+    function validateForm() {
+      const validations = [
+        { index: 0, isValid: codigoValidate },
+        { index: 1, isValid: bancadaValidate },
+        { index: 2, isValid: marcaValidate },
+        { index: 3, isValid: modeloValidate },
+        { index: 4, isValid: tipoValidate },
+        { index: 5, isValid: statusValidate }
+      ]
+
+      validations.forEach((validation) => {
+        const { index, isValid } = validation
+        if (!isValid()) {
+          setError(index)
+        } else {
+          removeError(index)
+        }
+      })
     }
 
     // load data
@@ -483,18 +497,18 @@ export default {
     )
 
     // cadastrar
-    const addPatrimonio = document.getElementById('submit-patrimonio');
+    const addPatrimonio = document.getElementById('submit-patrimonio')
     addPatrimonio.addEventListener('click', function () {
-      console.log("Iniciando cadastro");
-      let cod = (document.getElementById('codigo').value);
-      let bancada = (document.getElementById('bancada').value);
-      let marca = document.getElementById('marca').value;
-      let modelo = document.getElementById('modelo').value;
-      let tipo = document.getElementById('tipo').value;
-      let status = document.getElementById('status').value;
-      console.log("Verificando status");
+      console.log('Iniciando cadastro')
+      let cod = document.getElementById('codigo').value
+      let bancada = document.getElementById('bancada').value
+      let marca = document.getElementById('marca').value
+      let modelo = document.getElementById('modelo').value
+      let tipo = document.getElementById('tipo').value
+      let status = document.getElementById('status').value
+      console.log('Verificando status')
 
-      console.log("Query")
+      console.log('Query')
 
       const query = `mutation Mutation($data: dadosPatrimonio) {
   createPatrimonio(data: $data) {
@@ -507,7 +521,7 @@ export default {
   }
 }`
 
-      console.log("Variáveis");
+      console.log('Variáveis')
 
       const variables = {
         data: {
@@ -518,9 +532,7 @@ export default {
           tipo: tipo,
           status: status
         }
-      };
-
-
+      }
 
       console.log(variables)
 
@@ -534,7 +546,6 @@ export default {
         }
       )
     })
-
   }
 }
 </script>

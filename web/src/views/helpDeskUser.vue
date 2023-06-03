@@ -9,19 +9,50 @@
         <form id="form" class="ui form">
           <div class="field">
             <label>Nome</label>
-            <input type="text" name="name" placeholder="Nome completo" />
+            <input
+              type="text"
+              name="name"
+              placeholder="Nome completo"
+              class="required"
+              id="campo"
+              @input="nomeValidate"
+            />
+            <span class="span-required">Insira o Nome</span>
           </div>
           <div class="field">
             <label>E-mail</label>
-            <input type="email" name="email" placeholder="E-mail" />
+            <input
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              class="required"
+              id="campo"
+              @input="emailValidate"
+            />
+            <span class="span-required">Insira um e-mail válido</span>
           </div>
           <div class="field">
             <label>Assunto</label>
-            <input type="text" name="subject" placeholder="Assunto" />
+            <input
+              type="text"
+              name="subject"
+              placeholder="Assunto"
+              class="required"
+              id="campo"
+              @input="assuntoValidate"
+            />
+            <span class="span-required">Insira o Assunto</span>
           </div>
           <div class="field">
             <label>Descrição</label>
-            <textarea name="description" rows="2" class="auto-expand"></textarea>
+            <textarea
+              name="description"
+              rows="2"
+              class="auto-expand required"
+              id="campo"
+              @input="descricaoValidate"
+            ></textarea>
+            <span class="span-required">Insira a Descrição</span>
           </div>
           <button type="submit" class="ui button">Enviar</button>
         </form>
@@ -95,6 +126,69 @@ export default {
       newRow.append(status)
 
       tableBody.append(newRow)
+    }
+
+    //Validação do form
+    const formulario = document.getElementById('form')
+    const campos = document.querySelectorAll('.required')
+    const spans = document.querySelectorAll('.span-required')
+
+    formulario.addEventListener('submit', (event) => {
+      event.preventDefault()
+      validateForm()
+    })
+
+    campos.forEach((campo, index) => {
+      campo.addEventListener('input', () => {
+        removeError(index)
+      })
+    })
+
+    function setError(index) {
+      campos[index].style.border = '2px solid #e63636'
+      spans[index].style.display = 'block'
+    }
+
+    function removeError(index) {
+      campos[index].style.border = ''
+      spans[index].style.display = 'none'
+    }
+
+    function validateForm() {
+      const validations = [
+        { index: 0, isValid: nomeValidate },
+        { index: 1, isValid: emailValidate },
+        { index: 2, isValid: assuntoValidate },
+        { index: 3, isValid: descricaoValidate }
+      ]
+
+      validations.forEach((validation) => {
+        const { index, isValid } = validation
+        if (!isValid()) {
+          setError(index)
+        } else {
+          removeError(index)
+        }
+      })
+    }
+
+    function nomeValidate() {
+      return campos[0].value.length > 0
+    }
+
+    function emailValidate() {
+      const emailValue = campos[1].value
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+      return emailRegex.test(emailValue)
+    }
+
+    function assuntoValidate() {
+      return campos[2].value !== 'Selecione a bancada'
+    }
+
+    function descricaoValidate() {
+      return campos[3].value !== 'Selecione o tipo'
     }
   }
 }

@@ -89,9 +89,9 @@
 
             <div class="item">
               <div class="ui icon input fluid">
-                <div class="ui floated small primary labeled icon button" id="filter">
-                  <i class="search icon"></i> Aplicar Filtro
-                </div>
+                <button class="button1" id="filter">
+                  <span class="button1-content"><i class="search icon"></i>Aplicar Filtro</span>
+                </button>
               </div>
             </div>
           </div>
@@ -191,7 +191,7 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Patrimônio</label>
-            <select name="tipo" class="required" id="campo" onselect="patrimonioValidate()">
+            <select name="tipo" class="required" id="campo" @change="patrimonioValidate">
               <option class="placeholder" disabled selected>Selecione o Patrimônio</option>
               <option value="b1">Nenhuma (ID: 0)</option>
               <option value="b2">ID: 22 | Mouse</option>
@@ -208,18 +208,18 @@
               placeholder="Detalhes"
               class="required"
               id="campo"
-              oninput="detalhesValidate()"
+              @input="detalhesValidate"
             />
             <span class="span-required">Insira os Detalhes</span>
           </div>
           <div class="field">
             <label>Data</label>
-            <input type="date" name="data" class="required" id="campo" oninput="dataValidate()" />
+            <input type="date" name="data" class="required" id="campo" @input="dataValidate" />
             <span class="span-required">Insira a Data</span>
           </div>
           <div class="field">
             <label>Pertencente ao Funcionário:</label>
-            <select name="tipo" class="required" id="campo" onselect="funcionarioValidate()">
+            <select name="tipo" class="required" id="campo" @change="funcionarioValidate">
               <option class="placeholder" disabled selected>Selecione o Funcionário</option>
               <option value="Jeferson">Jeferson</option>
               <option value="Camila">Camila</option>

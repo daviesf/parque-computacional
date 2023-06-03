@@ -115,9 +115,9 @@
 
             <div class="item">
               <div class="ui icon input fluid">
-                <div class="ui floated small primary labeled icon button" id="filter">
-                  <i class="search icon"></i> Aplicar Filtro
-                </div>
+                <button class="button1" id="filter">
+                  <span class="button1-content"><i class="search icon"></i>Aplicar Filtro</span>
+                </button>
               </div>
             </div>
           </div>
@@ -219,17 +219,31 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Nome</label>
-            <input type="text" name="nome" placeholder="Nome" class="required" id="campo" oninput="nomeValidate()"/>
+            <input
+              type="text"
+              name="nome"
+              placeholder="Nome"
+              class="required"
+              id="campo"
+              @input="nomeValidate"
+            />
             <span class="span-required">Insira o Nome</span>
           </div>
           <div class="field">
             <label>E-mail</label>
-            <input type="email" name="email" placeholder="E-mail" class="required" id="campo" oninput="emailValidate()" />
+            <input
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              class="required"
+              id="campo"
+              @input="emailValidate"
+            />
             <span class="span-required">Insira um e-mail válido</span>
           </div>
           <div class="field">
             <label>Bancada</label>
-            <select name="tipo" class="required" id="campo" oninput="bancadaValidate()">
+            <select name="tipo" class="required" id="campo" @change="bancadaValidate">
               <option class="placeholder" disabled selected>Selecione a bancada</option>
               <option value="b1">Nenhuma (ID: 0)</option>
               <option value="b2">ID: 22 | Bancada de Informática</option>
@@ -240,7 +254,7 @@
           </div>
           <div class="field">
             <label>Tipo</label>
-            <select name="tipo" class="required" id="campo" oninput="tipoValidate()">
+            <select name="tipo" class="required" id="campo" @change="tipoValidate">
               <option class="placeholder" disabled selected>Selecione o tipo</option>
               <option value="Gerente">Gerente</option>
               <option value="Estagiário">Estagiário</option>
@@ -250,7 +264,7 @@
           </div>
           <div class="field">
             <label>Status</label>
-            <select name="status" class="required" id="campo" oninput="statusValidate()">
+            <select name="status" class="required" id="campo" @change="statusValidate">
               <option class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="desligado">Desligado</option>
@@ -410,12 +424,11 @@ export default {
     }
 
     function emailValidate() {
-  const emailValue = campos[1].value;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailValue = campos[1].value
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-  return emailRegex.test(emailValue);
-}
-
+      return emailRegex.test(emailValue)
+    }
 
     function bancadaValidate() {
       return campos[2].value !== 'Selecione a bancada'

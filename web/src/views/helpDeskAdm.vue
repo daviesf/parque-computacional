@@ -95,9 +95,9 @@
 
             <div class="item">
               <div class="ui icon input fluid">
-                <div class="ui floated small primary labeled icon button" id="filter">
-                  <i class="search icon"></i> Aplicar Filtro
-                </div>
+                <button class="button1" id="filter">
+                  <span class="button1-content"><i class="search icon"></i>Aplicar Filtro</span>
+                </button>
               </div>
             </div>
           </div>

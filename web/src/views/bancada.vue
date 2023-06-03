@@ -100,9 +100,9 @@
 
             <div class="item">
               <div class="ui icon input fluid">
-                <div class="ui floated small primary labeled icon button" id="filter">
-                  <i class="search icon"></i> Aplicar Filtro
-                </div>
+                <button class="button1" id="filter">
+                  <span class="button1-content"><i class="search icon"></i>Aplicar Filtro</span>
+                </button>
               </div>
             </div>
           </div>
@@ -196,18 +196,18 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Apelido</label>
-            <input type="text" name="marca" placeholder="Apelido" class="required" id="campo" oninput="apelidoValidate()"/>
+            <input type="text" name="marca" placeholder="Apelido" class="required" id="campo" @input="apelidoValidate"/>
             <span class="span-required">Inisira o Apelido</span>
           </div>
           <div class="field">
             <label>Local</label>
-            <input type="text" name="modelo" placeholder="Local" class="required" id="campo" oninput="localValidate()"/>
+            <input type="text" name="modelo" placeholder="Local" class="required" id="campo" @input="localValidate"/>
             <span class="span-required">Inisira o Local</span>
           </div>
 
           <div class="field">
             <label>Status</label>
-            <select name="status" class="required" id="campo" oninput="statusValidate()">
+            <select name="status" class="required" id="campo" @change="statusValidate">
               <option class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="inativo">Inativo</option>
