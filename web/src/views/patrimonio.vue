@@ -196,9 +196,17 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Código</label>
-            <input type="text" name="codigo" placeholder="Código do Patrimônio" class="required" id="codigo"
-              oninput="codigoValidate()" />
-            <span class="span-required">Inisra o código do Patrimônio</span>
+
+            <input
+              type="text"
+              name="codigo"
+              placeholder="Código do Patrimônio"
+              class="required"
+              id="campo"
+              oninput="codigoValidate()"
+            />
+            <span class="span-required">Insira o código do Patrimônio</span>
+
           </div>
           <div class="field">
             <label>Bancada</label>

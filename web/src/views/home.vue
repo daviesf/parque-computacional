@@ -6,7 +6,7 @@
           <div class="ui twelve center-cards">
             <div class="card_info">
               <i class="keyboard outline icon"></i>
-              <div class="card_title">Patrimônios cadastrados:</div>
+              <div class="card_title">Patrimônios registrados:</div>
               <div class="card_content">25</div>
             </div>
             <div class="card_info">
@@ -14,7 +14,6 @@
               <div class="card_title">Chamados pendentes:</div>
               <div class="card_content">12</div>
             </div>
-
             <div class="card_info">
               <i class="wrench icon custom-icon"></i>
               <div class="card_title">Patrimônios manutenção:</div>
