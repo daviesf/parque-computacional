@@ -207,7 +207,7 @@
               id="campo"
               oninput="codigoValidate()"
             />
-            <span class="span-required">Inisra o código do Patrimônio</span>
+            <span class="span-required">Insira o código do Patrimônio</span>
           </div>
           <div class="field">
             <label>Bancada</label>
