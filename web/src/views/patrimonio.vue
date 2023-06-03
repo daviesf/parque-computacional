@@ -175,10 +175,7 @@
               <tr>
                 <th></th>
                 <th colspan="6">
-                  <div
-                    class="ui right floated small primary labeled icon button"
-                    id="add-patrimonio"
-                  >
+                  <div class="ui right floated small primary labeled icon button" id="add-patrimonio">
                     <i class="keyboard outline icon"></i> Adicionar Patrimônio
                   </div>
                   <div class="ui left floated small button">Excluir</div>
@@ -199,6 +196,7 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Código</label>
+
             <input
               type="text"
               name="codigo"
@@ -208,45 +206,32 @@
               oninput="codigoValidate()"
             />
             <span class="span-required">Insira o código do Patrimônio</span>
+
           </div>
           <div class="field">
             <label>Bancada</label>
-            <select name="tipo" class="required" id="campo" oninput="bancadaValidate()">
+            <select name="tipo" class="required" id="bancada" oninput="bancadaValidate()">
               <option class="placeholder" disabled selected>Selecione a bancada</option>
-              <option value="b1">Nenhuma (ID: 0)</option>
-              <option value="b2">ID: 22 | Bancada de Informática</option>
-              <option value="b3">ID: 23 | Bancada de Almoxarifado</option>
-              <option value="b4">ID: 24 | Bancada do RU</option>
+              <option value="0">Nenhuma (ID: 0)</option>
+              <option value="1">ID: 1 | Bancada de Informática</option>
+              <option value="3">ID: 23 | Bancada de Almoxarifado</option>
+              <option value="4">ID: 24 | Bancada do RU</option>
             </select>
             <span class="span-required">Selecione 1 Bancada</span>
           </div>
           <div class="field">
             <label>Marca</label>
-            <input
-              type="text"
-              name="marca"
-              placeholder="Marca"
-              class="required"
-              id="campo"
-              oninput="marcaValidate()"
-            />
+            <input type="text" name="marca" placeholder="Marca" class="required" id="marca" oninput="marcaValidate()" />
             <span class="span-required">Inisira a Marca</span>
           </div>
           <div class="field">
             <label>Modelo</label>
-            <input
-              type="text"
-              name="modelo"
-              placeholder="Modelo"
-              class="required"
-              id="campo"
-              oninput="modeloValidate()"
-            />
+            <input type="text" name="modelo" placeholder="Modelo" class="required" id="modelo" />
             <span class="span-required">Insira o Modelo</span>
           </div>
           <div class="field">
             <label>Tipo</label>
-            <select name="tipo" class="required" id="campo" oninput="tipoValidate()">
+            <select name="tipo" class="required" id="tipo" oninput="tipoValidate()">
               <option class="placeholder" disabled selected>Selecione o tipo</option>
               <option value="desktop">Desktop</option>
               <option value="notebook">Notebook</option>
@@ -257,7 +242,7 @@
           </div>
           <div class="field">
             <label>Status</label>
-            <select name="status" class="required" id="campo" oninput="statusValidate()">
+            <select name="status" class="required" id="status" oninput="statusValidate()">
               <option class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="inativo">Inativo</option>
@@ -265,7 +250,7 @@
             </select>
             <span class="span-required">Selecione o Status</span>
           </div>
-          <button class="ui submit button" type="submit">Adicionar</button>
+          <button class="ui submit button" type="submit" id="submit-patrimonio">Adicionar</button>
           <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
         </form>
       </div>
@@ -496,6 +481,60 @@ export default {
         console.log(error)
       }
     )
+
+    // cadastrar
+    const addPatrimonio = document.getElementById('submit-patrimonio');
+    addPatrimonio.addEventListener('click', function () {
+      console.log("Iniciando cadastro");
+      let cod = (document.getElementById('codigo').value);
+      let bancada = (document.getElementById('bancada').value);
+      let marca = document.getElementById('marca').value;
+      let modelo = document.getElementById('modelo').value;
+      let tipo = document.getElementById('tipo').value;
+      let status = document.getElementById('status').value;
+      console.log("Verificando status");
+
+      console.log("Query")
+
+      const query = `mutation Mutation($data: dadosPatrimonio) {
+  createPatrimonio(data: $data) {
+    idPatrimonio
+    marca
+    modelo
+    status
+    tipo
+    idBancada
+  }
+}`
+
+      console.log("Variáveis");
+
+      const variables = {
+        data: {
+          idPatrimonio: parseInt(cod),
+          idBancada: parseInt(bancada),
+          marca: marca,
+          modelo: modelo,
+          tipo: tipo,
+          status: status
+        }
+      };
+
+
+
+      console.log(variables)
+
+      axios.post('http://localhost:4000', { query, variables }).then(
+        (result) => {
+          console.log(result)
+          // window.location.reload()
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    })
+
   }
 }
 </script>
