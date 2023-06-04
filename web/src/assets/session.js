@@ -34,10 +34,10 @@ if (cookie) {
 
       if (user) {
         console.log('Sessão verificada com sucesso')
-        if (user.tipo == 0) {
+        if (user.tipo == 1) {
           console.log('eu sou adm')
           // window.location.replace("home adm");
-        } else if (user.tipo == 1) {
+        } else if (user.tipo == 2) {
           console.log('eu sou usuário comum')
           // window.location.replace("página user comum")
         } else {

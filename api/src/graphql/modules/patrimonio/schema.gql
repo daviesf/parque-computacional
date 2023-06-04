@@ -18,6 +18,7 @@ type Query{
 }
 
 input PatrimonioFilter {
+  idPatrimonio: ID
   marca: String
   modelo: String
   status: String

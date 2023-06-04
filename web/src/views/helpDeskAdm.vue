@@ -113,10 +113,10 @@
                     <label></label>
                   </div>
                 </td>
-                <th class="wide-100"> Nome </th>
+                <th class="wide-200"> Nome </th>
                 <th class="wide-80"> Bancada </th>
-                <th class="wide-100"> Data e hora </th>
-                <th class="wide-200"> Descrição </th>
+                <th class="wide-200"> Data e hora </th>
+                <th class="wide-50"> Descrição </th>
                 <th class="wide-100">Status</th>
               </tr>
             </thead>
@@ -130,7 +130,7 @@
                 <td>Pedro Alves</td>
                 <td>22</td>
                 <td>01/01/1998 & 06:00</td>
-                <td>Impressora não funciona, chamar um tecnico</td>
+                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
                 <td>Pendente</td>
               </tr>
               <tr>
@@ -142,7 +142,7 @@
                 <td>Maria Eduarda</td>
                 <td>32</td>
                 <td>12/02/2023 & 07:30</td>
-                <td>Deve-se chamar um tecnico capacitado para instalar RTX4090</td>
+                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
                 <td>Resolvido</td>
               </tr>
 
@@ -155,7 +155,7 @@
                 <td>Davie Schimdt</td>
                 <td>13</td>
                 <td>20/03/2023 & 09:47</td>
-                <td>Comprar nova memória</td>
+                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
                 <td>Pendente</td>
               </tr>
               <tr>
@@ -167,7 +167,7 @@
                 <td>Samuel Pereira</td>
                 <td>17</td>
                 <td>19/04/2023 & 11:16</td>
-                <td>Chamar tecnico capacitado para instalar Icore13900k</td>
+                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
                 <td>Resolvido</td>
               </tr>
             </tbody>

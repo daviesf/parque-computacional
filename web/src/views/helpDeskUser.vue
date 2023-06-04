@@ -39,7 +39,7 @@
         </div>
         <div class="column">
           <div class="ui segment">
-            <h3 class="ui header">Chamados Anteriores</h3>
+            <h3 class="ui header">Chamados</h3>
             <table class="ui celled table">
               <thead>
                 <tr>
@@ -50,12 +50,27 @@
                   <th>Status</th>
                 </tr>
               </thead>
-              <tbody id="tableBody"></tbody>
+              <tbody id="tableBody">
+                <tr>
+                  <td>Davie</td>
+                  <td>cl201275@g.unicamp.br</td>
+                  <td>Problema</td>
+                  <td class="td-desc"><button type="submit" class="ui button desc">Ver</button>
+                  </td>
+                  <td>Pendente</td>
+                </tr>
+
+              </tbody>
             </table>
           </div>
         </div>
       </div>
 
+    </div>
+    <div class="logout-button">
+      <router-link to="/logout">
+        <i class="sign out icon"></i>
+      </router-link>
     </div>
 
   </section>
@@ -64,56 +79,16 @@
 <script>
 export default {
   name: 'HelpDeskUser',
+  created() {
+    this.$emit('hideNavbar', true) // Emitir o evento para ocultar a navbar
+    this.$emit('hideFooter', true)
+  },
+  destroyed() {
+    this.$emit('hideNavbar', false) // Emitir o evento para mostrar a navbar novamente
+    this.$emit('hideFooter', false)
+  },
   mounted() {
-    // eslint-disable-next-line no-undef
-    const form = $('#form')
-    // eslint-disable-next-line no-undef
-    const tableBody = $('#tableBody')
 
-    form.submit(function (event) {
-      event.preventDefault()
-
-      const formData = form.serializeArray()
-
-      const data = {}
-      for (let i = 0; i < formData.length; i++) {
-        data[formData[i].name] = formData[i].value
-      }
-
-      addRow(data)
-    })
-
-    // eslint-disable-next-line no-undef
-    $('.auto-expand').on('input', function () {
-      this.style.height = 'auto'
-      this.style.height = this.scrollHeight + 'px'
-    })
-
-    function addRow(data) {
-      // eslint-disable-next-line no-undef
-      const newRow = $('<tr>')
-
-      // eslint-disable-next-line no-undef
-      const name = $('<td>').text(data.name)
-      // eslint-disable-next-line no-undef
-      const email = $('<td>').text(data.email)
-      // eslint-disable-next-line no-undef
-      const subject = $('<td>').text(data.subject)
-      // eslint-disable-next-line no-undef
-      const description = $('<td>').text(data.description)
-      // eslint-disable-next-line no-undef
-      const status = $('<td>').text('Pendente')
-
-      newRow.append(name)
-      newRow.append(email)
-      newRow.append(subject)
-      newRow.append(description)
-      newRow.append(status)
-
-      tableBody.append(newRow)
-    }
-
-    //Validação do form
     const formulario = document.getElementById('form')
     const campos = document.querySelectorAll('.required')
     const spans = document.querySelectorAll('.span-required')
@@ -164,16 +139,18 @@ export default {
     function emailValidate() {
       const emailValue = campos[1].value
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
+      if (emailValue.length === 0) {
+        return false
+      }
       return emailRegex.test(emailValue)
     }
 
     function assuntoValidate() {
-      return campos[2].value !== 'Selecione a bancada'
+      return campos[2].value.length > 0
     }
 
     function descricaoValidate() {
-      return campos[3].value !== 'Selecione o tipo'
+      return campos[3].value.length > 0
     }
   }
 }

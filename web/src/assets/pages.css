@@ -589,3 +589,33 @@ label {
 .wide-130 {
   width: 130px;
 }
+
+.wide-50 {
+  width: 50px;
+}
+
+.ui.button.desc {
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #00000083;
+  color: white;
+  font-weight: 300;
+}
+
+.ui.button.desc:hover {
+  background-color: #0000009f;
+  color: white;
+}
+
+td.td-desc {
+  padding: 5px;
+}
+
+.logout-button {
+  position: fixed;
+  /* fixar no canto inferior direito */
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+}

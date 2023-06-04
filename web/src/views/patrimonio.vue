@@ -15,18 +15,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Maior</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Menor</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="Ex: 1282" class="fluid" id="filter-cod" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -37,18 +27,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Maior</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Menor</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -59,18 +39,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>A-Z</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Z-A</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="Ex: Samsung" class="fluid" id="filter-marca" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -81,18 +51,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>A-Z</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Z-A</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="Ex: S20" class="fluid" id="filter-modelo" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -103,24 +63,27 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Impressora</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Teclado</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Mouse</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Notebook</label>
+                <div class="ui two column grid">
+                  <div class="column">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-impressora" />
+                      <label>Impressora</label>
+                    </div>
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-notebook" />
+                      <label>Notebook</label>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-desktop" />
+                      <label>Desktop</label>
+                    </div>
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-monitor" />
+                      <label>Monitor</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -130,15 +93,26 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Ativo</label>
+                <div class="ui two column grid">
+                  <div class="column">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-ativo" />
+                      <label>Ativo</label>
+                    </div>
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-inativo" />
+                      <label>Inativo</label>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-manut" />
+                      <label>Manutenção</label>
+                    </div>
+                  </div>
                 </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Inativo</label>
-                </div>
+
+
               </div>
             </div>
             <div class="item">
@@ -206,7 +180,7 @@
               <div class="field">
                 <label>Bancada</label>
                 <select name="tipo" class="required" id="bancada" @change="bancadaValidate">
-                  
+
                 </select>
                 <span class="span-required">Selecione 1 Bancada</span>
               </div>
@@ -214,10 +188,10 @@
                 <label>Tipo</label>
                 <select name="tipo" class="required" id="tipo" @change="tipoValidate">
                   <option class="placeholder" disabled selected>Selecione o tipo</option>
-                  <option value="desktop">Desktop</option>
-                  <option value="notebook">Notebook</option>
-                  <option value="impressora">Impressora</option>
-                  <option value="monitor">Monitor</option>
+                  <option value="Desktop">Desktop</option>
+                  <option value="Notebook">Notebook</option>
+                  <option value="Impressora">Impressora</option>
+                  <option value="Monitor">Monitor</option>
                 </select>
                 <span class="span-required">Selecione um tipo</span>
               </div>
@@ -416,24 +390,27 @@ export default {
   }
 }`
 
-axios.post('http://localhost:4000', { query: queryBancada }).then(
-  (result) => {
-    const bancadas = result.data.data.bancadas
-    const selectBancada = document.getElementById('bancada')
+    axios.post('http://localhost:4000', { query: queryBancada }).then(
+      (result) => {
+        const bancadas = result.data.data.bancadas
+        const selectBancada = document.getElementById('bancada')
 
-    bancadas.forEach((bancada) => {
-      const option = document.createElement('option')
-      option.value = bancada.idBancada
-      option.innerHTML = "ID: " + bancada.idBancada + " | " + bancada.apelido
-      selectBancada.appendChild(option)
-    })
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+        bancadas.forEach((bancada) => {
+          const option = document.createElement('option')
+          option.value = bancada.idBancada
+          option.innerHTML = "ID: " + bancada.idBancada + " | " + bancada.apelido
+          selectBancada.appendChild(option)
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
 
-    // load data
-    const query = `query Query {
+    carregaDados();
+
+    function carregaDados() {
+      document.getElementById('patrimonio-table-body').innerHTML = ''
+      const query = `query Query {
   patrimonios {
     idPatrimonio
     idBancada
@@ -444,73 +421,82 @@ axios.post('http://localhost:4000', { query: queryBancada }).then(
   }
 }`
 
-    axios.post('http://localhost:4000', { query }).then(
-      (result) => {
-        // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-        const patrimonios = result.data.data.patrimonios
+      axios.post('http://localhost:4000', { query }).then(
+        (result) => {
+          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+          const patrimonios = result.data.data.patrimonios
 
-        const tbody = document.getElementById('patrimonio-table-body')
+          const tbody = document.getElementById('patrimonio-table-body')
 
-        patrimonios.forEach((patrimonio) => {
-          const tr = document.createElement('tr')
+          patrimonios.forEach((patrimonio) => {
+            const tr = document.createElement('tr')
 
-          const tdCheckbox = document.createElement('td')
-          tdCheckbox.className = 'collapsing'
-          const checkbox = document.createElement('div')
-          checkbox.className = 'ui fitted checkbox'
-          const inputCheckbox = document.createElement('input')
-          inputCheckbox.type = 'checkbox'
-          inputCheckbox.className = 'select-checkbox'
-          const labelCheckbox = document.createElement('label')
-          checkbox.appendChild(inputCheckbox)
-          checkbox.appendChild(labelCheckbox)
-          tdCheckbox.appendChild(checkbox)
+            const tdCheckbox = document.createElement('td')
+            tdCheckbox.className = 'collapsing'
+            const checkbox = document.createElement('div')
+            checkbox.className = 'ui fitted checkbox'
+            const inputCheckbox = document.createElement('input')
+            inputCheckbox.type = 'checkbox'
+            inputCheckbox.className = 'select-checkbox'
+            const labelCheckbox = document.createElement('label')
+            checkbox.appendChild(inputCheckbox)
+            checkbox.appendChild(labelCheckbox)
+            tdCheckbox.appendChild(checkbox)
 
-          inputCheckbox.addEventListener('change', function () {
-            const selectCheckboxes = document.getElementsByClassName('select-checkbox');
-            const selectAllCheckbox = document.getElementById('select-all');
+            inputCheckbox.addEventListener('change', function () {
+              const selectCheckboxes = document.getElementsByClassName('select-checkbox');
+              const selectAllCheckbox = document.getElementById('select-all');
 
-            const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
-            selectAllCheckbox.checked = isAllChecked;
+              const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
+              selectAllCheckbox.checked = isAllChecked;
 
-            if (!this.checked) {
-              selectAllCheckbox.checked = false;
+              if (!this.checked) {
+                selectAllCheckbox.checked = false;
+              }
+            });
+
+            const tdPatrimonio = document.createElement('td')
+            tdPatrimonio.textContent = patrimonio.idPatrimonio
+
+            const tdBancada = document.createElement('td')
+            tdBancada.textContent = patrimonio.idBancada
+
+            const tdMarca = document.createElement('td')
+            tdMarca.textContent = patrimonio.marca
+
+            const tdModelo = document.createElement('td')
+            tdModelo.textContent = patrimonio.modelo
+
+            const tdTipo = document.createElement('td')
+            tdTipo.textContent = patrimonio.tipo
+
+            const tdStatus = document.createElement('td')
+            if (patrimonio.status == 0) {
+              patrimonio.status = 'Inativo'
+            } else if (patrimonio.status == 1) {
+              patrimonio.status = 'Ativo'
+            } else if (patrimonio.status == 2) {
+              patrimonio.status = 'Manutenção'
             }
-          });
 
-          const tdPatrimonio = document.createElement('td')
-          tdPatrimonio.textContent = patrimonio.idPatrimonio
+            tdStatus.textContent = patrimonio.status
 
-          const tdBancada = document.createElement('td')
-          tdBancada.textContent = patrimonio.idBancada
+            tr.appendChild(tdCheckbox)
+            tr.appendChild(tdPatrimonio)
+            tr.appendChild(tdBancada)
+            tr.appendChild(tdMarca)
+            tr.appendChild(tdModelo)
+            tr.appendChild(tdTipo)
+            tr.appendChild(tdStatus)
 
-          const tdMarca = document.createElement('td')
-          tdMarca.textContent = patrimonio.marca
-
-          const tdModelo = document.createElement('td')
-          tdModelo.textContent = patrimonio.modelo
-
-          const tdTipo = document.createElement('td')
-          tdTipo.textContent = patrimonio.tipo
-
-          const tdStatus = document.createElement('td')
-          tdStatus.textContent = patrimonio.status
-
-          tr.appendChild(tdCheckbox)
-          tr.appendChild(tdPatrimonio)
-          tr.appendChild(tdBancada)
-          tr.appendChild(tdMarca)
-          tr.appendChild(tdModelo)
-          tr.appendChild(tdTipo)
-          tr.appendChild(tdStatus)
-
-          tbody.appendChild(tr)
-        })
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
+            tbody.appendChild(tr)
+          })
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    }
 
     // cadastrar
     const addPatrimonio = document.getElementById('submit-patrimonio')
@@ -522,6 +508,14 @@ axios.post('http://localhost:4000', { query: queryBancada }).then(
       let modelo = document.getElementById('modelo').value
       let tipo = document.getElementById('tipo').value
       let status = document.getElementById('status').value
+      if (status == 'Ativo') {
+        status = 1
+      } else if (status == 'Inativo') {
+        status = 0
+      } else if (status == 'Manutenção') {
+        status = 2
+      }
+
       console.log('Verificando status')
 
       console.log('Query')
@@ -555,12 +549,129 @@ axios.post('http://localhost:4000', { query: queryBancada }).then(
       axios.post('http://localhost:4000', { query, variables }).then(
         (result) => {
           console.log(result)
-          // window.location.reload()
+          $('.popup').hide()
+          $('.dimmer').hide()
+          carregaDados();
         },
         (error) => {
           console.log(error)
         }
       )
+    })
+    // filtro
+    const filter = document.getElementById('filter')
+    filter.addEventListener('click', function () {
+      let cod = document.getElementById('filter-cod').value
+      let bancada = document.getElementById('filter-bancada').value
+      let marca = document.getElementById('filter-marca').value
+      let modelo = document.getElementById('filter-modelo').value
+      if (document.getElementById('cb-ativo').checked) {
+        var status = 1
+      } else if (document.getElementById('cb-inativo').checked) {
+        var status = 0
+      } else if (document.getElementById('cb-manut').checked) {
+        var status = 2
+      }
+      if (document.getElementById('cb-impressora').checked) {
+        var tipo = 'Impressora'
+      } else if (document.getElementById('cb-desktop').checked) {
+        var tipo = 'Desktop'
+      } else if (document.getElementById('cb-notebook').checked) {
+        var tipo = 'Notebook'
+      } else if (document.getElementById('cb-monitor').checked) {
+        var tipo = 'Monitor'
+      }
+      const query = `query Query($filter: PatrimonioFilter) {
+  searchPatrimonios(filter: $filter) {
+    idBancada
+    idPatrimonio
+    marca
+    modelo
+    status
+    tipo
+  }
+}`
+      const variables = {
+        filter: {
+          idPatrimonio: parseInt(cod),
+          idBancada: parseInt(bancada),
+          marca: marca,
+          modelo: modelo,
+          status: parseInt(status),
+          tipo: tipo
+        }
+      }
+
+      axios.post('http://localhost:4000', { query, variables }).then(
+        (result) => {
+          document.getElementById('patrimonio-table-body').innerHTML = ''
+          const patrimonios = result.data.data.searchPatrimonios
+          const tbody = document.getElementById('patrimonio-table-body')
+
+          patrimonios.forEach((patrimonio) => {
+            const tr = document.createElement('tr')
+
+            const tdCheckbox = document.createElement('td')
+            tdCheckbox.className = 'collapsing'
+            const checkbox = document.createElement('div')
+            checkbox.className = 'ui fitted checkbox'
+            const inputCheckbox = document.createElement('input')
+            inputCheckbox.type = 'checkbox'
+            inputCheckbox.className = 'select-checkbox'
+            const labelCheckbox = document.createElement('label')
+            checkbox.appendChild(inputCheckbox)
+            checkbox.appendChild(labelCheckbox)
+            tdCheckbox.appendChild(checkbox)
+
+            inputCheckbox.addEventListener('change', function () {
+              const selectCheckboxes = document.getElementsByClassName('select-checkbox');
+              const selectAllCheckbox = document.getElementById('select-all');
+
+              const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
+              selectAllCheckbox.checked = isAllChecked;
+
+              if (!this.checked) {
+                selectAllCheckbox.checked = false;
+              }
+            });
+
+            const tdPatrimonio = document.createElement('td')
+            tdPatrimonio.textContent = patrimonio.idPatrimonio
+
+            const tdBancada = document.createElement('td')
+            tdBancada.textContent = patrimonio.idBancada
+
+            const tdMarca = document.createElement('td')
+            tdMarca.textContent = patrimonio.marca
+
+            const tdModelo = document.createElement('td')
+            tdModelo.textContent = patrimonio.modelo
+
+            const tdTipo = document.createElement('td')
+            tdTipo.textContent = patrimonio.tipo
+
+            const tdStatus = document.createElement('td')
+            if (patrimonio.status == 0) {
+              patrimonio.status = 'Inativo'
+            } else if (patrimonio.status == 1) {
+              patrimonio.status = 'Ativo'
+            } else if (patrimonio.status == 2) {
+              patrimonio.status = 'Manutenção'
+            }
+
+            tdStatus.textContent = patrimonio.status
+
+            tr.appendChild(tdCheckbox)
+            tr.appendChild(tdPatrimonio)
+            tr.appendChild(tdBancada)
+            tr.appendChild(tdMarca)
+            tr.appendChild(tdModelo)
+            tr.appendChild(tdTipo)
+            tr.appendChild(tdStatus)
+            tbody.appendChild(tr)
+          })
+        })
+
     })
   }
 }

@@ -49,14 +49,8 @@ export default {
 				if (filter.tipo) {
 					builder.where("tipo", "like", `%${filter.tipo}%`);
 				}
-				if (filter.processador) {
-					builder.where("processador", "like", `%${filter.processador}%`);
-				}
-				if (filter.memROM) {
-					builder.where("memROM", "like", `%${filter.memROM}%`);
-				}
-				if (filter.memRAM) {
-					builder.where("memRAM", "like", `%${filter.memRAM}%`);
+				if (filter.idPatrimonio) {
+					builder.where("idPatrimonio", filter.idPatrimonio);
 				}
 			});
 			return patrimonios;
