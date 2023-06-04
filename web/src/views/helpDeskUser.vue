@@ -69,9 +69,13 @@
     </div>
     <div class="logout-button">
       <router-link to="/logout">
-        <i class="sign out icon"></i>
+        <i class="sign out icon hpu"></i>
       </router-link>
+      <div class="logout-display">
+        <p>Logout</p>
+      </div>
     </div>
+
 
   </section>
 </template>

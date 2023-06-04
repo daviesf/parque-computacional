@@ -614,8 +614,49 @@ td.td-desc {
 
 .logout-button {
   position: fixed;
-  /* fixar no canto inferior direito */
+  background-color: rgb(0, 70, 84);
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   bottom: 0;
   right: 0;
   margin: 20px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.logout-display {
+  position: absolute;
+  right: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.logout-button:hover .logout-display {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.hpu:before {
+  color: white;
+  margin-left: 3px;
+  font-size: 1.2em;
+}
+
+.logout-button:hover {
+  transform: translateY(-10px);
+  transition: 0.5s;
 }
