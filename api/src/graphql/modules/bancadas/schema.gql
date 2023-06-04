@@ -2,6 +2,7 @@ type Bancada {
   idBancada: ID!
   local: String!
   status: Int!
+  apelido: String!
 }
 
 type Query {
@@ -13,18 +14,20 @@ type Query {
 }
 
 input DadosBancada {
-  local: String!
-  status: Int!
+  local: String
+  status: Int
+  apelido: String
 }
 
 input BancadaFilter {
   idBancada: ID
   local: String
   status: Int
+  apelido: String
 }
 
 type Mutation {
-  createBancada(data: DadosBancada!): Bancada!
-  updateBancada(idBancada: ID!, data: DadosBancada!): Bancada!
+  createBancada(data: DadosBancada!): Boolean!
+  updateBancada(idBancada: ID!, data: DadosBancada!): Boolean!
   deleteBancada(idBancada: ID!): Boolean!
 }

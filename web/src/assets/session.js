@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const cookie = document.cookie
   .split('; ')
   .find((row) => row.startsWith('AKJA12'))

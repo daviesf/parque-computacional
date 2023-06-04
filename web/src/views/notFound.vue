@@ -259,6 +259,7 @@
 
 <script>
 import { RouterLink } from 'vue-router'
+import gsap from 'gsap'
 
 export default {
   name: 'NotFound',

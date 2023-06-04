@@ -44,6 +44,9 @@
 </template>
 
 <script>
+import jwt_decode from 'jwt-decode'
+import axios from 'axios'
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Login',

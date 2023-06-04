@@ -4,75 +4,60 @@
       <span class="text titlep">
         <h1>HelpDesk</h1>
       </span>
-      <div class="ui segment">
-        <h3 class="ui header">Novo Chamado</h3>
-        <form id="form" class="ui form">
-          <div class="field">
-            <label>Nome</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Nome completo"
-              class="required"
-              id="campo"
-              @input="nomeValidate"
-            />
-            <span class="span-required">Insira o Nome</span>
+      <div class="ui two column grid">
+        <div class="column">
+          <div class="ui segment">
+            <h3 class="ui header">Novo Chamado</h3>
+            <form id="form" class="ui form">
+              <div class="field">
+                <label>Nome</label>
+                <input type="text" name="name" placeholder="Nome completo" class="required" id="campo"
+                  @input="nomeValidate" />
+                <span class="span-required">Insira o Nome</span>
+              </div>
+              <div class="field">
+                <label>E-mail</label>
+                <input type="email" name="email" placeholder="E-mail" class="required" id="campo"
+                  @input="emailValidate" />
+                <span class="span-required">Insira um e-mail válido</span>
+              </div>
+              <div class="field">
+                <label>Assunto</label>
+                <input type="text" name="subject" placeholder="Assunto" class="required" id="campo"
+                  @input="assuntoValidate" />
+                <span class="span-required">Insira o Assunto</span>
+              </div>
+              <div class="field">
+                <label>Descrição</label>
+                <textarea name="description" rows="2" class="auto-expand required" id="campo"
+                  @input="descricaoValidate"></textarea>
+                <span class="span-required">Insira a Descrição</span>
+              </div>
+              <button type="submit" class="ui button">Enviar</button>
+            </form>
           </div>
-          <div class="field">
-            <label>E-mail</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="E-mail"
-              class="required"
-              id="campo"
-              @input="emailValidate"
-            />
-            <span class="span-required">Insira um e-mail válido</span>
+        </div>
+        <div class="column">
+          <div class="ui segment">
+            <h3 class="ui header">Chamados Anteriores</h3>
+            <table class="ui celled table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Assunto</th>
+                  <th>Descrição</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
           </div>
-          <div class="field">
-            <label>Assunto</label>
-            <input
-              type="text"
-              name="subject"
-              placeholder="Assunto"
-              class="required"
-              id="campo"
-              @input="assuntoValidate"
-            />
-            <span class="span-required">Insira o Assunto</span>
-          </div>
-          <div class="field">
-            <label>Descrição</label>
-            <textarea
-              name="description"
-              rows="2"
-              class="auto-expand required"
-              id="campo"
-              @input="descricaoValidate"
-            ></textarea>
-            <span class="span-required">Insira a Descrição</span>
-          </div>
-          <button type="submit" class="ui button">Enviar</button>
-        </form>
+        </div>
       </div>
-      <div class="ui segment">
-        <h3 class="ui header">Chamados Anteriores</h3>
-        <table class="ui celled table">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>E-mail</th>
-              <th>Assunto</th>
-              <th>Descrição</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="tableBody"></tbody>
-        </table>
-      </div>
+
     </div>
+
   </section>
 </template>
 

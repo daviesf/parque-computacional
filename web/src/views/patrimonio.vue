@@ -195,77 +195,59 @@
       <div class="ui container add-form">
         <h2 class="ui dividing header">Adicionar Patrimônio</h2>
         <form class="ui form" id="form">
-          <div class="field">
-            <label>Código</label>
-
-            <input
-              type="text"
-              name="codigo"
-              placeholder="Código do Patrimônio"
-              class="required"
-              id="campo"
-              @input="codigoValidate"
-            />
-            <span class="span-required">Insira o código do Patrimônio</span>
+          <div class="ui two column grid">
+            <div class="column">
+              <div class="field">
+                <label>Código</label>
+                <input type="text" name="codigo" placeholder="Código do Patrimônio" class="required" id="codigo"
+                  @input="codigoValidate" />
+                <span class="span-required">Insira o código do Patrimônio</span>
+              </div>
+              <div class="field">
+                <label>Bancada</label>
+                <select name="tipo" class="required" id="bancada" @change="bancadaValidate">
+                  
+                </select>
+                <span class="span-required">Selecione 1 Bancada</span>
+              </div>
+              <div class="field">
+                <label>Tipo</label>
+                <select name="tipo" class="required" id="tipo" @change="tipoValidate">
+                  <option class="placeholder" disabled selected>Selecione o tipo</option>
+                  <option value="desktop">Desktop</option>
+                  <option value="notebook">Notebook</option>
+                  <option value="impressora">Impressora</option>
+                  <option value="monitor">Monitor</option>
+                </select>
+                <span class="span-required">Selecione um tipo</span>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <label>Marca</label>
+                <input type="text" name="marca" placeholder="Marca" class="required" id="marca" @input="marcaValidate" />
+                <span class="span-required">Insira a Marca</span>
+              </div>
+              <div class="field">
+                <label>Modelo</label>
+                <input type="text" name="modelo" placeholder="Modelo" class="required" id="modelo"
+                  @input="modeloValidate" />
+                <span class="span-required">Insira o Modelo</span>
+              </div>
+              <div class="field">
+                <label>Status</label>
+                <select name="status" class="required" id="status" @change="statusValidate">
+                  <option class="placeholder" disabled selected>Selecione o status</option>
+                  <option value="ativo">Ativo</option>
+                  <option value="inativo">Inativo</option>
+                  <option value="manutencao">Em manutenção</option>
+                </select>
+                <span class="span-required">Selecione o Status</span>
+              </div>
+              <button class="ui submit button" type="submit" id="submit-patrimonio">Adicionar</button>
+              <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
+            </div>
           </div>
-          <div class="field">
-            <label>Bancada</label>
-            <select name="tipo" class="required" id="bancada" @change="bancadaValidate">
-              <option class="placeholder" disabled selected>Selecione a bancada</option>
-              <option value="0">Nenhuma (ID: 0)</option>
-              <option value="1">ID: 1 | Bancada de Informática</option>
-              <option value="3">ID: 23 | Bancada de Almoxarifado</option>
-              <option value="4">ID: 24 | Bancada do RU</option>
-            </select>
-            <span class="span-required">Selecione 1 Bancada</span>
-          </div>
-          <div class="field">
-            <label>Marca</label>
-            <input
-              type="text"
-              name="marca"
-              placeholder="Marca"
-              class="required"
-              id="marca"
-              @input="marcaValidate"
-            />
-            <span class="span-required">Inisira a Marca</span>
-          </div>
-          <div class="field">
-            <label>Modelo</label>
-            <input
-              type="text"
-              name="modelo"
-              placeholder="Modelo"
-              class="required"
-              id="modelo"
-              @input="modeloValidate"
-            />
-            <span class="span-required">Insira o Modelo</span>
-          </div>
-          <div class="field">
-            <label>Tipo</label>
-            <select name="tipo" class="required" id="tipo" @change="tipoValidate">
-              <option class="placeholder" disabled selected>Selecione o tipo</option>
-              <option value="desktop">Desktop</option>
-              <option value="notebook">Notebook</option>
-              <option value="impressora">Impressora</option>
-              <option value="monitor">Monitor</option>
-            </select>
-            <span class="span-required">Selecione um tipo</span>
-          </div>
-          <div class="field">
-            <label>Status</label>
-            <select name="status" class="required" id="status" @change="statusValidate">
-              <option class="placeholder" disabled selected>Selecione o status</option>
-              <option value="ativo">Ativo</option>
-              <option value="inativo">Inativo</option>
-              <option value="manutencao">Em manutenção</option>
-            </select>
-            <span class="span-required">Selecione o Status</span>
-          </div>
-          <button class="ui submit button" type="submit" id="submit-patrimonio">Adicionar</button>
-          <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
         </form>
       </div>
     </div>
@@ -273,27 +255,21 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Patrimonio',
   mounted() {
+    const selectCheckboxes = document.getElementsByClassName('select-checkbox');
+    const selectAllCheckbox = document.getElementById('select-all');
+
     // Selecione todos os checkboxes quando o checkbox geral é selecionado
-    document.getElementById('select-all').addEventListener('click', function () {
-      var checkboxes = document.getElementsByClassName('select-checkbox')
-      for (var i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].checked = this.checked
+    selectAllCheckbox.addEventListener('click', function () {
+      for (var i = 0; i < selectCheckboxes.length; i++) {
+        selectCheckboxes[i].checked = this.checked
       }
     })
-
-    // Deselecione o checkbox geral se algum checkbox individual for desmarcado
-    var checkboxes = document.getElementsByClassName('select-checkbox')
-    for (var i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].addEventListener('click', function () {
-        if (!this.checked) {
-          document.getElementById('select-all').checked = false
-        }
-      })
-    }
 
     // Exibe o pop-pup ao clicar no botão "Adicionar Patrimônio"
     document.getElementById('add-patrimonio').addEventListener('click', () => {
@@ -398,15 +374,15 @@ export default {
     }
 
     function marcaValidate() {
-      return campos[2].value.length > 0
-    }
-
-    function modeloValidate() {
       return campos[3].value.length > 0
     }
 
+    function modeloValidate() {
+      return campos[4].value.length > 0
+    }
+
     function tipoValidate() {
-      return campos[4].value !== 'Selecione o tipo'
+      return campos[2].value !== 'Selecione o tipo'
     }
 
     function statusValidate() {
@@ -417,9 +393,9 @@ export default {
       const validations = [
         { index: 0, isValid: codigoValidate },
         { index: 1, isValid: bancadaValidate },
-        { index: 2, isValid: marcaValidate },
-        { index: 3, isValid: modeloValidate },
-        { index: 4, isValid: tipoValidate },
+        { index: 3, isValid: marcaValidate },
+        { index: 4, isValid: modeloValidate },
+        { index: 2, isValid: tipoValidate },
         { index: 5, isValid: statusValidate }
       ]
 
@@ -433,9 +409,33 @@ export default {
       })
     }
 
+    const queryBancada = `query Query {
+  bancadas {
+    idBancada
+    apelido
+  }
+}`
+
+axios.post('http://localhost:4000', { query: queryBancada }).then(
+  (result) => {
+    const bancadas = result.data.data.bancadas
+    const selectBancada = document.getElementById('bancada')
+
+    bancadas.forEach((bancada) => {
+      const option = document.createElement('option')
+      option.value = bancada.idBancada
+      option.innerHTML = "ID: " + bancada.idBancada + " | " + bancada.apelido
+      selectBancada.appendChild(option)
+    })
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+
     // load data
     const query = `query Query {
   patrimonios {
+    idPatrimonio
     idBancada
     marca
     modelo
@@ -466,6 +466,21 @@ export default {
           checkbox.appendChild(labelCheckbox)
           tdCheckbox.appendChild(checkbox)
 
+          inputCheckbox.addEventListener('change', function () {
+            const selectCheckboxes = document.getElementsByClassName('select-checkbox');
+            const selectAllCheckbox = document.getElementById('select-all');
+
+            const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
+            selectAllCheckbox.checked = isAllChecked;
+
+            if (!this.checked) {
+              selectAllCheckbox.checked = false;
+            }
+          });
+
+          const tdPatrimonio = document.createElement('td')
+          tdPatrimonio.textContent = patrimonio.idPatrimonio
+
           const tdBancada = document.createElement('td')
           tdBancada.textContent = patrimonio.idBancada
 
@@ -482,6 +497,7 @@ export default {
           tdStatus.textContent = patrimonio.status
 
           tr.appendChild(tdCheckbox)
+          tr.appendChild(tdPatrimonio)
           tr.appendChild(tdBancada)
           tr.appendChild(tdMarca)
           tr.appendChild(tdModelo)

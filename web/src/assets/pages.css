@@ -136,7 +136,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
 
 .sidebar li a {
   display: flex;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   border-radius: 12px;
   align-items: center;
@@ -213,7 +213,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   opacity: 1;
   z-index: -5;
 }
@@ -330,17 +330,11 @@ select.placeholder {
 
 .ui.container.add-form h2.ui {
   font-size: 24px;
-  margin-bottom: 20px;
 }
 
 .ui.container.add-form input[type='text'],
 .ui.container.add-form select {
   width: 100%;
-  margin-bottom: 20px;
-}
-
-.ui.container.add-form .ui.submit.button {
-  margin-top: 20px;
 }
 
 .dimmer {
@@ -349,7 +343,7 @@ select.placeholder {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 999;
 }
@@ -374,7 +368,6 @@ select.placeholder {
 .popup form input[type='text'],
 .popup form select {
   width: 100%;
-  margin-bottom: 20px;
 }
 
 .popup form button[type='submit'] {
@@ -532,6 +525,19 @@ select.placeholder {
   transition: all 0.3s;
 }
 
+.ui.two.column.grid > .column {
+  width: 50%;
+}
+
+.ui.two.column.grid > .column:first-child {
+  padding-right: 10px;
+}
+
+.ui.two.column.grid > .column:last-child {
+  padding-left: 10px;
+}
+
+
 .bg-button {
   background: rgb(0, 70, 84);
   color: white;
@@ -543,7 +549,8 @@ label {
 
 
 .span-required {
-  font-size: 1.1em;
+  font-size: 0.95em;
+  margin-left: 5px;
   color: #e63636;
   display: none;
 }
