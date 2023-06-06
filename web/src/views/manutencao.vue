@@ -15,18 +15,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Maior</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Menor</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="Código da Manutenção" class="fluid" id="filter-idManutencao" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -37,18 +27,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>A-Z</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Z-A</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="Nome do patrimônio" class="fluid" id="filter-patrimonio" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -59,18 +39,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>A-Z</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Z-A</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="Nome do funcionário" class="fluid" id="filter-funcionario" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -170,7 +140,7 @@
                 <th></th>
                 <th colspan="5">
                   <div
-                    class="ui right floated small primary labeled icon button"
+                    class="ui right floated small labeled icon button"
                     id="add-patrimonio"
                   >
                     <i class="wrench icon"></i> Adicionar Manutenção
@@ -191,7 +161,7 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Patrimônio</label>
-            <select name="tipo" class="required" id="campo" @change="patrimonioValidate">
+            <select name="tipo" class="campo required" id="tipo" @change="patrimonioValidate">
               <option class="placeholder" disabled selected>Selecione o Patrimônio</option>
               <option value="b1">Nenhuma (ID: 0)</option>
               <option value="b2">ID: 22 | Mouse</option>
@@ -206,20 +176,20 @@
               type="text"
               name="detalhes"
               placeholder="Detalhes"
-              class="required"
-              id="campo"
+              class="campo required"
+              id="detalhes"
               @input="detalhesValidate"
             />
             <span class="span-required">Insira os Detalhes</span>
           </div>
           <div class="field">
             <label>Data</label>
-            <input type="date" name="data" class="required" id="campo" @input="dataValidate" />
+            <input type="date" name="data" class="campo required" id="data" @input="dataValidate" />
             <span class="span-required">Insira a Data</span>
           </div>
           <div class="field">
             <label>Pertencente ao Funcionário:</label>
-            <select name="tipo" class="required" id="campo" @change="funcionarioValidate">
+            <select name="tipo" class="campo required" id="funcionario" @change="funcionarioValidate">
               <option class="placeholder" disabled selected>Selecione o Funcionário</option>
               <option value="Jeferson">Jeferson</option>
               <option value="Camila">Camila</option>

@@ -15,40 +15,20 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>A-Z</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Z-A</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="Nome do funcionário" class="fluid" id="filter-funcionário" />
                   <i class="search icon"></i>
                 </div>
               </div>
             </div>
             <div class="accordion">
               <div class="accordion-header">
-                <span>Número</span>
+                <span>Bancada</span>
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Maior</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Menor</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-idBancada" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -59,18 +39,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>A-Z</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Z-A</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="Descrição da Manutenção" class="fluid" id="filter-descricao" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -81,14 +51,23 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Pendente</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Resolvido</label>
+                <div class="ui two column grid">
+                  <div class="column">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-ativo" />
+                      <label>Ativo</label>
+                    </div>
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-inativo" />
+                      <label>Inativo</label>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-manut" />
+                      <label>Manutenção</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -176,7 +155,7 @@
                 <th></th>
                 <th colspan="5">
                   <div
-                    class="ui right floated small primary labeled icon button"
+                    class="ui right floated small labeled icon button"
                     id="add-patrimonio"
                   >
                     <i class="keyboard outline icon"></i> Resolver chamada

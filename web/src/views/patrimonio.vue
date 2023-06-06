@@ -179,14 +179,14 @@
               </div>
               <div class="field">
                 <label>Bancada</label>
-                <select name="tipo" class="required" id="bancada" @change="bancadaValidate">
+                <select name="tipo" class="campo required" id="bancada" @change="bancadaValidate">
                   <option selected value="selecione" disabled>Selecione uma bancada...</option>
                 </select>
                 <span class="span-required">Selecione 1 Bancada</span>
               </div>
               <div class="field">
                 <label>Tipo</label>
-                <select name="tipo" class="required" id="tipo" @change="tipoValidate">
+                <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
                   <option class="placeholder" disabled selected>Selecione o tipo</option>
                   <option value="Desktop">Desktop</option>
                   <option value="Notebook">Notebook</option>
@@ -199,22 +199,22 @@
             <div class="column">
               <div class="field">
                 <label>Marca</label>
-                <input type="text" name="marca" placeholder="Marca" class="required" id="marca" @input="marcaValidate" />
+                <input type="text" name="marca" placeholder="Marca" class="campo required" id="marca" @input="marcaValidate" />
                 <span class="span-required">Insira a Marca</span>
               </div>
               <div class="field">
                 <label>Modelo</label>
-                <input type="text" name="modelo" placeholder="Modelo" class="required" id="modelo"
+                <input type="text" name="modelo" placeholder="Modelo" class="campo required" id="modelo"
                   @input="modeloValidate" />
                 <span class="span-required">Insira o Modelo</span>
               </div>
               <div class="field">
                 <label>Status</label>
-                <select name="status" class="required" id="status" @change="statusValidate">
+                <select name="status" class="campo required" id="status" @change="statusValidate">
                   <option class="placeholder" disabled selected>Selecione o status</option>
-                  <option value="ativo">Ativo</option>
-                  <option value="inativo">Inativo</option>
-                  <option value="manutencao">Em manutenção</option>
+                  <option value="Ativo">Ativo</option>
+                  <option value="Inativo">Inativo</option>
+                  <option value="Manutenção">Em manutenção</option>
                 </select>
                 <span class="span-required">Selecione o Status</span>
               </div>
@@ -508,11 +508,11 @@ export default {
       let modelo = document.getElementById('modelo').value
       let tipo = document.getElementById('tipo').value
       let status = document.getElementById('status').value
-      if (status == 'Ativo') {
+      if (status == 'ativo') {
         status = 1
-      } else if (status == 'Inativo') {
+      } else if (status == 'inativo') {
         status = 0
-      } else if (status == 'Manutenção') {
+      } else if (status == 'manutenção') {
         status = 2
       }
 

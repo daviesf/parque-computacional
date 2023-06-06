@@ -15,18 +15,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Maior</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Menor</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -37,18 +27,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>A-Z</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Z-A</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="Apelido da bancada" class="fluid" id="filter-apelido" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -59,18 +39,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>A-Z</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Z-A</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="Local da bancada" class="fluid" id="filter-local" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -81,19 +51,23 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Ativo</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Inativo</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Em manutenção</label>
+                <div class="ui two column grid">
+                  <div class="column">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-ativo" />
+                      <label>Ativo</label>
+                    </div>
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-inativo" />
+                      <label>Inativo</label>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-manut" />
+                      <label>Manutenção</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -175,7 +149,7 @@
               <tr>
                 <th></th>
                 <th colspan="5">
-                  <div class="ui right floated small primary labeled icon button" id="add-patrimonio">
+                  <div class="ui right floated small labeled icon button" id="add-patrimonio">
                     <i class="server icon"></i> Adicionar Bancada
                   </div>
                   <div class="ui left floated small button">Excluir</div>
@@ -196,18 +170,18 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Apelido</label>
-            <input type="text" name="marca" placeholder="Apelido" class="required" id="campo" @input="apelidoValidate"/>
+            <input type="text" name="marca" placeholder="Apelido" class="campo required" id="apelido" @input="apelidoValidate"/>
             <span class="span-required">Inisira o Apelido</span>
           </div>
           <div class="field">
             <label>Local</label>
-            <input type="text" name="modelo" placeholder="Local" class="required" id="campo" @input="localValidate"/>
+            <input type="text" name="modelo" placeholder="Local" class="campo required" id="local" @input="localValidate"/>
             <span class="span-required">Inisira o Local</span>
           </div>
 
           <div class="field">
             <label>Status</label>
-            <select name="status" class="required" id="campo" @change="statusValidate">
+            <select name="status" class="campo required" id="status" @change="statusValidate">
               <option class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="inativo">Inativo</option>
