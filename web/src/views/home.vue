@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="ui container">
         <div class="ui grid centered">
-          <div class="ui twelve center-cards">
+          <div class="ui twelve center-cards data">
             <div class="card_info">
               <i class="keyboard outline icon"></i>
               <div class="card_title">Patrimônios registrados:</div>

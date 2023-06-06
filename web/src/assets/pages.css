@@ -425,7 +425,7 @@ select.placeholder {
 }
 
 .custom-icon {
-  color: #00000083;
+  /* color: #00000083; */
 }
 
 .center-cards {
@@ -555,18 +555,8 @@ label {
   display: none;
 }
 
-.campo{
-  padding: 8px 5px;
-  outline: none;
-  border-radius: 5px;
-  border: 2px solid rgb(156, 156, 156);
-  width: 100%;
-  box-sizing: border-box;
-  transition: .3s;
-}
-
 .campo:focus{
-  border-color: rgb(0, 70, 84);
+  border-color: rgb(0, 70, 84) !important;
 }
 
 /* Código de espaçamento dos campos da tabela */
@@ -659,4 +649,8 @@ td.td-desc {
 .logout-button:hover {
   transform: translateY(-10px);
   transition: 0.5s;
+}
+
+.data i.icon, .data i.icons {
+  font-size: 1.5em;
 }

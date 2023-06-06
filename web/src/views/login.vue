@@ -46,6 +46,7 @@
 <script>
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -91,10 +92,9 @@ export default {
             registerSession(user, data)
             if (user.tipo == 1) {
               console.log('eu sou adm')
-              window.location.replace("/")
+              this.$router.push('/home')
             } else if (user.tipo == 2) {
               console.log('eu sou usuário comum')
-              window.location.replace("/helpDeskUser")
             } else {
               console.log('Erro na verificação do tipo.')
             }

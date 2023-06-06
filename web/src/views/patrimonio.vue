@@ -173,14 +173,14 @@
             <div class="column">
               <div class="field">
                 <label>Código</label>
-                <input type="text" name="codigo" placeholder="Código do Patrimônio" class="required" id="codigo"
+                <input type="text" name="codigo" placeholder="Código do Patrimônio" class="campo required" id="codigo"
                   @input="codigoValidate" />
                 <span class="span-required">Insira o código do Patrimônio</span>
               </div>
               <div class="field">
                 <label>Bancada</label>
                 <select name="tipo" class="required" id="bancada" @change="bancadaValidate">
-
+                  <option selected value="selecione" disabled>Selecione uma bancada...</option>
                 </select>
                 <span class="span-required">Selecione 1 Bancada</span>
               </div>
@@ -344,7 +344,7 @@ export default {
     }
 
     function bancadaValidate() {
-      return campos[1].value !== 'Selecione a bancada'
+      return campos[1].value !== 'selecione'
     }
 
     function marcaValidate() {
