@@ -566,11 +566,11 @@ export default {
       let marca = document.getElementById('filter-marca').value
       let modelo = document.getElementById('filter-modelo').value
       if (document.getElementById('cb-ativo').checked) {
-        var status = 1
+        var status = "Ativo"
       } else if (document.getElementById('cb-inativo').checked) {
-        var status = 0
+        var status = "Inativo"
       } else if (document.getElementById('cb-manut').checked) {
-        var status = 2
+        var status = "Manutenção"
       }
       if (document.getElementById('cb-impressora').checked) {
         var tipo = 'Impressora'
@@ -597,7 +597,7 @@ export default {
           idBancada: parseInt(bancada),
           marca: marca,
           modelo: modelo,
-          status: parseInt(status),
+          status: status,
           tipo: tipo
         }
       }

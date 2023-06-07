@@ -6,9 +6,7 @@
       </div>
       <div class="title_container">
         <p class="title">Olá!</p>
-        <span class="subtitle"
-          >Entre com sua conta da Unicamp para ter acesso aos serviços SAR.</span
-        >
+        <span class="subtitle">Entre com sua conta da Unicamp para ter acesso aos serviços SAR.</span>
       </div>
       <div id="buttonDiv"></div>
       <p class="note" id="ajuda">Ajuda</p>
@@ -85,25 +83,25 @@ export default {
 
       axios
         .post('http://localhost:4000', { query, variables })
-        .then((response) => {
+        .then(response => {
           const user = response.data.data.confereLogin
           if (user) {
             console.log('Login verificado com sucesso')
             registerSession(user, data)
             if (user.tipo == 1) {
-              console.log('eu sou adm')
-              this.$router.push('/home')
+              console.log('Administrador')
+              window.location.href = '/';
             } else if (user.tipo == 2) {
-              console.log('eu sou usuário comum')
+              console.log('Usuário comum')
             } else {
-              console.log('Erro na verificação do tipo.')
+              console.log('Erro na verificação do tipo de usuário.')
             }
           } else {
             console.log('Falha no login')
             document.getElementById('login-failed').style.display = 'block'
           }
         })
-        .catch((error) => console.error(error))
+        .catch(error => console.error(error))
     }
 
     function registerSession(user, data) {
@@ -126,6 +124,7 @@ export default {
         .then((response) => {
           const updatedUser = response.data.data.updateIdSession
           if (updatedUser) {
+            localStorage.setItem('name', JSON.stringify(user.nome))
             const isSecure = window.location.protocol === 'https:'
             document.cookie = `AKJA12=${updatedUser.idSession}; expires=${new Date(
               Date.now() + 172800000
@@ -140,7 +139,6 @@ export default {
         .catch((error) => console.error(error))
     }
 
-    window.onload = function () {
       google.accounts.id.initialize({
         client_id: '1090697719532-djuhtf5mi9r69ci55jr16ib9hg9ssnbc.apps.googleusercontent.com',
         callback: handleCredentialResponse
@@ -157,7 +155,6 @@ export default {
           logo_alignment: 'center'
         } // customization attributes
       )
-    }
 
     window.addEventListener('load', function () {
       document.getElementById('login-failed-close').addEventListener('click', function () {

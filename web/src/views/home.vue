@@ -85,7 +85,7 @@ export default {
 
   mounted() {
     // Essa função não é de fato necessária, mas é como funcionaria.
-    var names = ["João", "Maria", "José", "Ana", "Pedro"];
+    var names = ["João", "Maria", "José", "Ana", "Pedro", "Lucas", "Mariana", "Carlos", "Laura", "Gabriel", "Beatriz", "Rafael", "Juliana", "Matheus", "Isabela", "Fernando", "Camila", "Diego", "Carolina"];
     function shuffle(array) {
       var currentIndex = array.length, temporaryValue, randomIndex;
       while (0 !== currentIndex) {
@@ -101,15 +101,12 @@ export default {
     var shuffledNames = shuffle(names);
     var nextName = shuffledNames.pop();
 
-    // Salva o nome no localStorage
-    localStorage.setItem("user", JSON.stringify({ name: nextName }));
-    // A partir daqui é o que realmente importa pra carregar o nome na home.
-    if (localStorage.getItem("user") != null) {
-      const name = JSON.parse(localStorage.getItem("user")).name;
+
+    if (localStorage.getItem("name") != null) {
+      const name = JSON.parse(localStorage.getItem("name"));
       document.getElementById("saude").innerHTML = "Olá, " + name;
     } else {
-      document.getElementById("saude").innerHTML = "Olá, querido!";
-      // this.$router.push("/login");
+      document.getElementById("saude").innerHTML = "Olá, " + nextName;
     }
   }
 
