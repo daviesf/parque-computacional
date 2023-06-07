@@ -20,6 +20,7 @@ export default {
   mounted() {
     const cookies = document.cookie.split(';')
     let foundAKJA12 = false
+    localStorage.removeItem('name');
 
     for (let i = 0; i < cookies.length; i++) {
       const cookie = cookies[i]
