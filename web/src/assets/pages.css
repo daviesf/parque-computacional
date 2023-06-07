@@ -1,6 +1,10 @@
 /* NavBar */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
+body {
+  background-color: #f8f8ff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -30,7 +34,7 @@
 }
 
 .logout-list {
-  margin-top: calc(100vh - 500px);
+  margin-top: calc(100vh - 550px);
 }
 
 .sidebar.open {
@@ -189,7 +193,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   align-items: center;
 }
 
-.sidebar.open ~ .bg-dimmer {
+.sidebar.open~.bg-dimmer {
   backdrop-filter: blur(10px);
   opacity: 0.8;
   z-index: 50;
@@ -525,15 +529,15 @@ select.placeholder {
   transition: all 0.3s;
 }
 
-.ui.two.column.grid > .column {
+.ui.two.column.grid>.column {
   width: 50%;
 }
 
-.ui.two.column.grid > .column:first-child {
+.ui.two.column.grid>.column:first-child {
   padding-right: 10px;
 }
 
-.ui.two.column.grid > .column:last-child {
+.ui.two.column.grid>.column:last-child {
   padding-left: 10px;
 }
 
@@ -544,7 +548,8 @@ select.placeholder {
 }
 
 label {
-  font-size: 25px; /* Altere o tamanho da fonte conforme necessário */
+  font-size: 25px;
+  /* Altere o tamanho da fonte conforme necessário */
 }
 
 
@@ -555,7 +560,7 @@ label {
   display: none;
 }
 
-.campo{
+.campo {
   padding: 8px 5px;
   outline: none;
   border-radius: 5px;
@@ -565,7 +570,7 @@ label {
   transition: .3s;
 }
 
-.campo:focus{
+.campo:focus {
   border-color: rgb(0, 70, 84);
 }
 
@@ -659,4 +664,87 @@ td.td-desc {
 .logout-button:hover {
   transform: translateY(-10px);
   transition: 0.5s;
+}
+
+.dark-mode {
+  background-color: #252525;
+}
+
+.dark-mode .logo_name {
+  color: #fff;
+}
+
+.dark-mode .sidebar {
+  background-color: #151515;
+}
+
+.dark-mode .home_title {
+  color: #fff;
+}
+
+.dark-mode .card_title {
+  color: #fff;
+}
+
+.dark-mode .icon {
+  color: #fff;
+}
+
+.dark-mode .card_content {
+  color: #fff;
+}
+
+.dark-mode .text_titlep {
+  color: #fff;
+}
+
+.dark-mode .header_item {
+  color: #fff;
+}
+
+.dark-mode .accordion_header {
+  color: #fff;
+}
+
+.dark-mode h1 {
+  color: #fff;
+}
+
+.dark-mode .button1 {
+  background-color: #737373;
+}
+
+.dark-mode .button1-content {
+  color: #ffffff
+}
+
+.dark-mode .button1::before {
+  background: linear-gradient(82.3deg, rgb(68, 68, 68) 10%, rgb(46, 46, 46) 90%);
+}
+
+.dark-mode .accordion{
+  background-color: #222;
+  border-color: white;
+  color: white;
+}
+
+.dark-mode .accordion-header{
+  background-color: #222;
+  color: white;
+  border-color: white;
+}
+.dark-mode .header{
+  background-color: #222!important;
+  color: white;
+  border-color: white!important;
+}
+.dark-mode .item{
+  background-color: #222!important;
+  color: white!important;
+  border-color: white !important;
+}
+.dark-mode .accordion label{
+  background-color: #222;
+  color: white;
+  border-color: white ;
 }

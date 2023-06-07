@@ -6,7 +6,7 @@
     <div class="ui container table-p">
       <div class="ui stackable grid">
         <div class="five wide column" style="margin-top: 30px">
-          <div class="ui vertical menu">
+          <div class="ui vertical menu oi">
             <div class="header item">Filtros</div>
 
             <div class="accordion">
@@ -110,7 +110,7 @@
 
         <div class="eleven wide column" style="margin-top: 30px">
           <table class="ui compact celled definition table">
-            <thead>
+            <thead >
               <tr>
                 <td class="collapsing">
                   <div class="ui fitted checkbox">
