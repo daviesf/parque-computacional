@@ -13,18 +13,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>A-Z</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Z-A</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="Nome do Funcionário" class="fluid" id="filter-nome" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -35,18 +25,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>A-Z</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Z-A</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="E-mail do Funcionário" class="fluid" id="filter-email" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -57,18 +37,8 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Maior</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Menor</label>
-                </div>
-                <br /><br />
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Pesquisar..." class="fluid" />
+                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -79,19 +49,23 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Gerente</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Estágiario</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>CLT</label>
+                <div class="ui two column grid">
+                  <div class="column">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-gerente" />
+                      <label>Gerente</label>
+                    </div>
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-estagiario" />
+                      <label>Estagiário</label>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-clt" />
+                      <label>CLT</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -101,14 +75,17 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Ativo</label>
-                </div>
-                <br /><br />
-                <div class="ui checkbox">
-                  <input type="checkbox" name="example" />
-                  <label>Desligado</label>
+                <div class="ui two column grid">
+                  <div class="column">
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-ativo" />
+                      <label>Ativo</label>
+                    </div>
+                    <div class="ui checkbox">
+                      <input type="checkbox" id="cb-desligado" />
+                      <label>Desligado</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -196,7 +173,7 @@
                 <th></th>
                 <th colspan="5">
                   <div
-                    class="ui right floated small primary labeled icon button"
+                    class="ui right floated small labeled icon button"
                     id="add-patrimonio"
                   >
                     <i class="user outline icon"></i> Adicionar Funcionário
@@ -223,8 +200,8 @@
               type="text"
               name="nome"
               placeholder="Nome"
-              class="required"
-              id="campo"
+              class="campo required"
+              id="nome"
               @input="nomeValidate"
             />
             <span class="span-required">Insira o Nome</span>
@@ -235,15 +212,15 @@
               type="email"
               name="email"
               placeholder="E-mail"
-              class="required"
-              id="campo"
+              class="campo required"
+              id="email"
               @input="emailValidate"
             />
             <span class="span-required">Insira um e-mail válido</span>
           </div>
           <div class="field">
             <label>Bancada</label>
-            <select name="tipo" class="required" id="campo" @change="bancadaValidate">
+            <select name="tipo" class="campo required" id="bancada" @change="bancadaValidate">
               <option class="placeholder" disabled selected>Selecione a bancada</option>
               <option value="b1">Nenhuma (ID: 0)</option>
               <option value="b2">ID: 22 | Bancada de Informática</option>
@@ -254,7 +231,7 @@
           </div>
           <div class="field">
             <label>Tipo</label>
-            <select name="tipo" class="required" id="campo" @change="tipoValidate">
+            <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
               <option class="placeholder" disabled selected>Selecione o tipo</option>
               <option value="Gerente">Gerente</option>
               <option value="Estagiário">Estagiário</option>
@@ -264,7 +241,7 @@
           </div>
           <div class="field">
             <label>Status</label>
-            <select name="status" class="required" id="campo" @change="statusValidate">
+            <select name="status" class="campo required" id="status" @change="statusValidate">
               <option class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="desligado">Desligado</option>

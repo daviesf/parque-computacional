@@ -429,7 +429,7 @@ select.placeholder {
 }
 
 .custom-icon {
-  color: #00000083;
+  /* color: #00000083; */
 }
 
 .center-cards {
@@ -572,6 +572,9 @@ label {
 
 .campo:focus {
   border-color: rgb(0, 70, 84);
+=======
+.campo:focus{
+  border-color: rgb(0, 70, 84) !important;
 }
 
 /* Código de espaçamento dos campos da tabela */
@@ -747,4 +750,46 @@ td.td-desc {
   background-color: #222;
   color: white;
   border-color: white ;
+=======
+.data i.icon, .data i.icons {
+  font-size: 1.5em;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1400px) {
+  .card_info {
+    line-height: 1.2;
+    width: 12.5em;
+    height: 4em;
+    margin: 1.2em;
+    margin-top: 3em;
+    margin-left: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  /* hover em card_info sobe um pouco ele usando transform */
+  .card_info:hover {
+    transform: translateY(-10px);
+    transition: 0.5s;
+  }
+  
+  .card_content {
+    padding: 10px;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    font-size: 1.7em;
+    font-weight: bold;
+  }
+  
+  .card_title {
+    padding: 5px;
+    font-size: 1.3em;
+    font-family: SFProBold;
+    color: #00000083;
+  }
+
 }

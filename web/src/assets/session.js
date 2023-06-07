@@ -35,11 +35,11 @@ if (cookie) {
       if (user) {
         console.log('Sessão verificada com sucesso')
         if (user.tipo == 1) {
-          console.log('eu sou adm')
-          // window.location.replace("home adm");
+          console.log('Administrador')
+          window.location.href = '/';
         } else if (user.tipo == 2) {
-          console.log('eu sou usuário comum')
-          // window.location.replace("página user comum")
+          console.log('Usuário comum')
+          window.location.href = '/helpdeskuser';
         } else {
           console.log('Erro na verificação do tipo.')
         }

@@ -11,25 +11,25 @@
             <form id="form" class="ui form">
               <div class="field">
                 <label>Nome</label>
-                <input type="text" name="name" placeholder="Nome completo" class="required" id="campo"
+                <input type="text" name="name" placeholder="Nome completo" class="campo required" id="nome"
                   @input="nomeValidate" />
                 <span class="span-required">Insira o Nome</span>
               </div>
               <div class="field">
                 <label>E-mail</label>
-                <input type="email" name="email" placeholder="E-mail" class="required" id="campo"
+                <input type="email" name="email" placeholder="E-mail" class="campo required" id="email"
                   @input="emailValidate" />
                 <span class="span-required">Insira um e-mail válido</span>
               </div>
               <div class="field">
                 <label>Assunto</label>
-                <input type="text" name="subject" placeholder="Assunto" class="required" id="campo"
+                <input type="text" name="subject" placeholder="Assunto" class="campo required" id="assunto"
                   @input="assuntoValidate" />
                 <span class="span-required">Insira o Assunto</span>
               </div>
               <div class="field">
                 <label>Descrição</label>
-                <textarea name="description" rows="2" class="auto-expand required" id="campo"
+                <textarea name="description" rows="2" class="campo auto-expand required" id="descricao"
                   @input="descricaoValidate"></textarea>
                 <span class="span-required">Insira a Descrição</span>
               </div>

@@ -16,7 +16,7 @@ export default {
     NavBar,
   },
   data() {
-    return { 
+    return {
       showNavbar: true,
     }
   },
@@ -25,6 +25,6 @@ export default {
       this.showNavbar = !value
     }
   },
-  
+
 }
 </script>
