@@ -572,7 +572,7 @@ label {
 
 .campo:focus {
   border-color: rgb(0, 70, 84);
-=======
+}
 .campo:focus{
   border-color: rgb(0, 70, 84) !important;
 }
@@ -750,7 +750,7 @@ td.td-desc {
   background-color: #222;
   color: white;
   border-color: white ;
-=======
+}
 .data i.icon, .data i.icons {
   font-size: 1.5em;
 }
@@ -792,4 +792,9 @@ td.td-desc {
     color: #00000083;
   }
 
+}
+
+.dark-mode #add-patrimonio{
+  color: white!important;
+  background-color: rgb(91, 91, 91)!important;
 }
