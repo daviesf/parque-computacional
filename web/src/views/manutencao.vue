@@ -80,8 +80,8 @@
                 <th class="wide-80">ID</th>
                 <th class="wide-150">Patrimônio</th>
                 <th class="wide-150">Funcionário</th>
-                <th class="wide-100">Data</th>
-                <th>Detalhes</th>
+                <th class="wide-150">Data</th>
+                <th class="wide-150">Detalhes</th>
               </tr>
             </thead>
             <tbody>
@@ -94,8 +94,8 @@
                 <td>5</td>
                 <td>HP</td>
                 <td>HP-750</td>
-                <td>Impressora</td>
-                <td>Ativo</td>
+                <td>22/02/2023</td>
+                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
               </tr>
               <tr>
                 <td class="collapsing">
@@ -106,8 +106,8 @@
                 <td>8</td>
                 <td>Logitech</td>
                 <td>G-213</td>
-                <td>Teclado</td>
-                <td>Ativo</td>
+                <td>12/08/2023</td>
+                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
               </tr>
 
               <tr>
@@ -119,8 +119,8 @@
                 <td>12</td>
                 <td>Multilaser</td>
                 <td>MT-687</td>
-                <td>Mouse</td>
-                <td>Inativo</td>
+                <td>12/05/2023</td>
+                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
               </tr>
               <tr>
                 <td class="collapsing">
@@ -131,8 +131,8 @@
                 <td>2</td>
                 <td>Samsung</td>
                 <td>Book X50</td>
-                <td>Notebook</td>
-                <td>Ativo</td>
+                <td>12/02/2023</td>
+                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
               </tr>
             </tbody>
             <tfoot class="full-width">
