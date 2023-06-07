@@ -149,7 +149,7 @@
               <tr>
                 <th></th>
                 <th colspan="5">
-                  <div class="ui right floated small labeled icon button" id="add-patrimonio">
+                  <div class="ui right floated small labeled icon button ae" id="add-patrimonio">
                     <i class="server icon"></i> Adicionar Bancada
                   </div>
                   <div class="ui left floated small button">Excluir</div>
