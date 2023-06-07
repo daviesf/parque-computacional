@@ -569,11 +569,7 @@ label {
   box-sizing: border-box;
   transition: .3s;
 }
-
-.campo:focus {
-  border-color: rgb(0, 70, 84);
-}
-.campo:focus{
+  .campo:focus{
   border-color: rgb(0, 70, 84) !important;
 }
 

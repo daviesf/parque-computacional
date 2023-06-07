@@ -44,7 +44,6 @@
 <script>
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
-import { useRouter } from 'vue-router'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -53,7 +52,7 @@ export default {
     this.$emit('hideNavbar', true) // Emitir o evento para ocultar a navbar
     this.$emit('hideFooter', true)
   },
-  destroyed() {
+  unmounted() {
     this.$emit('hideNavbar', false) // Emitir o evento para mostrar a navbar novamente
     this.$emit('hideFooter', false)
   },
@@ -125,7 +124,6 @@ export default {
           const updatedUser = response.data.data.updateIdSession
           if (updatedUser) {
             localStorage.setItem('name', JSON.stringify(user.nome))
-            const isSecure = window.location.protocol === 'https:'
             document.cookie = `AKJA12=${updatedUser.idSession}; expires=${new Date(
               Date.now() + 172800000
             ).toUTCString()}; path=/`

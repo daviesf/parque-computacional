@@ -59,16 +59,16 @@
         <span class="tooltip">Usuário</span>
       </li>
       <li>
-        <div @click="toggleTheme">
-        <router-link to="">
-            <i id="theme-icon" class="moon outline icon"></i>
-            <span class="links_name">Troca de Tema</span>
-        </router-link>
-        </div>
         <span class="tooltip">Troca de Tema</span>
       </li>
       <li>
         <div class="logout-list" id="logout-list">
+          <div @click="toggleTheme">
+            <router-link to="">
+              <i id="theme-icon" class="moon outline icon"></i>
+              <span class="links_name">Troca de Tema</span>
+            </router-link>
+          </div>
           <router-link to="/logout">
             <i class="sign out icon"></i>
             <span class="links_name">Log-out</span>
@@ -91,41 +91,41 @@ export default {
   props: ['showNavbar'],
   methods: {
     toggleTheme() {
-      const themeIcon = document.getElementById('theme-icon');
-      const app = document.querySelector('.sidebar');
-      const app1 = document.querySelector('body');
-      const app2 = document.querySelector('table');
+      const themeIcon = document.getElementById('theme-icon')
+      const app = document.querySelector('.sidebar')
+      const app1 = document.querySelector('body')
+      const app2 = document.querySelector('table')
 
       if (themeIcon.classList.contains('moon')) {
         // Ativar o modo escuro
-        themeIcon.classList.replace('moon', 'sun');
-        app.classList.add('dark-mode');
-        app1.classList.add('dark-mode');
-        app2.classList.add('inverted')  // Adicione a classe que define o estilo do modo escuro
+        themeIcon.classList.replace('moon', 'sun')
+        app.classList.add('dark-mode')
+        app1.classList.add('dark-mode')
+        app2.classList.add('inverted') // Adicione a classe que define o estilo do modo escuro
       } else {
         // Voltar ao modo normal
-        themeIcon.classList.replace('sun', 'moon');
-        app.classList.remove('dark-mode');
-        app1.classList.remove('dark-mode');
-        app2.classList.remove('inverted')  // Remova a classe que define o estilo do modo escuro
+        themeIcon.classList.replace('sun', 'moon')
+        app.classList.remove('dark-mode')
+        app1.classList.remove('dark-mode')
+        app2.classList.remove('inverted') // Remova a classe que define o estilo do modo escuro
       }
     },
     toggleTheme1() {
-      const themeIcon = document.getElementById('theme-icon');
-      const app = document.querySelector('.sidebar');
-      const app1 = document.querySelector('body');
-      const app2 = document.querySelector('table');
+      const themeIcon = document.getElementById('theme-icon')
+      const app = document.querySelector('.sidebar')
+      const app1 = document.querySelector('body')
+      const app2 = document.querySelector('table')
 
       if (themeIcon.classList.contains('sun')) {
         // Ativar o modo escuro
-        app.classList.add('dark-mode');
-        app1.classList.add('dark-mode');
-        app2.classList.add('inverted')  // Adicione a classe que define o estilo do modo escuro
+        app.classList.add('dark-mode')
+        app1.classList.add('dark-mode')
+        app2.classList.add('inverted') // Adicione a classe que define o estilo do modo escuro
       } else {
         // Voltar ao modo normal
-        app.classList.remove('dark-mode');
-        app1.classList.remove('dark-mode');
-        app2.classList.remove('inverted')  // Remova a classe que define o estilo do modo escuro
+        app.classList.remove('dark-mode')
+        app1.classList.remove('dark-mode')
+        app2.classList.remove('inverted') // Remova a classe que define o estilo do modo escuro
       }
     }
   },
@@ -143,10 +143,8 @@ export default {
         closeBtn.classList.replace('bx-menu-alt-right', 'bx-menu')
       }
     }
-  },
-
+  }
 }
-
 </script>
 
 <style src="../assets/pages.css"></style>

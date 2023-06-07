@@ -1,7 +1,7 @@
 <template>
   <section class="home-section">
     <span class="text titlep">
-      <h1>Tela de Patrimônios Cadastrados</h1>
+      <h1>Patrimônios Cadastrados</h1>
     </span>
     <div class="ui container table-p">
       <div class="ui stackable grid">
