@@ -68,12 +68,13 @@
               <i id="theme-icon" class="moon outline icon"></i>
               <span class="links_name">Troca de Tema</span>
             </router-link>
+            <!-- tooltip -->
           </div>
           <router-link to="/logout">
             <i class="sign out icon"></i>
             <span class="links_name">Log-out</span>
           </router-link>
-          <span class="tooltip">Fazer log-out</span>
+          <!-- tooltip -->
         </div>
       </li>
     </ul>
