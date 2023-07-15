@@ -5,6 +5,7 @@ type Funcionario {
     tipo: String!
     email: String!
     idSession: String
+    idGoogle: String
 }
 
 type Query {
@@ -33,6 +34,6 @@ input DadosFuncionario{
 type Mutation {
     createFuncionario(data: DadosFuncionario!): Funcionario!
     updateFuncionario(idFuncionario: ID!, data: DadosFuncionario!): Funcionario!
-    updateIdSession(idFuncionario: ID!, idSession: String!): Funcionario!
+    updateIdSession(idFuncionario: ID!): Funcionario!
     deleteFuncionario(idFuncionario: ID!): Boolean!
 }

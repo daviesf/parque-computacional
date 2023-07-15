@@ -77,7 +77,7 @@ export default {
 `
 
       const variables = {
-        email: data.email
+        email: data.email,
       }
 
       axios
@@ -92,6 +92,7 @@ export default {
               window.location.href = '/';
             } else if (user.tipo == 2) {
               console.log('Usuário comum')
+              window.location.href = '/helpDeskUser';
             } else {
               console.log('Erro na verificação do tipo de usuário.')
             }
@@ -123,36 +124,39 @@ export default {
         .then((response) => {
           const updatedUser = response.data.data.updateIdSession
           if (updatedUser) {
-            localStorage.setItem('name', JSON.stringify(user.nome))
-            document.cookie = `AKJA12=${updatedUser.idSession}; expires=${new Date(
-              Date.now() + 172800000
-            ).toUTCString()}; path=/`
+            localStorage.setItem('name', JSON.stringify(user.nome));
 
-            console.log('Sessão registrada')
-            console.log(document.cookie)
-          } else {
-            console.log('Falha no registro da sessão')
+            const cookieOptions = {
+              expires: new Date(Date.now() + 172800000).toUTCString(),
+              path: '/',
+              secure: true,
+            };
+
+            document.cookie = `AKJA12=${updatedUser.idSession}; SUBG=${data.sub}; ${Object.entries(cookieOptions).map(([key, value]) => `${key}=${value}`).join('; ')}`;
+          }
+          else {
+            console.log('?')
           }
         })
         .catch((error) => console.error(error))
     }
 
-      google.accounts.id.initialize({
-        client_id: '1090697719532-djuhtf5mi9r69ci55jr16ib9hg9ssnbc.apps.googleusercontent.com',
-        callback: handleCredentialResponse
-      })
-      google.accounts.id.renderButton(
-        document.getElementById('buttonDiv'),
-        {
-          theme: 'outline',
-          size: 'large',
-          width: '230',
-          type: 'standard',
-          shape: 'pill',
-          text: 'signin_with.',
-          logo_alignment: 'center'
-        } // customization attributes
-      )
+    google.accounts.id.initialize({
+      client_id: '1090697719532-djuhtf5mi9r69ci55jr16ib9hg9ssnbc.apps.googleusercontent.com',
+      callback: handleCredentialResponse
+    })
+    google.accounts.id.renderButton(
+      document.getElementById('buttonDiv'),
+      {
+        theme: 'outline',
+        size: 'large',
+        width: '230',
+        type: 'standard',
+        shape: 'pill',
+        text: 'signin_with.',
+        logo_alignment: 'center'
+      } // customization attributes
+    )
 
     window.addEventListener('load', function () {
       document.getElementById('login-failed-close').addEventListener('click', function () {

@@ -84,29 +84,12 @@ export default {
   name: 'Home',
 
   mounted() {
-    // Essa função não é de fato necessária, mas é como funcionaria.
-    var names = ["João", "Maria", "José", "Ana", "Pedro", "Lucas", "Mariana", "Carlos", "Laura", "Gabriel", "Beatriz", "Rafael", "Juliana", "Matheus", "Isabela", "Fernando", "Camila", "Diego", "Carolina"];
-    function shuffle(array) {
-      var currentIndex = array.length, temporaryValue, randomIndex;
-      while (0 !== currentIndex) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-      }
-      return array;
-    }
-
-    var shuffledNames = shuffle(names);
-    var nextName = shuffledNames.pop();
-
 
     if (localStorage.getItem("name") != null) {
       const name = JSON.parse(localStorage.getItem("name"));
       document.getElementById("saude").innerHTML = "Olá, " + name;
     } else {
-      document.getElementById("saude").innerHTML = "Olá, " + nextName;
+      document.getElementById("saude").innerHTML = "Olá, usuário!";
     }
   }
 
