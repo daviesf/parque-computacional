@@ -1,5 +1,6 @@
 const knex = require("../../../mysql");
 const CryptoJS = require('crypto-js');
+const authKey = "a1b2c3d4e5f6g7h8i9j0"
 
 function generatePassword(length) {
 	const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
@@ -49,6 +50,10 @@ export default {
 			const funcionario = await knex("funcionarios").where("idSession", idSession).first();
 			return funcionario;
 		},
+		authenticator: async (_, { idGoogle }) => {
+			const funcionario = await knex("funcionarios").where("idGoogle", CryptoJS.SHA256(idGoogle + authKey).toString()).first();
+			return !!funcionario;
+		}
 	},
 
 	Mutation: {
@@ -71,7 +76,7 @@ export default {
 		},
 
 		updateIdSession: async (_, { idFuncionario, idSession }) => {
-			const newIdSession = CryptoJS.MD5(idSession + Date.now() + generatePassword(15)).toString();
+			const newIdSession = CryptoJS.SHA256(idSession + Date.now() + generatePassword(15)).toString();
 			const funcionarioAtualizado = await knex("funcionarios")
 				.where("idFuncionario", idFuncionario)
 				.update({ idSession: newIdSession });

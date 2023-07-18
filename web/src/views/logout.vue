@@ -19,49 +19,34 @@ export default {
   },
   mounted() {
     const cookies = document.cookie.split(';')
-    let foundAKJA12 = false
     localStorage.removeItem('name');
 
     for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i]
-      const eqPos = cookie.indexOf('=')
-      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
-
-      if (name.trim() === 'AKJA12') {
-        foundAKJA12 = true
-        break
-      }
+      const cookie = cookies[i];
+      const eqPos = cookie.indexOf('=');
+      const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
     }
 
-    if (!foundAKJA12) {
-      this.$router.push('/login')
-    } else {
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i]
-        const eqPos = cookie.indexOf('=')
-        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
-        document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`
+    const counter = document.getElementById('counter')
+    let seconds = 3
+
+    const countdownInterval = setInterval(() => {
+      if (seconds === 1) {
+        counter.innerHTML = `Redirecionando para a tela de login em ${seconds} segundo...`
+      } else {
+        counter.innerHTML = `Redirecionando para a tela de login em ${seconds} segundos...`
       }
+      seconds--
 
-      const counter = document.getElementById('counter')
-      let seconds = 3
-
-      const countdownInterval = setInterval(() => {
-        if (seconds === 1) {
-          counter.innerHTML = `Redirecionando para a tela de login em ${seconds} segundo...`
-        } else {
-          counter.innerHTML = `Redirecionando para a tela de login em ${seconds} segundos...`
-        }
-        seconds--
-
-        if (seconds < 0) {
-          clearInterval(countdownInterval)
-          this.$router.push('/login')
-        }
-      }, 1000)
-    }
+      if (seconds < 0) {
+        clearInterval(countdownInterval)
+        this.$router.push('/login')
+      }
+    }, 1000)
   }
 }
+
 </script>
 
 <style>

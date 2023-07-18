@@ -85,13 +85,10 @@ export default {
         .then(response => {
           const user = response.data.data.confereLogin
           if (user) {
-            console.log('Login verificado com sucesso')
             registerSession(user, data)
             if (user.tipo == 1) {
-              console.log('Administrador')
-              window.location.href = '/';
+              // window.location.href = '/';
             } else if (user.tipo == 2) {
-              console.log('Usuário comum')
               window.location.href = '/helpDeskUser';
             } else {
               console.log('Erro na verificação do tipo de usuário.')
