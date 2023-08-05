@@ -381,6 +381,7 @@ export default {
       })
     }
 
+  // Puxando Dados do Banco
     const queryBancada = `query Query {
   bancadas {
     idBancada

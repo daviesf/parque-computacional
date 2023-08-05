@@ -98,53 +98,7 @@
                 <th class="wide-150">Status</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>5</td>
-                <td>Jeferson</td>
-                <td>Escritório 8</td>
-                <td>Ativo</td>
-              </tr>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>8</td>
-                <td>Bruno</td>
-                <td>R.U.</td>
-                <td>Em manutenção</td>
-              </tr>
-
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>12</td>
-                <td>Adm</td>
-                <td>FCA</td>
-                <td>Desativado</td>
-              </tr>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>2</td>
-                <td>Adm2</td>
-                <td>SAR</td>
-                <td>Ativo</td>
-              </tr>
-            </tbody>
+            <tbody id="bancada-table-body"></tbody>
             <tfoot class="full-width">
               <tr>
                 <th></th>
@@ -170,12 +124,12 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Apelido</label>
-            <input type="text" name="marca" placeholder="Apelido" class="campo required" id="apelido" @input="apelidoValidate"/>
+            <input type="text" name="apelido" placeholder="Apelido" class="campo required" id="apelido" @input="apelidoValidate"/>
             <span class="span-required">Inisira o Apelido</span>
           </div>
           <div class="field">
             <label>Local</label>
-            <input type="text" name="modelo" placeholder="Local" class="campo required" id="local" @input="localValidate"/>
+            <input type="text" name="local" placeholder="Local" class="campo required" id="local" @input="localValidate"/>
             <span class="span-required">Inisira o Local</span>
           </div>
 
@@ -189,7 +143,7 @@
             </select>
             <span class="span-required">Selecione algum Status</span>
           </div>
-          <button class="ui submit button" type="submit">Adicionar</button>
+          <button class="ui submit button" type="submit" id="submit-bancada">Adicionar</button>
           <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
         </form>
       </div>
@@ -198,20 +152,12 @@
 </template>
 
 <script>
+
+  import axios from 'axios';
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Bancada',
-  methods() {
-    // Filtro
-    const accordions = document.querySelectorAll('.accordion')
-
-    accordions.forEach((accordion) => {
-      const accordionHeader = accordion.querySelector('.accordion-header')
-      accordionHeader.addEventListener('click', () => {
-        accordion.classList.toggle('active')
-      })
-    })
-  },
   mounted() {
     // Selecione todos os checkboxes quando o checkbox geral é selecionado
     document.getElementById('select-all').addEventListener('click', function () {
@@ -347,7 +293,242 @@ export default {
     function statusValidate() {
       return campos[2].value !== 'Selecione o status'
     }
+
+
+// Puxando Dados do Banco
+carregaDados();
+
+function carregaDados() {
+  document.getElementById('bancada-table-body').innerHTML = ''
+  const query = `query Query {
+    bancadas {
+      idBancada
+      apelido
+      local
+      status
+    }
+  }`
+
+    axios.post('http://localhost:4000', { query }).then(
+        (result) => {
+          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+          const bancadas = result.data.data.bancadas
+
+          const tbody = document.getElementById('bancada-table-body')
+
+          bancadas.forEach((bancada) => {
+            const tr = document.createElement('tr')
+
+            const tdCheckbox = document.createElement('td')
+            tdCheckbox.className = 'collapsing'
+            const checkbox = document.createElement('div')
+            checkbox.className = 'ui fitted checkbox'
+            const inputCheckbox = document.createElement('input')
+            inputCheckbox.type = 'checkbox'
+            inputCheckbox.className = 'select-checkbox'
+            const labelCheckbox = document.createElement('label')
+            checkbox.appendChild(inputCheckbox)
+            checkbox.appendChild(labelCheckbox)
+            tdCheckbox.appendChild(checkbox)
+
+            inputCheckbox.addEventListener('change', function () {
+              const selectCheckboxes = document.getElementsByClassName('select-checkbox');
+              const selectAllCheckbox = document.getElementById('select-all');
+
+              const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
+              selectAllCheckbox.checked = isAllChecked;
+
+              if (!this.checked) {
+                selectAllCheckbox.checked = false;
+              }
+            });
+
+            const tdBancada = document.createElement('td')
+            tdBancada.textContent = bancada.idBancada
+
+            const tdApelido = document.createElement('td')
+            tdApelido.textContent = bancada.apelido
+
+            const tdLocal = document.createElement('td')
+            tdLocal.textContent = bancada.local
+
+            const tdTipo = document.createElement('td')
+            tdTipo.textContent = bancada.tipo
+
+            const tdStatus = document.createElement('td')
+            if (bancada.status == 0) {
+              bancada.status = 'Inativo'
+            } else if (bancada.status == 1) {
+              bancada.status = 'Ativo'
+            } else if (bancada.status == 2) {
+              bancada.status = 'Manutenção'
+            }
+
+            tdStatus.textContent = bancada.status
+
+            tr.appendChild(tdCheckbox)
+            tr.appendChild(tdBancada)
+            tr.appendChild(tdApelido)
+            tr.appendChild(tdLocal)
+            tr.appendChild(tdStatus)
+
+            tbody.appendChild(tr)
+          })
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    }
+
+    // cadastrar
+    const addBancada = document.getElementById('submit-bancada')
+    addBancada.addEventListener('click', function () {
+      console.log('Iniciando cadastro')
+      let apelido = document.getElementById('apelido').value
+      let local = document.getElementById('local').value
+      let status = document.getElementById('status').value
+      if (status == 'ativo') {
+        status = 1
+      } else if (status == 'inativo') {
+        status = 0
+      } else if (status == 'manutenção') {
+        status = 2
+      }
+
+      console.log('Verificando status')
+
+      console.log('Query')
+
+      const query = `mutation Mutation($data: DadosBancada) {
+  createBancada(data: $data) {
+    idBancada
+    apelido
+    local
+    status
   }
+}`
+
+      console.log('Variáveis')
+
+      const variables = {
+        data: {
+          apelido: apelido,
+          local: local,
+          status: status
+        }
+      }
+
+      console.log(variables)
+
+      axios.post('http://localhost:4000', { query, variables }).then(
+        (result) => {
+          console.log(result)
+          $('.popup').hide()
+          $('.dimmer').hide()
+          carregaDados();
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    })
+
+    // filtro
+    const filter = document.getElementById('filter')
+    filter.addEventListener('click', function () {
+      let bancada = document.getElementById('filter-bancada').value
+      let apelido = document.getElementById('filter-apelido').value
+      let local = document.getElementById('filter-local').value
+      if (document.getElementById('cb-ativo').checked) {
+        var status = "Ativo"
+      } else if (document.getElementById('cb-inativo').checked) {
+        var status = "Inativo"
+      } else if (document.getElementById('cb-manut').checked) {
+        var status = "Manutenção"
+      }
+  
+      const query = `query Query($filter: BancadaFilter) {
+  searchBancadas(filter: $filter) {
+    idBancada
+    apelido
+    local
+    status
+  }
+}`
+      const variables = {
+        filter: {
+          idBancada: parseInt(bancada),
+          apelido: apelido,
+          local: local,
+          status: status
+        }
+      }
+
+      axios.post('http://localhost:4000', { query, variables }).then(
+        (result) => {
+          document.getElementById('bancada-table-body').innerHTML = ''
+          const bancadas = result.data.data.searchBancadas
+          const tbody = document.getElementById('bancada-table-body')
+
+          bancadas.forEach((bancada) => {
+            const tr = document.createElement('tr')
+
+            const tdCheckbox = document.createElement('td')
+            tdCheckbox.className = 'collapsing'
+            const checkbox = document.createElement('div')
+            checkbox.className = 'ui fitted checkbox'
+            const inputCheckbox = document.createElement('input')
+            inputCheckbox.type = 'checkbox'
+            inputCheckbox.className = 'select-checkbox'
+            const labelCheckbox = document.createElement('label')
+            checkbox.appendChild(inputCheckbox)
+            checkbox.appendChild(labelCheckbox)
+            tdCheckbox.appendChild(checkbox)
+
+            inputCheckbox.addEventListener('change', function () {
+              const selectCheckboxes = document.getElementsByClassName('select-checkbox');
+              const selectAllCheckbox = document.getElementById('select-all');
+
+              const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
+              selectAllCheckbox.checked = isAllChecked;
+
+              if (!this.checked) {
+                selectAllCheckbox.checked = false;
+              }
+            });
+
+            const tdBancada = document.createElement('td')
+            tdBancada.textContent = bancada.idBancada
+
+            const tdApelido = document.createElement('td')
+            tdApelido.textContent = bancada.apelido
+
+            const tdLocal = document.createElement('td')
+            tdLocal.textContent = bancada.local
+
+            const tdStatus = document.createElement('td')
+            if (bancada.status == 0) {
+              bancada.status = 'Inativo'
+            } else if (bancada.status == 1) {
+              bancada.status = 'Ativo'
+            } else if (bancada.status == 2) {
+              bancada.status = 'Manutenção'
+            }
+
+            tdStatus.textContent = bancada.status
+
+            tr.appendChild(tdCheckbox)
+            tr.appendChild(tdBancada)
+            tr.appendChild(tdApelido)
+            tr.appendChild(tdLocal)
+            tr.appendChild(tdStatus)
+            tbody.appendChild(tr)
+          })
+        })
+
+    })
+}
 }
 </script>
 

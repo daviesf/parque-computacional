@@ -84,7 +84,7 @@
                 <th class="wide-150">Detalhes</th>
               </tr>
             </thead>
-            <tbody>
+            <!-- <tbody>
               <tr>
                 <td class="collapsing">
                   <div class="ui fitted checkbox">
@@ -134,7 +134,8 @@
                 <td>12/02/2023</td>
                 <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
               </tr>
-            </tbody>
+            </tbody> -->
+            <tbody id="manutencoes-table-body"></tbody>
             <tfoot class="full-width">
               <tr>
                 <th></th>
@@ -363,6 +364,111 @@ export default {
     function funcionarioValidate() {
       return campos[3].value !== 'Selecione o Funcionário'
     }
+
+
+      // Puxando Dados do Banco
+      const queryPatrimonio = `query Query {
+  patrimonios {
+    marca
+    modelo
+  }
+}`
+
+    axios.post('http://localhost:4000', { query: queryPatrimonio }).then(
+      (result) => {
+        const patrimonios = result.data.data.patrimonios
+        const selectPatriomonio = document.getElementById('patrimonio')
+
+        patrimonios.forEach((patrimonio) => {
+          const option = document.createElement('option')
+          option.value = patrimonio.marca
+          option.innerHTML = "ID: " + patrimonio.marca + " | " + patrimonio.modelo
+          selectPatriomonio.appendChild(option)
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+    carregaDados();
+
+    function carregaDados() {
+      document.getElementById('manutencoes-table-body').innerHTML = ''
+      const query = `query Query {
+  consertos {
+    idConserto
+    idPatrimonio
+    idFuncionario
+    dataHora
+    detalhes
+  }
+}`
+
+      axios.post('http://localhost:4000', { query }).then(
+        (result) => {
+          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+          const consertos = result.data.data.consertos
+
+          const tbody = document.getElementById('manutencoes-table-body')
+
+          consertos.forEach((conserto) => {
+            const tr = document.createElement('tr')
+
+            const tdCheckbox = document.createElement('td')
+            tdCheckbox.className = 'collapsing'
+            const checkbox = document.createElement('div')
+            checkbox.className = 'ui fitted checkbox'
+            const inputCheckbox = document.createElement('input')
+            inputCheckbox.type = 'checkbox'
+            inputCheckbox.className = 'select-checkbox'
+            const labelCheckbox = document.createElement('label')
+            checkbox.appendChild(inputCheckbox)
+            checkbox.appendChild(labelCheckbox)
+            tdCheckbox.appendChild(checkbox)
+
+            inputCheckbox.addEventListener('change', function () {
+              const selectCheckboxes = document.getElementsByClassName('select-checkbox');
+              const selectAllCheckbox = document.getElementById('select-all');
+
+              const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
+              selectAllCheckbox.checked = isAllChecked;
+
+              if (!this.checked) {
+                selectAllCheckbox.checked = false;
+              }
+            });
+
+            const tdManutencao = document.createElement('td')
+            tdManutencao.textContent = conserto.idConserto
+
+            const tdPatrimonio = document.createElement('td')
+            tdPatrimonio.textContent = conserto.idPatrimonio
+
+            const tdFuncionario = document.createElement('td')
+            tdFuncionario.textContent = conserto.idFuncionário
+
+            const tdData = document.createElement('td')
+            tdData.textContent = conserto.dataHora
+
+            const tdDetalhes = document.createElement('td')
+            tdDetalhes.textContent = conserto.detalhes
+
+            tr.appendChild(tdCheckbox)
+            tr.appendChild(tdManutencao)
+            tr.appendChild(tdPatrimonio)
+            tr.appendChild(tdFuncionario)
+            tr.appendChild(tdData)
+            tr.appendChild(tdDetalhes)
+
+            tbody.appendChild(tr)
+          })
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    }
+
   }
 }
 </script>

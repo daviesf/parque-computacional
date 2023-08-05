@@ -147,7 +147,6 @@ export default {
       {
         theme: 'outline',
         size: 'large',
-        width: '230',
         type: 'standard',
         shape: 'pill',
         text: 'signin_with.',
