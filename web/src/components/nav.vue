@@ -59,6 +59,15 @@
         <span class="tooltip">Usuário</span>
       </li>
       <li>
+        <div @click="toggleTheme1">
+          <router-link to="/dashboard">
+            <i class="chart area icon"></i>
+            <span class="links_name">Dashboard</span>
+          </router-link>
+        </div>
+        <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
         <span class="tooltip">Troca de Tema</span>
       </li>
       <li>

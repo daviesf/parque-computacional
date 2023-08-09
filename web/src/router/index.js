@@ -60,6 +60,11 @@ const router = createRouter({
       component: Logout
     },
     {
+      path: '/daswhboard',
+      name: 'Dashboard',
+      component: Dashboard
+    },
+    {
       path: '/404',
       name: 'NotFound',
       component: NotFound

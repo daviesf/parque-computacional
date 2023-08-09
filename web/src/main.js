@@ -13,6 +13,7 @@ import HelpDeskUser from './views/helpDeskUser.vue'
 import Usuario from './views/usuario.vue'
 import Logout from './views/logout.vue'
 import NotFound from './views/notFound.vue'
+import Dashboard from './views/dashboard.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -27,7 +28,8 @@ const router = createRouter({
     { path: '/usuario', component: Usuario },
     { path: '/logout', component: Logout },
     { path: '/404', component: NotFound },
-    { path: '/:pathMatch(.*)', redirect: '/404' }
+    { path: '/:pathMatch(.*)', redirect: '/404' },
+    { path: '/dashboard', component: Dashboard },
   ]
 })
 
