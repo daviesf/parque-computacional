@@ -401,8 +401,7 @@ function carregaDados() {
       console.log('Query')
 
       const query = `mutation Mutation($data: DadosBancada) {
-  createBancada(data: $data) {
-    idBancada
+    createBancada(data: $data) {
     apelido
     local
     status
@@ -415,7 +414,7 @@ function carregaDados() {
         data: {
           apelido: apelido,
           local: local,
-          status: status
+          status: parseInt(status)
         }
       }
 
@@ -437,9 +436,11 @@ function carregaDados() {
     // filtro
     const filter = document.getElementById('filter')
     filter.addEventListener('click', function () {
+      console.log("Tentando filtrar");
       let bancada = document.getElementById('filter-bancada').value
       let apelido = document.getElementById('filter-apelido').value
       let local = document.getElementById('filter-local').value
+      console.log("Peguei os dados dos inputs:" + bancada + apelido + local)
       if (document.getElementById('cb-ativo').checked) {
         var status = "Ativo"
       } else if (document.getElementById('cb-inativo').checked) {
@@ -447,6 +448,7 @@ function carregaDados() {
       } else if (document.getElementById('cb-manut').checked) {
         var status = "Manutenção"
       }
+      console.log("Status" + status)
   
       const query = `query Query($filter: BancadaFilter) {
   searchBancadas(filter: $filter) {
@@ -467,8 +469,11 @@ function carregaDados() {
 
       axios.post('http://localhost:4000', { query, variables }).then(
         (result) => {
+          console.log(result);
           document.getElementById('bancada-table-body').innerHTML = ''
           const bancadas = result.data.data.searchBancadas
+          console.log("=====")
+          console.log(bancadas)
           const tbody = document.getElementById('bancada-table-body')
 
           bancadas.forEach((bancada) => {

@@ -22,6 +22,9 @@ export default {
 		},
 		searchBancadas: async (_, { filter }) => {
 			const bancadas = await knex("bancadas").where((builder) => {
+				if (filter.idBancada) {
+					builder.where("idBancada", filter.idBancada);
+				}
 				if (filter.local) {
 					builder.where("local", "like", `%${filter.local}%`);
 				}

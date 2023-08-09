@@ -603,6 +603,7 @@ export default {
 
       axios.post('http://localhost:4000', { query, variables }).then(
         (result) => {
+          console.log(result)
           document.getElementById('patrimonio-table-body').innerHTML = ''
           const patrimonios = result.data.data.searchPatrimonios
           const tbody = document.getElementById('patrimonio-table-body')

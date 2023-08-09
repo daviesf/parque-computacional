@@ -10,7 +10,7 @@ type Query {
   bancada(idBancada: ID!): Bancada!
   bancadasByLocal(local: String!): [Bancada]!
   bancadasByStatus(status: Int!): [Bancada]!
-  searchBancadas(filter: BancadaFilter): [Bancada]!
+  searchBancadas(filter: BancadaFilter): [Bancada]
 }
 
 input DadosBancada {
@@ -27,7 +27,7 @@ input BancadaFilter {
 }
 
 type Mutation {
-  createBancada(data: DadosBancada!): Boolean!
+  createBancada(data: DadosBancada): Bancada!
   updateBancada(idBancada: ID!, data: DadosBancada!): Boolean!
   deleteBancada(idBancada: ID!): Boolean!
 }
