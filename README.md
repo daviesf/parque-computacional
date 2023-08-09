@@ -36,6 +36,8 @@ Figura 3: API
 
 - [@daviesf](https://www.github.com/daviesf)
 - [@SamukaCode](https://www.github.com/SamukaCode)
+- [@NelsonModenezNeto](https://www.github.com/NelsonModenezNeto)
+- [@NelsonLuisModenezJunior](https://www.github.com/NelsonLuisModenezJunior)
 
 
 
