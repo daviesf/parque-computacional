@@ -34,7 +34,7 @@ body {
 }
 
 .logout-list {
-  margin-top: calc(100vh - 550px);
+  margin-top: calc(100vh - 600px);
 }
 
 .sidebar.open {
