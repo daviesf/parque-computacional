@@ -13,19 +13,19 @@ export default {
     this.$emit('hideNavbar', true) // Emitir o evento para ocultar a navbar
     this.$emit('hideFooter', true)
   },
-  destroyed() {
+  unmounted() {
     this.$emit('hideNavbar', false) // Emitir o evento para mostrar a navbar novamente
     this.$emit('hideFooter', false)
   },
   mounted() {
     const cookies = document.cookie.split(';')
-    localStorage.removeItem('name');
+    localStorage.removeItem('name')
 
     for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i];
-      const eqPos = cookie.indexOf('=');
-      const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
-      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+      const cookie = cookies[i]
+      const eqPos = cookie.indexOf('=')
+      const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`
     }
 
     const counter = document.getElementById('counter')
@@ -46,7 +46,6 @@ export default {
     }, 1000)
   }
 }
-
 </script>
 
 <style>

@@ -6,7 +6,9 @@
       </div>
       <div class="title_container">
         <p class="title">Olá!</p>
-        <span class="subtitle">Entre com sua conta da Unicamp para ter acesso aos serviços SAR.</span>
+        <span class="subtitle"
+          >Entre com sua conta da Unicamp para ter acesso aos serviços SAR.</span
+        >
       </div>
       <div id="buttonDiv"></div>
       <p class="note" id="ajuda">Ajuda</p>
@@ -77,19 +79,19 @@ export default {
 `
 
       const variables = {
-        email: data.email,
+        email: data.email
       }
 
       axios
         .post('http://localhost:4000', { query, variables })
-        .then(response => {
+        .then((response) => {
           const user = response.data.data.confereLogin
           if (user) {
             registerSession(user, data)
             if (user.tipo == 1) {
               // window.location.href = '/';
             } else if (user.tipo == 2) {
-              window.location.href = '/helpDeskUser';
+              window.location.href = '/helpDeskUser'
             } else {
               console.log('Erro na verificação do tipo de usuário.')
             }
@@ -98,7 +100,7 @@ export default {
             document.getElementById('login-failed').style.display = 'block'
           }
         })
-        .catch(error => console.error(error))
+        .catch((error) => console.error(error))
     }
 
     function registerSession(user, data) {
@@ -121,17 +123,20 @@ export default {
         .then((response) => {
           const updatedUser = response.data.data.updateIdSession
           if (updatedUser) {
-            localStorage.setItem('name', JSON.stringify(user.nome));
+            localStorage.setItem('name', JSON.stringify(user.nome))
 
             const cookieOptions = {
               expires: new Date(Date.now() + 172800000).toUTCString(),
               path: '/',
-              secure: true,
-            };
+              secure: true
+            }
 
-            document.cookie = `AKJA12=${updatedUser.idSession}; SUBG=${data.sub}; ${Object.entries(cookieOptions).map(([key, value]) => `${key}=${value}`).join('; ')}`;
-          }
-          else {
+            document.cookie = `AKJA12=${updatedUser.idSession}; SUBG=${data.sub}; ${Object.entries(
+              cookieOptions
+            )
+              .map(([key, value]) => `${key}=${value}`)
+              .join('; ')}`
+          } else {
             console.log('?')
           }
         })
@@ -191,7 +196,5 @@ export default {
   }
 }
 </script>
-
-
 
 <style src="../assets/login.css"></style>

@@ -44,7 +44,6 @@
       <div class="welcome">Seja bem-vindo novamente!</div>
     </div>
 
-
     <div class="ui container">
       <div class="ui grid centered">
         <router-link to="/patrimonio">
@@ -83,25 +82,19 @@
 </template>
 
 <script>
-
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Home',
 
   mounted() {
-
-    if (localStorage.getItem("name") != null) {
-      const name = JSON.parse(localStorage.getItem("name"));
-      document.getElementById("saude").innerHTML = "Olá, " + name;
+    if (localStorage.getItem('name') != null) {
+      const name = JSON.parse(localStorage.getItem('name'))
+      document.getElementById('saude').innerHTML = 'Olá, ' + name
     } else {
-      document.getElementById("saude").innerHTML = "Olá, usuário!";
+      document.getElementById('saude').innerHTML = 'Olá, usuário!'
     }
   }
-
-  
-};
-
+}
 </script>
 
 <style src="../assets/pages.css"></style>
-

@@ -14,7 +14,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Nome do Funcionário" class="fluid" id="filter-nome" />
+                  <input
+                    type="text"
+                    placeholder="Nome do Funcionário"
+                    class="fluid"
+                    id="filter-nome"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -26,7 +31,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="E-mail do Funcionário" class="fluid" id="filter-email" />
+                  <input
+                    type="text"
+                    placeholder="E-mail do Funcionário"
+                    class="fluid"
+                    id="filter-email"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -38,7 +48,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
+                  <input
+                    type="text"
+                    placeholder="ID da bancada"
+                    class="fluid"
+                    id="filter-bancada"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -174,10 +189,7 @@
               <tr>
                 <th></th>
                 <th colspan="6">
-                  <div
-                    class="ui right floated small labeled icon button"
-                    id="add-patrimonio"
-                  >
+                  <div class="ui right floated small labeled icon button" id="add-patrimonio">
                     <i class="user outline icon"></i> Adicionar Funcionário
                   </div>
                   <div class="ui left floated small button">Excluir</div>
@@ -259,7 +271,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Usuario',
@@ -422,12 +434,11 @@ export default {
       return campos[4].value !== 'Selecione o status'
     }
 
-    
-    carregaDados();
+    carregaDados()
 
-function carregaDados() {
-  document.getElementById('usuarios-table-body').innerHTML = ''
-  const query = `query Query {
+    function carregaDados() {
+      document.getElementById('usuarios-table-body').innerHTML = ''
+      const query = `query Query {
 funcionarios {
     email
     idFuncionario
@@ -437,96 +448,95 @@ funcionarios {
 }
 }`
 
-const queryBancada = `query Query {
+      const queryBancada = `query Query {
   bancadas {
     idBancada
     apelido
   }
-}`;
+}`
 
-  axios.post('http://localhost:4000', { query }).then(
-    (result) => {
-      // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-      const funcionarios = result.data.data.funcionarios;
+      axios.post('http://localhost:4000', { query }).then(
+        (result) => {
+          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+          const funcionarios = result.data.data.funcionarios
 
-      const tbody = document.getElementById('usuarios-table-body')
+          const tbody = document.getElementById('usuarios-table-body')
 
-      funcionarios.forEach((usuario) => {
-        const tr = document.createElement('tr')
+          funcionarios.forEach((usuario) => {
+            const tr = document.createElement('tr')
 
-        const tdCheckbox = document.createElement('td')
-        tdCheckbox.className = 'collapsing'
-        const checkbox = document.createElement('div')
-        checkbox.className = 'ui fitted checkbox'
-        const inputCheckbox = document.createElement('input')
-        inputCheckbox.type = 'checkbox'
-        inputCheckbox.className = 'select-checkbox'
-        const labelCheckbox = document.createElement('label')
-        checkbox.appendChild(inputCheckbox)
-        checkbox.appendChild(labelCheckbox)
-        tdCheckbox.appendChild(checkbox)
+            const tdCheckbox = document.createElement('td')
+            tdCheckbox.className = 'collapsing'
+            const checkbox = document.createElement('div')
+            checkbox.className = 'ui fitted checkbox'
+            const inputCheckbox = document.createElement('input')
+            inputCheckbox.type = 'checkbox'
+            inputCheckbox.className = 'select-checkbox'
+            const labelCheckbox = document.createElement('label')
+            checkbox.appendChild(inputCheckbox)
+            checkbox.appendChild(labelCheckbox)
+            tdCheckbox.appendChild(checkbox)
 
-        inputCheckbox.addEventListener('change', function () {
-          const selectCheckboxes = document.getElementsByClassName('select-checkbox');
-          const selectAllCheckbox = document.getElementById('select-all');
+            inputCheckbox.addEventListener('change', function () {
+              const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+              const selectAllCheckbox = document.getElementById('select-all')
 
-          const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
-          selectAllCheckbox.checked = isAllChecked;
+              const isAllChecked = Array.from(selectCheckboxes).every(
+                (checkbox) => checkbox.checked
+              )
+              selectAllCheckbox.checked = isAllChecked
 
-          if (!this.checked) {
-            selectAllCheckbox.checked = false;
-          }
-        });
+              if (!this.checked) {
+                selectAllCheckbox.checked = false
+              }
+            })
 
-        axios
-      .post("http://localhost:4000", { query: queryBancada })
-      .then((result) => {
-        const bancadas = result.data.data.bancadas;
-        const tbody = document.getElementById('usuarios-table-body')
+            axios.post('http://localhost:4000', { query: queryBancada }).then((result) => {
+              const bancadas = result.data.data.bancadas
+              const tbody = document.getElementById('usuarios-table-body')
 
-        bancadas.forEach((bancada) => {
-          const tdBancada = document.createElement('td')
-        tdBancada.textContent = bancada.idBancada
-          option.innerHTML = "ID: " + bancada.idBancada + " | " + bancada.apelido;
-          tr.appendChild(tdBancada)
-        });
-      })
+              bancadas.forEach((bancada) => {
+                const tdBancada = document.createElement('td')
+                tdBancada.textContent = bancada.idBancada
+                option.innerHTML = 'ID: ' + bancada.idBancada + ' | ' + bancada.apelido
+                tr.appendChild(tdBancada)
+              })
+            })
 
+            const tdID = document.createElement('td')
+            tdID.textContent = usuario.idFuncionario
 
-        const tdID = document.createElement('td')
-        tdID.textContent = usuario.idFuncionario
+            const tdNome = document.createElement('td')
+            tdNome.textContent = usuario.nome
 
-        const tdNome = document.createElement('td')
-        tdNome.textContent = usuario.nome
+            const tdEmail = document.createElement('td')
+            tdEmail.textContent = usuario.email
 
-        const tdEmail = document.createElement('td') 
-        tdEmail.textContent = usuario.email
+            const tdBancada = document.createElement('td')
+            tdBancada.textContent = bancada.idBancada
 
-        const tdBancada = document.createElement('td')
-        tdBancada.textContent = bancada.idBancada
+            const tdTipo = document.createElement('td')
+            tdTipo.textContent = usuario.tipo
 
-        const tdTipo = document.createElement('td')
-        tdTipo.textContent = usuario.tipo
+            const tdStatus = document.createElement('td')
+            tdStatus.textContent = usuario.status
 
-        const tdStatus = document.createElement('td')
-        tdStatus.textContent = usuario.status
+            tr.appendChild(tdCheckbox)
+            tr.appendChild(tdID)
+            tr.appendChild(tdNome)
+            tr.appendChild(tdEmail)
+            tr.appendChild(tdBancada)
+            tr.appendChild(tdTipo)
+            tr.appendChild(tdStatus)
 
-        tr.appendChild(tdCheckbox)
-        tr.appendChild(tdID)
-        tr.appendChild(tdNome)
-        tr.appendChild(tdEmail)
-        tr.appendChild(tdBancada)
-        tr.appendChild(tdTipo)
-        tr.appendChild(tdStatus)
-
-        tbody.appendChild(tr)
-      })
-    },
-    (error) => {
-      console.log(error)
+            tbody.appendChild(tr)
+          })
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
     }
-  )
-}
   }
 }
 </script>

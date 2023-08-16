@@ -16,7 +16,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Código da Manutenção" class="fluid" id="filter-idManutencao" />
+                  <input
+                    type="text"
+                    placeholder="Código da Manutenção"
+                    class="fluid"
+                    id="filter-idManutencao"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -28,7 +33,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Nome do patrimônio" class="fluid" id="filter-patrimonio" />
+                  <input
+                    type="text"
+                    placeholder="Nome do patrimônio"
+                    class="fluid"
+                    id="filter-patrimonio"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -40,7 +50,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Nome do funcionário" class="fluid" id="filter-funcionario" />
+                  <input
+                    type="text"
+                    placeholder="Nome do funcionário"
+                    class="fluid"
+                    id="filter-funcionario"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -140,10 +155,7 @@
               <tr>
                 <th></th>
                 <th colspan="5">
-                  <div
-                    class="ui right floated small labeled icon button"
-                    id="add-patrimonio"
-                  >
+                  <div class="ui right floated small labeled icon button" id="add-patrimonio">
                     <i class="wrench icon"></i> Adicionar Manutenção
                   </div>
                   <div class="ui left floated small button">Excluir</div>
@@ -190,7 +202,12 @@
           </div>
           <div class="field">
             <label>Pertencente ao Funcionário:</label>
-            <select name="tipo" class="campo required" id="funcionario" @change="funcionarioValidate">
+            <select
+              name="tipo"
+              class="campo required"
+              id="funcionario"
+              @change="funcionarioValidate"
+            >
               <option class="placeholder" disabled selected>Selecione o Funcionário</option>
               <option value="Jeferson">Jeferson</option>
               <option value="Camila">Camila</option>
@@ -208,10 +225,10 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Manutencao',
   mounted() {
     // Selecione todos os checkboxes quando o checkbox geral é selecionado
@@ -367,14 +384,13 @@ export default {
       return campos[3].value !== 'Selecione o Funcionário'
     }
 
-
-      // Puxando Dados do Banco
-//       const queryPatrimonio = `query Query {
-//   patrimonios {
-//     marca
-//     modelo
-//   }
-// }`
+    // Puxando Dados do Banco
+    //       const queryPatrimonio = `query Query {
+    //   patrimonios {
+    //     marca
+    //     modelo
+    //   }
+    // }`
 
     // axios.post('http://localhost:4000', { query: queryPatrimonio }).then(
     //   (result) => {
@@ -392,7 +408,7 @@ export default {
     //     console.log(err)
     //   })
 
-    carregaDados();
+    carregaDados()
 
     function carregaDados() {
       document.getElementById('manutencoes-table-body').innerHTML = ''
@@ -410,12 +426,12 @@ export default {
         (result) => {
           // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
           const consertos = result.data.data.consertos
-
+          let i = 0
           const tbody = document.getElementById('manutencoes-table-body')
 
           consertos.forEach((conserto) => {
+            i++
             const tr = document.createElement('tr')
-
             const tdCheckbox = document.createElement('td')
             tdCheckbox.className = 'collapsing'
             const checkbox = document.createElement('div')
@@ -429,16 +445,18 @@ export default {
             tdCheckbox.appendChild(checkbox)
 
             inputCheckbox.addEventListener('change', function () {
-              const selectCheckboxes = document.getElementsByClassName('select-checkbox');
-              const selectAllCheckbox = document.getElementById('select-all');
+              const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+              const selectAllCheckbox = document.getElementById('select-all')
 
-              const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
-              selectAllCheckbox.checked = isAllChecked;
+              const isAllChecked = Array.from(selectCheckboxes).every(
+                (checkbox) => checkbox.checked
+              )
+              selectAllCheckbox.checked = isAllChecked
 
               if (!this.checked) {
-                selectAllCheckbox.checked = false;
+                selectAllCheckbox.checked = false
               }
-            });
+            })
 
             const tdManutencao = document.createElement('td')
             tdManutencao.textContent = conserto.idConserto
@@ -453,7 +471,7 @@ export default {
             tdData.textContent = conserto.dataHora
 
             const tdDetalhes = document.createElement('td')
-            tdDetalhes.textContent = conserto.detalhes
+            tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${conserto.idConserto}', '${conserto.detalhes}' , 'info')">Ver</button>`
 
             tr.appendChild(tdCheckbox)
             tr.appendChild(tdManutencao)
@@ -470,6 +488,8 @@ export default {
         }
       )
     }
+
+
 
   }
 }

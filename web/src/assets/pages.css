@@ -193,7 +193,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   align-items: center;
 }
 
-.sidebar.open~.bg-dimmer {
+.sidebar.open ~ .bg-dimmer {
   backdrop-filter: blur(10px);
   opacity: 0.8;
   z-index: 50;
@@ -588,19 +588,17 @@ select.placeholder {
   transition: all 0.3s;
 }
 
-
-.ui.two.column.grid>.column {
+.ui.two.column.grid > .column {
   width: 50%;
 }
 
-.ui.two.column.grid>.column:first-child {
+.ui.two.column.grid > .column:first-child {
   padding-right: 10px;
 }
 
-.ui.two.column.grid>.column:last-child {
+.ui.two.column.grid > .column:last-child {
   padding-left: 10px;
 }
-
 
 .bg-button {
   background: rgb(0, 70, 84);
@@ -611,7 +609,6 @@ label {
   font-size: 25px;
   /* Altere o tamanho da fonte conforme necessário */
 }
-
 
 .span-required {
   font-size: 0.95em;
@@ -627,9 +624,9 @@ label {
   border: 2px solid rgb(156, 156, 156);
   width: 100%;
   box-sizing: border-box;
-  transition: .3s;
+  transition: 0.3s;
 }
-  .campo:focus{
+.campo:focus {
   border-color: rgb(0, 70, 84) !important;
 }
 
@@ -778,11 +775,11 @@ td.td-desc {
 }
 
 .dark-mode .button1-content {
-  color: #ffffff
+  color: #ffffff;
 }
 
 .dark-mode .button2-content {
-  color: #ffffff
+  color: #ffffff;
 }
 
 .dark-mode .button1::before {
@@ -793,33 +790,34 @@ td.td-desc {
   background: linear-gradient(82.3deg, rgb(68, 68, 68) 10%, rgb(46, 46, 46) 90%);
 }
 
-.dark-mode .accordion{
+.dark-mode .accordion {
   background-color: #222;
   border-color: white;
   color: white;
 }
 
-.dark-mode .accordion-header{
+.dark-mode .accordion-header {
   background-color: #222;
   color: white;
   border-color: white;
 }
-.dark-mode .header{
-  background-color: #222!important;
+.dark-mode .header {
+  background-color: #222 !important;
   color: white;
-  border-color: white!important;
-}
-.dark-mode .item{
-  background-color: #222!important;
-  color: white!important;
   border-color: white !important;
 }
-.dark-mode .accordion label{
+.dark-mode .item {
+  background-color: #222 !important;
+  color: white !important;
+  border-color: white !important;
+}
+.dark-mode .accordion label {
   background-color: #222;
   color: white;
-  border-color: white ;
+  border-color: white;
 }
-.data i.icon, .data i.icons {
+.data i.icon,
+.data i.icons {
   font-size: 1.5em;
 }
 
@@ -838,13 +836,13 @@ td.td-desc {
     align-items: center;
     justify-content: space-around;
   }
-  
+
   /* hover em card_info sobe um pouco ele usando transform */
   .card_info:hover {
     transform: translateY(-10px);
     transition: 0.5s;
   }
-  
+
   .card_content {
     padding: 10px;
     width: 100%;
@@ -852,17 +850,16 @@ td.td-desc {
     font-size: 1.7em;
     font-weight: bold;
   }
-  
+
   .card_title {
     padding: 5px;
     font-size: 1.3em;
     font-family: SFProBold;
     color: #00000083;
   }
-
 }
 
-.dark-mode #add-patrimonio{
-  color: white!important;
-  background-color: rgb(91, 91, 91)!important;
+.dark-mode #add-patrimonio {
+  color: white !important;
+  background-color: rgb(91, 91, 91) !important;
 }

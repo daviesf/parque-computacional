@@ -16,7 +16,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
+                  <input
+                    type="text"
+                    placeholder="ID da bancada"
+                    class="fluid"
+                    id="filter-bancada"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -28,7 +33,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Apelido da bancada" class="fluid" id="filter-apelido" />
+                  <input
+                    type="text"
+                    placeholder="Apelido da bancada"
+                    class="fluid"
+                    id="filter-apelido"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -40,7 +50,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Local da bancada" class="fluid" id="filter-local" />
+                  <input
+                    type="text"
+                    placeholder="Local da bancada"
+                    class="fluid"
+                    id="filter-local"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -84,7 +99,7 @@
 
         <div class="eleven wide column" style="margin-top: 30px">
           <table class="ui compact celled definition table">
-            <thead >
+            <thead>
               <tr>
                 <td class="collapsing">
                   <div class="ui fitted checkbox">
@@ -124,12 +139,26 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Apelido</label>
-            <input type="text" name="apelido" placeholder="Apelido" class="campo required" id="apelido" @input="apelidoValidate"/>
+            <input
+              type="text"
+              name="apelido"
+              placeholder="Apelido"
+              class="campo required"
+              id="apelido"
+              @input="apelidoValidate"
+            />
             <span class="span-required">Inisira o Apelido</span>
           </div>
           <div class="field">
             <label>Local</label>
-            <input type="text" name="local" placeholder="Local" class="campo required" id="local" @input="localValidate"/>
+            <input
+              type="text"
+              name="local"
+              placeholder="Local"
+              class="campo required"
+              id="local"
+              @input="localValidate"
+            />
             <span class="span-required">Inisira o Local</span>
           </div>
 
@@ -152,8 +181,7 @@
 </template>
 
 <script>
-
-  import axios from 'axios';
+import axios from 'axios'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -294,13 +322,12 @@ export default {
       return campos[2].value !== 'Selecione o status'
     }
 
+    // Puxando Dados do Banco
+    carregaDados()
 
-// Puxando Dados do Banco
-carregaDados();
-
-function carregaDados() {
-  document.getElementById('bancada-table-body').innerHTML = ''
-  const query = `query Query {
+    function carregaDados() {
+      document.getElementById('bancada-table-body').innerHTML = ''
+      const query = `query Query {
     bancadas {
       idBancada
       apelido
@@ -309,7 +336,7 @@ function carregaDados() {
     }
   }`
 
-    axios.post('http://localhost:4000', { query }).then(
+      axios.post('http://localhost:4000', { query }).then(
         (result) => {
           // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
           const bancadas = result.data.data.bancadas
@@ -332,16 +359,18 @@ function carregaDados() {
             tdCheckbox.appendChild(checkbox)
 
             inputCheckbox.addEventListener('change', function () {
-              const selectCheckboxes = document.getElementsByClassName('select-checkbox');
-              const selectAllCheckbox = document.getElementById('select-all');
+              const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+              const selectAllCheckbox = document.getElementById('select-all')
 
-              const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
-              selectAllCheckbox.checked = isAllChecked;
+              const isAllChecked = Array.from(selectCheckboxes).every(
+                (checkbox) => checkbox.checked
+              )
+              selectAllCheckbox.checked = isAllChecked
 
               if (!this.checked) {
-                selectAllCheckbox.checked = false;
+                selectAllCheckbox.checked = false
               }
-            });
+            })
 
             const tdBancada = document.createElement('td')
             tdBancada.textContent = bancada.idBancada
@@ -425,7 +454,7 @@ function carregaDados() {
           console.log(result)
           $('.popup').hide()
           $('.dimmer').hide()
-          carregaDados();
+          carregaDados()
         },
         (error) => {
           console.log(error)
@@ -436,20 +465,20 @@ function carregaDados() {
     // filtro
     const filter = document.getElementById('filter')
     filter.addEventListener('click', function () {
-      console.log("Tentando filtrar");
+      console.log('Tentando filtrar')
       let bancada = document.getElementById('filter-bancada').value
       let apelido = document.getElementById('filter-apelido').value
       let local = document.getElementById('filter-local').value
-      console.log("Peguei os dados dos inputs:" + bancada + apelido + local)
+      console.log('Peguei os dados dos inputs:' + bancada + apelido + local)
       if (document.getElementById('cb-ativo').checked) {
-        var status = "Ativo"
+        var status = 'Ativo'
       } else if (document.getElementById('cb-inativo').checked) {
-        var status = "Inativo"
+        var status = 'Inativo'
       } else if (document.getElementById('cb-manut').checked) {
-        var status = "Manutenção"
+        var status = 'Manutenção'
       }
-      console.log("Status" + status)
-  
+      console.log('Status' + status)
+
       const query = `query Query($filter: BancadaFilter) {
   searchBancadas(filter: $filter) {
     idBancada
@@ -467,73 +496,71 @@ function carregaDados() {
         }
       }
 
-      axios.post('http://localhost:4000', { query, variables }).then(
-        (result) => {
-          console.log(result);
-          document.getElementById('bancada-table-body').innerHTML = ''
-          const bancadas = result.data.data.searchBancadas
-          console.log("=====")
-          console.log(bancadas)
-          const tbody = document.getElementById('bancada-table-body')
+      axios.post('http://localhost:4000', { query, variables }).then((result) => {
+        console.log(result)
+        document.getElementById('bancada-table-body').innerHTML = ''
+        const bancadas = result.data.data.searchBancadas
+        console.log('=====')
+        console.log(bancadas)
+        const tbody = document.getElementById('bancada-table-body')
 
-          bancadas.forEach((bancada) => {
-            const tr = document.createElement('tr')
+        bancadas.forEach((bancada) => {
+          const tr = document.createElement('tr')
 
-            const tdCheckbox = document.createElement('td')
-            tdCheckbox.className = 'collapsing'
-            const checkbox = document.createElement('div')
-            checkbox.className = 'ui fitted checkbox'
-            const inputCheckbox = document.createElement('input')
-            inputCheckbox.type = 'checkbox'
-            inputCheckbox.className = 'select-checkbox'
-            const labelCheckbox = document.createElement('label')
-            checkbox.appendChild(inputCheckbox)
-            checkbox.appendChild(labelCheckbox)
-            tdCheckbox.appendChild(checkbox)
+          const tdCheckbox = document.createElement('td')
+          tdCheckbox.className = 'collapsing'
+          const checkbox = document.createElement('div')
+          checkbox.className = 'ui fitted checkbox'
+          const inputCheckbox = document.createElement('input')
+          inputCheckbox.type = 'checkbox'
+          inputCheckbox.className = 'select-checkbox'
+          const labelCheckbox = document.createElement('label')
+          checkbox.appendChild(inputCheckbox)
+          checkbox.appendChild(labelCheckbox)
+          tdCheckbox.appendChild(checkbox)
 
-            inputCheckbox.addEventListener('change', function () {
-              const selectCheckboxes = document.getElementsByClassName('select-checkbox');
-              const selectAllCheckbox = document.getElementById('select-all');
+          inputCheckbox.addEventListener('change', function () {
+            const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+            const selectAllCheckbox = document.getElementById('select-all')
 
-              const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
-              selectAllCheckbox.checked = isAllChecked;
+            const isAllChecked = Array.from(selectCheckboxes).every((checkbox) => checkbox.checked)
+            selectAllCheckbox.checked = isAllChecked
 
-              if (!this.checked) {
-                selectAllCheckbox.checked = false;
-              }
-            });
-
-            const tdBancada = document.createElement('td')
-            tdBancada.textContent = bancada.idBancada
-
-            const tdApelido = document.createElement('td')
-            tdApelido.textContent = bancada.apelido
-
-            const tdLocal = document.createElement('td')
-            tdLocal.textContent = bancada.local
-
-            const tdStatus = document.createElement('td')
-            if (bancada.status == 0) {
-              bancada.status = 'Inativo'
-            } else if (bancada.status == 1) {
-              bancada.status = 'Ativo'
-            } else if (bancada.status == 2) {
-              bancada.status = 'Manutenção'
+            if (!this.checked) {
+              selectAllCheckbox.checked = false
             }
-
-            tdStatus.textContent = bancada.status
-
-            tr.appendChild(tdCheckbox)
-            tr.appendChild(tdBancada)
-            tr.appendChild(tdApelido)
-            tr.appendChild(tdLocal)
-            tr.appendChild(tdStatus)
-            tbody.appendChild(tr)
           })
-        })
 
+          const tdBancada = document.createElement('td')
+          tdBancada.textContent = bancada.idBancada
+
+          const tdApelido = document.createElement('td')
+          tdApelido.textContent = bancada.apelido
+
+          const tdLocal = document.createElement('td')
+          tdLocal.textContent = bancada.local
+
+          const tdStatus = document.createElement('td')
+          if (bancada.status == 0) {
+            bancada.status = 'Inativo'
+          } else if (bancada.status == 1) {
+            bancada.status = 'Ativo'
+          } else if (bancada.status == 2) {
+            bancada.status = 'Manutenção'
+          }
+
+          tdStatus.textContent = bancada.status
+
+          tr.appendChild(tdCheckbox)
+          tr.appendChild(tdBancada)
+          tr.appendChild(tdApelido)
+          tr.appendChild(tdLocal)
+          tr.appendChild(tdStatus)
+          tbody.appendChild(tr)
+        })
+      })
     })
-}
+  }
 }
 </script>
 

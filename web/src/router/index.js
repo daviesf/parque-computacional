@@ -74,7 +74,6 @@ const router = createRouter({
       name: 'NotFound',
       redirect: '/404'
     }
-
   ]
 })
 
