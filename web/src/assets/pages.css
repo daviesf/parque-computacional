@@ -504,12 +504,12 @@ select.placeholder {
 }
 
 .button1 {
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 6px;
+  margin-left: 6px;
   position: relative;
   overflow: hidden;
   height: 3rem;
-  width: 8vw;
+  width: 7vw;
   border-radius: 0.7rem;
   background: #00000083;
   color: #ffffff;
@@ -544,6 +544,50 @@ select.placeholder {
   background: linear-gradient(82.3deg, rgb(71, 134, 136) 10%, rgb(0, 89, 107) 90%);
   transition: all 0.3s;
 }
+
+.button2 {
+  margin-top: 825px;
+  margin-right: 6px;
+  margin-left: 6px;
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  width: 14vw;
+  border-radius: 0.7rem;
+  background: #00000083;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-family: SFProBold;
+  font-size: 1.1em;
+}
+
+.button2:hover::before {
+  transform: scaleX(1);
+}
+
+.button2-content {
+  font-size: 1.1em;
+  font-family: SFProBold;
+  position: relative;
+  z-index: 1;
+}
+
+.button2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 100%;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(82.3deg, rgb(71, 134, 136) 10%, rgb(0, 89, 107) 90%);
+  transition: all 0.3s;
+}
+
 
 .ui.two.column.grid>.column {
   width: 50%;
@@ -729,11 +773,23 @@ td.td-desc {
   background-color: #737373;
 }
 
+.dark-mode .button2 {
+  background-color: #737373;
+}
+
 .dark-mode .button1-content {
   color: #ffffff
 }
 
+.dark-mode .button2-content {
+  color: #ffffff
+}
+
 .dark-mode .button1::before {
+  background: linear-gradient(82.3deg, rgb(68, 68, 68) 10%, rgb(46, 46, 46) 90%);
+}
+
+.dark-mode .button2::before {
   background: linear-gradient(82.3deg, rgb(68, 68, 68) 10%, rgb(46, 46, 46) 90%);
 }
 

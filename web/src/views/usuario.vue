@@ -110,6 +110,7 @@
                     <label></label>
                   </div>
                 </td>
+                <th class="wide-80">ID</th>
                 <th class="wide-150">Nome</th>
                 <th>E-mail</th>
                 <th class="wide-80">Bancada</th>
@@ -117,7 +118,7 @@
                 <th class="wide-100">Status</th>
               </tr>
             </thead>
-            <tbody>
+            <!-- <tbody>
               <tr>
                 <td class="collapsing">
                   <div class="ui fitted checkbox">
@@ -167,11 +168,12 @@
                 <td>Estagiário</td>
                 <td>Desligado</td>
               </tr>
-            </tbody>
+            </tbody> -->
+            <tbody id="usuarios-table-body"></tbody>
             <tfoot class="full-width">
               <tr>
                 <th></th>
-                <th colspan="5">
+                <th colspan="6">
                   <div
                     class="ui right floated small labeled icon button"
                     id="add-patrimonio"
@@ -257,6 +259,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Usuario',
@@ -418,6 +421,112 @@ export default {
     function statusValidate() {
       return campos[4].value !== 'Selecione o status'
     }
+
+    
+    carregaDados();
+
+function carregaDados() {
+  document.getElementById('usuarios-table-body').innerHTML = ''
+  const query = `query Query {
+funcionarios {
+    email
+    idFuncionario
+    nome
+    status
+    tipo
+}
+}`
+
+const queryBancada = `query Query {
+  bancadas {
+    idBancada
+    apelido
+  }
+}`;
+
+  axios.post('http://localhost:4000', { query }).then(
+    (result) => {
+      // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+      const funcionarios = result.data.data.funcionarios;
+
+      const tbody = document.getElementById('usuarios-table-body')
+
+      funcionarios.forEach((usuario) => {
+        const tr = document.createElement('tr')
+
+        const tdCheckbox = document.createElement('td')
+        tdCheckbox.className = 'collapsing'
+        const checkbox = document.createElement('div')
+        checkbox.className = 'ui fitted checkbox'
+        const inputCheckbox = document.createElement('input')
+        inputCheckbox.type = 'checkbox'
+        inputCheckbox.className = 'select-checkbox'
+        const labelCheckbox = document.createElement('label')
+        checkbox.appendChild(inputCheckbox)
+        checkbox.appendChild(labelCheckbox)
+        tdCheckbox.appendChild(checkbox)
+
+        inputCheckbox.addEventListener('change', function () {
+          const selectCheckboxes = document.getElementsByClassName('select-checkbox');
+          const selectAllCheckbox = document.getElementById('select-all');
+
+          const isAllChecked = Array.from(selectCheckboxes).every(checkbox => checkbox.checked);
+          selectAllCheckbox.checked = isAllChecked;
+
+          if (!this.checked) {
+            selectAllCheckbox.checked = false;
+          }
+        });
+
+        axios
+      .post("http://localhost:4000", { query: queryBancada })
+      .then((result) => {
+        const bancadas = result.data.data.bancadas;
+        const tbody = document.getElementById('usuarios-table-body')
+
+        bancadas.forEach((bancada) => {
+          const tdBancada = document.createElement('td')
+        tdBancada.textContent = bancada.idBancada
+          option.innerHTML = "ID: " + bancada.idBancada + " | " + bancada.apelido;
+          tr.appendChild(tdBancada)
+        });
+      })
+
+
+        const tdID = document.createElement('td')
+        tdID.textContent = usuario.idFuncionario
+
+        const tdNome = document.createElement('td')
+        tdNome.textContent = usuario.nome
+
+        const tdEmail = document.createElement('td') 
+        tdEmail.textContent = usuario.email
+
+        const tdBancada = document.createElement('td')
+        tdBancada.textContent = bancada.idBancada
+
+        const tdTipo = document.createElement('td')
+        tdTipo.textContent = usuario.tipo
+
+        const tdStatus = document.createElement('td')
+        tdStatus.textContent = usuario.status
+
+        tr.appendChild(tdCheckbox)
+        tr.appendChild(tdID)
+        tr.appendChild(tdNome)
+        tr.appendChild(tdEmail)
+        tr.appendChild(tdBancada)
+        tr.appendChild(tdTipo)
+        tr.appendChild(tdStatus)
+
+        tbody.appendChild(tr)
+      })
+    },
+    (error) => {
+      console.log(error)
+    }
+  )
+}
   }
 }
 </script>
