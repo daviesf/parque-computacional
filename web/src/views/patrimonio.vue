@@ -16,7 +16,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Ex: 1282" class="fluid" id="filter-cod" />
+                  <input
+                    type="text"
+                    placeholder="Ex: 1282"
+                    class="fluid"
+                    id="filter-cod"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -28,7 +33,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
+                  <input
+                    type="text"
+                    placeholder="ID da bancada"
+                    class="fluid"
+                    id="filter-bancada"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -40,7 +50,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Ex: Samsung" class="fluid" id="filter-marca" />
+                  <input
+                    type="text"
+                    placeholder="Ex: Samsung"
+                    class="fluid"
+                    id="filter-marca"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -52,7 +67,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Ex: S20" class="fluid" id="filter-modelo" />
+                  <input
+                    type="text"
+                    placeholder="Ex: S20"
+                    class="fluid"
+                    id="filter-modelo"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -116,7 +136,9 @@
             <div class="item">
               <div class="ui icon input fluid">
                 <button class="button1" id="filter">
-                  <span class="button1-content"><i class="search icon"></i>Aplicar Filtro</span>
+                  <span class="button1-content"
+                    ><i class="search icon"></i>Aplicar Filtro</span
+                  >
                 </button>
               </div>
             </div>
@@ -147,11 +169,16 @@
                 <th></th>
                 <th colspan="6">
                   <div class="bg-button">
-                    <div class="ui right floated small labeled icon button" id="add-patrimonio">
+                    <div
+                      class="ui right floated small labeled icon button"
+                      id="add-patrimonio"
+                    >
                       <i class="keyboard outline icon"></i> Adicionar Patrimônio
                     </div>
                   </div>
-                  <div class="ui left floated small button">Excluir</div>
+                  <div class="ui left floated small button" id="del-patrimonio-btn">
+                    Excluir
+                  </div>
                   <div class="ui left floated small button" id="upd-patrimonio-btn">
                     Alterar
                   </div>
@@ -173,13 +200,24 @@
             <div class="column">
               <div class="field">
                 <label>Código</label>
-                <input type="text" name="codigo" placeholder="Código do Patrimônio" class="campo required" id="codigo"
-                  @input="codigoValidate" />
+                <input
+                  type="text"
+                  name="codigo"
+                  placeholder="Código do Patrimônio"
+                  class="campo required"
+                  id="codigo"
+                  @input="codigoValidate"
+                />
                 <span class="span-required">Insira o código do Patrimônio</span>
               </div>
               <div class="field">
                 <label>Bancada</label>
-                <select name="tipo" class="campo required" id="bancada" @change="bancadaValidate">
+                <select
+                  name="tipo"
+                  class="campo required"
+                  id="bancada"
+                  @change="bancadaValidate"
+                >
                   <option selected value="selecione" disabled>
                     Selecione uma bancada...
                   </option>
@@ -188,7 +226,12 @@
               </div>
               <div class="field">
                 <label>Tipo</label>
-                <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
+                <select
+                  name="tipo"
+                  class="campo required"
+                  id="tipo"
+                  @change="tipoValidate"
+                >
                   <option class="placeholder" disabled selected>Selecione o tipo</option>
                   <option value="Desktop">Desktop</option>
                   <option value="Notebook">Notebook</option>
@@ -201,19 +244,36 @@
             <div class="column">
               <div class="field">
                 <label>Marca</label>
-                <input type="text" name="marca" placeholder="Marca" class="campo required" id="marca"
-                  @input="marcaValidate" />
+                <input
+                  type="text"
+                  name="marca"
+                  placeholder="Marca"
+                  class="campo required"
+                  id="marca"
+                  @input="marcaValidate"
+                />
                 <span class="span-required">Insira a Marca</span>
               </div>
               <div class="field">
                 <label>Modelo</label>
-                <input type="text" name="modelo" placeholder="Modelo" class="campo required" id="modelo"
-                  @input="modeloValidate" />
+                <input
+                  type="text"
+                  name="modelo"
+                  placeholder="Modelo"
+                  class="campo required"
+                  id="modelo"
+                  @input="modeloValidate"
+                />
                 <span class="span-required">Insira o Modelo</span>
               </div>
               <div class="field">
                 <label>Status</label>
-                <select name="status" class="campo required" id="status" @change="statusValidate">
+                <select
+                  name="status"
+                  class="campo required"
+                  id="status"
+                  @change="statusValidate"
+                >
                   <option class="placeholder" disabled selected>
                     Selecione o status
                   </option>
@@ -225,6 +285,9 @@
               </div>
               <button class="ui submit button" type="submit" id="submit-patrimonio">
                 Adicionar
+              </button>
+              <button class="ui submit button" type="submit" id="upd-patrimonio">
+                Atualizar
               </button>
               <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
             </div>
@@ -260,19 +323,89 @@ export default {
         e.preventDefault();
         $(".ui.dividing.header").text("Cadastrar Patrimônio");
         $("#submit-patrimonio").text("Adicionar");
-        $("#submit-patrimonio").attr("id", "submit-patrimonio");
+        const esconder = document.querySelector("#upd-patrimonio");
+        esconder.style.display = "none";
         $(".dimmer").fadeIn();
+      });
+
+      $(".cancel-button").click(function () {
+        $(".popup").hide();
+        $(".dimmer").hide();
+        const aparecer = document.querySelector("#upd-patrimonio");
+        aparecer.style.display = "inline";
       });
       // eslint-disable-next-line no-undef
       $(".dimmer").click(function (e) {
         // eslint-disable-next-line no-undef
         if ($(e.target).hasClass("dimmer")) {
+          setTimeout(() => {
+            const aparecer1 = document.querySelector("#submit-patrimonio");
+            aparecer1.style.display = "inline";
+          }, 1000);
+          setTimeout(() => {
+            const aparecer2 = document.querySelector("#upd-patrimonio");
+            aparecer2.style.display = "inline";
+          }, 1000);
           // eslint-disable-next-line no-undef
           $(this).fadeOut();
         }
       });
     });
 
+    $(document).ready(function () {
+      $("#del-patrimonio-btn").click(function () {
+        const selectedCheckboxes = $("input.select-checkbox:checked");
+
+        if (selectedCheckboxes.length == 0) {
+          alert("Selecione Um Valor Antes de Clicar em Excluir");
+          return;
+        } else {
+          if (confirm("Tem Certeza Que Deseja Excluir?")) {
+            selectedCheckboxes.each(function () {
+              const selectedRow = $(this).closest("tr");
+
+              const selectedFields = selectedRow.find("td").slice(1, 7);
+
+              const formFields = $("#form input, #form select");
+
+              const codigoCell = selectedFields.eq(0).text().trim();
+
+              console.log("Código selecionado:", codigoCell);
+
+              console.log("Iniciando Atualização");
+
+              console.log("Verificando status");
+
+              console.log("Query");
+
+              const query = `mutation Mutation($idPatrimonio: ID!) {
+                  deletePatrimonio(idPatrimonio: $idPatrimonio)
+                  }`;
+
+              console.log("Variáveis");
+
+              const variables = {
+                idPatrimonio: parseInt(codigoCell),
+              };
+
+              console.log(variables);
+
+              axios.post("http://localhost:4000", { query, variables }).then(
+                (result) => {
+                  console.log(result);
+                  $(".popup").hide();
+                  $(".dimmer").hide();
+                  carregaDados();
+                },
+                (error) => {
+                  console.log(error);
+                }
+              );
+            });
+          }
+        }
+      });
+    });
 
     $(document).ready(function () {
       // Open the popup for updating when "Alterar" button is clicked
@@ -296,22 +429,27 @@ export default {
 
         selectedFields.each(function (index) {
           formFields.eq(index).val($(this).text().trim());
+          //let cod = formFields.eq(1)val($(this).text().trim());
+          //let bancada = formFields.eq(2)val($(this).text().trim());
+          //let marca = formFields.eq(3)val($(this).text().trim());
+          //let modelo = formFields.eq(4)val($(this).text().trim());
+          //let tipo = formFields.eq(5)val($(this).text().trim());
+          //let status = formFields.eq(6)val($(this).text().trim());
         });
+
 
         // Change the header text to "Atualizar Patrimônio"
         $(".ui.dividing.header").text("Atualizar Patrimônio");
-
-        // Change the button text to "Atualizar Patrimônio"
-        $("#add-patrimonio").text("Atualizar Patrimônio");
-
-        // Change the button ID to "atualize-patrimonio"
-        $("#add-patrimonio").attr("id", "atualize-patrimonio");
+        const esconder = document.querySelector("#submit-patrimonio");
+        esconder.style.display = "none";
       });
 
       // Hide the pop-up and dimmer when "Cancelar" button is clicked
       $(".cancel-button").click(function () {
         $(".popup").hide();
         $(".dimmer").hide();
+        const esconder = document.querySelector("#submit-patrimonio");
+        esconder.style.display = "inline";
       });
     });
 
@@ -586,7 +724,7 @@ export default {
     });
 
     // Atualizar
-    const updPatrimonio = document.getElementById("atualize-patrimonio");
+    const updPatrimonio = document.getElementById("upd-patrimonio");
     updPatrimonio.addEventListener("click", function () {
       console.log("Iniciando Atualização");
       let cod = document.getElementById("codigo").value;
@@ -627,7 +765,7 @@ export default {
           idPatrimonio: parseInt(cod),
           marca: marca,
           modelo: modelo,
-          tipo: tipo
+          tipo: tipo,
         },
         idPatrimonio: parseInt(cod),
       };
