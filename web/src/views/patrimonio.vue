@@ -16,12 +16,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Ex: 1282"
-                    class="fluid"
-                    id="filter-cod"
-                  />
+                  <input type="text" placeholder="Ex: 1282" class="fluid" id="filter-cod" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -33,12 +28,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="ID da bancada"
-                    class="fluid"
-                    id="filter-bancada"
-                  />
+                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -50,12 +40,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Ex: Samsung"
-                    class="fluid"
-                    id="filter-marca"
-                  />
+                  <input type="text" placeholder="Ex: Samsung" class="fluid" id="filter-marca" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -67,12 +52,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Ex: S20"
-                    class="fluid"
-                    id="filter-modelo"
-                  />
+                  <input type="text" placeholder="Ex: S20" class="fluid" id="filter-modelo" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -136,9 +116,7 @@
             <div class="item">
               <div class="ui icon input fluid">
                 <button class="button1" id="filter">
-                  <span class="button1-content"
-                    ><i class="search icon"></i>Aplicar Filtro</span
-                  >
+                  <span class="button1-content"><i class="search icon"></i>Aplicar Filtro</span>
                 </button>
               </div>
             </div>
@@ -169,10 +147,7 @@
                 <th></th>
                 <th colspan="6">
                   <div class="bg-button">
-                    <div
-                      class="ui right floated small labeled icon button"
-                      id="add-patrimonio"
-                    >
+                    <div class="ui right floated small labeled icon button" id="add-patrimonio">
                       <i class="keyboard outline icon"></i> Adicionar Patrimônio
                     </div>
                   </div>
@@ -198,24 +173,13 @@
             <div class="column">
               <div class="field">
                 <label>Código</label>
-                <input
-                  type="text"
-                  name="codigo"
-                  placeholder="Código do Patrimônio"
-                  class="campo required"
-                  id="codigo"
-                  @input="codigoValidate"
-                />
+                <input type="text" name="codigo" placeholder="Código do Patrimônio" class="campo required" id="codigo"
+                  @input="codigoValidate" />
                 <span class="span-required">Insira o código do Patrimônio</span>
               </div>
               <div class="field">
                 <label>Bancada</label>
-                <select
-                  name="tipo"
-                  class="campo required"
-                  id="bancada"
-                  @change="bancadaValidate"
-                >
+                <select name="tipo" class="campo required" id="bancada" @change="bancadaValidate">
                   <option selected value="selecione" disabled>
                     Selecione uma bancada...
                   </option>
@@ -224,12 +188,7 @@
               </div>
               <div class="field">
                 <label>Tipo</label>
-                <select
-                  name="tipo"
-                  class="campo required"
-                  id="tipo"
-                  @change="tipoValidate"
-                >
+                <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
                   <option class="placeholder" disabled selected>Selecione o tipo</option>
                   <option value="Desktop">Desktop</option>
                   <option value="Notebook">Notebook</option>
@@ -242,36 +201,19 @@
             <div class="column">
               <div class="field">
                 <label>Marca</label>
-                <input
-                  type="text"
-                  name="marca"
-                  placeholder="Marca"
-                  class="campo required"
-                  id="marca"
-                  @input="marcaValidate"
-                />
+                <input type="text" name="marca" placeholder="Marca" class="campo required" id="marca"
+                  @input="marcaValidate" />
                 <span class="span-required">Insira a Marca</span>
               </div>
               <div class="field">
                 <label>Modelo</label>
-                <input
-                  type="text"
-                  name="modelo"
-                  placeholder="Modelo"
-                  class="campo required"
-                  id="modelo"
-                  @input="modeloValidate"
-                />
+                <input type="text" name="modelo" placeholder="Modelo" class="campo required" id="modelo"
+                  @input="modeloValidate" />
                 <span class="span-required">Insira o Modelo</span>
               </div>
               <div class="field">
                 <label>Status</label>
-                <select
-                  name="status"
-                  class="campo required"
-                  id="status"
-                  @change="statusValidate"
-                >
+                <select name="status" class="campo required" id="status" @change="statusValidate">
                   <option class="placeholder" disabled selected>
                     Selecione o status
                   </option>
@@ -626,6 +568,68 @@ export default {
           tipo: tipo,
           status: status,
         },
+      };
+
+      console.log(variables);
+
+      axios.post("http://localhost:4000", { query, variables }).then(
+        (result) => {
+          console.log(result);
+          $(".popup").hide();
+          $(".dimmer").hide();
+          carregaDados();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
+
+    // Atualizar
+    const updPatrimonio = document.getElementById("atualize-patrimonio");
+    updPatrimonio.addEventListener("click", function () {
+      console.log("Iniciando Atualização");
+      let cod = document.getElementById("codigo").value;
+      let bancada = document.getElementById("bancada").value;
+      let marca = document.getElementById("marca").value;
+      let modelo = document.getElementById("modelo").value;
+      let tipo = document.getElementById("tipo").value;
+      let status = document.getElementById("status").value;
+      if (status == "ativo") {
+        status = 1;
+      } else if (status == "inativo") {
+        status = 0;
+      } else if (status == "manutenção") {
+        status = 2;
+      }
+
+      console.log("Verificando status");
+
+      console.log("Query");
+
+      const query = `mutation Mutation($idPatrimonio: ID!, $data: dadosPatrimonio) {
+  updatePatrimonio(idPatrimonio: $idPatrimonio, data: $data) {
+    idBancada
+    idPatrimonio
+    marca
+    modelo
+    status
+    tipo
+  }
+}`;
+
+      console.log("Variáveis");
+
+      const variables = {
+        data: {
+          status: status,
+          idBancada: parseInt(bancada),
+          idPatrimonio: parseInt(cod),
+          marca: marca,
+          modelo: modelo,
+          tipo: tipo
+        },
+        idPatrimonio: parseInt(cod),
       };
 
       console.log(variables);
