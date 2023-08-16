@@ -1,5 +1,7 @@
 type Chamado {
     idChamado: ID!
+    nome: String!
+    prioridade: String!
     dataHora: String!
     detalhes: String!
     idBancada: Int!
@@ -28,6 +30,8 @@ input DadosChamado {
     detalhes: String!
     idBancada: Int!
     status: Int!
+    nome: String!
+    prioridade: String!
 }
 
 type Mutation {

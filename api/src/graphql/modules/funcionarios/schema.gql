@@ -12,6 +12,7 @@ type Query {
     funcionarios: [Funcionario]
     funcionario(idFuncionario: ID!): Funcionario
     funcionariosByNome(nome: String!): [Funcionario]
+    funcionariosByEmail(email: String!): [Funcionario]
     funcionariosByStatus(status: String!): [Funcionario]
     searchFuncionarios(filter: FuncionarioFilter): [Funcionario]
     confereLogin(email: String!): Funcionario
