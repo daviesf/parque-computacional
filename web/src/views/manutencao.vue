@@ -208,6 +208,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Manutencao',
@@ -367,28 +369,28 @@ export default {
 
 
       // Puxando Dados do Banco
-      const queryPatrimonio = `query Query {
-  patrimonios {
-    marca
-    modelo
-  }
-}`
+//       const queryPatrimonio = `query Query {
+//   patrimonios {
+//     marca
+//     modelo
+//   }
+// }`
 
-    axios.post('http://localhost:4000', { query: queryPatrimonio }).then(
-      (result) => {
-        const patrimonios = result.data.data.patrimonios
-        const selectPatriomonio = document.getElementById('patrimonio')
+    // axios.post('http://localhost:4000', { query: queryPatrimonio }).then(
+    //   (result) => {
+    //     const patrimonios = result.data.data.patrimonios
+    //     const selectPatriomonio = document.getElementById('patrimonio')
 
-        patrimonios.forEach((patrimonio) => {
-          const option = document.createElement('option')
-          option.value = patrimonio.marca
-          option.innerHTML = "ID: " + patrimonio.marca + " | " + patrimonio.modelo
-          selectPatriomonio.appendChild(option)
-        })
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    //     patrimonios.forEach((patrimonio) => {
+    //       const option = document.createElement('option')
+    //       option.value = patrimonio.marca
+    //       option.innerHTML = "ID: " + patrimonio.marca + " | " + patrimonio.modelo
+    //       selectPatriomonio.appendChild(option)
+    //     })
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   })
 
     carregaDados();
 
@@ -445,7 +447,7 @@ export default {
             tdPatrimonio.textContent = conserto.idPatrimonio
 
             const tdFuncionario = document.createElement('td')
-            tdFuncionario.textContent = conserto.idFuncionário
+            tdFuncionario.textContent = conserto.idFuncionario
 
             const tdData = document.createElement('td')
             tdData.textContent = conserto.dataHora

@@ -72,6 +72,11 @@
             <span class="button1-content">Usuário</span>
           </button>
         </router-link>
+        <router-link to="/dashboard">
+          <button class="button1">
+            <span class="button1-content">Dashboard</span>
+          </button>
+        </router-link>
       </div>
     </div>
   </section>
