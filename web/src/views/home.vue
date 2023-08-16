@@ -44,7 +44,6 @@
       <div class="welcome">Seja bem-vindo novamente!</div>
     </div>
 
-
     <div class="ui container">
       <div class="ui grid centered">
         <router-link to="/patrimonio">
@@ -72,31 +71,30 @@
             <span class="button1-content">Usuário</span>
           </button>
         </router-link>
+        <router-link to="/dashboard">
+          <button class="button1">
+            <span class="button1-content">Dashboard</span>
+          </button>
+        </router-link>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Home',
 
   mounted() {
-
-    if (localStorage.getItem("name") != null) {
-      const name = JSON.parse(localStorage.getItem("name"));
-      document.getElementById("saude").innerHTML = "Olá, " + name;
+    if (localStorage.getItem('name') != null) {
+      const name = JSON.parse(localStorage.getItem('name'))
+      document.getElementById('saude').innerHTML = 'Olá, ' + name
     } else {
-      document.getElementById("saude").innerHTML = "Olá, usuário!";
+      document.getElementById('saude').innerHTML = 'Olá, usuário!'
     }
   }
-
-  
-};
-
+}
 </script>
 
 <style src="../assets/pages.css"></style>
-

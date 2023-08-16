@@ -13,18 +13,17 @@ import axios from 'axios'
 export default {
   name: 'App',
   components: {
-    NavBar,
+    NavBar
   },
   data() {
     return {
-      showNavbar: true,
+      showNavbar: true
     }
   },
   methods: {
     hideNavbar(value) {
       this.showNavbar = !value
     }
-  },
-
+  }
 }
 </script>

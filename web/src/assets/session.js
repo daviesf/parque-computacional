@@ -36,10 +36,10 @@ if (cookie) {
         console.log('Sessão verificada com sucesso')
         if (user.tipo == 1) {
           console.log('Administrador')
-          window.location.href = '/';
+          window.location.href = '/'
         } else if (user.tipo == 2) {
           console.log('Usuário comum')
-          window.location.href = '/helpdeskuser';
+          window.location.href = '/helpdeskuser'
         } else {
           console.log('Erro na verificação do tipo.')
         }

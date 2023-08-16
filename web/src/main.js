@@ -29,7 +29,7 @@ const router = createRouter({
     { path: '/logout', component: Logout },
     { path: '/404', component: NotFound },
     { path: '/:pathMatch(.*)', redirect: '/404' },
-    { path: '/dashboard', component: Dashboard },
+    { path: '/dashboard', component: Dashboard }
   ]
 })
 

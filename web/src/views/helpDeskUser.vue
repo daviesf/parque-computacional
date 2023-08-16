@@ -11,32 +11,55 @@
       <span class="text titlep">
         <h1>Sistema de HelpDesk</h1>
       </span>
-      <div class="ui two column grid" style="margin-top: 10px;">
+      <div class="ui two column grid" style="margin-top: 10px">
         <div class="columnHelpDesk">
           <div class="ui segment">
             <h3 class="ui header">Novo Chamado</h3>
             <form id="form" class="ui form">
               <div class="field">
                 <label>Nome</label>
-                <input type="text" name="name" placeholder="Nome completo" class="campo required" id="nome"
-                  @input="nomeValidate" />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nome completo"
+                  class="campo required"
+                  id="nome"
+                  @input="nomeValidate"
+                />
                 <span class="span-required">Insira o Nome</span>
               </div>
               <div class="field">
                 <label>E-mail</label>
-                <input type="email" name="email" placeholder="E-mail" class="campo required" id="email"
-                  @input="emailValidate" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="E-mail"
+                  class="campo required"
+                  id="email"
+                  @input="emailValidate"
+                />
                 <span class="span-required">Insira um e-mail válido</span>
               </div>
               <div class="field">
                 <label>Assunto</label>
-                <input type="text" name="subject" placeholder="Assunto" class="campo required" id="assunto"
-                  @input="assuntoValidate" />
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Assunto"
+                  class="campo required"
+                  id="assunto"
+                  @input="assuntoValidate"
+                />
                 <span class="span-required">Insira o Assunto</span>
               </div>
               <div class="field">
                 <label>Prioridade</label>
-                <select name="prioridade" class="campo required" id="prioridade" @change="prioridadeValidate">
+                <select
+                  name="prioridade"
+                  class="campo required"
+                  id="prioridade"
+                  @change="prioridadeValidate"
+                >
                   <option class="placeholder" disabled selected>Selecione a prioridade</option>
                   <option value="Alta">Alta</option>
                   <option value="Média">Média</option>
@@ -46,8 +69,13 @@
               </div>
               <div class="field">
                 <label>Descrição</label>
-                <textarea name="description" rows="2" class="campo auto-expand required" id="descricao"
-                  @input="descricaoValidate"></textarea>
+                <textarea
+                  name="description"
+                  rows="2"
+                  class="campo auto-expand required"
+                  id="descricao"
+                  @input="descricaoValidate"
+                ></textarea>
                 <span class="span-required">Insira a Descrição</span>
               </div>
               <div class="field">
@@ -56,7 +84,9 @@
                 <span class="span-required">Insira o Arquivo</span>
               </div>
               <button type="submit" class="ui button">Enviar</button>
-              <button class="ui button" type="button" onclick="limparFormulario()">Limpar Formulário</button>
+              <button class="ui button" type="button" onclick="limparFormulario()">
+                Limpar Formulário
+              </button>
             </form>
           </div>
         </div>
@@ -100,10 +130,8 @@
         <p>Logout</p>
       </div>
     </div>
-
   </div>
 </template>
-
 
 <script>
 export default {
@@ -112,17 +140,16 @@ export default {
     this.$emit('hideNavbar', true) // Emitir o evento para ocultar a navbar
     this.$emit('hideFooter', true)
   },
-  destroyed() {
+  unmounted() {
     this.$emit('hideNavbar', false) // Emitir o evento para mostrar a navbar novamente
     this.$emit('hideFooter', false)
   },
   mounted() {
-
-    if (localStorage.getItem("name") != null) {
-      const name = JSON.parse(localStorage.getItem("name"));
-      document.getElementById("saude").innerHTML = "Olá, " + name;
+    if (localStorage.getItem('name') != null) {
+      const name = JSON.parse(localStorage.getItem('name'))
+      document.getElementById('saude').innerHTML = 'Olá, ' + name
     } else {
-      document.getElementById("saude").innerHTML = "Olá, usuário!";
+      document.getElementById('saude').innerHTML = 'Olá, usuário!'
     }
 
     const formulario = document.getElementById('form')
@@ -151,17 +178,17 @@ export default {
     }
 
     function limparFormulario() {
-    document.getElementById('nome').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('assunto').value = '';
-    document.getElementById('prioridade').selectedIndex = 0;
-    document.getElementById('descricao').value = '';
-    document.getElementById('arquivo').value = '';
-  }
+      document.getElementById('nome').value = ''
+      document.getElementById('email').value = ''
+      document.getElementById('assunto').value = ''
+      document.getElementById('prioridade').selectedIndex = 0
+      document.getElementById('descricao').value = ''
+      document.getElementById('arquivo').value = ''
+    }
 
-  document.getElementById('form').addEventListener('submit', function(event) {
-    event.preventDefault();
-  });
+    document.getElementById('form').addEventListener('submit', function (event) {
+      event.preventDefault()
+    })
 
     function validateForm() {
       const validations = [
@@ -198,7 +225,7 @@ export default {
     function assuntoValidate() {
       return campos[2].value.length > 0
     }
-    
+
     function prioridadeValidate() {
       return campos[3].value !== 'Selecione a prioridade'
     }
