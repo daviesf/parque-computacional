@@ -724,6 +724,8 @@ td.td-desc {
 
 .dark-mode {
   background-color: #252525;
+  transition: 0.5s;
+
 }
 
 .dark-mode .logo_name {

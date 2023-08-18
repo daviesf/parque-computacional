@@ -125,17 +125,16 @@ export default {
           if (updatedUser) {
             localStorage.setItem('name', JSON.stringify(user.nome))
 
-            const cookieOptions = {
-              expires: new Date(Date.now() + 172800000).toUTCString(),
-              path: '/',
-              secure: true
-            }
+            // const cookieOptions = {
+            //   expires: new Date(Date.now() + 172800000).toUTCString(),
+            //   path: '/',
+            // }
 
-            document.cookie = `AKJA12=${updatedUser.idSession}; SUBG=${data.sub}; ${Object.entries(
-              cookieOptions
-            )
-              .map(([key, value]) => `${key}=${value}`)
-              .join('; ')}`
+            // document.cookie = `AKJA12=${updatedUser.idSession}; SUBG=${data.sub}; ${Object.entries(
+            //   cookieOptions
+            // )
+            //   .map(([key, value]) => `${key}=${value}`)
+            //   .join('; ')}`
           } else {
             console.log('?')
           }
