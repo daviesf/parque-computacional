@@ -98,40 +98,41 @@
         </div>
 
         <div class="eleven wide column" style="margin-top: 30px">
-          <table class="ui compact celled definition table">
-            <thead>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" id="select-all" />
-                    <label></label>
-                  </div>
-                </td>
-                <th class="wide-100">Bancada</th>
-                <th class="wide-200">Apelido</th>
-                <th class="wide-200">Local</th>
-                <th class="wide-150">Status</th>
-              </tr>
-            </thead>
-            <tbody id="bancada-table-body"></tbody>
-            <tfoot class="full-width">
-              <tr>
-                <th></th>
-                <th colspan="5">
-                  <div class="ui right floated small labeled icon button ae" id="add-patrimonio">
-                    <i class="server icon"></i> Adicionar Bancada
-                  </div>
-                  <div class="ui left floated small button">Excluir</div>
-                  <div class="ui left floated small button">Alterar</div>
-                  <div class="ui left floated small button">Ativar</div>
-                  <div class="ui left floated small button">Desativar</div>
-                </th>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
+  <div style="max-height: 70vh; overflow-y: auto;">
+    <table class="ui compact celled definition table">
+      <thead>
+        <tr>
+          <td class="collapsing">
+            <div class="ui fitted checkbox">
+              <input type="checkbox" id="select-all" />
+              <label></label>
+            </div>
+          </td>
+          <th class="wide-100">Bancada</th>
+          <th class="wide-200">Apelido</th>
+          <th class="wide-200">Local</th>
+          <th class="wide-150">Status</th>
+        </tr>
+      </thead>
+      <tbody id="bancada-table-body"></tbody>
+    </table>
+  </div>
+  
+  <div class="ui grid">
+    <div class="sixteen wide column">
+      <div class="ui right floated small labeled icon button ae" id="add-patrimonio">
+        <i class="server icon"></i> Adicionar Bancada
       </div>
+      <div class="ui left floated small button">Excluir</div>
+      <div class="ui left floated small button">Alterar</div>
+      <div class="ui left floated small button">Ativar</div>
+      <div class="ui left floated small button">Desativar</div>
     </div>
+  </div>
+</div>
+</div>
+</div>
+
     <!-- Pop-up de cadastro de bancada -->
     <div class="dimmer">
       <div class="ui container add-form">

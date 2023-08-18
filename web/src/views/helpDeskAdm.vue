@@ -98,6 +98,7 @@
         </div>
 
         <div class="eleven wide column" style="margin-top: 20px">
+          <div style="max-height: 70vh; overflow-y: auto;">
           <table class="ui compact celled definition table">
             <thead>
               <tr>
@@ -183,6 +184,7 @@
           </table>
         </div>
       </div>
+    </div>
     </div>
   </section>
 </template>

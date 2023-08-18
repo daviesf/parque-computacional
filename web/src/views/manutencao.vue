@@ -83,6 +83,7 @@
         </div>
 
         <div class="eleven wide column" style="margin-top: 30px">
+          <div style="max-height: 70vh; overflow-y: auto;">
           <table class="ui compact celled definition table">
             <thead>
               <tr>
@@ -165,6 +166,7 @@
             </tfoot>
           </table>
         </div>
+      </div>
       </div>
     </div>
     <!-- Pop-up de cadastro de Manutenção -->
