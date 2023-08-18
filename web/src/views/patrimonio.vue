@@ -429,7 +429,7 @@ export default {
 
         formFields.eq(0).prop('readonly', true).val(selectedFields.eq(0).text().trim());
         formFields.eq(1).val(selectedFields.eq(1).text().trim());
-        //formFields.eq(2).val(selectedFields.eq(2).text().trim());
+        formFields.eq(2).val(selectedFields.eq(2).text().trim());
         formFields.eq(3).val(selectedFields.eq(2).text().trim());
         formFields.eq(4).val(selectedFields.eq(3).text().trim());
         formFields.eq(5).val(selectedFields.eq(5).text().trim());
