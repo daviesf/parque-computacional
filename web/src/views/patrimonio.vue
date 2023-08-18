@@ -16,12 +16,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Ex: 1282"
-                    class="fluid"
-                    id="filter-cod"
-                  />
+                  <input type="text" placeholder="Ex: 1282" class="fluid" id="filter-cod" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -33,12 +28,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="ID da bancada"
-                    class="fluid"
-                    id="filter-bancada"
-                  />
+                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -50,12 +40,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Ex: Samsung"
-                    class="fluid"
-                    id="filter-marca"
-                  />
+                  <input type="text" placeholder="Ex: Samsung" class="fluid" id="filter-marca" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -67,12 +52,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Ex: S20"
-                    class="fluid"
-                    id="filter-modelo"
-                  />
+                  <input type="text" placeholder="Ex: S20" class="fluid" id="filter-modelo" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -136,9 +116,7 @@
             <div class="item">
               <div class="ui icon input fluid">
                 <button class="button1" id="filter">
-                  <span class="button1-content"
-                    ><i class="search icon"></i>Aplicar Filtro</span
-                  >
+                  <span class="button1-content"><i class="search icon"></i>Aplicar Filtro</span>
                 </button>
               </div>
             </div>
@@ -169,10 +147,7 @@
                 <th></th>
                 <th colspan="6">
                   <div class="bg-button">
-                    <div
-                      class="ui right floated small labeled icon button"
-                      id="add-patrimonio"
-                    >
+                    <div class="ui right floated small labeled icon button" id="add-patrimonio">
                       <i class="keyboard outline icon"></i> Adicionar Patrimônio
                     </div>
                   </div>
@@ -200,24 +175,13 @@
             <div class="column">
               <div class="field">
                 <label>Código</label>
-                <input
-                  type="text"
-                  name="codigo"
-                  placeholder="Código do Patrimônio"
-                  class="campo required"
-                  id="codigo"
-                  @input="codigoValidate"
-                />
+                <input type="text" name="codigo" placeholder="Código do Patrimônio" class="campo required" id="codigo"
+                  @input="codigoValidate" />
                 <span class="span-required">Insira o código do Patrimônio</span>
               </div>
               <div class="field">
                 <label>Bancada</label>
-                <select
-                  name="tipo"
-                  class="campo required"
-                  id="bancada"
-                  @change="bancadaValidate"
-                >
+                <select name="tipo" class="campo required" id="bancada" @change="bancadaValidate">
                   <option selected value="selecione" disabled>
                     Selecione uma bancada...
                   </option>
@@ -226,12 +190,7 @@
               </div>
               <div class="field">
                 <label>Tipo</label>
-                <select
-                  name="tipo"
-                  class="campo required"
-                  id="tipo"
-                  @change="tipoValidate"
-                >
+                <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
                   <option class="placeholder" disabled selected>Selecione o tipo</option>
                   <option value="Desktop">Desktop</option>
                   <option value="Notebook">Notebook</option>
@@ -244,36 +203,19 @@
             <div class="column">
               <div class="field">
                 <label>Marca</label>
-                <input
-                  type="text"
-                  name="marca"
-                  placeholder="Marca"
-                  class="campo required"
-                  id="marca"
-                  @input="marcaValidate"
-                />
+                <input type="text" name="marca" placeholder="Marca" class="campo required" id="marca"
+                  @input="marcaValidate" />
                 <span class="span-required">Insira a Marca</span>
               </div>
               <div class="field">
                 <label>Modelo</label>
-                <input
-                  type="text"
-                  name="modelo"
-                  placeholder="Modelo"
-                  class="campo required"
-                  id="modelo"
-                  @input="modeloValidate"
-                />
+                <input type="text" name="modelo" placeholder="Modelo" class="campo required" id="modelo"
+                  @input="modeloValidate" />
                 <span class="span-required">Insira o Modelo</span>
               </div>
               <div class="field">
                 <label>Status</label>
-                <select
-                  name="status"
-                  class="campo required"
-                  id="status"
-                  @change="statusValidate"
-                >
+                <select name="status" class="campo required" id="status" @change="statusValidate">
                   <option class="placeholder" disabled selected>
                     Selecione o status
                   </option>
@@ -317,36 +259,47 @@ export default {
 
     // Faz o dimmer aparecer ao clicar no botão "Adicionar Patrimônio" e desaparecer ao clicar fora do pop-up.
     // eslint-disable-next-line no-undef
+
+
     $(document).ready(function () {
+
+
       // eslint-disable-next-line no-undef
       $("#add-patrimonio").click(function (e) {
+        const esconder = document.querySelector("#upd-patrimonio");
+        esconder.style.display = "none";
+
+        const aparecer1 = document.querySelector("#submit-patrimonio");
+        aparecer1.style.display = "inline";
         e.preventDefault();
         $(".ui.dividing.header").text("Cadastrar Patrimônio");
         $("#submit-patrimonio").text("Adicionar");
-        const esconder = document.querySelector("#upd-patrimonio");
-        esconder.style.display = "none";
         $(".dimmer").fadeIn();
+
+
+        const selectedRow = $(this).closest("tr");
+
+        const selectedFields = selectedRow.find("td").slice(1, 7);
+
+        const formFields = $("#form input, #form select");
+        formFields.eq(0).prop('readonly', false).val(selectedFields.eq(0).text().trim());
+        formFields.eq(1).val(selectedFields.eq(0).text().trim());
+        formFields.eq(2).val(selectedFields.eq(0).text().trim());
+        formFields.eq(3).val(selectedFields.eq(0).text().trim());
+        formFields.eq(4).val(selectedFields.eq(0).text().trim());
+        formFields.eq(5).val(selectedFields.eq(0).text().trim());
+
       });
 
       $(".cancel-button").click(function () {
         $(".popup").hide();
         $(".dimmer").hide();
-        const aparecer = document.querySelector("#upd-patrimonio");
-        aparecer.style.display = "inline";
+
       });
       // eslint-disable-next-line no-undef
       $(".dimmer").click(function (e) {
         // eslint-disable-next-line no-undef
         if ($(e.target).hasClass("dimmer")) {
-          setTimeout(() => {
-            const aparecer1 = document.querySelector("#submit-patrimonio");
-            aparecer1.style.display = "inline";
-          }, 1000);
-          setTimeout(() => {
-            const aparecer2 = document.querySelector("#upd-patrimonio");
-            aparecer2.style.display = "inline";
-          }, 1000);
-          // eslint-disable-next-line no-undef
           $(this).fadeOut();
         }
       });
@@ -408,8 +361,17 @@ export default {
     });
 
     $(document).ready(function () {
+
+
+
       // Open the popup for updating when "Alterar" button is clicked
       $("#upd-patrimonio-btn").click(function () {
+        const esconder = document.querySelector("#upd-patrimonio");
+        esconder.style.display = "inline";
+
+        const aparecer1 = document.querySelector("#submit-patrimonio");
+        aparecer1.style.display = "none";
+
         const selectedCheckboxes = $("input.select-checkbox:checked");
 
         if (selectedCheckboxes.length == 0 || selectedCheckboxes.length > 1) {
@@ -436,16 +398,14 @@ export default {
 
         // Change the header text to "Atualizar Patrimônio"
         $(".ui.dividing.header").text("Atualizar Patrimônio");
-        const esconder = document.querySelector("#submit-patrimonio");
-        esconder.style.display = "none";
+
       });
 
       // Hide the pop-up and dimmer when "Cancelar" button is clicked
       $(".cancel-button").click(function () {
         $(".popup").hide();
         $(".dimmer").hide();
-        const esconder = document.querySelector("#submit-patrimonio");
-        esconder.style.display = "inline";
+
       });
     });
 
