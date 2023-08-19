@@ -39,4 +39,5 @@ type Mutation{
     createPatrimonio(data: dadosPatrimonio): Patrimonio!
     updatePatrimonio(idPatrimonio: ID!, data: dadosPatrimonio): Patrimonio!
     deletePatrimonio(idPatrimonio: ID!): Boolean!
+    ativarPatrimonio(idPatrimonio: ID!, status: String!): Boolean!
 }
