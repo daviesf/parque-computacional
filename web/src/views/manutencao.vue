@@ -176,12 +176,10 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Patrimônio</label>
-            <select name="tipo" class="campo required" id="tipo" @change="patrimonioValidate">
-              <option class="placeholder" disabled selected>Selecione o Patrimônio</option>
-              <option value="b1">Nenhuma (ID: 0)</option>
-              <option value="b2">ID: 22 | Mouse</option>
-              <option value="b3">ID: 23 | Notebook</option>
-              <option value="b4">ID: 24 | Impressora</option>
+            <select name="tipo" class="campo required" id="patrimonio" @change="patrimonioValidate">
+              <option selected value="selecione" disabled>
+                    Selecione um Patrimônio...
+              </option>
             </select>
             <span class="span-required">Selecione algum Patrimônio</span>
           </div>
@@ -210,15 +208,13 @@
               id="funcionario"
               @change="funcionarioValidate"
             >
-              <option class="placeholder" disabled selected>Selecione o Funcionário</option>
-              <option value="Jeferson">Jeferson</option>
-              <option value="Camila">Camila</option>
-              <option value="Murilo">Murilo</option>
-              <option value="Ernesto">Ernesto</option>
+            <option selected value="selecione" disabled>
+                    Selecione um Funcionário...
+            </option>
             </select>
             <span class="span-required">Selecione algum Funcionário</span>
           </div>
-          <button class="ui submit button" type="submit">Adicionar</button>
+          <button class="ui submit button" type="submit" id="submit-manutencao">Adicionar</button>
           <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
         </form>
       </div>
@@ -353,7 +349,7 @@ export default {
       const validations = [
         { index: 0, isValid: patrimonioValidate },
         { index: 1, isValid: detalhesValidate },
-        { index: 2, isValid: dataValidate },
+        // { index: 2, isValid: dataValidate },
         { index: 3, isValid: funcionarioValidate }
       ]
 
@@ -376,40 +372,88 @@ export default {
     }
 
     function dataValidate() {
-      const dateValue = campos[2].value
-      const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/ // Expressão regular para o formato "dd/mm/aaaa"
+  const dateValue = campos[2].value;
+  const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
 
-      return dateRegex.test(dateValue)
-    }
+  if (!dateRegex.test(dateValue)) {
+    return false; // Formato incorreto
+  }
+
+  const [, day, month, year] = dateValue.match(dateRegex);
+
+  // Verificar se os valores estão dentro de intervalos válidos
+  if (
+    parseInt(day) < 1 || parseInt(day) > 31 ||
+    parseInt(month) < 1 || parseInt(month) > 12 ||
+    parseInt(year) < 1900 || parseInt(year) > 2100
+  ) {
+    return false; // Valores fora dos intervalos válidos
+  }
+
+  // Verificar se é uma data válida do calendário
+  const parsedDate = new Date(`${year}-${month}-${day}`);
+  if (isNaN(parsedDate.getTime())) {
+    return false; // Data inválida
+  }
+
+  return true; // Data válida
+}
+
 
     function funcionarioValidate() {
       return campos[3].value !== 'Selecione o Funcionário'
     }
 
-    // Puxando Dados do Banco
-    //       const queryPatrimonio = `query Query {
-    //   patrimonios {
-    //     marca
-    //     modelo
-    //   }
-    // }`
+    // Puxando Dados do Banco para o Cadastro
+          const queryPatrimonio = `query Query {
+      patrimonios {
+       idPatrimonio
+       marca
+        modelo
+      }
+    }`
 
-    // axios.post('http://localhost:4000', { query: queryPatrimonio }).then(
-    //   (result) => {
-    //     const patrimonios = result.data.data.patrimonios
-    //     const selectPatriomonio = document.getElementById('patrimonio')
+    axios.post('http://localhost:4000', { query: queryPatrimonio }).then(
+      (result) => {
+        const patrimonios = result.data.data.patrimonios
+        const selectPatriomonio = document.getElementById('patrimonio')
 
-    //     patrimonios.forEach((patrimonio) => {
-    //       const option = document.createElement('option')
-    //       option.value = patrimonio.marca
-    //       option.innerHTML = "ID: " + patrimonio.marca + " | " + patrimonio.modelo
-    //       selectPatriomonio.appendChild(option)
-    //     })
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
+        patrimonios.forEach((patrimonio) => {
+          const option = document.createElement('option')
+          option.value = patrimonio.idPatrimonio
+          option.innerHTML = "Código: " + patrimonio.idPatrimonio + " | Marca: " + patrimonio.marca + " | Modelo: " + patrimonio.modelo
+          selectPatriomonio.appendChild(option)
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
 
+      const queryFuncionario = `query Query {
+      funcionarios {
+       nome
+       idFuncionario
+      }
+    }`
+
+    axios.post('http://localhost:4000', { query: queryFuncionario }).then(
+      (result) => {
+        const funcionarios = result.data.data.funcionarios
+        const selectFuncionario = document.getElementById('funcionario')
+
+        funcionarios.forEach((funcionario) => {
+          const option = document.createElement('option')
+          option.value = funcionario.idFuncionario
+          option.innerHTML = funcionario.nome
+          selectFuncionario.appendChild(option)
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+
+      // Carregando a tabela através do banco
     carregaDados()
 
     function carregaDados() {
@@ -489,6 +533,64 @@ export default {
           console.log(error)
         }
       )
+
+//Cadastrar
+const addManutencao = document.getElementById("submit-manutencao");
+addManutencao.addEventListener("click", function () {
+  console.log("Iniciando cadastro");
+  let patrimonio = document.getElementById("patrimonio").value;
+  let detalhes = document.getElementById("detalhes").value;
+  let dataInput = document.getElementById("data").value;
+  let funcionario = document.getElementById("funcionario").value;
+
+  console.log("Verificando status");
+
+  console.log("Query");
+
+  // Converter data para o formato brasileiro (dd/mm/aaaa)
+  const dateObj = new Date(dataInput);
+  const day = dateObj.getDate().toString().padStart(2, '0');
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  const year = dateObj.getFullYear();
+
+  const formattedDate = `${day}/${month}/${year}`;
+
+  const query = `mutation CreateConserto($data: DadosConserto!) {
+    createConserto(data: $data) {
+      dataHora
+      detalhes
+      idFuncionario
+      idPatrimonio
+    }
+  }`;
+
+  console.log("Variáveis");
+
+  const variables = {
+    data: {
+      idPatrimonio: parseInt(patrimonio),
+      idFuncionario: parseInt(funcionario),
+      detalhes: detalhes,
+      dataHora: formattedDate // Use "dataHora" ao invés de "dataInput"
+    },
+  };
+
+  console.log(variables);
+
+  axios.post("http://localhost:4000", { query, variables }).then(
+    (result) => {
+      console.log(result);
+      $(".popup").hide();
+      $(".dimmer").hide();
+      carregaDados();
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+});
+
+
     }
 
 

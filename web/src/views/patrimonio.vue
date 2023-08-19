@@ -305,62 +305,81 @@ export default {
       });
     });
 
-    //Deletar
-    $(document).ready(function () {
-      $("#del-patrimonio-btn").click(function () {
-        const selectedCheckboxes = $("input.select-checkbox:checked");
+    // Deletar
+$(document).ready(function () {
+  $("#del-patrimonio-btn").click(function () {
+    const selectedCheckboxes = $("input.select-checkbox:checked");
 
-        if (selectedCheckboxes.length == 0) {
-          alert("Selecione Um Valor Antes de Clicar em Excluir");
-          return;
-        } else {
-          if (confirm("Tem Certeza Que Deseja Excluir?")) {
-            selectedCheckboxes.each(function () {
-              const selectedRow = $(this).closest("tr");
+    if (selectedCheckboxes.length == 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Selecione o patrimônio que deseja excluir',
+        confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+        confirmButtonText: 'OK',
+      });
+      return;
+    } else {
+      Swal.fire({
+        title: 'Você tem certeza?',
+        text: 'Você não poderá reverter a exclusão',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#004654',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, deletar!',
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          selectedCheckboxes.each(function () {
+            const selectedRow = $(this).closest('tr');
+            const selectedFields = selectedRow.find('td').slice(1, 7);
+            const codigoCell = selectedFields.eq(0).text().trim();
 
-              const selectedFields = selectedRow.find("td").slice(1, 7);
+            console.log('Código selecionado:', codigoCell);
+            console.log('Iniciando Atualização');
+            console.log('Verificando status');
+            console.log('Query');
 
-              const formFields = $("#form input, #form select");
+            const query = `mutation Mutation($idPatrimonio: ID!) {
+              deletePatrimonio(idPatrimonio: $idPatrimonio)
+            }`;
 
-              let codigoCell = selectedFields.eq(0).text().trim();
+            console.log('Variáveis');
 
+            const variables = {
+              idPatrimonio: parseInt(codigoCell),
+            };
 
-              console.log("Código selecionado:", codigoCell);
+            console.log(variables);
 
-              console.log("Iniciando Atualização");
+            axios.post('http://localhost:4000', { query, variables }).then(
+            (result) => {
+              console.log(result);
+              $('.popup').hide();
+              $('.dimmer').hide();
+              carregaDados();
 
-              console.log("Verificando status");
+              Swal.fire({
+              title: 'Deletado!',
+              text: 'O patrimônio foi removido com sucesso!',
+              icon: 'success',
+              confirmButtonColor: '#004654', // Cor personalizada do botão OK
+              });
 
-              console.log("Query");
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
 
-              const query = `mutation Mutation($idPatrimonio: ID!) {
-                  deletePatrimonio(idPatrimonio: $idPatrimonio)
-                  }`;
-
-              console.log("Variáveis");
-
-              const variables = {
-                idPatrimonio: parseInt(codigoCell),
-              };
-
-              console.log(variables);
-
-              axios.post("http://localhost:4000", { query, variables }).then(
-                (result) => {
-                  console.log(result);
-                  $(".popup").hide();
-                  $(".dimmer").hide();
-                  carregaDados();
-                },
-                (error) => {
-                  console.log(error);
-                }
-              );
-            });
-          }
+          });
         }
       });
-    });
+    }
+  });
+});
+
 
 
     //Desativar

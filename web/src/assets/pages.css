@@ -865,3 +865,10 @@ td.td-desc {
   color: white !important;
   background-color: rgb(91, 91, 91) !important;
 }
+
+/* Sweet Alert */
+/* Classe personalizada para alterar a cor da borda do botão Cancelar */
+.custom-cancel-button {
+  border-color: #ff0000; /* Cor vermelha para a borda */
+}
+
