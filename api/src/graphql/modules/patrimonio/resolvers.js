@@ -78,9 +78,13 @@ export default {
 			await knex("patrimonios").where("idPatrimonio", idPatrimonio).del();
 			return true;
 		},
-		
-		ativarPatrimonio: async(_,{ idPatrimonio, status }) => {
-			await knex("patrimonios").where("idPatrimonio", idPatrimonio).update(status);
+
+		ativarPatrimonio: async (_, { idPatrimonio, status }) => {
+			await knex("patrimonios").where("idPatrimonio", idPatrimonio).update({ status });
+			const patrimonio = await knex("patrimonios")
+				.where("idPatrimonio", idPatrimonio)
+				.first();
+			return patrimonio;
 		},
 	},
 };

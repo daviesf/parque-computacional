@@ -323,7 +323,7 @@ export default {
               const formFields = $("#form input, #form select");
 
               let codigoCell = selectedFields.eq(0).text().trim();
-              
+
 
               console.log("Código selecionado:", codigoCell);
 
@@ -364,6 +364,69 @@ export default {
 
 
     //Desativar
+    $(document).ready(function () {
+      $("#desativar-patrimonio-btn").click(function () {
+        const selectedCheckboxes = $("input.select-checkbox:checked");
+
+        if (selectedCheckboxes.length == 0) {
+          alert("Selecione Um Valor Antes de Clicar em Excluir");
+          return;
+        } else {
+          selectedCheckboxes.each(function () {
+            const selectedRow = $(this).closest("tr");
+
+            const selectedFields = selectedRow.find("td").slice(1, 7);
+
+            const formFields = $("#form input, #form select");
+
+            const codigoCell = selectedFields.eq(0).text().trim();
+            let status = selectedFields.eq(5).text().trim();
+            status = "0";
+
+
+            console.log("Código selecionado:", codigoCell);
+
+            console.log("Status selecionado:", status);
+
+            console.log("Iniciando Atualização");
+
+            console.log("Verificando status");
+
+            console.log("Query");
+
+            const query = `mutation Mutation($idPatrimonio: ID!, $status: String!) {
+              ativarPatrimonio(idPatrimonio: $idPatrimonio, status: $status) {
+                idPatrimonio
+                status
+              }
+            }
+            `;
+
+            console.log("Variáveis");
+
+            const variables = {
+              idPatrimonio: parseInt(codigoCell),
+              status: status,
+            };
+
+            console.log(variables);
+
+            axios.post("http://localhost:4000", { query, variables }).then(
+              (result) => {
+                console.log(result);
+                $(".popup").hide();
+                $(".dimmer").hide();
+                carregaDados();
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+          });
+        }
+      });
+    });
+
     //Ativar
     $(document).ready(function () {
       $("#ativar-patrimonio-btn").click(function () {
@@ -373,53 +436,62 @@ export default {
           alert("Selecione Um Valor Antes de Clicar em Excluir");
           return;
         } else {
-            selectedCheckboxes.each(function () {
-              const selectedRow = $(this).closest("tr");
+          selectedCheckboxes.each(function () {
+            const selectedRow = $(this).closest("tr");
 
-              const selectedFields = selectedRow.find("td").slice(1, 7);
+            const selectedFields = selectedRow.find("td").slice(1, 7);
 
-              const formFields = $("#form input, #form select");
+            const formFields = $("#form input, #form select");
 
-              const codigoCell = selectedFields.eq(0).text().trim();
-              let status = selectedFields.eq(5).text().trim();
+            const codigoCell = selectedFields.eq(0).text().trim();
+            let status = selectedFields.eq(5).text().trim();
+            status = "1";
 
-              console.log("Código selecionado:", codigoCell);
 
-              console.log("Iniciando Atualização");
+            console.log("Código selecionado:", codigoCell);
 
-              console.log("Verificando status");
+            console.log("Status selecionado:", status);
 
-              console.log("Query");
+            console.log("Iniciando Atualização");
 
-              const query = `mutation Mutation($idPatrimonio: ID!) {
-                  deletePatrimonio(idPatrimonio: $idPatrimonio)
-                  }`;
+            console.log("Verificando status");
 
-              console.log("Variáveis");
+            console.log("Query");
 
-              const variables = {
-                idPatrimonio: parseInt(codigoCell),
-              };
+            const query = `mutation Mutation($idPatrimonio: ID!, $status: String!) {
+              ativarPatrimonio(idPatrimonio: $idPatrimonio, status: $status) {
+                idPatrimonio
+                status
+              }
+            }
+            `;
 
-              console.log(variables);
+            console.log("Variáveis");
 
-              axios.post("http://localhost:4000", { query, variables }).then(
-                (result) => {
-                  console.log(result);
-                  $(".popup").hide();
-                  $(".dimmer").hide();
-                  carregaDados();
-                },
-                (error) => {
-                  console.log(error);
-                }
-              );
-            });
+            const variables = {
+              idPatrimonio: parseInt(codigoCell),
+              status: status,
+            };
+
+            console.log(variables);
+
+            axios.post("http://localhost:4000", { query, variables }).then(
+              (result) => {
+                console.log(result);
+                $(".popup").hide();
+                $(".dimmer").hide();
+                carregaDados();
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+          });
         }
       });
     });
 
-    
+
     $(document).ready(function () {
 
       // Open the popup for updating when "Alterar" button is clicked
