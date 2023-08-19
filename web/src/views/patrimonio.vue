@@ -260,7 +260,7 @@ export default {
     // Faz o dimmer aparecer ao clicar no botão "Adicionar Patrimônio" e desaparecer ao clicar fora do pop-up.
     // eslint-disable-next-line no-undef
 
-
+    //Cadastrar
     $(document).ready(function () {
 
 
@@ -369,7 +369,7 @@ export default {
         const selectedCheckboxes = $("input.select-checkbox:checked");
 
         if (selectedCheckboxes.length == 0) {
-          alert("Selecione Um Valor Antes de Clicar em Excluir");
+          alert("Selecione Um Valor Antes de Clicar em Desativar");
           return;
         } else {
           selectedCheckboxes.each(function () {
@@ -380,8 +380,7 @@ export default {
             const formFields = $("#form input, #form select");
 
             const codigoCell = selectedFields.eq(0).text().trim();
-            let status = selectedFields.eq(5).text().trim();
-            status = "0";
+            let status = "0";
 
 
             console.log("Código selecionado:", codigoCell);
@@ -433,7 +432,7 @@ export default {
         const selectedCheckboxes = $("input.select-checkbox:checked");
 
         if (selectedCheckboxes.length == 0) {
-          alert("Selecione Um Valor Antes de Clicar em Excluir");
+          alert("Selecione Um Valor Antes de Clicar em Ativar");
           return;
         } else {
           selectedCheckboxes.each(function () {
@@ -444,8 +443,7 @@ export default {
             const formFields = $("#form input, #form select");
 
             const codigoCell = selectedFields.eq(0).text().trim();
-            let status = selectedFields.eq(5).text().trim();
-            status = "1";
+            let status = "1";
 
 
             console.log("Código selecionado:", codigoCell);
@@ -491,7 +489,7 @@ export default {
       });
     });
 
-
+    //Atualizar
     $(document).ready(function () {
 
       // Open the popup for updating when "Alterar" button is clicked

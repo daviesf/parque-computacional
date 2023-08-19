@@ -16,12 +16,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="ID da bancada"
-                    class="fluid"
-                    id="filter-bancada"
-                  />
+                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -33,12 +28,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Apelido da bancada"
-                    class="fluid"
-                    id="filter-apelido"
-                  />
+                  <input type="text" placeholder="Apelido da bancada" class="fluid" id="filter-apelido" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -50,12 +40,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Local da bancada"
-                    class="fluid"
-                    id="filter-local"
-                  />
+                  <input type="text" placeholder="Local da bancada" class="fluid" id="filter-local" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -98,40 +83,40 @@
         </div>
 
         <div class="eleven wide column" style="margin-top: 30px">
-  <div style="max-height: 70vh; overflow-y: auto;">
-    <table class="ui compact celled definition table">
-      <thead>
-        <tr>
-          <td class="collapsing">
-            <div class="ui fitted checkbox">
-              <input type="checkbox" id="select-all" />
-              <label></label>
+          <div style="max-height: 70vh; overflow-y: auto;">
+            <table class="ui compact celled definition table">
+              <thead>
+                <tr>
+                  <td class="collapsing">
+                    <div class="ui fitted checkbox">
+                      <input type="checkbox" id="select-all" />
+                      <label></label>
+                    </div>
+                  </td>
+                  <th class="wide-100">Bancada</th>
+                  <th class="wide-200">Apelido</th>
+                  <th class="wide-200">Local</th>
+                  <th class="wide-150">Status</th>
+                </tr>
+              </thead>
+              <tbody id="bancada-table-body"></tbody>
+            </table>
+          </div>
+
+          <div class="ui grid">
+            <div class="sixteen wide column">
+              <div class="ui right floated small labeled icon button ae" id="add-patrimonio">
+                <i class="server icon"></i> Adicionar Bancada
+              </div>
+              <div class="ui left floated small button" id="del-bancada-btn">Excluir</div>
+              <div class="ui left floated small button" id="upd-bancada-btn">Alterar</div>
+              <div class="ui left floated small button" id="ativar-bancada-btn">Ativar</div>
+              <div class="ui left floated small button" id="desativar-bancada-btn">Desativar</div>
             </div>
-          </td>
-          <th class="wide-100">Bancada</th>
-          <th class="wide-200">Apelido</th>
-          <th class="wide-200">Local</th>
-          <th class="wide-150">Status</th>
-        </tr>
-      </thead>
-      <tbody id="bancada-table-body"></tbody>
-    </table>
-  </div>
-  
-  <div class="ui grid">
-    <div class="sixteen wide column">
-      <div class="ui right floated small labeled icon button ae" id="add-patrimonio">
-        <i class="server icon"></i> Adicionar Bancada
+          </div>
+        </div>
       </div>
-      <div class="ui left floated small button">Excluir</div>
-      <div class="ui left floated small button">Alterar</div>
-      <div class="ui left floated small button">Ativar</div>
-      <div class="ui left floated small button">Desativar</div>
     </div>
-  </div>
-</div>
-</div>
-</div>
 
     <!-- Pop-up de cadastro de bancada -->
     <div class="dimmer">
@@ -140,26 +125,14 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Apelido</label>
-            <input
-              type="text"
-              name="apelido"
-              placeholder="Apelido"
-              class="campo required"
-              id="apelido"
-              @input="apelidoValidate"
-            />
+            <input type="text" name="apelido" placeholder="Apelido" class="campo required" id="apelido"
+              @input="apelidoValidate" />
             <span class="span-required">Inisira o Apelido</span>
           </div>
           <div class="field">
             <label>Local</label>
-            <input
-              type="text"
-              name="local"
-              placeholder="Local"
-              class="campo required"
-              id="local"
-              @input="localValidate"
-            />
+            <input type="text" name="local" placeholder="Local" class="campo required" id="local"
+              @input="localValidate" />
             <span class="span-required">Inisira o Local</span>
           </div>
 
@@ -174,6 +147,7 @@
             <span class="span-required">Selecione algum Status</span>
           </div>
           <button class="ui submit button" type="submit" id="submit-bancada">Adicionar</button>
+          <button class="ui submit button" type="submit" id="upd-bancada">Atualizar</button>
           <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
         </form>
       </div>
@@ -206,6 +180,237 @@ export default {
       })
     }
 
+    let cod = 0;
+    //Atualizar
+    $(document).ready(function () {
+
+      // Open the popup for updating when "Alterar" button is clicked
+      $("#upd-bancada-btn").click(function () {
+        const esconder = document.querySelector("#upd-bancada");
+        esconder.style.display = "inline";
+
+        const aparecer1 = document.querySelector("#submit-bancada");
+        aparecer1.style.display = "none";
+
+        const selectedCheckboxes = $("input.select-checkbox:checked");
+
+        if (selectedCheckboxes.length == 0 || selectedCheckboxes.length > 1) {
+          alert("Selecione um valor antes de clicar em Alterar");
+          return;
+        }
+
+        // Get the closest row to the selected checkbox
+        const selectedRow = selectedCheckboxes.closest("tr");
+
+        // Open the popup for updating
+        $(".dimmer").fadeIn();
+
+        // Populate the form fields with selected row data
+        const selectedFields = selectedRow.find("td").slice(1, 5);
+        const formFields = $("#form input, #form select");
+
+        formFields.eq(0).val(selectedFields.eq(1).text().trim());
+        formFields.eq(1).val(selectedFields.eq(2).text().trim());
+        //formFields.eq(2).val(selectedFields.eq(3).text().trim());
+        cod = selectedFields.eq(0).text().trim();
+
+        // Change the header text to "Atualizar Patrimônio"
+        $(".ui.dividing.header").text("Atualizar Bancada");
+
+      });
+
+      // Hide the pop-up and dimmer when "Cancelar" button is clicked
+      $(".cancel-button").click(function () {
+        $(".popup").hide();
+        $(".dimmer").hide();
+
+      });
+    });
+
+    //Deletar
+    $(document).ready(function () {
+      $("#del-bancada-btn").click(function () {
+        const selectedCheckboxes = $("input.select-checkbox:checked");
+
+        if (selectedCheckboxes.length == 0) {
+          alert("Selecione Um Valor Antes de Clicar em Excluir");
+          return;
+        } else {
+          if (confirm("Tem Certeza Que Deseja Excluir?")) {
+            selectedCheckboxes.each(function () {
+              const selectedRow = $(this).closest("tr");
+
+              const selectedFields = selectedRow.find("td").slice(1, 7);
+
+              const formFields = $("#form input, #form select");
+
+              let codigoCell = selectedFields.eq(0).text().trim();
+
+
+              console.log("Código selecionado:", codigoCell);
+
+              console.log("Iniciando Atualização");
+
+              console.log("Verificando status");
+
+              console.log("Query");
+
+              const query = `mutation Mutation($idBancada: ID!) {
+                deleteBancada(idBancada: $idBancada)
+              }`;
+
+              console.log("Variáveis");
+
+              const variables = {
+                idBancada: parseInt(codigoCell),
+              };
+
+              console.log(variables);
+
+              axios.post("http://localhost:4000", { query, variables }).then(
+                (result) => {
+                  console.log(result);
+                  $(".popup").hide();
+                  $(".dimmer").hide();
+                  carregaDados();
+                },
+                (error) => {
+                  console.log(error);
+                }
+              );
+            });
+          }
+        }
+      });
+    });
+
+    //Desativar
+    $(document).ready(function () {
+      $("#desativar-bancada-btn").click(function () {
+        const selectedCheckboxes = $("input.select-checkbox:checked");
+
+        if (selectedCheckboxes.length == 0) {
+          alert("Selecione Um Valor Antes de Clicar em Desativar");
+          return;
+        } else {
+          selectedCheckboxes.each(function () {
+            const selectedRow = $(this).closest("tr");
+
+            const selectedFields = selectedRow.find("td").slice(1, 5);
+
+            const formFields = $("#form input, #form select");
+
+            const codigoCell = selectedFields.eq(0).text().trim();
+            let status = "0";
+
+
+            console.log("Código selecionado:", codigoCell);
+
+            console.log("Status selecionado:", status);
+
+            console.log("Iniciando Atualização");
+
+            console.log("Verificando status");
+
+            console.log("Query");
+
+            const query = `mutation Mutation($idBancada: ID, $status: String) {
+              ativarBancada(idBancada: $idBancada, status: $status) {
+                idBancada
+                status
+              }
+            }
+            `;
+
+            console.log("Variáveis");
+
+            const variables = {
+              idBancada: parseInt(codigoCell),
+              status: status,
+            };
+
+            console.log(variables);
+
+            axios.post("http://localhost:4000", { query, variables }).then(
+              (result) => {
+                console.log(result);
+                $(".popup").hide();
+                $(".dimmer").hide();
+                carregaDados();
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+          });
+        }
+      });
+    });
+
+    //Ativar
+    $(document).ready(function () {
+      $("#ativar-bancada-btn").click(function () {
+        const selectedCheckboxes = $("input.select-checkbox:checked");
+
+        if (selectedCheckboxes.length == 0) {
+          alert("Selecione Um Valor Antes de Clicar em Ativar");
+          return;
+        } else {
+          selectedCheckboxes.each(function () {
+            const selectedRow = $(this).closest("tr");
+
+            const selectedFields = selectedRow.find("td").slice(1, 5);
+
+            const formFields = $("#form input, #form select");
+
+            const codigoCell = selectedFields.eq(0).text().trim();
+            let status = "1";
+
+
+            console.log("Código selecionado:", codigoCell);
+
+            console.log("Status selecionado:", status);
+
+            console.log("Iniciando Atualização");
+
+            console.log("Verificando status");
+
+            console.log("Query");
+
+            const query = `mutation Mutation($idBancada: ID, $status: String) {
+              ativarBancada(idBancada: $idBancada, status: $status) {
+                idBancada
+                status
+              }
+            }
+            `;
+
+            console.log("Variáveis");
+
+            const variables = {
+              idBancada: parseInt(codigoCell),
+              status: status,
+            };
+
+            console.log(variables);
+
+            axios.post("http://localhost:4000", { query, variables }).then(
+              (result) => {
+                console.log(result);
+                $(".popup").hide();
+                $(".dimmer").hide();
+                carregaDados();
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+          });
+        }
+      });
+    });
+
+    //Cadastrar
     // Exibe o pop-pup ao clicar no botão "Adicionar Bancada"
     // eslint-disable-next-line no-undef
     $(document).ready(function () {
@@ -216,14 +421,28 @@ export default {
       })
     })
 
-    // Faz o dimmer aparecer ao clicar no botão "Adicionar Bancada" e desaparecer ao clicar fora do pop-up.
-    // eslint-disable-next-line no-undef
     $(document).ready(function () {
       // eslint-disable-next-line no-undef
       $('#add-patrimonio').click(function (e) {
+        const esconder = document.querySelector("#upd-bancada");
+        esconder.style.display = "none";
+
+        const aparecer1 = document.querySelector("#submit-bancada");
+        aparecer1.style.display = "inline";
+
         e.preventDefault()
+        const selectedRow = $(this).closest("tr");
+
+        const selectedFields = selectedRow.find("td").slice(1, 7);
+
+        const formFields = $("#form input, #form select");
+        formFields.eq(0).prop('readonly', false).val(selectedFields.eq(0).text().trim());
+        formFields.eq(1).val(selectedFields.eq(0).text().trim());
+
+
         // eslint-disable-next-line no-undef
         $('.dimmer').fadeIn()
+        $(".ui.dividing.header").text("Cadastrar Bancada");
       })
       // eslint-disable-next-line no-undef
       $('.dimmer').click(function (e) {
@@ -411,7 +630,64 @@ export default {
       )
     }
 
-    // cadastrar
+    //Atualizar 
+    const updPatrimonio = document.getElementById("upd-bancada");
+    updPatrimonio.addEventListener("click", function () {
+      console.log("Iniciando Atualização");
+
+      console.log("Código selecionado:", cod);
+
+      let apelido = document.getElementById("apelido").value;
+      let local = document.getElementById("local").value;
+      let status = document.getElementById("status").value;
+      if (status == "ativo") {
+        status = "1";
+      } else if (status == "inativo") {
+        status = "0";
+      } else if (status == "manutenção") {
+        status = "2";
+      }
+
+      console.log("Verificando status");
+
+      console.log("Query");
+
+      const query = `mutation Mutation($idBancada: ID!, $data: DadosBancada!) {
+        updateBancada(idBancada: $idBancada, data: $data) {
+          apelido
+          status
+          local
+          idBancada
+        }
+      }`;
+
+      console.log("Variáveis");
+
+      const variables = {
+        idBancada: parseInt(cod),
+        data: {
+          apelido: apelido,
+          local: local,
+          status: status,
+        }
+      };
+
+      console.log(variables);
+
+      axios.post("http://localhost:4000", { query, variables }).then(
+        (result) => {
+          console.log(result);
+          $(".popup").hide();
+          $(".dimmer").hide();
+          carregaDados();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
+
+    //Cadastrar
     const addBancada = document.getElementById('submit-bancada')
     addBancada.addEventListener('click', function () {
       console.log('Iniciando cadastro')
@@ -419,11 +695,11 @@ export default {
       let local = document.getElementById('local').value
       let status = document.getElementById('status').value
       if (status == 'ativo') {
-        status = 1
+        status = "1"
       } else if (status == 'inativo') {
-        status = 0
+        status = "0"
       } else if (status == 'manutenção') {
-        status = 2
+        status = "2"
       }
 
       console.log('Verificando status')
@@ -444,7 +720,7 @@ export default {
         data: {
           apelido: apelido,
           local: local,
-          status: parseInt(status)
+          status: status
         }
       }
 

@@ -55,5 +55,12 @@ export default {
 			await knex("bancadas").where("idBancada", idBancada).del();
 			return true;
 		},
+		ativarBancada: async (_, { idBancada, status }) => {
+			await knex("bancadas").where("idBancada", idBancada).update({ status });
+			const bancada = await knex("bancadas")
+				.where("idBancada", idBancada)
+				.first();
+			return bancada;
+		},
 	},
 };
