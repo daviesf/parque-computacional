@@ -124,7 +124,6 @@
         </div>
 
         <div class="eleven wide column" style="margin-top: 30px">
-          <div style="max-height: 70vh; overflow-y: auto;">
           <table class="ui compact celled definition table">
             <thead>
               <tr>
@@ -158,14 +157,13 @@
                   <div class="ui left floated small button" id="upd-patrimonio-btn">
                     Alterar
                   </div>
-                  <div class="ui left floated small button">Ativar</div>
-                  <div class="ui left floated small button">Desativar</div>
+                  <div class="ui left floated small button" id="ativar-patrimonio-btn">Ativar</div>
+                  <div class="ui left floated small button" id="desativar-patrimonio-btn">Desativar</div>
                 </th>
               </tr>
             </tfoot>
           </table>
         </div>
-      </div>
       </div>
     </div>
     <!-- Pop-up de cadastro de patrimônio -->
@@ -307,6 +305,7 @@ export default {
       });
     });
 
+    //Deletar
     $(document).ready(function () {
       $("#del-patrimonio-btn").click(function () {
         const selectedCheckboxes = $("input.select-checkbox:checked");
@@ -323,7 +322,8 @@ export default {
 
               const formFields = $("#form input, #form select");
 
-              const codigoCell = selectedFields.eq(0).text().trim();
+              let codigoCell = selectedFields.eq(0).text().trim();
+              
 
               console.log("Código selecionado:", codigoCell);
 
@@ -362,9 +362,65 @@ export default {
       });
     });
 
+
+    //Desativar
+    //Ativar
     $(document).ready(function () {
+      $("#ativar-patrimonio-btn").click(function () {
+        const selectedCheckboxes = $("input.select-checkbox:checked");
 
+        if (selectedCheckboxes.length == 0) {
+          alert("Selecione Um Valor Antes de Clicar em Excluir");
+          return;
+        } else {
+            selectedCheckboxes.each(function () {
+              const selectedRow = $(this).closest("tr");
 
+              const selectedFields = selectedRow.find("td").slice(1, 7);
+
+              const formFields = $("#form input, #form select");
+
+              const codigoCell = selectedFields.eq(0).text().trim();
+              let status = selectedFields.eq(5).text().trim();
+
+              console.log("Código selecionado:", codigoCell);
+
+              console.log("Iniciando Atualização");
+
+              console.log("Verificando status");
+
+              console.log("Query");
+
+              const query = `mutation Mutation($idPatrimonio: ID!) {
+                  deletePatrimonio(idPatrimonio: $idPatrimonio)
+                  }`;
+
+              console.log("Variáveis");
+
+              const variables = {
+                idPatrimonio: parseInt(codigoCell),
+              };
+
+              console.log(variables);
+
+              axios.post("http://localhost:4000", { query, variables }).then(
+                (result) => {
+                  console.log(result);
+                  $(".popup").hide();
+                  $(".dimmer").hide();
+                  carregaDados();
+                },
+                (error) => {
+                  console.log(error);
+                }
+              );
+            });
+        }
+      });
+    });
+
+    
+    $(document).ready(function () {
 
       // Open the popup for updating when "Alterar" button is clicked
       $("#upd-patrimonio-btn").click(function () {
@@ -742,6 +798,8 @@ export default {
         }
       );
     });
+
+
     // filtro
     const filter = document.getElementById("filter");
     filter.addEventListener("click", function () {
