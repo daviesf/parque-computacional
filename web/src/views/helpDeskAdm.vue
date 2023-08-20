@@ -98,100 +98,52 @@
         </div>
 
         <div class="eleven wide column" style="margin-top: 20px">
-          <div style="max-height: 70vh; overflow-y: auto;">
-          <table class="ui compact celled definition table">
-            <thead>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" id="select-all" />
-                    <label></label>
-                  </div>
-                </td>
-                <th>ID</th>
-                <th class="wide-200">Nome</th>
-                <th class="wide-80">Bancada</th>
-                <th class="wide-150">Data e hora</th>
-                <th class="wide-50">Descrição</th>
-                <th class="wide-50">Prioridade</th>
-                <th class="wide-100">Status</th>
-              </tr>
-            </thead>
-            <tbody id="helpDesk-table-body"></tbody>
-            <!-- <tbody>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>Pedro Alves</td>
-                <td>22</td>
-                <td>01/01/1998 & 06:00</td>
-                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
-                <td>Pendente</td>
-              </tr>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>Maria Eduarda</td>
-                <td>32</td>
-                <td>12/02/2023 & 07:30</td>
-                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
-                <td>Resolvido</td>
-              </tr>
-
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>Davie Schimdt</td>
-                <td>13</td>
-                <td>20/03/2023 & 09:47</td>
-                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
-                <td>Pendente</td>
-              </tr>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>Samuel Pereira</td>
-                <td>17</td>
-                <td>19/04/2023 & 11:16</td>
-                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
-                <td>Resolvido</td>
-              </tr>
-            </tbody> -->
-            <tfoot class="full-width">
-              <tr>
-                <th></th>
-                <th colspan="7">
-                  <div class="ui right floated small labeled icon button" id="add-patrimonio">
-                    <i class="keyboard outline icon"></i> Resolver chamado
-                  </div>
-                  <div class="ui left floated small button">Marcar como Resolvido</div>
-                  <div class="ui left floated small button">Remover Chamado</div>
-                </th>
-              </tr>
-            </tfoot>
-          </table>
+          <div style="max-height: 70vh; overflow-y: auto">
+            <table class="ui compact celled definition table">
+              <thead>
+                <tr>
+                  <th class="collapsing">
+                    <div class="ui fitted checkbox">
+                      <input type="checkbox" id="select-all" />
+                      <label></label>
+                    </div>
+                  </th>
+                  <th class="wide-100">ID</th>
+                  <th class="wide-200">Nome</th>
+                  <th class="wide-80">Bancada</th>
+                  <th class="wide-150">Data e hora</th>
+                  <th class="wide-50">Descrição</th>
+                  <th class="wide-50">Prioridade</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="helpDesk-table-body"></tbody>
+            </table>
+          </div>
+          <div class="bg-table">
+            <div class="ui grid">
+              <div class="sixteen wide column">
+                <div class="ui right floated small labeled icon button" id="resolve-chamado">
+                  <i class="keyboard outline icon"></i> Resolver chamado
+                </div>
+                <div class="ui left floated small button bg-button" id="marcar-resolvido-btn">
+                  Marcar como Resolvido
+                </div>
+                <div class="ui left floated small button bg-button" id="remover-chamado-btn">
+                  Remover Chamado
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   </section>
 </template>
 
 <script>
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import axios from 'axios'
+import Swal from 'sweetalert2'
 export default {
   name: 'HelpDesk',
   mounted() {

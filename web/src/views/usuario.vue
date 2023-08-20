@@ -115,94 +115,50 @@
           </div>
         </div>
 
-        <div class="eleven wide column" style="margin-top: 20px">
-          <div style="max-height: 70vh; overflow-y: auto;">
-          <table class="ui compact celled definition table">
-            <thead>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" id="select-all" />
-                    <label></label>
-                  </div>
-                </td>
-                <th class="wide-80">ID</th>
-                <th class="wide-150">Nome</th>
-                <th>E-mail</th>
-                <th class="wide-80">Bancada</th>
-                <th class="wide-100">Tipo</th>
-                <th class="wide-100">Status</th>
-              </tr>
-            </thead>
-            <!-- <tbody>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>Roberto</td>
-                <td>r@gmail.com</td>
-                <td>8</td>
-                <td>Gerente</td>
-                <td>Ativo</td>
-              </tr>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>Zé</td>
-                <td>ze@gmail.com</td>
-                <td>12</td>
-                <td>Estagiário</td>
-                <td>Desligado</td>
-              </tr>
-
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>Roberto</td>
-                <td>r@gmail.com</td>
-                <td>8</td>
-                <td>Gerente</td>
-                <td>Ativo</td>
-              </tr>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>Zé</td>
-                <td>ze@gmail.com</td>
-                <td>12</td>
-                <td>Estagiário</td>
-                <td>Desligado</td>
-              </tr>
-            </tbody> -->
-            <tbody id="usuarios-table-body"></tbody>
-            <tfoot class="full-width">
-              <tr>
-                <th></th>
-                <th colspan="6">
-                  <div class="ui right floated small labeled icon button" id="add-patrimonio">
-                    <i class="user outline icon"></i> Adicionar Funcionário
-                  </div>
-                  <div class="ui left floated small button">Excluir</div>
-                  <div class="ui left floated small button">Alterar</div>
-                  <div class="ui left floated small button">Ativar</div>
-                  <div class="ui left floated small button">Desligar</div>
-                </th>
-              </tr>
-            </tfoot>
-          </table>
+        <div class="eleven wide column" style="margin-top: 30px">
+          <div style="max-height: 70vh; overflow-y: auto">
+            <table class="ui compact celled definition table">
+              <thead>
+                <tr>
+                  <th class="collapsing">
+                    <div class="ui fitted checkbox">
+                      <input type="checkbox" id="select-all" />
+                      <label></label>
+                    </div>
+                  </th>
+                  <th class="wide-100">Código</th>
+                  <th class="wide-100">Bancada</th>
+                  <th class="wide-130">Marca</th>
+                  <th class="wide-130">Modelo</th>
+                  <th class="wide-130">Tipo</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="usuarios-table-body"></tbody>
+            </table>
+          </div>
+          <div class="bg-table">
+            <div class="ui grid">
+              <div class="sixteen wide column">
+                <div class="ui right floated small labeled icon button" id="add-funcionario">
+                  <i class="user outline icon"></i> Adicionar Funcionário
+                </div>
+                <div class="ui left floated small button bg-button" id="excluir-usuario-btn">
+                  Excluir
+                </div>
+                <div class="ui left floated small button bg-button" id="alterar-usuario-btn">
+                  Alterar
+                </div>
+                <div class="ui left floated small button bg-button" id="ativar-usuario-btn">
+                  Ativar
+                </div>
+                <div class="ui left floated small button bg-button" id="desligar-usuario-btn">
+                  Desligar
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
       </div>
     </div>
     <!-- Pop-up de cadastro de patrimônio -->
@@ -300,7 +256,7 @@ export default {
     // eslint-disable-next-line no-undef
     $(document).ready(function () {
       // eslint-disable-next-line no-undef
-      $('#add-patrimonio').on('click', function () {
+      $('#add-funcionario').on('click', function () {
         // eslint-disable-next-line no-undef
         $('.add-form').addClass('open')
       })
@@ -310,7 +266,7 @@ export default {
     // eslint-disable-next-line no-undef
     $(document).ready(function () {
       // eslint-disable-next-line no-undef
-      $('#add-patrimonio').click(function (e) {
+      $('#add-funcionario').click(function (e) {
         e.preventDefault()
         // eslint-disable-next-line no-undef
         $('.dimmer').fadeIn()

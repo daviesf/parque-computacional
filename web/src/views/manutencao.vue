@@ -83,90 +83,42 @@
         </div>
 
         <div class="eleven wide column" style="margin-top: 30px">
-          <div style="max-height: 70vh; overflow-y: auto;">
-          <table class="ui compact celled definition table">
-            <thead>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" id="select-all" />
-                    <label></label>
-                  </div>
-                </td>
-                <th class="wide-80">ID</th>
-                <th class="wide-150">Patrimônio</th>
-                <th class="wide-150">Funcionário</th>
-                <th class="wide-150">Data</th>
-                <th class="wide-150">Detalhes</th>
-              </tr>
-            </thead>
-            <!-- <tbody>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>5</td>
-                <td>HP</td>
-                <td>HP-750</td>
-                <td>22/02/2023</td>
-                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
-              </tr>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>8</td>
-                <td>Logitech</td>
-                <td>G-213</td>
-                <td>12/08/2023</td>
-                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
-              </tr>
-
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>12</td>
-                <td>Multilaser</td>
-                <td>MT-687</td>
-                <td>12/05/2023</td>
-                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
-              </tr>
-              <tr>
-                <td class="collapsing">
-                  <div class="ui fitted checkbox">
-                    <input type="checkbox" class="select-checkbox" /> <label></label>
-                  </div>
-                </td>
-                <td>2</td>
-                <td>Samsung</td>
-                <td>Book X50</td>
-                <td>12/02/2023</td>
-                <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
-              </tr>
-            </tbody> -->
-            <tbody id="manutencoes-table-body"></tbody>
-            <tfoot class="full-width">
-              <tr>
-                <th></th>
-                <th colspan="5">
-                  <div class="ui right floated small labeled icon button" id="add-patrimonio">
-                    <i class="wrench icon"></i> Adicionar Manutenção
-                  </div>
-                  <div class="ui left floated small button">Excluir</div>
-                  <div class="ui left floated small button">Alterar</div>
-                </th>
-              </tr>
-            </tfoot>
-          </table>
+          <div style="max-height: 70vh; overflow-y: auto">
+            <table class="ui compact celled definition table">
+              <thead>
+                <tr>
+                  <th class="collapsing">
+                    <div class="ui fitted checkbox">
+                      <input type="checkbox" id="select-all" />
+                      <label></label>
+                    </div>
+                  </th>
+                  <th class="wide-80">ID</th>
+                  <th class="wide-150">Patrimônio</th>
+                  <th class="wide-150">Funcionário</th>
+                  <th class="wide-150">Data</th>
+                  <th class="wide-150">Detalhes</th>
+                </tr>
+              </thead>
+              <tbody id="manutencoes-table-body"></tbody>
+            </table>
+          </div>
+          <div class="bg-table">
+            <div class="ui grid">
+              <div class="sixteen wide column">
+                <div class="ui right floated small labeled icon button" id="add-manutencao">
+                  <i class="wrench icon"></i> Adicionar Manutenção
+                </div>
+                <div class="ui left floated small button bg-button" id="del-manutencao-btn">
+                  Excluir
+                </div>
+                <div class="ui left floated small button bg-button" id="upd-manutencao-btn">
+                  Alterar
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
       </div>
     </div>
     <!-- Pop-up de cadastro de Manutenção -->
@@ -177,9 +129,7 @@
           <div class="field">
             <label>Patrimônio</label>
             <select name="tipo" class="campo required" id="patrimonio" @change="patrimonioValidate">
-              <option selected value="selecione" disabled>
-                    Selecione um Patrimônio...
-              </option>
+              <option selected value="selecione" disabled>Selecione um Patrimônio...</option>
             </select>
             <span class="span-required">Selecione algum Patrimônio</span>
           </div>
@@ -208,9 +158,7 @@
               id="funcionario"
               @change="funcionarioValidate"
             >
-            <option selected value="selecione" disabled>
-                    Selecione um Funcionário...
-            </option>
+              <option selected value="selecione" disabled>Selecione um Funcionário...</option>
             </select>
             <span class="span-required">Selecione algum Funcionário</span>
           </div>
@@ -223,8 +171,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default {
   name: 'Manutencao',
@@ -251,7 +199,7 @@ export default {
     // eslint-disable-next-line no-undef
     $(document).ready(function () {
       // eslint-disable-next-line no-undef
-      $('#add-patrimonio').on('click', function () {
+      $('#add-manutencao').on('click', function () {
         // eslint-disable-next-line no-undef
         $('.add-form').addClass('open')
       })
@@ -261,7 +209,7 @@ export default {
     // eslint-disable-next-line no-undef
     $(document).ready(function () {
       // eslint-disable-next-line no-undef
-      $('#add-patrimonio').click(function (e) {
+      $('#add-manutencao').click(function (e) {
         e.preventDefault()
         // eslint-disable-next-line no-undef
         $('.dimmer').fadeIn()
@@ -372,40 +320,42 @@ export default {
     }
 
     function dataValidate() {
-  const dateValue = campos[2].value;
-  const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+      const dateValue = campos[2].value
+      const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/
 
-  if (!dateRegex.test(dateValue)) {
-    return false; // Formato incorreto
-  }
+      if (!dateRegex.test(dateValue)) {
+        return false // Formato incorreto
+      }
 
-  const [, day, month, year] = dateValue.match(dateRegex);
+      const [, day, month, year] = dateValue.match(dateRegex)
 
-  // Verificar se os valores estão dentro de intervalos válidos
-  if (
-    parseInt(day) < 1 || parseInt(day) > 31 ||
-    parseInt(month) < 1 || parseInt(month) > 12 ||
-    parseInt(year) < 1900 || parseInt(year) > 2100
-  ) {
-    return false; // Valores fora dos intervalos válidos
-  }
+      // Verificar se os valores estão dentro de intervalos válidos
+      if (
+        parseInt(day) < 1 ||
+        parseInt(day) > 31 ||
+        parseInt(month) < 1 ||
+        parseInt(month) > 12 ||
+        parseInt(year) < 1900 ||
+        parseInt(year) > 2100
+      ) {
+        return false // Valores fora dos intervalos válidos
+      }
 
-  // Verificar se é uma data válida do calendário
-  const parsedDate = new Date(`${year}-${month}-${day}`);
-  if (isNaN(parsedDate.getTime())) {
-    return false; // Data inválida
-  }
+      // Verificar se é uma data válida do calendário
+      const parsedDate = new Date(`${year}-${month}-${day}`)
+      if (isNaN(parsedDate.getTime())) {
+        return false // Data inválida
+      }
 
-  return true; // Data válida
-}
-
+      return true // Data válida
+    }
 
     function funcionarioValidate() {
       return campos[3].value !== 'Selecione o Funcionário'
     }
 
     // Puxando Dados do Banco para o Cadastro
-          const queryPatrimonio = `query Query {
+    const queryPatrimonio = `query Query {
       patrimonios {
        idPatrimonio
        marca
@@ -413,15 +363,22 @@ export default {
       }
     }`
 
-    axios.post('http://localhost:4000', { query: queryPatrimonio }).then(
-      (result) => {
+    axios
+      .post('http://localhost:4000', { query: queryPatrimonio })
+      .then((result) => {
         const patrimonios = result.data.data.patrimonios
         const selectPatriomonio = document.getElementById('patrimonio')
 
         patrimonios.forEach((patrimonio) => {
           const option = document.createElement('option')
           option.value = patrimonio.idPatrimonio
-          option.innerHTML = "Código: " + patrimonio.idPatrimonio + " | Marca: " + patrimonio.marca + " | Modelo: " + patrimonio.modelo
+          option.innerHTML =
+            'Código: ' +
+            patrimonio.idPatrimonio +
+            ' | Marca: ' +
+            patrimonio.marca +
+            ' | Modelo: ' +
+            patrimonio.modelo
           selectPatriomonio.appendChild(option)
         })
       })
@@ -429,15 +386,16 @@ export default {
         console.log(err)
       })
 
-      const queryFuncionario = `query Query {
+    const queryFuncionario = `query Query {
       funcionarios {
        nome
        idFuncionario
       }
     }`
 
-    axios.post('http://localhost:4000', { query: queryFuncionario }).then(
-      (result) => {
+    axios
+      .post('http://localhost:4000', { query: queryFuncionario })
+      .then((result) => {
         const funcionarios = result.data.data.funcionarios
         const selectFuncionario = document.getElementById('funcionario')
 
@@ -452,8 +410,7 @@ export default {
         console.log(err)
       })
 
-
-      // Carregando a tabela através do banco
+    // Carregando a tabela através do banco
     carregaDados()
 
     function carregaDados() {
@@ -534,67 +491,62 @@ export default {
         }
       )
 
-//Cadastrar
-const addManutencao = document.getElementById("submit-manutencao");
-addManutencao.addEventListener("click", function () {
-  console.log("Iniciando cadastro");
-  let patrimonio = document.getElementById("patrimonio").value;
-  let detalhes = document.getElementById("detalhes").value;
-  let dataInput = document.getElementById("data").value;
-  let funcionario = document.getElementById("funcionario").value;
+      //Cadastrar
+      const addManutencao = document.getElementById('submit-manutencao')
+      addManutencao.addEventListener('click', function () {
+        console.log('Iniciando cadastro')
+        let patrimonio = document.getElementById('patrimonio').value
+        let detalhes = document.getElementById('detalhes').value
+        let dataInput = document.getElementById('data').value
+        let funcionario = document.getElementById('funcionario').value
 
-  console.log("Verificando status");
+        console.log('Verificando status')
 
-  console.log("Query");
+        console.log('Query')
 
-  // Converter data para o formato brasileiro (dd/mm/aaaa)
-  const dateObj = new Date(dataInput);
-  const day = dateObj.getDate().toString().padStart(2, '0');
-  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
-  const year = dateObj.getFullYear();
+        // Converter data para o formato brasileiro (dd/mm/aaaa)
+        const dateObj = new Date(dataInput)
+        const day = dateObj.getDate().toString().padStart(2, '0')
+        const month = (dateObj.getMonth() + 1).toString().padStart(2, '0')
+        const year = dateObj.getFullYear()
 
-  const formattedDate = `${day}/${month}/${year}`;
+        const formattedDate = `${day}/${month}/${year}`
 
-  const query = `mutation CreateConserto($data: DadosConserto!) {
+        const query = `mutation CreateConserto($data: DadosConserto!) {
     createConserto(data: $data) {
       dataHora
       detalhes
       idFuncionario
       idPatrimonio
     }
-  }`;
+  }`
 
-  console.log("Variáveis");
+        console.log('Variáveis')
 
-  const variables = {
-    data: {
-      idPatrimonio: parseInt(patrimonio),
-      idFuncionario: parseInt(funcionario),
-      detalhes: detalhes,
-      dataHora: formattedDate // Use "dataHora" ao invés de "dataInput"
-    },
-  };
+        const variables = {
+          data: {
+            idPatrimonio: parseInt(patrimonio),
+            idFuncionario: parseInt(funcionario),
+            detalhes: detalhes,
+            dataHora: formattedDate // Use "dataHora" ao invés de "dataInput"
+          }
+        }
 
-  console.log(variables);
+        console.log(variables)
 
-  axios.post("http://localhost:4000", { query, variables }).then(
-    (result) => {
-      console.log(result);
-      $(".popup").hide();
-      $(".dimmer").hide();
-      carregaDados();
-    },
-    (error) => {
-      console.log(error);
+        axios.post('http://localhost:4000', { query, variables }).then(
+          (result) => {
+            console.log(result)
+            $('.popup').hide()
+            $('.dimmer').hide()
+            carregaDados()
+          },
+          (error) => {
+            console.log(error)
+          }
+        )
+      })
     }
-  );
-});
-
-
-    }
-
-
-
   }
 }
 </script>

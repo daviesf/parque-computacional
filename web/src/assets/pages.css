@@ -725,7 +725,6 @@ td.td-desc {
 .dark-mode {
   background-color: #252525;
   transition: 0.5s;
-
 }
 
 .dark-mode .logo_name {
@@ -866,9 +865,9 @@ td.td-desc {
   background-color: rgb(91, 91, 91) !important;
 }
 
-/* Sweet Alert */
-/* Classe personalizada para alterar a cor da borda do botão Cancelar */
-.custom-cancel-button {
-  border-color: #ff0000; /* Cor vermelha para a borda */
+.bg-table {
+  background-color: #f3f4f6; /* Cor de fundo da "linha" */
+  border-top: 1px solid #d4d4d5; /* Borda superior da "linha" */
+  margin-top: 10px; /* Espaçamento superior */
+  padding: 10px 0; /* Espaçamento interno vertical */
 }
-
