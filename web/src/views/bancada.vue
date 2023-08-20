@@ -16,7 +16,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
+                  <input
+                    type="text"
+                    placeholder="ID da bancada"
+                    class="fluid"
+                    id="filter-bancada"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -28,7 +33,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Apelido da bancada" class="fluid" id="filter-apelido" />
+                  <input
+                    type="text"
+                    placeholder="Apelido da bancada"
+                    class="fluid"
+                    id="filter-apelido"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -40,7 +50,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Local da bancada" class="fluid" id="filter-local" />
+                  <input
+                    type="text"
+                    placeholder="Local da bancada"
+                    class="fluid"
+                    id="filter-local"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -83,7 +98,7 @@
         </div>
 
         <div class="eleven wide column" style="margin-top: 30px">
-          <div style="max-height: 70vh; overflow-y: auto;">
+          <div style="max-height: 70vh; overflow-y: auto">
             <table class="ui compact celled definition table">
               <thead>
                 <tr>
@@ -102,16 +117,17 @@
               <tbody id="bancada-table-body"></tbody>
             </table>
           </div>
-
-          <div class="ui grid">
-            <div class="sixteen wide column">
-              <div class="ui right floated small labeled icon button ae" id="add-patrimonio">
-                <i class="server icon"></i> Adicionar Bancada
+          <div class="bg-table">
+            <div class="ui grid">
+              <div class="sixteen wide column">
+                <div class="ui right floated small labeled icon button" id="add-patrimonio">
+                  <i class="server icon"></i> Adicionar Bancada
+                </div>
+                <div class="ui left floated small button" id="del-bancada-btn">Excluir</div>
+                <div class="ui left floated small button" id="upd-bancada-btn">Alterar</div>
+                <div class="ui left floated small button" id="ativar-bancada-btn">Ativar</div>
+                <div class="ui left floated small button" id="desativar-bancada-btn">Desativar</div>
               </div>
-              <div class="ui left floated small button" id="del-bancada-btn">Excluir</div>
-              <div class="ui left floated small button" id="upd-bancada-btn">Alterar</div>
-              <div class="ui left floated small button" id="ativar-bancada-btn">Ativar</div>
-              <div class="ui left floated small button" id="desativar-bancada-btn">Desativar</div>
             </div>
           </div>
         </div>
@@ -125,14 +141,26 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Apelido</label>
-            <input type="text" name="apelido" placeholder="Apelido" class="campo required" id="apelido"
-              @input="apelidoValidate" />
+            <input
+              type="text"
+              name="apelido"
+              placeholder="Apelido"
+              class="campo required"
+              id="apelido"
+              @input="apelidoValidate"
+            />
             <span class="span-required">Inisira o Apelido</span>
           </div>
           <div class="field">
             <label>Local</label>
-            <input type="text" name="local" placeholder="Local" class="campo required" id="local"
-              @input="localValidate" />
+            <input
+              type="text"
+              name="local"
+              placeholder="Local"
+              class="campo required"
+              id="local"
+              @input="localValidate"
+            />
             <span class="span-required">Inisira o Local</span>
           </div>
 
@@ -180,139 +208,158 @@ export default {
       })
     }
 
-    let cod = 0;
+    let cod = 0
     //Atualizar
     $(document).ready(function () {
-
       // Open the popup for updating when "Alterar" button is clicked
-      $("#upd-bancada-btn").click(function () {
-        const esconder = document.querySelector("#upd-bancada");
-        esconder.style.display = "inline";
+      $('#upd-bancada-btn').click(function () {
+        const esconder = document.querySelector('#upd-bancada')
+        esconder.style.display = 'inline'
 
-        const aparecer1 = document.querySelector("#submit-bancada");
-        aparecer1.style.display = "none";
+        const aparecer1 = document.querySelector('#submit-bancada')
+        aparecer1.style.display = 'none'
 
-        const selectedCheckboxes = $("input.select-checkbox:checked");
+        const selectedCheckboxes = $('input.select-checkbox:checked')
 
         if (selectedCheckboxes.length == 0 || selectedCheckboxes.length > 1) {
-          alert("Selecione um valor antes de clicar em Alterar");
-          return;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione um valor antes de clicar em Alterar',
+            confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+            confirmButtonText: 'OK'
+          })
+          return
         }
 
         // Get the closest row to the selected checkbox
-        const selectedRow = selectedCheckboxes.closest("tr");
+        const selectedRow = selectedCheckboxes.closest('tr')
 
         // Open the popup for updating
-        $(".dimmer").fadeIn();
+        $('.dimmer').fadeIn()
 
         // Populate the form fields with selected row data
-        const selectedFields = selectedRow.find("td").slice(1, 5);
-        const formFields = $("#form input, #form select");
+        const selectedFields = selectedRow.find('td').slice(1, 5)
+        const formFields = $('#form input, #form select')
 
-        formFields.eq(0).val(selectedFields.eq(1).text().trim());
-        formFields.eq(1).val(selectedFields.eq(2).text().trim());
+        formFields.eq(0).val(selectedFields.eq(1).text().trim())
+        formFields.eq(1).val(selectedFields.eq(2).text().trim())
         //formFields.eq(2).val(selectedFields.eq(3).text().trim());
-        cod = selectedFields.eq(0).text().trim();
+        cod = selectedFields.eq(0).text().trim()
 
         // Change the header text to "Atualizar Patrimônio"
-        $(".ui.dividing.header").text("Atualizar Bancada");
-
-      });
+        $('.ui.dividing.header').text('Atualizar Bancada')
+      })
 
       // Hide the pop-up and dimmer when "Cancelar" button is clicked
-      $(".cancel-button").click(function () {
-        $(".popup").hide();
-        $(".dimmer").hide();
-
-      });
-    });
+      $('.cancel-button').click(function () {
+        $('.popup').hide()
+        $('.dimmer').hide()
+      })
+    })
 
     //Deletar
     $(document).ready(function () {
-      $("#del-bancada-btn").click(function () {
-        const selectedCheckboxes = $("input.select-checkbox:checked");
+      $('#del-bancada-btn').click(function () {
+        const selectedCheckboxes = $('input.select-checkbox:checked')
 
-        if (selectedCheckboxes.length == 0) {
-          alert("Selecione Um Valor Antes de Clicar em Excluir");
-          return;
+        if (selectedCheckboxes.length === 0) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione um valor antes de clicar em Excluir',
+            confirmButtonColor: '#004654',
+            confirmButtonText: 'OK'
+          })
+          return
         } else {
-          if (confirm("Tem Certeza Que Deseja Excluir?")) {
-            selectedCheckboxes.each(function () {
-              const selectedRow = $(this).closest("tr");
+          Swal.fire({
+            title: 'Você tem certeza?',
+            text: 'Você não poderá reverter a exclusão',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#004654',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, deletar!',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            // Use 'then' to handle the user's choice
+            if (result.isConfirmed) {
+              selectedCheckboxes.each(function () {
+                const selectedRow = $(this).closest('tr')
+                const selectedFields = selectedRow.find('td').slice(1, 7)
+                const codigoCell = selectedFields.eq(0).text().trim()
 
-              const selectedFields = selectedRow.find("td").slice(1, 7);
-
-              const formFields = $("#form input, #form select");
-
-              let codigoCell = selectedFields.eq(0).text().trim();
-
-
-              console.log("Código selecionado:", codigoCell);
-
-              console.log("Iniciando Atualização");
-
-              console.log("Verificando status");
-
-              console.log("Query");
-
-              const query = `mutation Mutation($idBancada: ID!) {
+                const query = `
+              mutation Mutation($idBancada: ID!) {
                 deleteBancada(idBancada: $idBancada)
-              }`;
+              }
+            `
 
-              console.log("Variáveis");
-
-              const variables = {
-                idBancada: parseInt(codigoCell),
-              };
-
-              console.log(variables);
-
-              axios.post("http://localhost:4000", { query, variables }).then(
-                (result) => {
-                  console.log(result);
-                  $(".popup").hide();
-                  $(".dimmer").hide();
-                  carregaDados();
-                },
-                (error) => {
-                  console.log(error);
+                const variables = {
+                  idBancada: parseInt(codigoCell)
                 }
-              );
-            });
-          }
+
+                axios.post('http://localhost:4000', { query, variables }).then(
+                  (response) => {
+                    console.log(response)
+                    $('.popup').hide()
+                    $('.dimmer').hide()
+
+                    Swal.fire({
+                      title: 'Deletado!',
+                      text: 'O patrimônio foi removido com sucesso!',
+                      icon: 'success',
+                      confirmButtonColor: '#004654' // Cor personalizada do botão OK
+                    })
+
+                    carregaDados()
+                  },
+                  (error) => {
+                    console.log(error)
+                  }
+                )
+              })
+            }
+          })
         }
-      });
-    });
+      })
+    })
 
     //Desativar
     $(document).ready(function () {
-      $("#desativar-bancada-btn").click(function () {
-        const selectedCheckboxes = $("input.select-checkbox:checked");
+      $('#desativar-bancada-btn').click(function () {
+        const selectedCheckboxes = $('input.select-checkbox:checked')
 
         if (selectedCheckboxes.length == 0) {
-          alert("Selecione Um Valor Antes de Clicar em Desativar");
-          return;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione um valor antes de clicar em Desativar',
+            confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+            confirmButtonText: 'OK'
+          })
+          return
         } else {
           selectedCheckboxes.each(function () {
-            const selectedRow = $(this).closest("tr");
+            const selectedRow = $(this).closest('tr')
 
-            const selectedFields = selectedRow.find("td").slice(1, 5);
+            const selectedFields = selectedRow.find('td').slice(1, 5)
 
-            const formFields = $("#form input, #form select");
+            const formFields = $('#form input, #form select')
 
-            const codigoCell = selectedFields.eq(0).text().trim();
-            let status = "0";
+            const codigoCell = selectedFields.eq(0).text().trim()
+            let status = '0'
 
+            console.log('Código selecionado:', codigoCell)
 
-            console.log("Código selecionado:", codigoCell);
+            console.log('Status selecionado:', status)
 
-            console.log("Status selecionado:", status);
+            console.log('Iniciando Atualização')
 
-            console.log("Iniciando Atualização");
+            console.log('Verificando status')
 
-            console.log("Verificando status");
-
-            console.log("Query");
+            console.log('Query')
 
             const query = `mutation Mutation($idBancada: ID, $status: String) {
               ativarBancada(idBancada: $idBancada, status: $status) {
@@ -320,62 +367,67 @@ export default {
                 status
               }
             }
-            `;
+            `
 
-            console.log("Variáveis");
+            console.log('Variáveis')
 
             const variables = {
               idBancada: parseInt(codigoCell),
-              status: status,
-            };
+              status: status
+            }
 
-            console.log(variables);
+            console.log(variables)
 
-            axios.post("http://localhost:4000", { query, variables }).then(
+            axios.post('http://localhost:4000', { query, variables }).then(
               (result) => {
-                console.log(result);
-                $(".popup").hide();
-                $(".dimmer").hide();
-                carregaDados();
+                console.log(result)
+                $('.popup').hide()
+                $('.dimmer').hide()
+                carregaDados()
               },
               (error) => {
-                console.log(error);
+                console.log(error)
               }
-            );
-          });
+            )
+          })
         }
-      });
-    });
+      })
+    })
 
     //Ativar
     $(document).ready(function () {
-      $("#ativar-bancada-btn").click(function () {
-        const selectedCheckboxes = $("input.select-checkbox:checked");
+      $('#ativar-bancada-btn').click(function () {
+        const selectedCheckboxes = $('input.select-checkbox:checked')
 
         if (selectedCheckboxes.length == 0) {
-          alert("Selecione Um Valor Antes de Clicar em Ativar");
-          return;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione um valor antes de clicar em Ativar',
+            confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+            confirmButtonText: 'OK'
+          })
+          return
         } else {
           selectedCheckboxes.each(function () {
-            const selectedRow = $(this).closest("tr");
+            const selectedRow = $(this).closest('tr')
 
-            const selectedFields = selectedRow.find("td").slice(1, 5);
+            const selectedFields = selectedRow.find('td').slice(1, 5)
 
-            const formFields = $("#form input, #form select");
+            const formFields = $('#form input, #form select')
 
-            const codigoCell = selectedFields.eq(0).text().trim();
-            let status = "1";
+            const codigoCell = selectedFields.eq(0).text().trim()
+            let status = '1'
 
+            console.log('Código selecionado:', codigoCell)
 
-            console.log("Código selecionado:", codigoCell);
+            console.log('Status selecionado:', status)
 
-            console.log("Status selecionado:", status);
+            console.log('Iniciando Atualização')
 
-            console.log("Iniciando Atualização");
+            console.log('Verificando status')
 
-            console.log("Verificando status");
-
-            console.log("Query");
+            console.log('Query')
 
             const query = `mutation Mutation($idBancada: ID, $status: String) {
               ativarBancada(idBancada: $idBancada, status: $status) {
@@ -383,32 +435,32 @@ export default {
                 status
               }
             }
-            `;
+            `
 
-            console.log("Variáveis");
+            console.log('Variáveis')
 
             const variables = {
               idBancada: parseInt(codigoCell),
-              status: status,
-            };
+              status: status
+            }
 
-            console.log(variables);
+            console.log(variables)
 
-            axios.post("http://localhost:4000", { query, variables }).then(
+            axios.post('http://localhost:4000', { query, variables }).then(
               (result) => {
-                console.log(result);
-                $(".popup").hide();
-                $(".dimmer").hide();
-                carregaDados();
+                console.log(result)
+                $('.popup').hide()
+                $('.dimmer').hide()
+                carregaDados()
               },
               (error) => {
-                console.log(error);
+                console.log(error)
               }
-            );
-          });
+            )
+          })
         }
-      });
-    });
+      })
+    })
 
     //Cadastrar
     // Exibe o pop-pup ao clicar no botão "Adicionar Bancada"
@@ -424,25 +476,24 @@ export default {
     $(document).ready(function () {
       // eslint-disable-next-line no-undef
       $('#add-patrimonio').click(function (e) {
-        const esconder = document.querySelector("#upd-bancada");
-        esconder.style.display = "none";
+        const esconder = document.querySelector('#upd-bancada')
+        esconder.style.display = 'none'
 
-        const aparecer1 = document.querySelector("#submit-bancada");
-        aparecer1.style.display = "inline";
+        const aparecer1 = document.querySelector('#submit-bancada')
+        aparecer1.style.display = 'inline'
 
         e.preventDefault()
-        const selectedRow = $(this).closest("tr");
+        const selectedRow = $(this).closest('tr')
 
-        const selectedFields = selectedRow.find("td").slice(1, 7);
+        const selectedFields = selectedRow.find('td').slice(1, 7)
 
-        const formFields = $("#form input, #form select");
-        formFields.eq(0).prop('readonly', false).val(selectedFields.eq(0).text().trim());
-        formFields.eq(1).val(selectedFields.eq(0).text().trim());
-
+        const formFields = $('#form input, #form select')
+        formFields.eq(0).prop('readonly', false).val(selectedFields.eq(0).text().trim())
+        formFields.eq(1).val(selectedFields.eq(0).text().trim())
 
         // eslint-disable-next-line no-undef
         $('.dimmer').fadeIn()
-        $(".ui.dividing.header").text("Cadastrar Bancada");
+        $('.ui.dividing.header').text('Cadastrar Bancada')
       })
       // eslint-disable-next-line no-undef
       $('.dimmer').click(function (e) {
@@ -648,9 +699,9 @@ export default {
         status = "2";
       }
 
-      console.log("Verificando status");
+      console.log('Verificando status')
 
-      console.log("Query");
+      console.log('Query')
 
       const query = `mutation Mutation($idBancada: ID!, $data: DadosBancada!) {
         updateBancada(idBancada: $idBancada, data: $data) {
@@ -659,33 +710,33 @@ export default {
           local
           idBancada
         }
-      }`;
+      }`
 
-      console.log("Variáveis");
+      console.log('Variáveis')
 
       const variables = {
         idBancada: parseInt(cod),
         data: {
           apelido: apelido,
           local: local,
-          status: status,
+          status: status
         }
-      };
+      }
 
-      console.log(variables);
+      console.log(variables)
 
-      axios.post("http://localhost:4000", { query, variables }).then(
+      axios.post('http://localhost:4000', { query, variables }).then(
         (result) => {
-          console.log(result);
-          $(".popup").hide();
-          $(".dimmer").hide();
-          carregaDados();
+          console.log(result)
+          $('.popup').hide()
+          $('.dimmer').hide()
+          carregaDados()
         },
         (error) => {
-          console.log(error);
+          console.log(error)
         }
-      );
-    });
+      )
+    })
 
     //Cadastrar
     const addBancada = document.getElementById('submit-bancada')
@@ -695,11 +746,11 @@ export default {
       let local = document.getElementById('local').value
       let status = document.getElementById('status').value
       if (status == 'ativo') {
-        status = "1"
+        status = '1'
       } else if (status == 'inativo') {
-        status = "0"
+        status = '0'
       } else if (status == 'manutenção') {
-        status = "2"
+        status = '2'
       }
 
       console.log('Verificando status')

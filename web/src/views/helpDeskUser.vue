@@ -234,20 +234,20 @@ export default {
       return campos[4].value.length > 0
     }
 
-// cadastrar
-const addChamado = document.getElementById('enviarChamado')
-addChamado.addEventListener('click', function () {
-  console.log('Iniciando cadastro')
-  let nome = document.getElementById('nome').value
-  let email = document.getElementById('email').value
-  let assunto = document.getElementById('assunto').value
-  let prioridade = document.getElementById('prioridade').value
-  let descricao = document.getElementById('descricao').value
-  let status = "Pendente"
+    // cadastrar
+    const addChamado = document.getElementById('enviarChamado')
+    addChamado.addEventListener('click', function () {
+      console.log('Iniciando cadastro')
+      let nome = document.getElementById('nome').value
+      let email = document.getElementById('email').value
+      let assunto = document.getElementById('assunto').value
+      let prioridade = document.getElementById('prioridade').value
+      let descricao = document.getElementById('descricao').value
+      let status = 'Pendente'
 
-  console.log('Query')
+      console.log('Query')
 
-  const query = `mutation CreateChamado($data: DadosChamado!) {
+      const query = `mutation CreateChamado($data: DadosChamado!) {
     createChamado(data: $data) {
       idChamado
       nome
@@ -259,51 +259,50 @@ addChamado.addEventListener('click', function () {
     }
   }`
 
-  console.log('Variáveis')
+      console.log('Variáveis')
 
-  // Obtém a data e hora atual
-  const dataHoraAtual = new Date();
-  const dataHoraString = dataHoraAtual.toLocaleString();
+      // Obtém a data e hora atual
+      const dataHoraAtual = new Date()
+      const dataHoraString = dataHoraAtual.toLocaleString()
 
-  const variables = {
-    data: {
-      nome: nome,
-      email: email,
-      assunto: assunto,
-      prioridade: prioridade,
-      descricao: descricao,
-      status: status,
-      dataHora: dataHoraString  
-    }
-  }
+      const variables = {
+        data: {
+          nome: nome,
+          email: email,
+          assunto: assunto,
+          prioridade: prioridade,
+          descricao: descricao,
+          status: status,
+          dataHora: dataHoraString
+        }
+      }
 
-//     // Consulta para obter o ID e outras variáveis do funcionário pelo email
-//     const queryFuncionarioByEmail = `
-//     query FuncionariosByEmail($email: String!) {
-//   funcionariosByEmail(email: $email) {
-//     idBancada
-//   }
-// }
-//   `;
+      //     // Consulta para obter o ID e outras variáveis do funcionário pelo email
+      //     const queryFuncionarioByEmail = `
+      //     query FuncionariosByEmail($email: String!) {
+      //   funcionariosByEmail(email: $email) {
+      //     idBancada
+      //   }
+      // }
+      //   `;
 
-//   // Variáveis para a consulta do funcionário
-//   const variablesFuncionario = {
-//     email: email,
-//   };
+      //   // Variáveis para a consulta do funcionário
+      //   const variablesFuncionario = {
+      //     email: email,
+      //   };
 
-  console.log(variables)
+      console.log(variables)
 
-  axios.post('http://localhost:4000', { query, variables }).then(
-    (result) => {
-      console.log(result)
-      carregaDados()
-    },
-    (error) => {
-      console.log(error)
-    }
-  )
-})
-
+      axios.post('http://localhost:4000', { query, variables }).then(
+        (result) => {
+          console.log(result)
+          carregaDados()
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    })
   }
 }
 </script>
