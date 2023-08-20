@@ -115,6 +115,7 @@ export default {
       idSession
       nome
       idGoogle
+      email
     }
   }
   `
@@ -131,6 +132,7 @@ export default {
           document.cookie = 'AKJA12=' + updatedUser.idSession + '; expires=' + new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
           document.cookie = 'GLG13=' + updatedUser.idGoogle + '; expires=' + new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
           document.cookie = 'identity=' + btoa(updatedUser.nome) + '; expires=' + new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
+          document.cookie = 'identity2=' + btoa(updatedUser.email) + '; expires=' + new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
           console.log(document.cookie)
         })
         .catch((error) => console.error(error))
