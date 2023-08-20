@@ -7,32 +7,32 @@
             <div class="card_info">
               <i class="keyboard outline icon"></i>
               <div class="card_title">Patrimônios registrados:</div>
-              <div class="card_content">25</div>
+              <div class="card_content" id="total_patrimonios">25</div>
             </div>
             <div class="card_info">
               <i class="laptop icon"></i>
               <div class="card_title">Chamados pendentes:</div>
-              <div class="card_content">12</div>
+              <div class="card_content" id="chamados_pendentes">12</div>
             </div>
             <div class="card_info">
               <i class="wrench icon custom-icon"></i>
               <div class="card_title">Patrimônios manutenção:</div>
-              <div class="card_content">2</div>
+              <div class="card_content" id="patrimonio_manutencao">2</div>
             </div>
             <div class="card_info">
               <i class="trash bill alternate icon custom-icon"></i>
               <div class="card_title">Patrimônios Inoperantes:</div>
-              <div class="card_content">3</div>
+              <div class="card_content" id="patrimonio_inativo">3</div>
             </div>
             <div class="card_info">
               <i class="server icon"></i>
               <div class="card_title">Bancadas operando:</div>
-              <div class="card_content">1</div>
+              <div class="card_content" id="bancada_ativa">1</div>
             </div>
             <div class="card_info">
-              <i class="check circle outline icon"></i>
-              <div class="card_title">Manutenções realizadas:</div>
-              <div class="card_content">1</div>
+              <i class="user outline icon"></i>
+              <div class="card_title">Usuários Cadastrados:</div>
+              <div class="card_content" id="usuarios_cadastrados">1</div>
             </div>
           </div>
         </div>

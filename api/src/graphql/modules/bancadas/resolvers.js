@@ -28,9 +28,21 @@ export default {
 				if (filter.local) {
 					builder.where("local", "like", `%${filter.local}%`);
 				}
-				if (filter.status) {
-					builder.where("status", filter.status);
+				if (filter.apelido) {
+					builder.where("apelido", "like", `%${filter.apelido}%`);
 				}
+				if (filter.status) {
+					let statusValue;
+					if (filter.status === 'Ativo') {
+					  statusValue = 1;
+					} else if (filter.status === 'Inativo') {
+					  statusValue = 0;
+					} else if (filter.status === 'Manutenção') {
+					  statusValue = 2;
+					}
+					builder.where("status", statusValue);
+				  }
+				  
 			});
 			return bancadas;
 		},

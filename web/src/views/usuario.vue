@@ -33,7 +33,7 @@
                 </div>
               </div>
             </div>
-            <div class="accordion">
+            <!-- <div class="accordion">
               <div class="accordion-header">
                 <span>Bancada</span>
                 <span class="accordion-icon">+</span>
@@ -44,7 +44,7 @@
                   <i class="search icon"></i>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="accordion">
               <div class="accordion-header">
                 <span>Tipo</span>
@@ -54,18 +54,12 @@
                 <div class="ui two column grid">
                   <div class="column">
                     <div class="ui checkbox">
-                      <input type="checkbox" id="cb-gerente" />
-                      <label>Gerente</label>
+                      <input type="checkbox" id="cb-adm" />
+                      <label>Administrador</label>
                     </div>
                     <div class="ui checkbox">
-                      <input type="checkbox" id="cb-estagiario" />
-                      <label>Estagiário</label>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui checkbox">
-                      <input type="checkbox" id="cb-clt" />
-                      <label>CLT</label>
+                      <input type="checkbox" id="cb-user" />
+                      <label>Usuário Comum</label>
                     </div>
                   </div>
                 </div>
@@ -114,9 +108,9 @@
                     </div>
                   </td>
                   <th class="wide-100">Código</th>
-                  <th class="wide-100">Bancada</th>
-                  <th class="wide-130">Marca</th>
-                  <th class="wide-130">Modelo</th>
+                  <th class="wide-100">Nome</th>
+                  <th class="wide-130">E-mail</th>
+                  <th class="wide-130">Bancada</th>
                   <th class="wide-130">Tipo</th>
                   <th>Status</th>
                 </tr>
@@ -481,6 +475,126 @@ funcionarios {
         }
       )
     }
+
+    // filtro
+    const filtro = document.getElementById('filter')
+    filtro.addEventListener('click', function () {
+      let nome = document.getElementById('filter-nome').value
+      let email = document.getElementById('filter-email').value
+      if (document.getElementById('cb-adm').checked) {
+        var tipo = 'Administrador'
+      } else if (document.getElementById('cb-user').checked) {
+        var tipo = 'Usuário Comum'
+      } 
+      if (document.getElementById('cb-ativo').checked) {
+        var status = 'Ativo'
+      } else if (document.getElementById('cb-desligado').checked) {
+        var status = 'Desligado'
+      }
+      const query = `query SearchFuncionarios($filter: FuncionarioFilter) {
+  searchFuncionarios(filter: $filter) {
+    nome
+    email
+    status
+    tipo
+  }
+}`
+      const variables = {
+        filter: {
+          nome: nome,
+          email: email,
+          tipo: tipo,
+          status: status
+        }
+      }
+
+      axios.post('http://localhost:4000', { query, variables }).then((result) => {
+        console.log(result)
+        document.getElementById('usuarios-table-body').innerHTML = ''
+        const funcionarios = result.data.data.searchFuncionarios
+        console.log('=====')
+        console.log(funcionarios)
+        const tbody = document.getElementById('usuarios-table-body')
+
+        funcionarios.forEach((funcionario) => {
+          const tr = document.createElement('tr')
+
+          const tdCheckbox = document.createElement('td')
+          tdCheckbox.className = 'collapsing'
+          const checkbox = document.createElement('div')
+          checkbox.className = 'ui fitted checkbox'
+          const inputCheckbox = document.createElement('input')
+          inputCheckbox.type = 'checkbox'
+          inputCheckbox.className = 'select-checkbox'
+          const labelCheckbox = document.createElement('label')
+          checkbox.appendChild(inputCheckbox)
+          checkbox.appendChild(labelCheckbox)
+          tdCheckbox.appendChild(checkbox)
+
+          inputCheckbox.addEventListener('change', function () {
+            const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+            const selectAllCheckbox = document.getElementById('select-all')
+
+            const isAllChecked = Array.from(selectCheckboxes).every((checkbox) => checkbox.checked)
+            selectAllCheckbox.checked = isAllChecked
+
+            if (!this.checked) {
+              selectAllCheckbox.checked = false
+            }
+          })
+
+          axios.post('http://localhost:4000', { query: queryBancada }).then((result) => {
+              const bancadas = result.data.data.bancadas
+              const tbody = document.getElementById('usuarios-table-body')
+
+              bancadas.forEach((bancada) => {
+                const tdBancada = document.createElement('td')
+                tdBancada.textContent = bancada.idBancada
+                option.innerHTML = 'ID: ' + bancada.idBancada + ' | ' + bancada.apelido
+                tr.appendChild(tdBancada)
+              })
+            })
+
+            const tdID = document.createElement('td')
+            tdID.textContent = funcionario.idFuncionario
+
+            const tdNome = document.createElement('td')
+            tdNome.textContent = funcionario.nome
+
+            const tdEmail = document.createElement('td')
+            tdEmail.textContent = funcionario.email
+
+            
+
+            const tdTipo = document.createElement('td');
+            const tipoValue = funcionario.tipo;
+
+            let tipoText;
+            if (tipoValue == 1) {
+              tipoText = 'Administrador';
+            } else if (tipoValue == 2) {
+              tipoText = 'Usuário Comum';
+            } else {
+              tipoText = 'Desconhecido'; // Tratamento para outros valores de tipo
+            }
+
+            tdTipo.textContent = tipoText;
+
+
+            const tdStatus = document.createElement('td')
+            tdStatus.textContent = funcionario.status
+
+            tr.appendChild(tdCheckbox)
+            tr.appendChild(tdID)
+            tr.appendChild(tdNome)
+            tr.appendChild(tdEmail)
+            tr.appendChild(tdTipo)
+            tr.appendChild(tdStatus)
+
+            tbody.appendChild(tr)
+        })
+      })
+    })
   }
 }
 </script>

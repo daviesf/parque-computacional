@@ -67,7 +67,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui checkbox">
-                  <input type="date" name="example" />
+                  <input type="date" name="example" id="filter-data"/>
                 </div>
               </div>
             </div>
@@ -549,6 +549,96 @@ export default {
         )
       })
     }
+    // filtro
+    const filtro = document.getElementById('filter')
+    filtro.addEventListener('click', function () {
+      let idManutencao = document.getElementById('filter-idManutencao').value
+      let codPatrimonio = document.getElementById('filter-patrimonio').value
+      let funcionario = document.getElementById('filter-funcionario').value
+      let dataManutencao = document.getElementById('filter-data').value
+
+      const query = `query SearchBancadas($filter: ConsertosFilter) {
+  searchConsertos(filter: $filter) {
+    dataHora
+    idConserto
+    detalhes
+    idFuncionario
+    idPatrimonio
+  }
+}`
+      const variables = {
+        filter: {
+          idConserto: parseInt(idManutencao),
+          idFuncionario: parseInt(funcionario),
+          idPatrimonio: parseInt(codPatrimonio),
+          dataHora: dataManutencao
+        }
+      }
+
+      axios.post('http://localhost:4000', { query, variables }).then(
+        (result) => {
+          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+          const consertos = result.data.data.consertos
+          let i = 0
+          const tbody = document.getElementById('manutencoes-table-body')
+
+          consertos.forEach((conserto) => {
+            i++
+            const tr = document.createElement('tr')
+            const tdCheckbox = document.createElement('td')
+            tdCheckbox.className = 'collapsing'
+            const checkbox = document.createElement('div')
+            checkbox.className = 'ui fitted checkbox'
+            const inputCheckbox = document.createElement('input')
+            inputCheckbox.type = 'checkbox'
+            inputCheckbox.className = 'select-checkbox'
+            const labelCheckbox = document.createElement('label')
+            checkbox.appendChild(inputCheckbox)
+            checkbox.appendChild(labelCheckbox)
+            tdCheckbox.appendChild(checkbox)
+
+            inputCheckbox.addEventListener('change', function () {
+              const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+              const selectAllCheckbox = document.getElementById('select-all')
+
+              const isAllChecked = Array.from(selectCheckboxes).every(
+                (checkbox) => checkbox.checked
+              )
+              selectAllCheckbox.checked = isAllChecked
+
+              if (!this.checked) {
+                selectAllCheckbox.checked = false
+              }
+            })
+
+            const tdManutencao = document.createElement('td')
+            tdManutencao.textContent = conserto.idConserto
+
+            const tdPatrimonio = document.createElement('td')
+            tdPatrimonio.textContent = conserto.idPatrimonio
+
+            const tdFuncionario = document.createElement("td");
+            nomeFuncionario(conserto.idFuncionario).then(nome => {
+              tdFuncionario.textContent = nome;
+            });
+
+            const tdData = document.createElement('td')
+            tdData.textContent = conserto.dataHora
+
+            const tdDetalhes = document.createElement('td')
+            tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${conserto.idConserto}', '${conserto.detalhes}' , 'info')">Ver</button>`
+
+            tr.appendChild(tdCheckbox)
+            tr.appendChild(tdManutencao)
+            tr.appendChild(tdPatrimonio)
+            tr.appendChild(tdFuncionario)
+            tr.appendChild(tdData)
+            tr.appendChild(tdDetalhes)
+
+            tbody.appendChild(tr)
+        })
+      })
+    })
   }
 }
 </script>

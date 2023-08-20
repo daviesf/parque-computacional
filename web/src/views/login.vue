@@ -44,7 +44,7 @@
 <script>
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
-import cryptojs from 'crypto-js'
+// import cryptojs from 'crypto-js'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names

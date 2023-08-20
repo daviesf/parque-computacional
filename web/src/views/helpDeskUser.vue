@@ -16,7 +16,7 @@
           <div class="ui segment">
             <h3 class="ui header">Novo Chamado</h3>
             <form id="form" class="ui form">
-              <div class="field">
+              <!-- <div class="field">
                 <label>Nome</label>
                 <input
                   type="text"
@@ -39,7 +39,7 @@
                   @input="emailValidate"
                 />
                 <span class="span-required">Insira um e-mail válido</span>
-              </div>
+              </div> -->
               <div class="field">
                 <label>Assunto</label>
                 <input
@@ -52,7 +52,7 @@
                 />
                 <span class="span-required">Insira o Assunto</span>
               </div>
-              <div class="field">
+              <!-- <div class="field">
                 <label>Prioridade</label>
                 <select
                   name="prioridade"
@@ -66,7 +66,7 @@
                   <option value="Baixa">Baixa</option>
                 </select>
                 <span class="span-required">Selecione a Prioridade</span>
-              </div>
+              </div> -->
               <div class="field">
                 <label>Descrição</label>
                 <textarea
@@ -238,10 +238,7 @@ export default {
     const addChamado = document.getElementById('enviarChamado')
     addChamado.addEventListener('click', function () {
       console.log('Iniciando cadastro')
-      let nome = document.getElementById('nome').value
-      let email = document.getElementById('email').value
       let assunto = document.getElementById('assunto').value
-      let prioridade = document.getElementById('prioridade').value
       let descricao = document.getElementById('descricao').value
       let status = 'Pendente'
 

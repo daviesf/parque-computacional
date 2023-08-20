@@ -19,11 +19,17 @@ export default {
 		},
 		searchConsertos: async (_, { filter }) => {
 			const consertos = await knex("consertos").where((builder) => {
+				if (filter.idConserto) {
+					builder.where("idConserto", filter.idConserto);
+				}
 				if (filter.idPatrimonio) {
 					builder.where("idPatrimonio", filter.idPatrimonio);
 				}
-				if (filter.descricao) {
-					builder.where("descricao", "like", `%${filter.descricao}%`);
+				if (filter.idFuncionario) {
+					builder.where("idFuncionario", filter.idFuncionario);
+				}
+				if (filter.dataHora) {
+					builder.where("dataHora", "like", `%${filter.dataHora}%`);
 				}
 			});
 			return consertos;

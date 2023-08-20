@@ -791,13 +791,11 @@ export default {
     })
 
     // filtro
-    const filter = document.getElementById('filter')
-    filter.addEventListener('click', function () {
-      console.log('Tentando filtrar')
+    const filtro = document.getElementById('filter')
+    filtro.addEventListener('click', function () {
       let bancada = document.getElementById('filter-bancada').value
       let apelido = document.getElementById('filter-apelido').value
       let local = document.getElementById('filter-local').value
-      console.log('Peguei os dados dos inputs:' + bancada + apelido + local)
       if (document.getElementById('cb-ativo').checked) {
         var status = 'Ativo'
       } else if (document.getElementById('cb-inativo').checked) {
@@ -805,12 +803,10 @@ export default {
       } else if (document.getElementById('cb-manut').checked) {
         var status = 'Manutenção'
       }
-      console.log('Status' + status)
-
-      const query = `query Query($filter: BancadaFilter) {
+      const query = `query SearchBancadas($filter: BancadaFilter) {
   searchBancadas(filter: $filter) {
-    idBancada
     apelido
+    idBancada
     local
     status
   }
