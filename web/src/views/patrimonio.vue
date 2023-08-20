@@ -242,6 +242,7 @@
 
 <script>
 import axios from "axios";
+import { authenticator } from '../script/auth.js';
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -306,79 +307,79 @@ export default {
     });
 
     // Deletar
-$(document).ready(function () {
-  $("#del-patrimonio-btn").click(function () {
-    const selectedCheckboxes = $("input.select-checkbox:checked");
+    $(document).ready(function () {
+      $("#del-patrimonio-btn").click(function () {
+        const selectedCheckboxes = $("input.select-checkbox:checked");
 
-    if (selectedCheckboxes.length == 0) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Selecione o patrimônio que deseja excluir',
-        confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
-        confirmButtonText: 'OK',
-      });
-      return;
-    } else {
-      Swal.fire({
-        title: 'Você tem certeza?',
-        text: 'Você não poderá reverter a exclusão',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#004654',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim, deletar!',
-        cancelButtonText: 'Cancelar',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          selectedCheckboxes.each(function () {
-            const selectedRow = $(this).closest('tr');
-            const selectedFields = selectedRow.find('td').slice(1, 7);
-            const codigoCell = selectedFields.eq(0).text().trim();
+        if (selectedCheckboxes.length == 0) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione o patrimônio que deseja excluir',
+            confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+            confirmButtonText: 'OK',
+          });
+          return;
+        } else {
+          Swal.fire({
+            title: 'Você tem certeza?',
+            text: 'Você não poderá reverter a exclusão',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#004654',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, deletar!',
+            cancelButtonText: 'Cancelar',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              selectedCheckboxes.each(function () {
+                const selectedRow = $(this).closest('tr');
+                const selectedFields = selectedRow.find('td').slice(1, 7);
+                const codigoCell = selectedFields.eq(0).text().trim();
 
-            console.log('Código selecionado:', codigoCell);
-            console.log('Iniciando Atualização');
-            console.log('Verificando status');
-            console.log('Query');
+                console.log('Código selecionado:', codigoCell);
+                console.log('Iniciando Atualização');
+                console.log('Verificando status');
+                console.log('Query');
 
-            const query = `mutation Mutation($idPatrimonio: ID!) {
+                const query = `mutation Mutation($idPatrimonio: ID!) {
               deletePatrimonio(idPatrimonio: $idPatrimonio)
             }`;
 
-            console.log('Variáveis');
+                console.log('Variáveis');
 
-            const variables = {
-              idPatrimonio: parseInt(codigoCell),
-            };
+                const variables = {
+                  idPatrimonio: parseInt(codigoCell),
+                };
 
-            console.log(variables);
+                console.log(variables);
 
-            axios.post('http://localhost:4000', { query, variables }).then(
-            (result) => {
-              console.log(result);
-              $('.popup').hide();
-              $('.dimmer').hide();
-              carregaDados();
+                axios.post('http://localhost:4000', { query, variables }).then(
+                  (result) => {
+                    console.log(result);
+                    $('.popup').hide();
+                    $('.dimmer').hide();
+                    carregaDados();
 
-              Swal.fire({
-              title: 'Deletado!',
-              text: 'O patrimônio foi removido com sucesso!',
-              icon: 'success',
-              confirmButtonColor: '#004654', // Cor personalizada do botão OK
+                    Swal.fire({
+                      title: 'Deletado!',
+                      text: 'O patrimônio foi removido com sucesso!',
+                      icon: 'success',
+                      confirmButtonColor: '#004654', // Cor personalizada do botão OK
+                    });
+
+                  },
+                  (error) => {
+                    console.log(error);
+                  }
+                );
+
               });
-
-            },
-            (error) => {
-              console.log(error);
             }
-          );
-
           });
         }
       });
-    }
-  });
-});
+    });
 
 
 
@@ -685,84 +686,85 @@ $(document).ready(function () {
     status
   }
 }`;
+      if (authenticator()) {
+        axios.post("http://localhost:4000", { query }).then(
+          (result) => {
+            // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+            const patrimonios = result.data.data.patrimonios;
 
-      axios.post("http://localhost:4000", { query }).then(
-        (result) => {
-          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-          const patrimonios = result.data.data.patrimonios;
+            const tbody = document.getElementById("patrimonio-table-body");
 
-          const tbody = document.getElementById("patrimonio-table-body");
+            patrimonios.forEach((patrimonio) => {
+              const tr = document.createElement("tr");
 
-          patrimonios.forEach((patrimonio) => {
-            const tr = document.createElement("tr");
+              const tdCheckbox = document.createElement("td");
+              tdCheckbox.className = "collapsing";
+              const checkbox = document.createElement("div");
+              checkbox.className = "ui fitted checkbox";
+              const inputCheckbox = document.createElement("input");
+              inputCheckbox.type = "checkbox";
+              inputCheckbox.className = "select-checkbox";
+              const labelCheckbox = document.createElement("label");
+              checkbox.appendChild(inputCheckbox);
+              checkbox.appendChild(labelCheckbox);
+              tdCheckbox.appendChild(checkbox);
 
-            const tdCheckbox = document.createElement("td");
-            tdCheckbox.className = "collapsing";
-            const checkbox = document.createElement("div");
-            checkbox.className = "ui fitted checkbox";
-            const inputCheckbox = document.createElement("input");
-            inputCheckbox.type = "checkbox";
-            inputCheckbox.className = "select-checkbox";
-            const labelCheckbox = document.createElement("label");
-            checkbox.appendChild(inputCheckbox);
-            checkbox.appendChild(labelCheckbox);
-            tdCheckbox.appendChild(checkbox);
+              inputCheckbox.addEventListener("change", function () {
+                const selectCheckboxes = document.getElementsByClassName("select-checkbox");
+                const selectAllCheckbox = document.getElementById("select-all");
 
-            inputCheckbox.addEventListener("change", function () {
-              const selectCheckboxes = document.getElementsByClassName("select-checkbox");
-              const selectAllCheckbox = document.getElementById("select-all");
+                const isAllChecked = Array.from(selectCheckboxes).every(
+                  (checkbox) => checkbox.checked
+                );
+                selectAllCheckbox.checked = isAllChecked;
 
-              const isAllChecked = Array.from(selectCheckboxes).every(
-                (checkbox) => checkbox.checked
-              );
-              selectAllCheckbox.checked = isAllChecked;
+                if (!this.checked) {
+                  selectAllCheckbox.checked = false;
+                }
+              });
 
-              if (!this.checked) {
-                selectAllCheckbox.checked = false;
+              const tdPatrimonio = document.createElement("td");
+              tdPatrimonio.textContent = patrimonio.idPatrimonio;
+
+              const tdBancada = document.createElement("td");
+              tdBancada.textContent = patrimonio.idBancada;
+
+              const tdMarca = document.createElement("td");
+              tdMarca.textContent = patrimonio.marca;
+
+              const tdModelo = document.createElement("td");
+              tdModelo.textContent = patrimonio.modelo;
+
+              const tdTipo = document.createElement("td");
+              tdTipo.textContent = patrimonio.tipo;
+
+              const tdStatus = document.createElement("td");
+              if (patrimonio.status == 0) {
+                patrimonio.status = "Inativo";
+              } else if (patrimonio.status == 1) {
+                patrimonio.status = "Ativo";
+              } else if (patrimonio.status == 2) {
+                patrimonio.status = "Manutenção";
               }
+
+              tdStatus.textContent = patrimonio.status;
+
+              tr.appendChild(tdCheckbox);
+              tr.appendChild(tdPatrimonio);
+              tr.appendChild(tdBancada);
+              tr.appendChild(tdMarca);
+              tr.appendChild(tdModelo);
+              tr.appendChild(tdTipo);
+              tr.appendChild(tdStatus);
+
+              tbody.appendChild(tr);
             });
-
-            const tdPatrimonio = document.createElement("td");
-            tdPatrimonio.textContent = patrimonio.idPatrimonio;
-
-            const tdBancada = document.createElement("td");
-            tdBancada.textContent = patrimonio.idBancada;
-
-            const tdMarca = document.createElement("td");
-            tdMarca.textContent = patrimonio.marca;
-
-            const tdModelo = document.createElement("td");
-            tdModelo.textContent = patrimonio.modelo;
-
-            const tdTipo = document.createElement("td");
-            tdTipo.textContent = patrimonio.tipo;
-
-            const tdStatus = document.createElement("td");
-            if (patrimonio.status == 0) {
-              patrimonio.status = "Inativo";
-            } else if (patrimonio.status == 1) {
-              patrimonio.status = "Ativo";
-            } else if (patrimonio.status == 2) {
-              patrimonio.status = "Manutenção";
-            }
-
-            tdStatus.textContent = patrimonio.status;
-
-            tr.appendChild(tdCheckbox);
-            tr.appendChild(tdPatrimonio);
-            tr.appendChild(tdBancada);
-            tr.appendChild(tdMarca);
-            tr.appendChild(tdModelo);
-            tr.appendChild(tdTipo);
-            tr.appendChild(tdStatus);
-
-            tbody.appendChild(tr);
-          });
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
     }
 
     // cadastrar

@@ -644,7 +644,7 @@ export default {
         status = "1";
       } else if (status == "inativo") {
         status = "0";
-      } else if (status == "manutenção") {
+      } else if (status == "manutencao") {
         status = "2";
       }
 

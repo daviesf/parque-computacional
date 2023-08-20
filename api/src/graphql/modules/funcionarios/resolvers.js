@@ -51,7 +51,7 @@ export default {
 			return funcionario;
 		},
 		authenticator: async (_, { idGoogle }) => {
-			const funcionario = await knex("funcionarios").where("idGoogle", CryptoJS.SHA256(idGoogle + authKey).toString()).first();
+			const funcionario = await knex("funcionarios").where("idGoogle", idGoogle).first();
 			return !!funcionario;
 		}
 	},
@@ -80,6 +80,17 @@ export default {
 			const funcionarioAtualizado = await knex("funcionarios")
 				.where("idFuncionario", idFuncionario)
 				.update({ idSession: newIdSession });
+			const funcionario = await knex("funcionarios")
+				.where("idFuncionario", idFuncionario)
+				.first();
+			return funcionario;
+		},
+
+		updateIdGoogle: async (_, { idFuncionario, idGoogle }) => {
+			const newIdGoogle = idGoogle;
+			const funcionarioAtualizado = await knex("funcionarios")
+				.where("idFuncionario", idFuncionario)
+				.update({ idGoogle: CryptoJS.SHA256(newIdGoogle).toString() });
 			const funcionario = await knex("funcionarios")
 				.where("idFuncionario", idFuncionario)
 				.first();

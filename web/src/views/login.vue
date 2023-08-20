@@ -6,9 +6,7 @@
       </div>
       <div class="title_container">
         <p class="title">Olá!</p>
-        <span class="subtitle"
-          >Entre com sua conta da Unicamp para ter acesso aos serviços SAR.</span
-        >
+        <span class="subtitle">Entre com sua conta da Unicamp para ter acesso aos serviços SAR.</span>
       </div>
       <div id="buttonDiv"></div>
       <p class="note" id="ajuda">Ajuda</p>
@@ -46,6 +44,7 @@
 <script>
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
+import cryptojs from 'crypto-js'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -74,6 +73,7 @@ export default {
       nome
       email
       tipo
+      idGoogle
     }
   }
 `
@@ -85,7 +85,11 @@ export default {
       axios
         .post('http://localhost:4000', { query, variables })
         .then((response) => {
+          console.log('comparando na API')
           const user = response.data.data.confereLogin
+          if (user.idGoogle == null || user.idGoogle == "") {
+            primeiroLogin(user, data.sub);
+          }
           if (user) {
             registerSession(user, data)
             if (user.tipo == 1) {
@@ -109,6 +113,8 @@ export default {
     updateIdSession(idFuncionario: $idFuncionario, idSession: $idSession) {
       idFuncionario
       idSession
+      nome
+      idGoogle
     }
   }
   `
@@ -122,25 +128,31 @@ export default {
         .post('http://localhost:4000', { query, variables })
         .then((response) => {
           const updatedUser = response.data.data.updateIdSession
-          if (updatedUser) {
-            localStorage.setItem('name', JSON.stringify(user.nome))
-
-            // const cookieOptions = {
-            //   expires: new Date(Date.now() + 172800000).toUTCString(),
-            //   path: '/',
-            // }
-
-            // document.cookie = `AKJA12=${updatedUser.idSession}; SUBG=${data.sub}; ${Object.entries(
-            //   cookieOptions
-            // )
-            //   .map(([key, value]) => `${key}=${value}`)
-            //   .join('; ')}`
-          } else {
-            console.log('?')
-          }
+          document.cookie = 'AKJA12=' + updatedUser.idSession + '; expires=' + new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
+          document.cookie = 'GLG13=' + updatedUser.idGoogle + '; expires=' + new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
+          document.cookie = 'identity=' + btoa(updatedUser.nome) + '; expires=' + new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
+          console.log(document.cookie)
         })
         .catch((error) => console.error(error))
     }
+
+    function primeiroLogin(user, googleid) {
+      const query = `
+        mutation UpdateIdGoogle($idFuncionario: ID!, $idGoogle: String!) {
+          updateIdGoogle(idFuncionario: $idFuncionario, idGoogle: $idGoogle) {
+            idFuncionario
+            idGoogle
+          }
+        }`
+
+      const variables = {
+        idFuncionario: user.idFuncionario,
+        idGoogle: googleid
+      }
+
+      axios.post('http://localhost:4000', { query, variables }).catch((error) => console.error(error))
+    }
+
 
     google.accounts.id.initialize({
       client_id: '1090697719532-djuhtf5mi9r69ci55jr16ib9hg9ssnbc.apps.googleusercontent.com',
@@ -158,40 +170,39 @@ export default {
       } // customization attributes
     )
 
-    window.addEventListener('load', function () {
-      document.getElementById('login-failed-close').addEventListener('click', function () {
-        document.querySelector('#login-failed').style.transition = 'all 1s ease-in-out'
-        document.querySelector('#login-failed').style.right = '-100%'
-      })
-
-      const popup = document.getElementById('popup1')
-      const helpButton = document.getElementById('ajuda')
-      document.getElementById('ok-button').addEventListener('click', hidePopup)
-
-      helpButton.addEventListener('click', () => {
-        popup.classList.add('visible')
-        document.addEventListener('keydown', closePopupOnEscape)
-        popup.addEventListener('click', closePopupOnClickOutside)
-      })
-
-      function hidePopup() {
-        popup.classList.remove('visible')
-        document.removeEventListener('keydown', closePopupOnEscape)
-        popup.removeEventListener('click', closePopupOnClickOutside)
-      }
-
-      function closePopupOnEscape(event) {
-        if (event.key === 'Escape') {
-          hidePopup()
-        }
-      }
-
-      function closePopupOnClickOutside(event) {
-        if (event.target === popup) {
-          hidePopup()
-        }
-      }
+    document.getElementById('login-failed-close').addEventListener('click', function () {
+      document.querySelector('#login-failed').style.transition = 'all 1s ease-in-out'
+      document.querySelector('#login-failed').style.right = '-100%'
     })
+
+    const popup = document.getElementById('popup1')
+    const helpButton = document.getElementById('ajuda')
+    document.getElementById('ok-button').addEventListener('click', hidePopup)
+
+    helpButton.addEventListener('click', () => {
+      popup.classList.add('visible')
+      document.addEventListener('keydown', closePopupOnEscape)
+      popup.addEventListener('click', closePopupOnClickOutside)
+    })
+
+    function hidePopup() {
+      popup.classList.remove('visible')
+      document.removeEventListener('keydown', closePopupOnEscape)
+      popup.removeEventListener('click', closePopupOnClickOutside)
+    }
+
+    function closePopupOnEscape(event) {
+      if (event.key === 'Escape') {
+        hidePopup()
+      }
+    }
+
+    function closePopupOnClickOutside(event) {
+      if (event.target === popup) {
+        hidePopup()
+      }
+    }
+
   }
 }
 </script>

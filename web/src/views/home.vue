@@ -87,14 +87,16 @@ export default {
   name: 'Home',
 
   mounted() {
-    if (localStorage.getItem('name') != null) {
-      const name = JSON.parse(localStorage.getItem('name'))
-      document.getElementById('saude').innerHTML = 'Olá, ' + name
+    const identityCookie = document.cookie.replace(/(?:(?:^|.*;\s*)identity\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    if (identityCookie) {
+      const decodedIdentity = atob(identityCookie);
+      document.getElementById('saude').innerHTML = 'Olá, ' + decodedIdentity + '!';
     } else {
-      document.getElementById('saude').innerHTML = 'Olá, usuário!'
+      document.getElementById('saude').innerHTML = 'Olá, usuário!';
     }
   }
 }
+
 </script>
 
 <style src="../assets/pages.css"></style>
