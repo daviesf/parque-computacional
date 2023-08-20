@@ -1,9 +1,10 @@
 const knex = require("../../../mysql");
-const CryptoJS = require('crypto-js');
-const authKey = "a1b2c3d4e5f6g7h8i9j0"
+const CryptoJS = require("crypto-js");
+const authKey = "a1b2c3d4e5f6g7h8i9j0";
 
 function generatePassword(length) {
-	const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+	const chars =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
 	let password = "";
 	for (let i = 0; i < length; i++) {
 		password += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -43,17 +44,23 @@ export default {
 			return funcionarios;
 		},
 		confereLogin: async (_, { email }) => {
-			const funcionario = await knex("funcionarios").where("email", email).first();
+			const funcionario = await knex("funcionarios")
+				.where("email", email)
+				.first();
 			return funcionario;
 		},
 		confereSession: async (_, { idSession }) => {
-			const funcionario = await knex("funcionarios").where("idSession", idSession).first();
+			const funcionario = await knex("funcionarios")
+				.where("idSession", idSession)
+				.first();
 			return funcionario;
 		},
 		authenticator: async (_, { idGoogle }) => {
-			const funcionario = await knex("funcionarios").where("idGoogle", idGoogle).first();
+			const funcionario = await knex("funcionarios")
+				.where("idGoogle", idGoogle)
+				.first();
 			return !!funcionario;
-		}
+		},
 	},
 
 	Mutation: {
@@ -76,7 +83,9 @@ export default {
 		},
 
 		updateIdSession: async (_, { idFuncionario, idSession }) => {
-			const newIdSession = CryptoJS.SHA256(idSession + Date.now() + generatePassword(15)).toString();
+			const newIdSession = CryptoJS.SHA256(
+				idSession + Date.now() + generatePassword(15)
+			).toString();
 			const funcionarioAtualizado = await knex("funcionarios")
 				.where("idFuncionario", idFuncionario)
 				.update({ idSession: newIdSession });
@@ -96,7 +105,6 @@ export default {
 				.first();
 			return funcionario;
 		},
-
 
 		deleteFuncionario: async (_, { idFuncionario }) => {
 			await knex("funcionarios").where("idFuncionario", idFuncionario).del();

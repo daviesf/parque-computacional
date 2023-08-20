@@ -16,12 +16,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Nome do funcionário"
-                    class="fluid"
-                    id="filter-funcionário"
-                  />
+                  <input type="text" placeholder="Nome do funcionário" class="fluid" id="filter-funcionário" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -33,12 +28,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="ID da bancada"
-                    class="fluid"
-                    id="filter-idBancada"
-                  />
+                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-idBancada" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -50,12 +40,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Descrição da Manutenção"
-                    class="fluid"
-                    id="filter-descricao"
-                  />
+                  <input type="text" placeholder="Descrição da Manutenção" class="fluid" id="filter-descricao" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -102,19 +87,18 @@
             <table class="ui compact celled definition table">
               <thead>
                 <tr>
-                  <th class="collapsing">
+                  <td class="collapsing">
                     <div class="ui fitted checkbox">
                       <input type="checkbox" id="select-all" />
                       <label></label>
                     </div>
-                  </th>
-                  <th class="wide-100">ID</th>
-                  <th class="wide-200">Nome</th>
+                  </td>
+                  <th class="wide-50">ID</th>
+                  <th class="wide-150">Nome</th>
                   <th class="wide-80">Bancada</th>
                   <th class="wide-150">Data e hora</th>
                   <th class="wide-50">Descrição</th>
-                  <th class="wide-50">Prioridade</th>
-                  <th>Status</th>
+                  <th class="wide-80">Status</th>
                 </tr>
               </thead>
               <tbody id="helpDesk-table-body"></tbody>
@@ -144,6 +128,8 @@
 <script>
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { nomeFuncionario } from '../script/nome.js'
+
 export default {
   name: 'HelpDesk',
   mounted() {
@@ -159,7 +145,7 @@ export default {
 
     carregaDados()
 
-    function carregaDados() {
+    async function carregaDados() {
       document.getElementById('helpDesk-table-body').innerHTML = ''
       const query = `query Chamados {
   chamados {
@@ -167,9 +153,8 @@ export default {
     detalhes
     idBancada
     idChamado
-    nome
-    prioridade
     status
+    idFuncionario
   }
 }`
 
@@ -177,12 +162,10 @@ export default {
         (result) => {
           // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
           const chamados = result.data.data.chamados
-
           const tbody = document.getElementById('helpDesk-table-body')
 
           chamados.forEach((chamado) => {
             const tr = document.createElement('tr')
-
             const tdCheckbox = document.createElement('td')
             tdCheckbox.className = 'collapsing'
             const checkbox = document.createElement('div')
@@ -212,8 +195,11 @@ export default {
             const tdChamado = document.createElement('td')
             tdChamado.textContent = chamado.idChamado
 
-            const tdNome = document.createElement('td')
-            tdNome.textContent = chamado.nome
+            const tdNome = document.createElement("td");
+            nomeFuncionario(chamado.idFuncionario).then(nome => {
+              tdNome.textContent = nome;
+            });
+
 
             const tdBancada = document.createElement('td')
             tdBancada.textContent = chamado.idBancada
@@ -224,11 +210,22 @@ export default {
             const tdDescricao = document.createElement('td')
             tdDescricao.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${chamado.idChamado}', '${chamado.descricao}' , 'info')">Ver</button>`
 
-            const tdPrioridade = document.createElement('td')
-            tdPrioridade.textContent = chamado.prioridade
+            const tdStatus = document.createElement('td');
+            const statusValue = chamado.status;
 
-            const tdStatus = document.createElement('td')
-            tdStatus.textContent = chamado.status
+            let statusText;
+            if (statusValue === 0) {
+              statusText = 'Pendente';
+            } else if (statusValue === 1) {
+              statusText = 'Encerrado';
+            } else if (statusValue === 2) {
+              statusText = 'Resolvido';
+            } else {
+              statusText = 'Desconhecido'; // Tratamento para outros valores de status
+            }
+
+            tdStatus.textContent = statusText;
+
 
             tr.appendChild(tdCheckbox)
             tr.appendChild(tdChamado)
@@ -236,7 +233,6 @@ export default {
             tr.appendChild(tdBancada)
             tr.appendChild(tddataHora)
             tr.appendChild(tdDescricao)
-            tr.appendChild(tdPrioridade)
             tr.appendChild(tdStatus)
 
             tbody.appendChild(tr)
@@ -247,6 +243,34 @@ export default {
         }
       )
     }
+
+    function nomeFuncionario(value) {
+      return new Promise((resolve, reject) => {
+        const query = `
+      query Query($idFuncionario: ID!) {
+        funcionario(idFuncionario: $idFuncionario) {
+          nome
+        }
+      }`;
+
+        const variables = {
+          idFuncionario: value
+        };
+
+        axios.post('http://localhost:4000', { query, variables }).then(
+          (result) => {
+            const nome = result.data.data.funcionario.nome;
+            console.log(nome);
+            resolve(nome);
+          },
+          (error) => {
+            console.log(error);
+            reject(error);
+          }
+        );
+      });
+    }
+
   }
 }
 </script>

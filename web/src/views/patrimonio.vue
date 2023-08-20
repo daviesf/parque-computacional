@@ -133,12 +133,12 @@
             <table class="ui compact celled definition table">
               <thead>
                 <tr>
-                  <th class="collapsing">
+                  <td class="collapsing">
                     <div class="ui fitted checkbox">
                       <input type="checkbox" id="select-all" />
                       <label></label>
                     </div>
-                  </th>
+                  </td>
                   <th class="wide-100">Código</th>
                   <th class="wide-100">Bancada</th>
                   <th class="wide-130">Marca</th>

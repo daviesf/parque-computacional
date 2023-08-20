@@ -80,7 +80,9 @@ export default {
 		},
 
 		ativarPatrimonio: async (_, { idPatrimonio, status }) => {
-			await knex("patrimonios").where("idPatrimonio", idPatrimonio).update({ status });
+			await knex("patrimonios")
+				.where("idPatrimonio", idPatrimonio)
+				.update({ status });
 			const patrimonio = await knex("patrimonios")
 				.where("idPatrimonio", idPatrimonio)
 				.first();

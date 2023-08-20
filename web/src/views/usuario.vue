@@ -1,6 +1,8 @@
 <template>
   <section class="home-section">
-    <span class="text titlep"><h1>Tela de Usuários Cadastrados</h1></span>
+    <span class="text titlep">
+      <h1>Tela de Usuários Cadastrados</h1>
+    </span>
     <div class="ui container table-p">
       <div class="ui stackable grid">
         <div class="five wide column" style="margin-top: 20px">
@@ -14,12 +16,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Nome do Funcionário"
-                    class="fluid"
-                    id="filter-nome"
-                  />
+                  <input type="text" placeholder="Nome do Funcionário" class="fluid" id="filter-nome" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -31,12 +28,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="E-mail do Funcionário"
-                    class="fluid"
-                    id="filter-email"
-                  />
+                  <input type="text" placeholder="E-mail do Funcionário" class="fluid" id="filter-email" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -48,12 +40,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="ID da bancada"
-                    class="fluid"
-                    id="filter-bancada"
-                  />
+                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -120,12 +107,12 @@
             <table class="ui compact celled definition table">
               <thead>
                 <tr>
-                  <th class="collapsing">
+                  <td class="collapsing">
                     <div class="ui fitted checkbox">
                       <input type="checkbox" id="select-all" />
                       <label></label>
                     </div>
-                  </th>
+                  </td>
                   <th class="wide-100">Código</th>
                   <th class="wide-100">Bancada</th>
                   <th class="wide-130">Marca</th>
@@ -168,26 +155,13 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Nome</label>
-            <input
-              type="text"
-              name="nome"
-              placeholder="Nome"
-              class="campo required"
-              id="nome"
-              @input="nomeValidate"
-            />
+            <input type="text" name="nome" placeholder="Nome" class="campo required" id="nome" @input="nomeValidate" />
             <span class="span-required">Insira o Nome</span>
           </div>
           <div class="field">
             <label>E-mail</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="E-mail"
-              class="campo required"
-              id="email"
-              @input="emailValidate"
-            />
+            <input type="email" name="email" placeholder="E-mail" class="campo required" id="email"
+              @input="emailValidate" />
             <span class="span-required">Insira um e-mail válido</span>
           </div>
           <div class="field">
@@ -473,8 +447,20 @@ funcionarios {
             const tdBancada = document.createElement('td')
             tdBancada.textContent = bancada.idBancada
 
-            const tdTipo = document.createElement('td')
-            tdTipo.textContent = usuario.tipo
+            const tdTipo = document.createElement('td');
+            const tipoValue = usuario.tipo;
+
+            let tipoText;
+            if (tipoValue == 1) {
+              tipoText = 'Administrador';
+            } else if (tipoValue == 2) {
+              tipoText = 'Usuário Comum';
+            } else {
+              tipoText = 'Desconhecido'; // Tratamento para outros valores de tipo
+            }
+
+            tdTipo.textContent = tipoText;
+
 
             const tdStatus = document.createElement('td')
             tdStatus.textContent = usuario.status

@@ -87,12 +87,12 @@
             <table class="ui compact celled definition table">
               <thead>
                 <tr>
-                  <th class="collapsing">
+                  <td class="collapsing">
                     <div class="ui fitted checkbox">
                       <input type="checkbox" id="select-all" />
                       <label></label>
                     </div>
-                  </th>
+                  </td>
                   <th class="wide-80">ID</th>
                   <th class="wide-150">Patrimônio</th>
                   <th class="wide-150">Funcionário</th>
@@ -172,7 +172,7 @@
 
 <script>
 import axios from 'axios'
-import Swal from 'sweetalert2'
+import { nomeFuncionario } from '../script/nome.js'
 
 export default {
   name: 'Manutencao',
@@ -467,8 +467,10 @@ export default {
             const tdPatrimonio = document.createElement('td')
             tdPatrimonio.textContent = conserto.idPatrimonio
 
-            const tdFuncionario = document.createElement('td')
-            tdFuncionario.textContent = conserto.idFuncionario
+            const tdFuncionario = document.createElement("td");
+            nomeFuncionario(conserto.idFuncionario).then(nome => {
+              tdFuncionario.textContent = nome;
+            });
 
             const tdData = document.createElement('td')
             tdData.textContent = conserto.dataHora
