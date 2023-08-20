@@ -36,6 +36,7 @@ input DadosFuncionario{
 type Mutation {
     createFuncionario(data: DadosFuncionario!): Funcionario!
     updateFuncionario(idFuncionario: ID!, data: DadosFuncionario!): Funcionario!
-    updateIdSession(idFuncionario: ID!): Funcionario!
+    updateIdSession(idFuncionario: ID!, idSession: String!): Funcionario!
+    updateIdGoogle(idFuncionario: ID!, idGoogle: String!): Funcionario!
     deleteFuncionario(idFuncionario: ID!): Boolean!
 }

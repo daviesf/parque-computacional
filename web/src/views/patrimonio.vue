@@ -261,7 +261,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
+import { authenticator } from '../script/auth.js';
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -322,8 +323,8 @@ export default {
 
     // Deletar
     $(document).ready(function () {
-      $('#del-patrimonio-btn').click(function () {
-        const selectedCheckboxes = $('input.select-checkbox:checked')
+      $("#del-patrimonio-btn").click(function () {
+        const selectedCheckboxes = $("input.select-checkbox:checked");
 
         if (selectedCheckboxes.length == 0) {
           Swal.fire({
@@ -331,9 +332,11 @@ export default {
             title: 'Oops...',
             text: 'Selecione o patrimônio que deseja excluir',
             confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+
             confirmButtonText: 'OK'
           })
           return
+
         } else {
           Swal.fire({
             title: 'Você tem certeza?',
@@ -343,6 +346,7 @@ export default {
             confirmButtonColor: '#004654',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sim, deletar!',
+
             cancelButtonText: 'Cancelar'
           }).then((result) => {
             if (result.isConfirmed) {
@@ -708,85 +712,87 @@ export default {
     tipo
     status
   }
-}`
 
-      axios.post('http://localhost:4000', { query }).then(
-        (result) => {
-          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-          const patrimonios = result.data.data.patrimonios
+}`;
+      if (authenticator()) {
+        axios.post("http://localhost:4000", { query }).then(
+          (result) => {
+            // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+            const patrimonios = result.data.data.patrimonios;
 
-          const tbody = document.getElementById('patrimonio-table-body')
+            const tbody = document.getElementById("patrimonio-table-body");
 
-          patrimonios.forEach((patrimonio) => {
-            const tr = document.createElement('tr')
+            patrimonios.forEach((patrimonio) => {
+              const tr = document.createElement("tr");
 
-            const tdCheckbox = document.createElement('td')
-            tdCheckbox.className = 'collapsing'
-            const checkbox = document.createElement('div')
-            checkbox.className = 'ui fitted checkbox'
-            const inputCheckbox = document.createElement('input')
-            inputCheckbox.type = 'checkbox'
-            inputCheckbox.className = 'select-checkbox'
-            const labelCheckbox = document.createElement('label')
-            checkbox.appendChild(inputCheckbox)
-            checkbox.appendChild(labelCheckbox)
-            tdCheckbox.appendChild(checkbox)
+              const tdCheckbox = document.createElement("td");
+              tdCheckbox.className = "collapsing";
+              const checkbox = document.createElement("div");
+              checkbox.className = "ui fitted checkbox";
+              const inputCheckbox = document.createElement("input");
+              inputCheckbox.type = "checkbox";
+              inputCheckbox.className = "select-checkbox";
+              const labelCheckbox = document.createElement("label");
+              checkbox.appendChild(inputCheckbox);
+              checkbox.appendChild(labelCheckbox);
+              tdCheckbox.appendChild(checkbox);
 
-            inputCheckbox.addEventListener('change', function () {
-              const selectCheckboxes = document.getElementsByClassName('select-checkbox')
-              const selectAllCheckbox = document.getElementById('select-all')
+              inputCheckbox.addEventListener("change", function () {
+                const selectCheckboxes = document.getElementsByClassName("select-checkbox");
+                const selectAllCheckbox = document.getElementById("select-all");
 
-              const isAllChecked = Array.from(selectCheckboxes).every(
-                (checkbox) => checkbox.checked
-              )
-              selectAllCheckbox.checked = isAllChecked
+                const isAllChecked = Array.from(selectCheckboxes).every(
+                  (checkbox) => checkbox.checked
+                );
+                selectAllCheckbox.checked = isAllChecked;
 
-              if (!this.checked) {
-                selectAllCheckbox.checked = false
+                if (!this.checked) {
+                  selectAllCheckbox.checked = false;
+                }
+              });
+
+              const tdPatrimonio = document.createElement("td");
+              tdPatrimonio.textContent = patrimonio.idPatrimonio;
+
+              const tdBancada = document.createElement("td");
+              tdBancada.textContent = patrimonio.idBancada;
+
+              const tdMarca = document.createElement("td");
+              tdMarca.textContent = patrimonio.marca;
+
+              const tdModelo = document.createElement("td");
+              tdModelo.textContent = patrimonio.modelo;
+
+              const tdTipo = document.createElement("td");
+              tdTipo.textContent = patrimonio.tipo;
+
+              const tdStatus = document.createElement("td");
+              if (patrimonio.status == 0) {
+                patrimonio.status = "Inativo";
+              } else if (patrimonio.status == 1) {
+                patrimonio.status = "Ativo";
+              } else if (patrimonio.status == 2) {
+                patrimonio.status = "Manutenção";
               }
-            })
 
-            const tdPatrimonio = document.createElement('td')
-            tdPatrimonio.textContent = patrimonio.idPatrimonio
+              tdStatus.textContent = patrimonio.status;
 
-            const tdBancada = document.createElement('td')
-            tdBancada.textContent = patrimonio.idBancada
+              tr.appendChild(tdCheckbox);
+              tr.appendChild(tdPatrimonio);
+              tr.appendChild(tdBancada);
+              tr.appendChild(tdMarca);
+              tr.appendChild(tdModelo);
+              tr.appendChild(tdTipo);
+              tr.appendChild(tdStatus);
 
-            const tdMarca = document.createElement('td')
-            tdMarca.textContent = patrimonio.marca
-
-            const tdModelo = document.createElement('td')
-            tdModelo.textContent = patrimonio.modelo
-
-            const tdTipo = document.createElement('td')
-            tdTipo.textContent = patrimonio.tipo
-
-            const tdStatus = document.createElement('td')
-            if (patrimonio.status == 0) {
-              patrimonio.status = 'Inativo'
-            } else if (patrimonio.status == 1) {
-              patrimonio.status = 'Ativo'
-            } else if (patrimonio.status == 2) {
-              patrimonio.status = 'Manutenção'
-            }
-
-            tdStatus.textContent = patrimonio.status
-
-            tr.appendChild(tdCheckbox)
-            tr.appendChild(tdPatrimonio)
-            tr.appendChild(tdBancada)
-            tr.appendChild(tdMarca)
-            tr.appendChild(tdModelo)
-            tr.appendChild(tdTipo)
-            tr.appendChild(tdStatus)
-
-            tbody.appendChild(tr)
-          })
-        },
-        (error) => {
-          console.log(error)
-        }
-      )
+              tbody.appendChild(tr);
+            });
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
     }
 
     // cadastrar

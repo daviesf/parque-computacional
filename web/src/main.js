@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { createPinia } from 'pinia'
+import axios from 'axios'
 
 import App from './App.vue'
 import Login from './views/login.vue'
@@ -32,6 +33,40 @@ const router = createRouter({
     { path: '/dashboard', component: Dashboard }
   ]
 })
+
+// router.beforeEach((to, from, next) => {
+//   const AKJA12Value = document.cookie.replace(/(?:(?:^|.*;\s*)AKJA12\s*=\s*([^;]*).*$)|^.*$/, "$1");
+//   if (AKJA12Value) {
+//     const query = `query ConfereSession($idSession: String!) {
+//       confereSession(idSession: $idSession) {
+//         nome
+//         idFuncionario
+//       }
+//     }`
+//     const variables = { idSession: AKJA12Value }
+
+//     axios.post('http://localhost:4000', { query, variables }).then((result) => {
+//       if (result.data.data.confereSession) {
+//         if (to.path === '/login') {
+//           next('/')
+//         }
+//         next()
+//       } else {
+//         next('/login')
+//       }
+//     }).catch(() => {
+//       next('/login')
+//     }
+//     )
+//   }
+//   else {
+//     if (to.path === '/login') {
+//       next()
+//     } else {
+//       next('/login')
+//     }
+//   }
+// })
 
 const app = createApp(App)
 

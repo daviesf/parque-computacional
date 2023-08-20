@@ -681,22 +681,22 @@ export default {
       )
     }
 
-    //Atualizar
-    const updPatrimonio = document.getElementById('upd-bancada')
-    updPatrimonio.addEventListener('click', function () {
-      console.log('Iniciando Atualização')
+    //Atualizar 
+    const updPatrimonio = document.getElementById("upd-bancada");
+    updPatrimonio.addEventListener("click", function () {
+      console.log("Iniciando Atualização");
 
-      console.log('Código selecionado:', cod)
+      console.log("Código selecionado:", cod);
 
-      let apelido = document.getElementById('apelido').value
-      let local = document.getElementById('local').value
-      let status = document.getElementById('status').value
-      if (status == 'ativo') {
-        status = '1'
-      } else if (status == 'inativo') {
-        status = '0'
-      } else if (status == 'manutenção') {
-        status = '2'
+      let apelido = document.getElementById("apelido").value;
+      let local = document.getElementById("local").value;
+      let status = document.getElementById("status").value;
+      if (status == "ativo") {
+        status = "1";
+      } else if (status == "inativo") {
+        status = "0";
+      } else if (status == "manutencao") {
+        status = "2";
       }
 
       console.log('Verificando status')
