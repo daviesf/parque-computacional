@@ -24,6 +24,7 @@ export default {
     hideNavbar(value) {
       this.showNavbar = !value
     }
-  }
+  },
+
 }
 </script>

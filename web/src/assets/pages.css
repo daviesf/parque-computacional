@@ -866,7 +866,6 @@ td.td-desc {
 }
 
 .bg-table {
-  background-color: #f3f4f6; /* Cor de fundo da "linha" */
   border-top: 1px solid #d4d4d5; /* Borda superior da "linha" */
   margin-top: 10px; /* Espaçamento superior */
   padding: 10px 0; /* Espaçamento interno vertical */

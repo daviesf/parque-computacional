@@ -111,6 +111,7 @@ export default {
         themeIcon.classList.replace('moon', 'sun')
         app.classList.add('dark-mode')
         app1.classList.add('dark-mode')
+        app2.classList.add('inverted')
         document.cookie = 'theme=dark;path=/'
 
       } else {
@@ -118,6 +119,7 @@ export default {
         themeIcon.classList.replace('sun', 'moon')
         app.classList.remove('dark-mode')
         app1.classList.remove('dark-mode')
+        app2.classList.remove('inverted')
         document.cookie = 'theme=light;path=/'
 
       }
@@ -132,32 +134,18 @@ export default {
         // Ativar o modo escuro
         app.classList.add('dark-mode')
         app1.classList.add('dark-mode')
+        app2.classList.add('inverted')
         document.cookie = 'theme=dark;path=/'
       } else {
         // Voltar ao modo normal
         app.classList.remove('dark-mode')
         app1.classList.remove('dark-mode')
+        app2.classList.remove('inverted')
         document.cookie = 'theme=light;path=/'
       }
     }
   },
   mounted() {
-    const themeIcon = document.getElementById('theme-icon')
-    const theme = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, "$1");
-    const app = document.querySelector('.sidebar')
-    const app1 = document.querySelector('body')
-    const app2 = document.querySelector('table')
-    if (theme) {
-      if (theme == 'dark') {
-        themeIcon.classList.replace('moon', 'sun')
-        app.classList.add('dark-mode')
-        app1.classList.add('dark-mode')
-      } else {
-        themeIcon.classList.replace('sun', 'moon')
-        app.classList.remove('dark-mode')
-        app1.classList.remove('dark-mode')
-      }
-    }
     let sidebar = document.querySelector('.sidebar')
     let closeBtn = document.querySelector('#btn')
     closeBtn.addEventListener('click', () => {

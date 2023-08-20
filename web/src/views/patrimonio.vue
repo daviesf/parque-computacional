@@ -28,12 +28,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="ID da bancada"
-                    class="fluid"
-                    id="filter-bancada"
-                  />
+                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -128,7 +123,7 @@
           </div>
         </div>
 
-        <div class="eleven wide column" style="margin-top: 30px">
+        <div class="eleven wide column tabelinha" style="margin-top: 30px">
           <div style="max-height: 70vh; overflow-y: auto">
             <table class="ui compact celled definition table">
               <thead>
@@ -183,14 +178,8 @@
             <div class="column">
               <div class="field">
                 <label>Código</label>
-                <input
-                  type="text"
-                  name="codigo"
-                  placeholder="Código do Patrimônio"
-                  class="campo required"
-                  id="codigo"
-                  @input="codigoValidate"
-                />
+                <input type="text" name="codigo" placeholder="Código do Patrimônio" class="campo required" id="codigo"
+                  @input="codigoValidate" />
                 <span class="span-required">Insira o código do Patrimônio</span>
               </div>
               <div class="field">
@@ -215,26 +204,14 @@
             <div class="column">
               <div class="field">
                 <label>Marca</label>
-                <input
-                  type="text"
-                  name="marca"
-                  placeholder="Marca"
-                  class="campo required"
-                  id="marca"
-                  @input="marcaValidate"
-                />
+                <input type="text" name="marca" placeholder="Marca" class="campo required" id="marca"
+                  @input="marcaValidate" />
                 <span class="span-required">Insira a Marca</span>
               </div>
               <div class="field">
                 <label>Modelo</label>
-                <input
-                  type="text"
-                  name="modelo"
-                  placeholder="Modelo"
-                  class="campo required"
-                  id="modelo"
-                  @input="modeloValidate"
-                />
+                <input type="text" name="modelo" placeholder="Modelo" class="campo required" id="modelo"
+                  @input="modeloValidate" />
                 <span class="span-required">Insira o Modelo</span>
               </div>
               <div class="field">
@@ -406,7 +383,7 @@ export default {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Selecione Um Valor Antes de Clicar em Desativar',
+            text: 'Selecione um valor antes de desativar',
             confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
             confirmButtonText: 'OK'
           })
@@ -474,7 +451,7 @@ export default {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Selecione Um Valor Antes de Clicar em Ativar',
+            text: 'Selecione um valor antes de ativar',
             confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
             confirmButtonText: 'OK'
           })
@@ -549,7 +526,7 @@ export default {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Selecione um valor antes de clicar em Alterar',
+            text: 'Selecione um valor antes de alterar',
             confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
             confirmButtonText: 'OK'
           })
@@ -714,85 +691,87 @@ export default {
   }
 
 }`;
-      if (authenticator()) {
-        axios.post("http://localhost:4000", { query }).then(
-          (result) => {
-            // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-            const patrimonios = result.data.data.patrimonios;
+      authenticator().then(result => {
+        if (result == 'true') {
+          axios.post("http://localhost:4000", { query }).then(
+            (result) => {
+              // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+              const patrimonios = result.data.data.patrimonios;
 
-            const tbody = document.getElementById("patrimonio-table-body");
+              const tbody = document.getElementById("patrimonio-table-body");
 
-            patrimonios.forEach((patrimonio) => {
-              const tr = document.createElement("tr");
+              patrimonios.forEach((patrimonio) => {
+                const tr = document.createElement("tr");
 
-              const tdCheckbox = document.createElement("td");
-              tdCheckbox.className = "collapsing";
-              const checkbox = document.createElement("div");
-              checkbox.className = "ui fitted checkbox";
-              const inputCheckbox = document.createElement("input");
-              inputCheckbox.type = "checkbox";
-              inputCheckbox.className = "select-checkbox";
-              const labelCheckbox = document.createElement("label");
-              checkbox.appendChild(inputCheckbox);
-              checkbox.appendChild(labelCheckbox);
-              tdCheckbox.appendChild(checkbox);
+                const tdCheckbox = document.createElement("td");
+                tdCheckbox.className = "collapsing";
+                const checkbox = document.createElement("div");
+                checkbox.className = "ui fitted checkbox";
+                const inputCheckbox = document.createElement("input");
+                inputCheckbox.type = "checkbox";
+                inputCheckbox.className = "select-checkbox";
+                const labelCheckbox = document.createElement("label");
+                checkbox.appendChild(inputCheckbox);
+                checkbox.appendChild(labelCheckbox);
+                tdCheckbox.appendChild(checkbox);
 
-              inputCheckbox.addEventListener("change", function () {
-                const selectCheckboxes = document.getElementsByClassName("select-checkbox");
-                const selectAllCheckbox = document.getElementById("select-all");
+                inputCheckbox.addEventListener("change", function () {
+                  const selectCheckboxes = document.getElementsByClassName("select-checkbox");
+                  const selectAllCheckbox = document.getElementById("select-all");
 
-                const isAllChecked = Array.from(selectCheckboxes).every(
-                  (checkbox) => checkbox.checked
-                );
-                selectAllCheckbox.checked = isAllChecked;
+                  const isAllChecked = Array.from(selectCheckboxes).every(
+                    (checkbox) => checkbox.checked
+                  );
+                  selectAllCheckbox.checked = isAllChecked;
 
-                if (!this.checked) {
-                  selectAllCheckbox.checked = false;
+                  if (!this.checked) {
+                    selectAllCheckbox.checked = false;
+                  }
+                });
+
+                const tdPatrimonio = document.createElement("td");
+                tdPatrimonio.textContent = patrimonio.idPatrimonio;
+
+                const tdBancada = document.createElement("td");
+                tdBancada.textContent = patrimonio.idBancada;
+
+                const tdMarca = document.createElement("td");
+                tdMarca.textContent = patrimonio.marca;
+
+                const tdModelo = document.createElement("td");
+                tdModelo.textContent = patrimonio.modelo;
+
+                const tdTipo = document.createElement("td");
+                tdTipo.textContent = patrimonio.tipo;
+
+                const tdStatus = document.createElement("td");
+                if (patrimonio.status == 0) {
+                  patrimonio.status = "Inativo";
+                } else if (patrimonio.status == 1) {
+                  patrimonio.status = "Ativo";
+                } else if (patrimonio.status == 2) {
+                  patrimonio.status = "Manutenção";
                 }
+
+                tdStatus.textContent = patrimonio.status;
+
+                tr.appendChild(tdCheckbox);
+                tr.appendChild(tdPatrimonio);
+                tr.appendChild(tdBancada);
+                tr.appendChild(tdMarca);
+                tr.appendChild(tdModelo);
+                tr.appendChild(tdTipo);
+                tr.appendChild(tdStatus);
+
+                tbody.appendChild(tr);
               });
-
-              const tdPatrimonio = document.createElement("td");
-              tdPatrimonio.textContent = patrimonio.idPatrimonio;
-
-              const tdBancada = document.createElement("td");
-              tdBancada.textContent = patrimonio.idBancada;
-
-              const tdMarca = document.createElement("td");
-              tdMarca.textContent = patrimonio.marca;
-
-              const tdModelo = document.createElement("td");
-              tdModelo.textContent = patrimonio.modelo;
-
-              const tdTipo = document.createElement("td");
-              tdTipo.textContent = patrimonio.tipo;
-
-              const tdStatus = document.createElement("td");
-              if (patrimonio.status == 0) {
-                patrimonio.status = "Inativo";
-              } else if (patrimonio.status == 1) {
-                patrimonio.status = "Ativo";
-              } else if (patrimonio.status == 2) {
-                patrimonio.status = "Manutenção";
-              }
-
-              tdStatus.textContent = patrimonio.status;
-
-              tr.appendChild(tdCheckbox);
-              tr.appendChild(tdPatrimonio);
-              tr.appendChild(tdBancada);
-              tr.appendChild(tdMarca);
-              tr.appendChild(tdModelo);
-              tr.appendChild(tdTipo);
-              tr.appendChild(tdStatus);
-
-              tbody.appendChild(tr);
-            });
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      }
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        }
+      })
     }
 
     // cadastrar

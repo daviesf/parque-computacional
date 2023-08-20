@@ -93,7 +93,7 @@ export default {
           if (user) {
             registerSession(user, data)
             if (user.tipo == 1) {
-              // window.location.href = '/';
+              window.location.href = '/';
             } else if (user.tipo == 2) {
               window.location.href = '/helpDeskUser'
             } else {
