@@ -1,7 +1,7 @@
 <template>
   <section class="home-section">
     <span class="text titlep">
-      <h1>Patrimônios Cadastrados</h1>
+      <h1>Tela de Patrimônios Cadastrados</h1>
     </span>
     <div class="ui container table-p">
       <div class="ui stackable grid">
@@ -124,7 +124,7 @@
         </div>
 
         <div class="eleven wide column tabelinha" style="margin-top: 30px">
-          <div style="max-height: 70vh; overflow-y: auto">
+          <div style="max-height: 65vh; overflow-y: auto">
             <table class="ui compact celled definition table">
               <thead>
                 <tr>

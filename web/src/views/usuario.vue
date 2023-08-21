@@ -97,7 +97,7 @@
         </div>
 
         <div class="eleven wide column" style="margin-top: 30px">
-          <div style="max-height: 70vh; overflow-y: auto">
+          <div style="max-height: 65vh; overflow-y: auto">
             <table class="ui compact celled definition table">
               <thead>
                 <tr>
@@ -108,11 +108,10 @@
                     </div>
                   </td>
                   <th class="wide-100">Código</th>
-                  <th class="wide-100">Nome</th>
-                  <th class="wide-130">E-mail</th>
-                  <th class="wide-130">Bancada</th>
+                  <th class="wide-130">Nome</th>
+                  <th>E-mail</th>
                   <th class="wide-130">Tipo</th>
-                  <th>Status</th>
+                  <th class="wide-100">Status</th>
                 </tr>
               </thead>
               <tbody id="usuarios-table-body"></tbody>
@@ -158,7 +157,7 @@
               @input="emailValidate" />
             <span class="span-required">Insira um e-mail válido</span>
           </div>
-          <div class="field">
+          <!-- <div class="field">
             <label>Bancada</label>
             <select name="tipo" class="campo required" id="bancada" @change="bancadaValidate">
               <option class="placeholder" disabled selected>Selecione a bancada</option>
@@ -168,14 +167,13 @@
               <option value="b4">ID: 24 | Bancada do RU</option>
             </select>
             <span class="span-required">Selecione alguma Bancada</span>
-          </div>
+          </div> -->
           <div class="field">
             <label>Tipo</label>
             <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
               <option class="placeholder" disabled selected>Selecione o tipo</option>
-              <option value="Gerente">Gerente</option>
-              <option value="Estagiário">Estagiário</option>
-              <option value="CLT">CLT</option>
+              <option value="administrador">Administardor</option>
+              <option value="usuario comum">Usuário Comum</option>
             </select>
             <span class="span-required">Selecione algum Tipo</span>
           </div>
@@ -188,7 +186,7 @@
             </select>
             <span class="span-required">Selecione algum Status</span>
           </div>
-          <button class="ui submit button" type="submit">Adicionar</button>
+          <button class="ui submit button" type="submit" id="submit-usuario">Adicionar</button>
           <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
         </form>
       </div>
@@ -322,9 +320,8 @@ export default {
       const validations = [
         { index: 0, isValid: nomeValidate },
         { index: 1, isValid: emailValidate },
-        { index: 2, isValid: bancadaValidate },
-        { index: 3, isValid: tipoValidate },
-        { index: 4, isValid: statusValidate }
+        { index: 2, isValid: tipoValidate },
+        { index: 3, isValid: statusValidate }
       ]
 
       validations.forEach((validation) => {
@@ -348,16 +345,12 @@ export default {
       return emailRegex.test(emailValue)
     }
 
-    function bancadaValidate() {
-      return campos[2].value !== 'Selecione a bancada'
-    }
-
     function tipoValidate() {
-      return campos[3].value !== 'Selecione o tipo'
+      return campos[2].value !== 'Selecione o tipo'
     }
 
     function statusValidate() {
-      return campos[4].value !== 'Selecione o status'
+      return campos[3].value !== 'Selecione o status'
     }
 
     carregaDados()
@@ -374,12 +367,12 @@ funcionarios {
 }
 }`
 
-      const queryBancada = `query Query {
-  bancadas {
-    idBancada
-    apelido
-  }
-}`
+//       const queryBancada = `query Query {
+//   bancadas {
+//     idBancada
+//     apelido
+//   }
+// }`
 
       axios.post('http://localhost:4000', { query }).then(
         (result) => {
@@ -417,17 +410,17 @@ funcionarios {
               }
             })
 
-            axios.post('http://localhost:4000', { query: queryBancada }).then((result) => {
-              const bancadas = result.data.data.bancadas
-              const tbody = document.getElementById('usuarios-table-body')
+            // axios.post('http://localhost:4000', { query: queryBancada }).then((result) => {
+            //   const bancadas = result.data.data.bancadas
+            //   const tbody = document.getElementById('usuarios-table-body')
 
-              bancadas.forEach((bancada) => {
-                const tdBancada = document.createElement('td')
-                tdBancada.textContent = bancada.idBancada
-                option.innerHTML = 'ID: ' + bancada.idBancada + ' | ' + bancada.apelido
-                tr.appendChild(tdBancada)
-              })
-            })
+            //   bancadas.forEach((bancada) => {
+            //     const tdBancada = document.createElement('td')
+            //     tdBancada.textContent = bancada.idBancada
+            //     option.innerHTML = 'ID: ' + bancada.idBancada + ' | ' + bancada.apelido
+            //     tr.appendChild(tdBancada)
+            //   })
+            // })
 
             const tdID = document.createElement('td')
             tdID.textContent = usuario.idFuncionario
@@ -438,32 +431,32 @@ funcionarios {
             const tdEmail = document.createElement('td')
             tdEmail.textContent = usuario.email
 
-            const tdBancada = document.createElement('td')
-            tdBancada.textContent = bancada.idBancada
+            // const tdBancada = document.createElement('td')
+            // tdBancada.textContent = bancada.idBancada
 
             const tdTipo = document.createElement('td');
-            const tipoValue = usuario.tipo;
+            if (usuario.tipo == 1) {
+                  usuario.tipo = "Administrador";
+                } else if (usuario.tipo == 2) {
+                  usuario.tipo = "Usuário Comum";
+                }
 
-            let tipoText;
-            if (tipoValue == 1) {
-              tipoText = 'Administrador';
-            } else if (tipoValue == 2) {
-              tipoText = 'Usuário Comum';
-            } else {
-              tipoText = 'Desconhecido'; // Tratamento para outros valores de tipo
-            }
+                tdTipo.textContent = usuario.tipo;
 
-            tdTipo.textContent = tipoText;
+            const tdStatus = document.createElement("td");
+                if (usuario.status == 1) {
+                  usuario.status = "Ativo";
+                } else if (usuario.status == 2) {
+                  usuario.status = "Desligado";
+                }
 
-
-            const tdStatus = document.createElement('td')
-            tdStatus.textContent = usuario.status
+                tdStatus.textContent = usuario.status;
 
             tr.appendChild(tdCheckbox)
             tr.appendChild(tdID)
             tr.appendChild(tdNome)
             tr.appendChild(tdEmail)
-            tr.appendChild(tdBancada)
+            // tr.appendChild(tdBancada)
             tr.appendChild(tdTipo)
             tr.appendChild(tdStatus)
 
@@ -594,6 +587,67 @@ funcionarios {
             tbody.appendChild(tr)
         })
       })
+    })
+
+    //Cadastrar
+    const addUsuario = document.getElementById('submit-usuario')
+    addUsuario.addEventListener('click', function () {
+      console.log('Iniciando cadastro')
+      let nome = document.getElementById('nome').value
+      let email = document.getElementById('email').value
+      let tipo = document.getElementById('tipo').value
+      if (tipo == 'administrador') {
+        tipo = 1
+      }  else if (tipo == 'usuario comum') {
+        tipo = 2
+      }
+      let status = document.getElementById('status').value
+      if (status == 'ativo') {
+        status = 1
+      } else if (status == 'desligado') {
+        status = 2
+      } 
+
+      console.log('Verificando status')
+
+      console.log('Query')
+
+      const query = `mutation CreateFuncionario($data: DadosFuncionario!) {
+  createFuncionario(data: $data) {
+    idFuncionario
+    status
+    nome
+    tipo
+    email
+    idSession
+    idGoogle
+  }
+}`
+
+      console.log('Variáveis')
+
+      const variables = {
+        data: {
+          nome: nome,
+          email: email,
+          tipo: tipo,
+          status: status
+        }
+      }
+
+      console.log(variables)
+
+      axios.post('http://localhost:4000', { query, variables }).then(
+        (result) => {
+          console.log(result)
+          $('.popup').hide()
+          $('.dimmer').hide()
+          carregaDados()
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
     })
   }
 }
