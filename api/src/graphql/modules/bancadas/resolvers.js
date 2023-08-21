@@ -34,18 +34,24 @@ export default {
 				if (filter.status) {
 					let statusValue;
 					if (filter.status === 'Ativo') {
-					  statusValue = 1;
+						statusValue = 1;
 					} else if (filter.status === 'Inativo') {
-					  statusValue = 0;
+						statusValue = 0;
 					} else if (filter.status === 'Manutenção') {
-					  statusValue = 2;
+						statusValue = 2;
 					}
 					builder.where("status", statusValue);
-				  }
-				  
+				}
+
 			});
 			return bancadas;
 		},
+
+		totalBancadasOp: async () => {
+			const [count] = await knex("bancadas").count("* as total").where("status", "=", "1");
+			return count.total;
+		},
+
 	},
 
 	Mutation: {

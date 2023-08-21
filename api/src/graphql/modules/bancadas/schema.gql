@@ -11,6 +11,7 @@ type Query {
   bancadasByLocal(local: String!): [Bancada]!
   bancadasByStatus(status: String!): [Bancada]!
   searchBancadas(filter: BancadaFilter): [Bancada]
+  totalBancadasOp: Int!
 }
 
 input DadosBancada {
