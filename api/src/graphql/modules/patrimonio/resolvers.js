@@ -32,6 +32,10 @@ export default {
 				.orWhere("modelo", modelo);
 			return patrimonios;
 		},
+		totalPatrimonios: async () => {
+			const [count] = await knex("patrimonios").count("* as total");
+			return count.total;
+		  },		  
 		searchPatrimonios: async (_, { filter }) => {
 			const patrimonios = await knex("patrimonios").where((builder) => {
 				if (filter.marca) {

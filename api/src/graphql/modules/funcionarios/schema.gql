@@ -18,6 +18,7 @@ type Query {
     confereLogin(email: String!): Funcionario
     confereSession(idSession: String!): Funcionario
     authenticator(idGoogle: String!): Boolean!
+    totalFuncionarios: Int!
 }
 
 input FuncionarioFilter {

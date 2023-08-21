@@ -32,6 +32,10 @@ export default {
 			const funcionarios = await knex("funcionarios").where("status", status);
 			return funcionarios;
 		},
+		totalFuncionarios: async () => {
+			const [count] = await knex("funcionarios").count("* as total");
+			return count.total;
+		  },	
 		searchFuncionarios: async (_, { filter }) => {
 			const funcionarios = await knex("funcionarios").where((builder) => {
 				if (filter.nome) {

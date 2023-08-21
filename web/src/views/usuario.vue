@@ -614,7 +614,6 @@ funcionarios {
 
       const query = `mutation CreateFuncionario($data: DadosFuncionario!) {
   createFuncionario(data: $data) {
-    idFuncionario
     status
     nome
     tipo

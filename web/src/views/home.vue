@@ -7,7 +7,7 @@
             <div class="card_info">
               <i class="keyboard outline icon"></i>
               <div class="card_title">Patrimônios registrados:</div>
-              <div class="card_content" id="total_patrimonios">25</div>
+              <div class="card_content" id="total_patrimonios"></div>
             </div>
             <div class="card_info">
               <i class="laptop icon"></i>
@@ -32,7 +32,7 @@
             <div class="card_info">
               <i class="user outline icon"></i>
               <div class="card_title">Usuários Cadastrados:</div>
-              <div class="card_content" id="usuarios_cadastrados">1</div>
+              <div class="card_content" id="usuarios_cadastrados"></div>
             </div>
           </div>
         </div>
@@ -82,6 +82,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Home',
@@ -94,7 +95,45 @@ export default {
     } else {
       document.getElementById('saude').innerHTML = 'Olá, usuário!';
     }
+
+    const totalPatrimonioQuery = `
+  query {
+    totalPatrimonios
   }
+`;
+
+axios.post('http://localhost:4000', { query: totalPatrimonioQuery }).then(
+  (result) => {
+    const totalPatrimonios = result.data.data.totalPatrimonios;
+
+    const totalPatrimoniosElement = document.getElementById('total_patrimonios');
+    totalPatrimoniosElement.textContent = totalPatrimonios;
+  },
+  (error) => {
+    console.log(error);
+  }
+);
+
+const totalFuncionarioQuery = `
+  query {
+    totalFuncionarios
+  }
+`;
+
+axios.post('http://localhost:4000', { query: totalFuncionarioQuery }).then(
+  (result) => {
+    const totalFuncionarios = result.data.data.totalFuncionarios;
+
+    const totalFuncionariosElement = document.getElementById('usuarios_cadastrados');
+    totalFuncionariosElement.textContent = totalFuncionarios;
+  },
+  (error) => {
+    console.log(error);
+  }
+);
+
+}
+
 }
 
 </script>
