@@ -96,43 +96,63 @@ export default {
       document.getElementById('saude').innerHTML = 'Olá, usuário!';
     }
 
+    const totalBancadaQuery = `
+  query {
+    totalBancadasOp
+  }
+`;
+
+    axios.post('http://localhost:4000', { query: totalBancadaQuery }).then(
+      (result) => {
+        const totalPatrimonios = result.data.data.totalBancadasOp;
+
+        const totalPatrimoniosElement = document.getElementById('bancada_ativa');
+        totalPatrimoniosElement.textContent = totalPatrimonios;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    
     const totalPatrimonioQuery = `
   query {
     totalPatrimonios
   }
 `;
 
-axios.post('http://localhost:4000', { query: totalPatrimonioQuery }).then(
-  (result) => {
-    const totalPatrimonios = result.data.data.totalPatrimonios;
+    axios.post('http://localhost:4000', { query: totalPatrimonioQuery }).then(
+      (result) => {
+        const totalPatrimonios = result.data.data.totalPatrimonios;
 
-    const totalPatrimoniosElement = document.getElementById('total_patrimonios');
-    totalPatrimoniosElement.textContent = totalPatrimonios;
-  },
-  (error) => {
-    console.log(error);
-  }
-);
+        const totalPatrimoniosElement = document.getElementById('total_patrimonios');
+        totalPatrimoniosElement.textContent = totalPatrimonios;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
-const totalFuncionarioQuery = `
+    const totalFuncionarioQuery = `
   query {
     totalFuncionarios
   }
 `;
 
-axios.post('http://localhost:4000', { query: totalFuncionarioQuery }).then(
-  (result) => {
-    const totalFuncionarios = result.data.data.totalFuncionarios;
 
-    const totalFuncionariosElement = document.getElementById('usuarios_cadastrados');
-    totalFuncionariosElement.textContent = totalFuncionarios;
-  },
-  (error) => {
-    console.log(error);
+    axios.post('http://localhost:4000', { query: totalFuncionarioQuery }).then(
+      (result) => {
+        const totalFuncionarios = result.data.data.totalFuncionarios;
+
+        const totalFuncionariosElement = document.getElementById('usuarios_cadastrados');
+        totalFuncionariosElement.textContent = totalFuncionarios;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
   }
-);
-
-}
 
 }
 
