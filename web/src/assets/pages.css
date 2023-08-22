@@ -546,13 +546,13 @@ select.placeholder {
 }
 
 .button2 {
-  margin-top: 825px;
+  margin-top: 55px;
   margin-right: 6px;
   margin-left: 6px;
   position: relative;
   overflow: hidden;
   height: 3rem;
-  width: 14vw;
+  width: 20vw;
   border-radius: 0.7rem;
   background: #00000083;
   color: #ffffff;
