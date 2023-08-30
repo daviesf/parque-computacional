@@ -88,6 +88,7 @@
       </li>
     </ul>
   </div>
+
 </template>
 
 <script>
@@ -112,6 +113,7 @@ export default {
         app.classList.add('dark-mode')
         app1.classList.add('dark-mode')
         app2.classList.add('inverted')
+        app2.classList.add('dark-mode')
         document.cookie = 'theme=dark;path=/'
 
       } else {
@@ -120,6 +122,7 @@ export default {
         app.classList.remove('dark-mode')
         app1.classList.remove('dark-mode')
         app2.classList.remove('inverted')
+        app2.classList.remove('dark-mode')
         document.cookie = 'theme=light;path=/'
 
       }

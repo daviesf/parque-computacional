@@ -6,7 +6,9 @@
       </div>
       <div class="title_container">
         <p class="title">Olá!</p>
-        <span class="subtitle">Entre com sua conta da Unicamp para ter acesso aos serviços SAR.</span>
+        <span class="subtitle"
+          >Entre com sua conta da Unicamp para ter acesso aos serviços SAR.</span
+        >
       </div>
       <div id="buttonDiv"></div>
       <p class="note" id="ajuda">Ajuda</p>
@@ -87,18 +89,11 @@ export default {
         .then((response) => {
           console.log('comparando na API')
           const user = response.data.data.confereLogin
-          if (user.idGoogle == null || user.idGoogle == "") {
-            primeiroLogin(user, data.sub);
-          }
           if (user) {
-            registerSession(user, data)
-            if (user.tipo == 1) {
-              window.location.href = '/';
-            } else if (user.tipo == 2) {
-              window.location.href = '/helpDeskUser'
-            } else {
-              console.log('Erro na verificação do tipo de usuário.')
+            if (user.idGoogle == null || user.idGoogle == '') {
+              primeiroLogin(user, data.sub)
             }
+            registerSession(user, data)
           } else {
             console.log('Falha no login')
             document.getElementById('login-failed').style.display = 'block'
@@ -116,6 +111,7 @@ export default {
       nome
       idGoogle
       email
+      tipo
     }
   }
   `
@@ -129,11 +125,38 @@ export default {
         .post('http://localhost:4000', { query, variables })
         .then((response) => {
           const updatedUser = response.data.data.updateIdSession
-          document.cookie = 'AKJA12=' + updatedUser.idSession + '; expires=' + new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
-          document.cookie = 'GLG13=' + updatedUser.idGoogle + '; expires=' + new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
-          document.cookie = 'identity=' + btoa(updatedUser.nome) + '; expires=' + new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
-          document.cookie = 'identity2=' + btoa(updatedUser.email) + '; expires=' + new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
-          console.log(document.cookie)
+          document.cookie =
+            'AKJA12=' +
+            updatedUser.idSession +
+            '; expires=' +
+            new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() +
+            '; path=/'
+          document.cookie =
+            'GLG13=' +
+            updatedUser.idGoogle +
+            '; expires=' +
+            new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() +
+            '; path=/'
+          document.cookie =
+            'identity=' +
+            btoa(updatedUser.nome) +
+            '; expires=' +
+            new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() +
+            '; path=/'
+          document.cookie =
+            'identity2=' +
+            btoa(updatedUser.email) +
+            '; expires=' +
+            new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() +
+            '; path=/'
+
+          if (updatedUser.tipo == 1) {
+            window.location.href = '/'
+          } else if (updatedUser.tipo == 2) {
+            window.location.href = '/helpDeskUser'
+          } else {
+            console.log('Erro na verificação do tipo de usuário.')
+          }
         })
         .catch((error) => console.error(error))
     }
@@ -152,9 +175,10 @@ export default {
         idGoogle: googleid
       }
 
-      axios.post('http://localhost:4000', { query, variables }).catch((error) => console.error(error))
+      axios
+        .post('http://localhost:4000', { query, variables })
+        .catch((error) => console.error(error))
     }
-
 
     google.accounts.id.initialize({
       client_id: '1090697719532-djuhtf5mi9r69ci55jr16ib9hg9ssnbc.apps.googleusercontent.com',
@@ -204,7 +228,6 @@ export default {
         hidePopup()
       }
     }
-
   }
 }
 </script>
