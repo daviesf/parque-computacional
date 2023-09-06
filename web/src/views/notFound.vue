@@ -688,7 +688,6 @@
 </template>
 
 <script>
-import { RouterLink } from 'vue-router'
 import gsap from 'gsap'
 
 export default {

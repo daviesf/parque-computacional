@@ -1,7 +1,7 @@
 <template>
-  <div class="ui active inverted dimmer">
+  <div class="ui active inverted dimme r">
     <div class="ui text loader">Efetuando log-out</div>
-    <div class="" id="counter"></div>
+    <div id="counter"></div>
   </div>
 </template>
 
@@ -9,13 +9,10 @@
 export default {
   name: 'Logout',
   beforeUnmount() {
-    this.$emit('hideNavbar', false); // Emitir o evento para mostrar a navbar novamente
+    this.$emit('hideNavbar', false) // Emitir o evento para mostrar a navbar novamente
   },
   mounted() {
-    this.$emit('hideNavbar', true); // Emitir o evento para ocultar a navbar
-    // Restante do seu código para o logout
-  },
-  mounted() {
+    this.$emit('hideNavbar', true) // Emitir o evento para ocultar a navbar
     const cookies = document.cookie.split(';')
     localStorage.removeItem('name')
 
