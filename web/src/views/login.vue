@@ -53,11 +53,9 @@ export default {
   name: 'Login',
   created() {
     this.$emit('hideNavbar', true) // Emitir o evento para ocultar a navbar
-    this.$emit('hideFooter', true)
   },
   unmounted() {
     this.$emit('hideNavbar', false) // Emitir o evento para mostrar a navbar novamente
-    this.$emit('hideFooter', false)
   },
   mounted() {
     function handleCredentialResponse(response) {

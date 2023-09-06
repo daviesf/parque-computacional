@@ -35,7 +35,7 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from, next) => {
+/*router.beforeEach((to, from, next) => {
   theme();
   const AKJA12Value = document.cookie.replace(/(?:(?:^|.*;\s*)AKJA12\s*=\s*([^;]*).*$)|^.*$/, "$1");
   if (AKJA12Value) {
@@ -68,7 +68,7 @@ router.beforeEach((to, from, next) => {
       next('/login')
     }
   }
-})
+})*/
 
 const app = createApp(App)
 

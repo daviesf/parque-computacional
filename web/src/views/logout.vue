@@ -7,15 +7,13 @@
 
 <script>
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Logout',
-  created() {
-    this.$emit('hideNavbar', true) // Emitir o evento para ocultar a navbar
-    this.$emit('hideFooter', true)
+  beforeUnmount() {
+    this.$emit('hideNavbar', false); // Emitir o evento para mostrar a navbar novamente
   },
-  unmounted() {
-    this.$emit('hideNavbar', false) // Emitir o evento para mostrar a navbar novamente
-    this.$emit('hideFooter', false)
+  mounted() {
+    this.$emit('hideNavbar', true); // Emitir o evento para ocultar a navbar
+    // Restante do seu código para o logout
   },
   mounted() {
     const cookies = document.cookie.split(';')
