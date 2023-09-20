@@ -1,19 +1,20 @@
 <template>
   <div class="container">
-
-    <div class="ui grid" style="height: 101.5vh;">
-      <div class="six wide column navhelp">
-        <div class="home_title" style="color: white;">
+    <div class="ui grid">
+      <div class="six wide column navhelp" style="height: 100vh">
+        <div class="home_title">
           <div id="saude" class="hello1">Olá, [nome]</div>
-          <div class="welcome1">Seja bem-vindo novamente!</div>
+          <div class="welcome1">Seja bem-vindo ao sistema de chamados técnicos!</div>
+          <img src="../assets/media/hd1.gif" alt="GIF HELPDESK" class="img-hd" />
         </div>
       </div>
       <div class="ten wide column">
-        <span class="text titlep">
-          <h1 style="margin-top: 30px;">Sistema de HelpDesk</h1>
-        </span>
+        <div class="navhelp2">
+          <span class="text titlep">
+            <h1 class="title-hd">Sistema de HelpDesk</h1>
+          </span>
 
-          <div class="columnHelpDesk" style="width: 80%;">
+          <div class="columnHelpDesk">
             <div class="ui segment">
               <h3 class="ui header">Novo Chamado</h3>
               <form id="form" class="ui form">
@@ -43,8 +44,14 @@
                   </div> -->
                 <div class="field">
                   <label>Assunto</label>
-                  <input type="text" name="subject" placeholder="Assunto" class="campo required" id="assunto"
-                    @input="assuntoValidate" />
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Assunto"
+                    class="campo required"
+                    id="assunto"
+                    @input="assuntoValidate"
+                  />
                   <span class="span-required">Insira o Assunto</span>
                 </div>
                 <!-- <div class="field">
@@ -64,8 +71,13 @@
                   </div> -->
                 <div class="field">
                   <label>Descrição</label>
-                  <textarea name="description" rows="2" class="campo auto-expand required" id="descricao"
-                    @input="descricaoValidate"></textarea>
+                  <textarea
+                    name="description"
+                    rows="2"
+                    class="campo auto-expand required"
+                    id="descricao"
+                    @input="descricaoValidate"
+                  ></textarea>
                   <span class="span-required">Insira a Descrição</span>
                 </div>
                 <div class="field">
@@ -81,7 +93,7 @@
             </div>
           </div>
 
-          <div class="columnHelpDesk" style="width: 80%;">
+          <div class="columnHelpDesk">
             <div class="ui segment">
               <h3 class="ui header">Meus Chamados</h3>
               <table class="ui celled table">
@@ -102,8 +114,12 @@
                     <td>cl201275@g.unicamp.br</td>
                     <td>Problema</td>
                     <td>Alta</td>
-                    <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
-                    <td class="td-desc"><button type="submit" class="ui button desc">Ver</button></td>
+                    <td class="td-desc">
+                      <button type="submit" class="ui button desc">Ver</button>
+                    </td>
+                    <td class="td-desc">
+                      <button type="submit" class="ui button desc">Ver</button>
+                    </td>
                     <td>Pendente</td>
                   </tr>
                 </tbody>
@@ -112,7 +128,7 @@
           </div>
         </div>
       </div>
-
+    </div>
   </div>
 
   <div class="logout-button">
@@ -122,7 +138,6 @@
     <div class="logout-display">
       <p>Logout</p>
     </div>
-
   </div>
 </template>
 

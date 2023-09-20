@@ -420,6 +420,7 @@ select.placeholder {
   line-height: 1.2;
   font-weight: 700;
   color: #11101d;
+  height: 100vh;
 }
 
 .home_title .hello1 {
@@ -435,10 +436,13 @@ select.placeholder {
   padding-top: 5px;
   font-size: 0.5em;
 }
+
 .home_title .welcome1 {
   padding-top: 5px;
   font-size: 33px;
+  text-align: center;
 }
+
 .home_title .linkful {
   margin-top: 20px;
   font-size: 0.35em;
@@ -890,4 +894,25 @@ td.td-desc {
 
 .navhelp {
   background-color: rgb(0, 70, 84);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navhelp2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.columnHelpDesk {
+  width: 80%;
+  margin: 40px;
+}
+
+.title-hd {
+  padding-bottom: 10px;
+  font-size: 50px;
 }
