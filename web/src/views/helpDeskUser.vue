@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="ui grid">
-      <div class="six wide column navhelp" style="height: 100vh">
+      <div class="six wide column navhelp">
         <div class="home_title">
           <div id="saude" class="hello1">Olá, [nome]</div>
           <div class="welcome1">Seja bem-vindo ao sistema de chamados técnicos!</div>
@@ -10,13 +10,9 @@
       </div>
       <div class="ten wide column">
         <div class="navhelp2">
-          <span class="text titlep">
-            <h1 class="title-hd">Sistema de HelpDesk</h1>
-          </span>
-
           <div class="columnHelpDesk">
             <div class="ui segment">
-              <h3 class="ui header">Novo Chamado</h3>
+              <h3 class="ui header">Abertura de Chamado Técnico</h3>
               <form id="form" class="ui form">
                 <!-- <div class="field">
                     <label>Nome</label>
@@ -80,13 +76,12 @@
                   ></textarea>
                   <span class="span-required">Insira a Descrição</span>
                 </div>
-                <div class="field">
-                  <label>Arquivo</label>
-                  <input type="file" name="arquivo" class="campo required" id="arquivo" />
-                  <span class="span-required">Insira o Arquivo</span>
+                <div class="field form-hd">
+                  <input class="input-hd" type="file" multiple />
+                  <p class="p-hd">Arraste ou anexe arquivos aqui.</p>
                 </div>
-                <button type="submit" class="ui button" id="enviarChamado">Enviar</button>
-                <button class="ui button" type="button" onclick="limparFormulario()">
+                <button class="ui button" id="enviarChamado">Enviar</button>
+                <button class="ui button" onclick="limparFormulario()">
                   Limpar Formulário
                 </button>
               </form>
@@ -186,10 +181,7 @@ export default {
     }
 
     function limparFormulario() {
-      document.getElementById('nome').value = ''
-      document.getElementById('email').value = ''
       document.getElementById('assunto').value = ''
-      document.getElementById('prioridade').selectedIndex = 0
       document.getElementById('descricao').value = ''
       document.getElementById('arquivo').value = ''
     }
@@ -200,11 +192,8 @@ export default {
 
     function validateForm() {
       const validations = [
-        { index: 0, isValid: nomeValidate },
-        { index: 1, isValid: emailValidate },
-        { index: 2, isValid: assuntoValidate },
-        { index: 3, isValid: prioridadeValidate },
-        { index: 4, isValid: descricaoValidate }
+        { index: 0, isValid: assuntoValidate },
+        { index: 1, isValid: descricaoValidate }
       ]
 
       validations.forEach((validation) => {
@@ -217,29 +206,12 @@ export default {
       })
     }
 
-    function nomeValidate() {
+    function assuntoValidate() {
       return campos[0].value.length > 0
     }
 
-    function emailValidate() {
-      const emailValue = campos[1].value
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      if (emailValue.length === 0) {
-        return false
-      }
-      return emailRegex.test(emailValue)
-    }
-
-    function assuntoValidate() {
-      return campos[2].value.length > 0
-    }
-
-    function prioridadeValidate() {
-      return campos[3].value !== 'Selecione a prioridade'
-    }
-
     function descricaoValidate() {
-      return campos[4].value.length > 0
+      return campos[1].value.length > 0
     }
 
     // cadastrar
@@ -307,6 +279,12 @@ export default {
           console.log(error)
         }
       )
+    })
+
+    $(document).ready(function () {
+      $('.form-hd .input-hd').change(function () {
+        $('.form-hd .p-hd').text(this.files.length + ' arquivo(s) selecionado.')
+      })
     })
   }
 }
