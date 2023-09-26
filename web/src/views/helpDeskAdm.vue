@@ -129,6 +129,7 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { nomeFuncionario } from '../script/nome.js'
+import { authenticator } from '../script/auth.js';
 
 export default {
   name: 'HelpDesk',
@@ -158,6 +159,8 @@ export default {
   }
 }`
 
+authenticator().then(result => {
+        if (result == 'true') {
       axios.post('http://localhost:4000', { query }).then(
         (result) => {
           // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
@@ -242,6 +245,8 @@ export default {
           console.log(error)
         }
       )
+    }
+  })
     }
 
     function nomeFuncionario(value) {

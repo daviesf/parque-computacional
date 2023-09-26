@@ -185,6 +185,7 @@
 
 <script>
 import axios from 'axios'
+import { authenticator } from '../script/auth.js';
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -607,6 +608,8 @@ export default {
     }
   }`
 
+  authenticator().then(result => {
+        if (result == 'true') {
       axios.post('http://localhost:4000', { query }).then(
         (result) => {
           // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
@@ -679,6 +682,8 @@ export default {
           console.log(error)
         }
       )
+    }
+    })
     }
 
     //Atualizar 

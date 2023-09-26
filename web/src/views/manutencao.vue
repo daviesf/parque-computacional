@@ -173,6 +173,7 @@
 <script>
 import axios from 'axios'
 import { nomeFuncionario } from '../script/nome.js'
+import { authenticator } from '../script/auth.js';
 
 export default {
   name: 'Manutencao',

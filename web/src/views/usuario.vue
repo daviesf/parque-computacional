@@ -196,6 +196,7 @@
 
 <script>
 import axios from 'axios'
+import { authenticator } from '../script/auth.js';
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Usuario',
@@ -374,6 +375,8 @@ funcionarios {
 //   }
 // }`
 
+authenticator().then(result => {
+        if (result == 'true') {
       axios.post('http://localhost:4000', { query }).then(
         (result) => {
           // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
@@ -467,6 +470,8 @@ funcionarios {
           console.log(error)
         }
       )
+    }
+  })
     }
 
     // filtro
