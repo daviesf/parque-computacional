@@ -129,7 +129,7 @@
           <div class="field">
             <label>Patrimônio</label>
             <select name="tipo" class="campo required" id="patrimonio" @change="patrimonioValidate">
-              <option selected value="selecione" disabled>Selecione um Patrimônio...</option>
+              <option selected value="Selecione" disabled>Selecione um Patrimônio...</option>
             </select>
             <span class="span-required">Selecione algum Patrimônio</span>
           </div>
@@ -158,7 +158,7 @@
               id="funcionario"
               @change="funcionarioValidate"
             >
-              <option selected value="selecione" disabled>Selecione um Funcionário...</option>
+              <option selected value="Selecione" disabled>Selecione um Funcionário...</option>
             </select>
             <span class="span-required">Selecione algum Funcionário</span>
           </div>
@@ -298,7 +298,7 @@ export default {
       const validations = [
         { index: 0, isValid: patrimonioValidate },
         { index: 1, isValid: detalhesValidate },
-        // { index: 2, isValid: dataValidate },
+        { index: 2, isValid: dataValidate },
         { index: 3, isValid: funcionarioValidate }
       ]
 
@@ -313,7 +313,7 @@ export default {
     }
 
     function patrimonioValidate() {
-      return campos[0].value !== 'Selecione o Patrimônio'
+      return campos[0].value == 'Selecione'
     }
 
     function detalhesValidate() {
@@ -352,7 +352,7 @@ export default {
     }
 
     function funcionarioValidate() {
-      return campos[3].value !== 'Selecione o Funcionário'
+      return campos[3].value = 'Selecione'
     }
 
     // Puxando Dados do Banco para o Cadastro
@@ -426,6 +426,8 @@ export default {
   }
 }`
 
+authenticator().then(result => {
+        if (result == 'true') {
       axios.post('http://localhost:4000', { query }).then(
         (result) => {
           // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
@@ -492,7 +494,10 @@ export default {
         (error) => {
           console.log(error)
         }
-      )
+        );
+        }
+      })
+    }
 
       //Cadastrar
       const addManutencao = document.getElementById('submit-manutencao')
@@ -549,7 +554,7 @@ export default {
           }
         )
       })
-    }
+    
     // filtro
     const filtro = document.getElementById('filter')
     filtro.addEventListener('click', function () {

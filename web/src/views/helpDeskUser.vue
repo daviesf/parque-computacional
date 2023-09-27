@@ -14,30 +14,6 @@
             <div class="ui segment">
               <h3 class="ui header">Abertura de Chamado Técnico</h3>
               <form id="form" class="ui form">
-                <!-- <div class="field">
-                    <label>Nome</label>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Nome completo"
-                      class="campo required"
-                      id="nome"
-                      @input="nomeValidate"
-                    />
-                    <span class="span-required">Insira o Nome</span>
-                  </div>
-                  <div class="field">
-                    <label>E-mail</label>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="E-mail"
-                      class="campo required"
-                      id="email"
-                      @input="emailValidate"
-                    />
-                    <span class="span-required">Insira um e-mail válido</span>
-                  </div> -->
                 <div class="field">
                   <label>Assunto</label>
                   <input
@@ -50,21 +26,6 @@
                   />
                   <span class="span-required">Insira o Assunto</span>
                 </div>
-                <!-- <div class="field">
-                    <label>Prioridade</label>
-                    <select
-                      name="prioridade"
-                      class="campo required"
-                      id="prioridade"
-                      @change="prioridadeValidate"
-                    >
-                      <option class="placeholder" disabled selected>Selecione a prioridade</option>
-                      <option value="Alta">Alta</option>
-                      <option value="Média">Média</option>
-                      <option value="Baixa">Baixa</option>
-                    </select>
-                    <span class="span-required">Selecione a Prioridade</span>
-                  </div> -->
                 <div class="field">
                   <label>Descrição</label>
                   <textarea
@@ -77,13 +38,12 @@
                   <span class="span-required">Insira a Descrição</span>
                 </div>
                 <div class="field form-hd">
-                  <input class="input-hd" type="file" multiple />
+                  <label hidden></label>
+                  <input class="input-hd" type="file" multiple id="arquivo" />
                   <p class="p-hd">Arraste ou anexe arquivos aqui.</p>
                 </div>
                 <button class="ui button" id="enviarChamado">Enviar</button>
-                <button class="ui button" onclick="limparFormulario()">
-                  Limpar Formulário
-                </button>
+                <input type="reset" class="ui button" id="limparForm" value="Limpar Formulário" />
               </form>
             </div>
           </div>
@@ -103,21 +63,7 @@
                     <th>Status</th>
                   </tr>
                 </thead>
-                <tbody id="tableBody">
-                  <tr>
-                    <td>Davie</td>
-                    <td>cl201275@g.unicamp.br</td>
-                    <td>Problema</td>
-                    <td>Alta</td>
-                    <td class="td-desc">
-                      <button type="submit" class="ui button desc">Ver</button>
-                    </td>
-                    <td class="td-desc">
-                      <button type="submit" class="ui button desc">Ver</button>
-                    </td>
-                    <td>Pendente</td>
-                  </tr>
-                </tbody>
+                <tbody id="tableBody"></tbody>
               </table>
             </div>
           </div>
@@ -180,14 +126,8 @@ export default {
       spans[index].style.display = 'none'
     }
 
-    function limparFormulario() {
-      document.getElementById('assunto').value = ''
-      document.getElementById('descricao').value = ''
-      document.getElementById('arquivo').value = ''
-    }
-
-    document.getElementById('form').addEventListener('submit', function (event) {
-      event.preventDefault()
+    document.getElementById('limparForm').addEventListener('click', function (event) {
+      document.querySelector('.form-hd .p-hd').textContent = 'Arraste ou anexe arquivos aqui.'
     })
 
     function validateForm() {

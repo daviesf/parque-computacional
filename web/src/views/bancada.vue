@@ -167,7 +167,7 @@
           <div class="field">
             <label>Status</label>
             <select name="status" class="campo required" id="status" @change="statusValidate">
-              <option class="placeholder" disabled selected>Selecione o status</option>
+              <option value="Selecione" class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="inativo">Inativo</option>
               <option value="manutencao">Em manutenção</option>
@@ -591,7 +591,7 @@ export default {
     }
 
     function statusValidate() {
-      return campos[2].value !== 'Selecione o status'
+      return campos[2].value.length > 0
     }
 
     // Puxando Dados do Banco
