@@ -16,12 +16,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Código da Manutenção"
-                    class="fluid"
-                    id="filter-idManutencao"
-                  />
+                  <input type="text" placeholder="Código da Manutenção" class="fluid" id="filter-idManutencao" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -33,12 +28,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Nome do patrimônio"
-                    class="fluid"
-                    id="filter-patrimonio"
-                  />
+                  <input type="text" placeholder="Nome do patrimônio" class="fluid" id="filter-patrimonio" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -50,12 +40,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Nome do funcionário"
-                    class="fluid"
-                    id="filter-funcionario"
-                  />
+                  <input type="text" placeholder="Nome do funcionário" class="fluid" id="filter-funcionario" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -67,7 +52,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui checkbox">
-                  <input type="date" name="example" id="filter-data"/>
+                  <input type="date" name="example" id="filter-data" />
                 </div>
               </div>
             </div>
@@ -135,14 +120,8 @@
           </div>
           <div class="field">
             <label>Detalhes da Manutenção</label>
-            <input
-              type="text"
-              name="detalhes"
-              placeholder="Detalhes"
-              class="campo required"
-              id="detalhes"
-              @input="detalhesValidate"
-            />
+            <input type="text" name="detalhes" placeholder="Detalhes" class="campo required" id="detalhes"
+              @input="detalhesValidate" />
             <span class="span-required">Insira os Detalhes</span>
           </div>
           <div class="field">
@@ -152,17 +131,13 @@
           </div>
           <div class="field">
             <label>Pertencente ao Funcionário:</label>
-            <select
-              name="tipo"
-              class="campo required"
-              id="funcionario"
-              @change="funcionarioValidate"
-            >
+            <select name="tipo" class="campo required" id="funcionario" @change="funcionarioValidate">
               <option selected value="selecione" disabled>Selecione um Funcionário...</option>
             </select>
             <span class="span-required">Selecione algum Funcionário</span>
           </div>
           <button class="ui submit button" type="submit" id="submit-manutencao">Adicionar</button>
+          <button class="ui submit button" type="submit" id="upd-manutencao">Atualizar</button>
           <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
         </form>
       </div>
@@ -211,6 +186,11 @@ export default {
     $(document).ready(function () {
       // eslint-disable-next-line no-undef
       $('#add-manutencao').click(function (e) {
+        const esconder = document.querySelector('#upd-manutencao')
+        esconder.style.display = 'none'
+
+        const aparecer1 = document.querySelector('#submit-manutencao')
+        aparecer1.style.display = 'inline'
         e.preventDefault()
         // eslint-disable-next-line no-undef
         $('.dimmer').fadeIn()
@@ -497,6 +477,8 @@ export default {
       //Cadastrar
       const addManutencao = document.getElementById('submit-manutencao')
       addManutencao.addEventListener('click', function () {
+       
+
         console.log('Iniciando cadastro')
         let patrimonio = document.getElementById('patrimonio').value
         let detalhes = document.getElementById('detalhes').value
@@ -550,6 +532,125 @@ export default {
         )
       })
     }
+
+    //Deletar
+    const delManutencao = document.getElementById('del-manutencao-btn')
+    delManutencao.addEventListener('click', function () {
+      const selectedCheckboxes = $('input.select-checkbox:checked')
+
+      if (selectedCheckboxes.length === 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Selecione um valor antes de clicar em Excluir',
+          confirmButtonColor: '#004654',
+          confirmButtonText: 'OK'
+        })
+        return
+      } else {
+        Swal.fire({
+          title: 'Você tem certeza?',
+          text: 'Você não poderá reverter a exclusão',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#004654',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sim, deletar!',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          // Use 'then' to handle the user's choice
+          if (result.isConfirmed) {
+            selectedCheckboxes.each(function () {
+              const selectedRow = $(this).closest('tr')
+              const selectedFields = selectedRow.find('td').slice(1, 7)
+              const codigoMantencao = selectedFields.eq(0).text().trim()
+
+              const query = `
+              mutation DeleteConserto($idConserto: ID!) {
+              deleteConserto(idConserto: $idConserto)
+            }
+            `
+
+              const variables = {
+                idConserto: parseInt(codigoMantencao)
+              }
+
+              axios.post('http://localhost:4000', { query, variables }).then(
+                (response) => {
+                  console.log(response)
+                  $('.popup').hide()
+                  $('.dimmer').hide()
+
+                  Swal.fire({
+                    title: 'Deletado!',
+                    text: 'O patrimônio foi removido com sucesso!',
+                    icon: 'success',
+                    confirmButtonColor: '#004654' // Cor personalizada do botão OK
+                  })
+
+                  carregaDados()
+                },
+                (error) => {
+                  console.log(error)
+                }
+              )
+            })
+          }
+        })
+      }
+    })
+
+    //Atualizar 
+    $(document).ready(function () {
+      // Open the popup for updating when "Alterar" button is clicked
+      $('#upd-manutencao-btn').click(function () {
+        const esconder = document.querySelector('#upd-manutencao')
+        esconder.style.display = 'inline'
+
+        const aparecer1 = document.querySelector('#submit-manutencao')
+        aparecer1.style.display = 'none'
+
+        const selectedCheckboxes = $('input.select-checkbox:checked')
+
+        if (selectedCheckboxes.length == 0 || selectedCheckboxes.length > 1) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione um valor antes de alterar',
+            confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+            confirmButtonText: 'OK'
+          })
+          return
+        }
+
+        // Get the closest row to the selected checkbox
+        const selectedRow = selectedCheckboxes.closest('tr')
+
+        // Open the popup for updating
+        $('.dimmer').fadeIn()
+
+        // Populate the form fields with selected row data
+        const selectedFields = selectedRow.find('td').slice(1, 5)
+        const formFields = $('#form input, #form select')
+
+        formFields.eq(0).prop('readonly', true).val(selectedFields.eq(2).text().trim())
+        formFields.eq(2).val(selectedFields.eq(3).text().trim())
+        formFields.eq(1).val(selectedFields.eq(0).text().trim())
+        formFields.eq(2).val(selectedFields.eq(3).text().trim())
+        formFields.eq(3).val(selectedFields.eq(4).text().trim())
+       
+
+        // Change the header text to "Atualizar Patrimônio"
+        $('.ui.dividing.header').text('Atualizar Patrimônio')
+      })
+
+      // Hide the pop-up and dimmer when "Cancelar" button is clicked
+      $('.cancel-button').click(function () {
+        $('.popup').hide()
+        $('.dimmer').hide()
+      })
+    })
+
     // filtro
     const filtro = document.getElementById('filter')
     filtro.addEventListener('click', function () {
@@ -637,8 +738,8 @@ export default {
             tr.appendChild(tdDetalhes)
 
             tbody.appendChild(tr)
+          })
         })
-      })
     })
   }
 }
