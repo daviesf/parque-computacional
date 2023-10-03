@@ -48,7 +48,7 @@
       <div class="ui grid centered">
         <router-link to="/patrimonio">
           <button class="button1">
-            <span class="button1-content">Patrimônio </span>
+            <span class="button1-content">Patrimônio</span>
           </button>
         </router-link>
         <router-link to="/bancada">
@@ -146,6 +146,24 @@ export default {
 
         const totalFuncionariosElement = document.getElementById('usuarios_cadastrados');
         totalFuncionariosElement.textContent = totalFuncionarios;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    const totalChamadosPendentesQuery = 
+    `query {
+      totalChamadosPendentes
+    }`;
+
+
+    axios.post('http://localhost:4000', { query: totalChamadosPendentesQuery }).then(
+      (result) => {
+        const totalChamadosPendentes = result.data.data.totalChamadosPendentes;
+
+        const chamadosPendentesElement = document.getElementById('chamados_pendentes');
+        chamadosPendentesElement.textContent = totalChamadosPendentes;
       },
       (error) => {
         console.log(error);

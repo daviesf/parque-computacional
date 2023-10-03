@@ -140,7 +140,7 @@
           <div class="field">
             <label>Status</label>
             <select name="status" class="campo required" id="status" @change="statusValidate">
-              <option value="Selecione" class="placeholder" disabled selected>Selecione o status</option>
+              <option value="" class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="inativo">Inativo</option>
               <option value="manutencao">Em manutenção</option>

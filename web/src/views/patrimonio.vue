@@ -307,7 +307,7 @@ export default {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Selecione o patrimônio que deseja script',
+            text: 'Selecione o patrimônio que deseja excluir',
             confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
 
             confirmButtonText: 'OK'

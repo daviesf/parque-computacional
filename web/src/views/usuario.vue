@@ -171,7 +171,7 @@
           <div class="field">
             <label>Tipo</label>
             <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
-              <option class="placeholder" disabled selected>Selecione o tipo</option>
+              <option class="placeholder" value="" disabled selected>Selecione o tipo</option>
               <option value="administrador">Administardor</option>
               <option value="usuario comum">Usuário Comum</option>
             </select>
@@ -180,7 +180,7 @@
           <div class="field">
             <label>Status</label>
             <select name="status" class="campo required" id="status" @change="statusValidate">
-              <option class="placeholder" disabled selected>Selecione o status</option>
+              <option class="placeholder" value="" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="desligado">Desligado</option>
             </select>
@@ -347,11 +347,11 @@ export default {
     }
 
     function tipoValidate() {
-      return campos[2].value !== 'Selecione o tipo'
+      return campos[2].value > 0
     }
 
     function statusValidate() {
-      return campos[3].value !== 'Selecione o status'
+      return campos[3].value > 0
     }
 
     carregaDados()

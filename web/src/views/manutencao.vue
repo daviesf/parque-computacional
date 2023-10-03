@@ -114,7 +114,7 @@
           <div class="field">
             <label>Patrimônio</label>
             <select name="tipo" class="campo required" id="patrimonio" @change="patrimonioValidate">
-              <option selected value="Selecione" disabled>Selecione um Patrimônio...</option>
+              <option selected value="" disabled>Selecione um Patrimônio...</option>
             </select>
             <span class="span-required">Selecione algum Patrimônio</span>
           </div>
@@ -137,7 +137,7 @@
               id="funcionario"
               @change="funcionarioValidate"
             >
-              <option selected value="Selecione" disabled>Selecione um Funcionário...</option>
+              <option selected value="" disabled>Selecione um Funcionário...</option>
             </select>
             <span class="span-required">Selecione algum Funcionário</span>
           </div>
@@ -298,7 +298,7 @@ export default {
     }
 
     function patrimonioValidate() {
-      return campos[0].value == 'Selecione'
+      return campos[0].value > 0
     }
 
     function detalhesValidate() {
@@ -306,38 +306,29 @@ export default {
     }
 
     function dataValidate() {
-      const dateValue = campos[2].value
-      const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/
-
+      const dateValue = campos[2].value;
+        
+      // Verifique se a data é vazia (não preenchida)
+      if (!dateValue) {
+        return false;
+      }
+    
+      // Verificar se a data está no formato "YYYY-MM-DD"
+      const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    
       if (!dateRegex.test(dateValue)) {
-        return false // Formato incorreto
+        return false; // Formato incorreto
       }
-
-      const [, day, month, year] = dateValue.match(dateRegex)
-
-      // Verificar se os valores estão dentro de intervalos válidos
-      if (
-        parseInt(day) < 1 ||
-        parseInt(day) > 31 ||
-        parseInt(month) < 1 ||
-        parseInt(month) > 12 ||
-        parseInt(year) < 1900 ||
-        parseInt(year) > 2100
-      ) {
-        return false // Valores fora dos intervalos válidos
-      }
-
-      // Verificar se é uma data válida do calendário
-      const parsedDate = new Date(`${year}-${month}-${day}`)
-      if (isNaN(parsedDate.getTime())) {
-        return false // Data inválida
-      }
-
-      return true // Data válida
+    
+      // Se você deseja verificar limites de data, você pode fazer isso aqui
+      // Por exemplo, verifique se a data não está no futuro, se necessário
+    
+      return true; // Data válida
     }
 
+
     function funcionarioValidate() {
-      return campos[3].value = 'Selecione'
+      return campos[3].value > 0
     }
 
     // Puxando Dados do Banco para o Cadastro

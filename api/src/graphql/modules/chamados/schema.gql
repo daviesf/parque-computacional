@@ -16,6 +16,7 @@ type Query {
     chamadosBancada(idBancada: Int!): [Chamado]!
     chamadosStatus(status: Int!): [Chamado]!
     searchChamados(filter: FilterChamados): [Chamado]!
+    totalChamadosPendentes: Int!
 }
 
 input FilterChamados {
