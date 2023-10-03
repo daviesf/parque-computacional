@@ -586,10 +586,6 @@ export default {
     const campos = document.querySelectorAll('.required')
     const spans = document.querySelectorAll('.span-required')
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault()
-      validateForm()
-    })
 
     campos.forEach((campo, index) => {
       campo.addEventListener('input', () => {
@@ -650,6 +646,12 @@ export default {
         }
       })
     }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      validateForm()
+    })
+
 
     // Puxando Dados do Banco
     const queryBancada = `query Query {
