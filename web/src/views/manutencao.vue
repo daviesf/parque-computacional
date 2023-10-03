@@ -541,7 +541,7 @@ authenticator().then(result => {
           }
         )
       })
-    }
+    
 
     //Deletar
     const delManutencao = document.getElementById('del-manutencao-btn')

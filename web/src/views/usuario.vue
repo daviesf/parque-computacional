@@ -595,64 +595,112 @@ authenticator().then(result => {
     })
 
     //Cadastrar
-    const addUsuario = document.getElementById('submit-usuario')
-    addUsuario.addEventListener('click', function () {
-      console.log('Iniciando cadastro')
-      let nome = document.getElementById('nome').value
-      let email = document.getElementById('email').value
-      let tipo = document.getElementById('tipo').value
-      if (tipo == 'administrador') {
-        tipo = 1
-      }  else if (tipo == 'usuario comum') {
-        tipo = 2
-      }
-      let status = document.getElementById('status').value
-      if (status == 'ativo') {
-        status = 1
-      } else if (status == 'desligado') {
-        status = 2
-      } 
+    const addUsuario = document.getElementById('submit-usuario');
 
-      console.log('Verificando status')
+// Função para verificar se um campo está vazio
+function isEmpty(value) {
+  return value.trim() === '';
+}
 
-      console.log('Query')
+// Função para validar os campos
+function validateForm() {
+  let isValid = true;
 
-      const query = `mutation CreateFuncionario($data: DadosFuncionario!) {
-  createFuncionario(data: $data) {
-    status
-    nome
-    tipo
-    email
-    idSession
-    idGoogle
+  campos.forEach((campo, index) => {
+    if (isEmpty(campo.value)) {
+      setError(index);
+      isValid = false;
+    } else {
+      removeError(index);
+    }
+  });
+
+  return isValid;
+}
+
+// Função para definir um erro em um campo
+function setError(index) {
+  campos[index].style.border = '2px solid #e63636';
+  spans[index].style.display = 'block';
+}
+
+// Função para remover um erro de um campo
+function removeError(index) {
+  campos[index].style.border = '';
+  spans[index].style.display = 'none';
+}
+
+addUsuario.addEventListener('click', function () {
+  console.log('Iniciando cadastro');
+  let nome = document.getElementById('nome').value;
+  let email = document.getElementById('email').value;
+  let tipo = document.getElementById('tipo').value;
+
+  if (tipo == 'administrador') {
+    tipo = 1;
+  } else if (tipo == 'usuario comum') {
+    tipo = 2;
   }
-}`
 
-      console.log('Variáveis')
+  let status = document.getElementById('status').value;
 
-      const variables = {
-        data: {
-          nome: nome,
-          email: email,
-          tipo: tipo,
-          status: status
-        }
+  if (status == 'ativo') {
+    status = 1;
+  } else if (status == 'desligado') {
+    status = 2;
+  }
+
+  console.log('Verificando status');
+  console.log('Query');
+
+  const query = `mutation CreateFuncionario($data: DadosFuncionario!) {
+    createFuncionario(data: $data) {
+      status
+      nome
+      tipo
+      email
+      idSession
+      idGoogle
+    }
+  }`;
+
+  console.log('Variáveis');
+
+  const variables = {
+    data: {
+      nome: nome,
+      email: email,
+      tipo: tipo,
+      status: status,
+    },
+  };
+
+  console.log(variables);
+
+  // Executa a validação
+  const isValid = validateForm();
+
+  if (isValid) {
+    axios.post('http://localhost:4000', { query, variables }).then(
+      (result) => {
+        console.log(result);
+        $('.popup').hide();
+        $('.dimmer').hide();
+        carregaDados();
+      },
+      (error) => {
+        console.log(error);
       }
+    );
+  }
+});
 
-      console.log(variables)
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  // Executa a validação
+  validateForm();
+});
 
-      axios.post('http://localhost:4000', { query, variables }).then(
-        (result) => {
-          console.log(result)
-          $('.popup').hide()
-          $('.dimmer').hide()
-          carregaDados()
-        },
-        (error) => {
-          console.log(error)
-        }
-      )
-    })
   }
 }
 
