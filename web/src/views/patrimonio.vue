@@ -185,14 +185,14 @@
               <div class="field">
                 <label>Bancada</label>
                 <select name="tipo" class="campo required" id="bancada" @change="bancadaValidate">
-                  <option selected value="selecione" disabled>Selecione uma bancada...</option>
+                  <option selected value="Selecione" disabled>Selecione uma bancada...</option>
                 </select>
                 <span class="span-required">Selecione 1 Bancada</span>
               </div>
               <div class="field">
                 <label>Tipo</label>
                 <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
-                  <option class="placeholder" disabled selected>Selecione o tipo</option>
+                  <option value="Selecione" class="placeholder" disabled selected>Selecione o tipo</option>
                   <option value="Desktop">Desktop</option>
                   <option value="Notebook">Notebook</option>
                   <option value="Impressora">Impressora</option>
@@ -217,7 +217,7 @@
               <div class="field">
                 <label>Status</label>
                 <select name="status" class="campo required" id="status" @change="statusValidate">
-                  <option class="placeholder" disabled selected>Selecione o status</option>
+                  <option value="Selecione" class="placeholder" disabled selected>Selecione o status</option>
                   <option value="Ativo">Ativo</option>
                   <option value="Inativo">Inativo</option>
                   <option value="Manutenção">Em manutenção</option>
@@ -307,7 +307,7 @@ export default {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Selecione o patrimônio que deseja excluir',
+            text: 'Selecione o patrimônio que deseja script',
             confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
 
             confirmButtonText: 'OK'
@@ -586,10 +586,6 @@ export default {
     const campos = document.querySelectorAll('.required')
     const spans = document.querySelectorAll('.span-required')
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault()
-      validateForm()
-    })
 
     campos.forEach((campo, index) => {
       campo.addEventListener('input', () => {
@@ -612,7 +608,7 @@ export default {
     }
 
     function bancadaValidate() {
-      return campos[1].value !== 'selecione'
+      return campos[1].value.length > 0
     }
 
     function marcaValidate() {
@@ -624,11 +620,11 @@ export default {
     }
 
     function tipoValidate() {
-      return campos[2].value !== 'Selecione o tipo'
+      return campos[2].value.length > 0
     }
 
     function statusValidate() {
-      return campos[5].value !== 'Selecione o status'
+      return campos[5].value.length > 0
     }
 
     function validateForm() {
@@ -650,6 +646,12 @@ export default {
         }
       })
     }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      validateForm()
+    })
+
 
     // Puxando Dados do Banco
     const queryBancada = `query Query {
@@ -1013,6 +1015,6 @@ export default {
     })
   }
 }
-</script>
+</script> 
 
 <style src="../assets/pages.css"></style>

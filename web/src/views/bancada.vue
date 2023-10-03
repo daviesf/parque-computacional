@@ -16,12 +16,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="ID da bancada"
-                    class="fluid"
-                    id="filter-bancada"
-                  />
+                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -33,12 +28,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Apelido da bancada"
-                    class="fluid"
-                    id="filter-apelido"
-                  />
+                  <input type="text" placeholder="Apelido da bancada" class="fluid" id="filter-apelido" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -50,12 +40,7 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="Local da bancada"
-                    class="fluid"
-                    id="filter-local"
-                  />
+                  <input type="text" placeholder="Local da bancada" class="fluid" id="filter-local" />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -141,33 +126,21 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Apelido</label>
-            <input
-              type="text"
-              name="apelido"
-              placeholder="Apelido"
-              class="campo required"
-              id="apelido"
-              @input="apelidoValidate"
-            />
+            <input type="text" name="apelido" placeholder="Apelido" class="campo required" id="apelido"
+              @input="apelidoValidate" />
             <span class="span-required">Inisira o Apelido</span>
           </div>
           <div class="field">
             <label>Local</label>
-            <input
-              type="text"
-              name="local"
-              placeholder="Local"
-              class="campo required"
-              id="local"
-              @input="localValidate"
-            />
+            <input type="text" name="local" placeholder="Local" class="campo required" id="local"
+              @input="localValidate" />
             <span class="span-required">Inisira o Local</span>
           </div>
 
           <div class="field">
             <label>Status</label>
             <select name="status" class="campo required" id="status" @change="statusValidate">
-              <option class="placeholder" disabled selected>Selecione o status</option>
+              <option value="Selecione" class="placeholder" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="inativo">Inativo</option>
               <option value="manutencao">Em manutenção</option>
@@ -544,11 +517,6 @@ export default {
     const campos = document.querySelectorAll('.required')
     const spans = document.querySelectorAll('.span-required')
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault()
-      validateForm()
-    })
-
     campos.forEach((campo, index) => {
       campo.addEventListener('input', () => {
         removeError(index)
@@ -563,6 +531,18 @@ export default {
     function removeError(index) {
       campos[index].style.border = ''
       spans[index].style.display = 'none'
+    }
+
+    function apelidoValidate() {
+      return campos[0].value.length > 0
+    }
+
+    function localValidate() {
+      return campos[1].value.length > 0
+    }
+
+    function statusValidate() {
+      return campos[2].value.length > 0
     }
 
     function validateForm() {
@@ -582,17 +562,10 @@ export default {
       })
     }
 
-    function apelidoValidate() {
-      return campos[0].value.length > 0
-    }
-
-    function localValidate() {
-      return campos[1].value.length > 0
-    }
-
-    function statusValidate() {
-      return campos[2].value !== 'Selecione o status'
-    }
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      validateForm()
+    })
 
     // Puxando Dados do Banco
     carregaDados()
@@ -608,84 +581,86 @@ export default {
     }
   }`
 
-  authenticator().then(result => {
+      authenticator().then(result => {
         if (result == 'true') {
-      axios.post('http://localhost:4000', { query }).then(
-        (result) => {
-          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-          const bancadas = result.data.data.bancadas
+          axios.post('http://localhost:4000', { query }).then(
+            (result) => {
+              // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+              const bancadas = result.data.data.bancadas
 
-          const tbody = document.getElementById('bancada-table-body')
+              const tbody = document.getElementById('bancada-table-body')
 
-          bancadas.forEach((bancada) => {
-            const tr = document.createElement('tr')
+              bancadas.forEach((bancada) => {
 
-            const tdCheckbox = document.createElement('td')
-            tdCheckbox.className = 'collapsing'
-            const checkbox = document.createElement('div')
-            checkbox.className = 'ui fitted checkbox'
-            const inputCheckbox = document.createElement('input')
-            inputCheckbox.type = 'checkbox'
-            inputCheckbox.className = 'select-checkbox'
-            const labelCheckbox = document.createElement('label')
-            checkbox.appendChild(inputCheckbox)
-            checkbox.appendChild(labelCheckbox)
-            tdCheckbox.appendChild(checkbox)
+                const tr = document.createElement('tr')
 
-            inputCheckbox.addEventListener('change', function () {
-              const selectCheckboxes = document.getElementsByClassName('select-checkbox')
-              const selectAllCheckbox = document.getElementById('select-all')
+                const tdCheckbox = document.createElement('td')
+                tdCheckbox.className = 'collapsing'
+                const checkbox = document.createElement('div')
+                checkbox.className = 'ui fitted checkbox'
+                const inputCheckbox = document.createElement('input')
+                inputCheckbox.type = 'checkbox'
+                inputCheckbox.className = 'select-checkbox'
+                const labelCheckbox = document.createElement('label')
+                checkbox.appendChild(inputCheckbox)
+                checkbox.appendChild(labelCheckbox)
+                tdCheckbox.appendChild(checkbox)
 
-              const isAllChecked = Array.from(selectCheckboxes).every(
-                (checkbox) => checkbox.checked
-              )
-              selectAllCheckbox.checked = isAllChecked
+                inputCheckbox.addEventListener('change', function () {
+                  const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+                  const selectAllCheckbox = document.getElementById('select-all')
 
-              if (!this.checked) {
-                selectAllCheckbox.checked = false
+                  const isAllChecked = Array.from(selectCheckboxes).every(
+                    (checkbox) => checkbox.checked
+                  )
+                  selectAllCheckbox.checked = isAllChecked
+
+                  if (!this.checked) {
+                    selectAllCheckbox.checked = false
+                  }
+                })
+
+                const tdBancada = document.createElement('td')
+                tdBancada.textContent = bancada.idBancada
+
+                const tdApelido = document.createElement('td')
+                tdApelido.textContent = bancada.apelido
+
+                const tdLocal = document.createElement('td')
+                tdLocal.textContent = bancada.local
+
+                const tdTipo = document.createElement('td')
+                tdTipo.textContent = bancada.tipo
+
+                const tdStatus = document.createElement('td')
+                if (bancada.status == 0) {
+                  bancada.status = 'Inativo'
+                } else if (bancada.status == 1) {
+                  bancada.status = 'Ativo'
+                } else if (bancada.status == 2) {
+                  bancada.status = 'Manutenção'
+                }
+
+                tdStatus.textContent = bancada.status
+
+                tr.appendChild(tdCheckbox)
+                tr.appendChild(tdBancada)
+                tr.appendChild(tdApelido)
+                tr.appendChild(tdLocal)
+                tr.appendChild(tdStatus)
+
+                tbody.appendChild(tr)
               }
-            })
-
-            const tdBancada = document.createElement('td')
-            tdBancada.textContent = bancada.idBancada
-
-            const tdApelido = document.createElement('td')
-            tdApelido.textContent = bancada.apelido
-
-            const tdLocal = document.createElement('td')
-            tdLocal.textContent = bancada.local
-
-            const tdTipo = document.createElement('td')
-            tdTipo.textContent = bancada.tipo
-
-            const tdStatus = document.createElement('td')
-            if (bancada.status == 0) {
-              bancada.status = 'Inativo'
-            } else if (bancada.status == 1) {
-              bancada.status = 'Ativo'
-            } else if (bancada.status == 2) {
-              bancada.status = 'Manutenção'
+              )
+            },
+            (error) => {
+              console.log(error)
             }
-
-            tdStatus.textContent = bancada.status
-
-            tr.appendChild(tdCheckbox)
-            tr.appendChild(tdBancada)
-            tr.appendChild(tdApelido)
-            tr.appendChild(tdLocal)
-            tr.appendChild(tdStatus)
-
-            tbody.appendChild(tr)
-          })
-        },
-        (error) => {
-          console.log(error)
+          )
         }
-      )
+      })
     }
-    })
-    }
-
+    const addBancada = document.getElementById('submit-bancada')
     //Atualizar 
     const updPatrimonio = document.getElementById("upd-bancada");
     updPatrimonio.addEventListener("click", function () {
@@ -702,6 +677,8 @@ export default {
         status = "0";
       } else if (status == "manutencao") {
         status = "2";
+      } else {
+        status = '0';
       }
 
       console.log('Verificando status')
@@ -744,56 +721,100 @@ export default {
     })
 
     //Cadastrar
-    const addBancada = document.getElementById('submit-bancada')
+    // Função para verificar se um campo está vazio
+    function isEmpty(value) {
+      return value.trim() === '';
+    }
+
+    // Função para validar os campos
+    function validateForm() {
+      let isValid = true;
+
+      campos.forEach((campo, index) => {
+        if (isEmpty(campo.value)) {
+          setError(index);
+          isValid = false;
+        } else {
+          removeError(index);
+        }
+      });
+
+      return isValid;
+    }
+
+    // Função para definir um erro em um campo
+    function setError(index) {
+      campos[index].style.border = '2px solid #e63636';
+      spans[index].style.display = 'block';
+    }
+
+    // Função para remover um erro de um campo
+    function removeError(index) {
+      campos[index].style.border = '';
+      spans[index].style.display = 'none';
+    }
+
     addBancada.addEventListener('click', function () {
-      console.log('Iniciando cadastro')
-      let apelido = document.getElementById('apelido').value
-      let local = document.getElementById('local').value
-      let status = document.getElementById('status').value
+      console.log('Iniciando cadastro');
+      let apelido = document.getElementById('apelido').value;
+      let local = document.getElementById('local').value;
+      let status = document.getElementById('status').value;
+
       if (status == 'ativo') {
-        status = '1'
+        status = '1';
       } else if (status == 'inativo') {
-        status = '0'
+        status = '0';
       } else if (status == 'manutenção') {
-        status = '2'
+        status = '2';
       }
 
-      console.log('Verificando status')
-
-      console.log('Query')
+      console.log('Verificando status');
+      console.log('Query');
 
       const query = `mutation Mutation($data: DadosBancada) {
     createBancada(data: $data) {
-    apelido
-    local
-    status
-  }
-}`
+      apelido
+      local
+      status
+    }
+  }`;
 
-      console.log('Variáveis')
+      console.log('Variáveis');
 
       const variables = {
         data: {
           apelido: apelido,
           local: local,
-          status: status
-        }
-      }
-
-      console.log(variables)
-
-      axios.post('http://localhost:4000', { query, variables }).then(
-        (result) => {
-          console.log(result)
-          $('.popup').hide()
-          $('.dimmer').hide()
-          carregaDados()
+          status: status,
         },
-        (error) => {
-          console.log(error)
-        }
-      )
-    })
+      };
+
+      console.log(variables);
+
+      // Executa a validação
+      const isValid = validateForm();
+
+      if (isValid) {
+        axios.post('http://localhost:4000', { query, variables }).then(
+          (result) => {
+            console.log(result);
+            $('.popup').hide();
+            $('.dimmer').hide();
+            carregaDados();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      // Executa a validação
+      validateForm();
+    });
+
 
     // filtro
     const filtro = document.getElementById('filter')
