@@ -45,9 +45,8 @@ export default {
 			return chamados;
 		},
 		totalChamadosPendentes: async () => {
-			// Você deve implementar a lógica para contar os chamados pendentes
-			const totalPendentes = await knex("chamados").where("status", 0).count();
-			return { count: totalPendentes[0].count };
+			const [count] = await knex("chamados").count("* as total").where("status", 0);
+			return count.total;
 		  },
 	},
 

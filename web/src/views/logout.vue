@@ -1,5 +1,5 @@
 <template>
-  <div class="ui active inverted dimme r">
+  <div class="ui active inverted dimmer">
     <div class="ui text loader">Efetuando log-out</div>
     <div id="counter"></div>
   </div>

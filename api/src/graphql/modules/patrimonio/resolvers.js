@@ -36,6 +36,14 @@ export default {
 			const [count] = await knex("patrimonios").count("* as total");
 			return count.total;
 		  },		  
+		totalPatrimoniosManutencao: async () => {
+			const [count] = await knex("patrimonios").count("* as total").where("status", 2);
+			return count.total;
+		},
+		totalPatrimoniosInoperantes: async () => {
+			const [count] = await knex("patrimonios").count("* as total").where("status", 0);
+			return count.total;
+		},
 		searchPatrimonios: async (_, { filter }) => {
 			const patrimonios = await knex("patrimonios").where((builder) => {
 				if (filter.marca) {

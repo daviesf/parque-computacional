@@ -16,6 +16,8 @@ type Query{
     patrimoniosByMarcaModelo(marca: String!, modelo: String!): [Patrimonio]!
     searchPatrimonios(filter: PatrimonioFilter): [Patrimonio]
     totalPatrimonios: Int!
+    totalPatrimoniosManutencao: Int!
+    totalPatrimoniosInoperantes: Int!
 }
 
 input PatrimonioFilter {
