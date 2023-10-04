@@ -20,32 +20,32 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/patrimonio',
+      path: '/patrimonios',
       name: 'Patrimonio',
       component: Patrimonio
     },
     {
-      path: '/bancada',
+      path: '/bancadas',
       name: 'Bancada',
       component: Bancada
     },
     {
-      path: '/manutencao',
+      path: '/consertos',
       name: 'Manutencao',
       component: Manutencao
     },
     {
-      path: '/helpDesk',
+      path: '/helpdesk',
       name: 'HelpDesk',
       component: HelpDesk
     },
     {
-      path: '/helpDeskUser',
+      path: '/chamados',
       name: 'HelpDeskUser',
       component: HelpDeskUser
     },
     {
-      path: '/usuario',
+      path: '/usuarios',
       name: 'Usuario',
       component: Usuario
     },
@@ -60,7 +60,7 @@ const router = createRouter({
       component: Logout
     },
     {
-      path: '/daswhboard',
+      path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard
     },

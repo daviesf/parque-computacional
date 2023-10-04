@@ -28,7 +28,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
+                  <input
+                    type="text"
+                    placeholder="ID da bancada"
+                    class="fluid"
+                    id="filter-bancada"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -178,8 +183,14 @@
             <div class="column">
               <div class="field">
                 <label>Código</label>
-                <input type="text" name="codigo" placeholder="Código do Patrimônio" class="campo required" id="codigo"
-                  @input="codigoValidate" />
+                <input
+                  type="text"
+                  name="codigo"
+                  placeholder="Código do Patrimônio"
+                  class="campo required"
+                  id="codigo"
+                  @input="codigoValidate"
+                />
                 <span class="span-required">Insira o código do Patrimônio</span>
               </div>
               <div class="field">
@@ -192,7 +203,9 @@
               <div class="field">
                 <label>Tipo</label>
                 <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
-                  <option value="Selecione" class="placeholder" disabled selected>Selecione o tipo</option>
+                  <option value="Selecione" class="placeholder" disabled selected>
+                    Selecione o tipo
+                  </option>
                   <option value="Desktop">Desktop</option>
                   <option value="Notebook">Notebook</option>
                   <option value="Impressora">Impressora</option>
@@ -204,20 +217,34 @@
             <div class="column">
               <div class="field">
                 <label>Marca</label>
-                <input type="text" name="marca" placeholder="Marca" class="campo required" id="marca"
-                  @input="marcaValidate" />
+                <input
+                  type="text"
+                  name="marca"
+                  placeholder="Marca"
+                  class="campo required"
+                  id="marca"
+                  @input="marcaValidate"
+                />
                 <span class="span-required">Insira a Marca</span>
               </div>
               <div class="field">
                 <label>Modelo</label>
-                <input type="text" name="modelo" placeholder="Modelo" class="campo required" id="modelo"
-                  @input="modeloValidate" />
+                <input
+                  type="text"
+                  name="modelo"
+                  placeholder="Modelo"
+                  class="campo required"
+                  id="modelo"
+                  @input="modeloValidate"
+                />
                 <span class="span-required">Insira o Modelo</span>
               </div>
               <div class="field">
                 <label>Status</label>
                 <select name="status" class="campo required" id="status" @change="statusValidate">
-                  <option value="Selecione" class="placeholder" disabled selected>Selecione o status</option>
+                  <option value="Selecione" class="placeholder" disabled selected>
+                    Selecione o status
+                  </option>
                   <option value="Ativo">Ativo</option>
                   <option value="Inativo">Inativo</option>
                   <option value="Manutenção">Em manutenção</option>
@@ -238,8 +265,8 @@
 </template>
 
 <script>
-import axios from "axios";
-import { authenticator } from '../script/auth.js';
+import axios from 'axios'
+import { authenticator } from '../script/auth.js'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -300,8 +327,8 @@ export default {
 
     // Deletar
     $(document).ready(function () {
-      $("#del-patrimonio-btn").click(function () {
-        const selectedCheckboxes = $("input.select-checkbox:checked");
+      $('#del-patrimonio-btn').click(function () {
+        const selectedCheckboxes = $('input.select-checkbox:checked')
 
         if (selectedCheckboxes.length == 0) {
           Swal.fire({
@@ -313,7 +340,6 @@ export default {
             confirmButtonText: 'OK'
           })
           return
-
         } else {
           Swal.fire({
             title: 'Você tem certeza?',
@@ -586,7 +612,6 @@ export default {
     const campos = document.querySelectorAll('.required')
     const spans = document.querySelectorAll('.span-required')
 
-
     campos.forEach((campo, index) => {
       campo.addEventListener('input', () => {
         removeError(index)
@@ -652,7 +677,6 @@ export default {
       validateForm()
     })
 
-
     // Puxando Dados do Banco
     const queryBancada = `query Query {
   bancadas {
@@ -692,86 +716,86 @@ export default {
     status
   }
 
-}`;
-      authenticator().then(result => {
+}`
+      authenticator().then((result) => {
         if (result == 'true') {
-          axios.post("http://localhost:4000", { query }).then(
+          axios.post('http://localhost:4000', { query }).then(
             (result) => {
               // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-              const patrimonios = result.data.data.patrimonios;
+              const patrimonios = result.data.data.patrimonios
 
-              const tbody = document.getElementById("patrimonio-table-body");
+              const tbody = document.getElementById('patrimonio-table-body')
 
               patrimonios.forEach((patrimonio) => {
-                const tr = document.createElement("tr");
+                const tr = document.createElement('tr')
 
-                const tdCheckbox = document.createElement("td");
-                tdCheckbox.className = "collapsing";
-                const checkbox = document.createElement("div");
-                checkbox.className = "ui fitted checkbox";
-                const inputCheckbox = document.createElement("input");
-                inputCheckbox.type = "checkbox";
-                inputCheckbox.className = "select-checkbox";
-                const labelCheckbox = document.createElement("label");
-                checkbox.appendChild(inputCheckbox);
-                checkbox.appendChild(labelCheckbox);
-                tdCheckbox.appendChild(checkbox);
+                const tdCheckbox = document.createElement('td')
+                tdCheckbox.className = 'collapsing'
+                const checkbox = document.createElement('div')
+                checkbox.className = 'ui fitted checkbox'
+                const inputCheckbox = document.createElement('input')
+                inputCheckbox.type = 'checkbox'
+                inputCheckbox.className = 'select-checkbox'
+                const labelCheckbox = document.createElement('label')
+                checkbox.appendChild(inputCheckbox)
+                checkbox.appendChild(labelCheckbox)
+                tdCheckbox.appendChild(checkbox)
 
-                inputCheckbox.addEventListener("change", function () {
-                  const selectCheckboxes = document.getElementsByClassName("select-checkbox");
-                  const selectAllCheckbox = document.getElementById("select-all");
+                inputCheckbox.addEventListener('change', function () {
+                  const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+                  const selectAllCheckbox = document.getElementById('select-all')
 
                   const isAllChecked = Array.from(selectCheckboxes).every(
                     (checkbox) => checkbox.checked
-                  );
-                  selectAllCheckbox.checked = isAllChecked;
+                  )
+                  selectAllCheckbox.checked = isAllChecked
 
                   if (!this.checked) {
-                    selectAllCheckbox.checked = false;
+                    selectAllCheckbox.checked = false
                   }
-                });
+                })
 
-                const tdPatrimonio = document.createElement("td");
-                tdPatrimonio.textContent = patrimonio.idPatrimonio;
+                const tdPatrimonio = document.createElement('td')
+                tdPatrimonio.textContent = patrimonio.idPatrimonio
 
-                const tdBancada = document.createElement("td");
-                tdBancada.textContent = patrimonio.idBancada;
+                const tdBancada = document.createElement('td')
+                tdBancada.textContent = patrimonio.idBancada
 
-                const tdMarca = document.createElement("td");
-                tdMarca.textContent = patrimonio.marca;
+                const tdMarca = document.createElement('td')
+                tdMarca.textContent = patrimonio.marca
 
-                const tdModelo = document.createElement("td");
-                tdModelo.textContent = patrimonio.modelo;
+                const tdModelo = document.createElement('td')
+                tdModelo.textContent = patrimonio.modelo
 
-                const tdTipo = document.createElement("td");
-                tdTipo.textContent = patrimonio.tipo;
+                const tdTipo = document.createElement('td')
+                tdTipo.textContent = patrimonio.tipo
 
-                const tdStatus = document.createElement("td");
+                const tdStatus = document.createElement('td')
                 if (patrimonio.status == 0) {
-                  patrimonio.status = "Inativo";
+                  patrimonio.status = 'Inativo'
                 } else if (patrimonio.status == 1) {
-                  patrimonio.status = "Ativo";
+                  patrimonio.status = 'Ativo'
                 } else if (patrimonio.status == 2) {
-                  patrimonio.status = "Manutenção";
+                  patrimonio.status = 'Manutenção'
                 }
 
-                tdStatus.textContent = patrimonio.status;
+                tdStatus.textContent = patrimonio.status
 
-                tr.appendChild(tdCheckbox);
-                tr.appendChild(tdPatrimonio);
-                tr.appendChild(tdBancada);
-                tr.appendChild(tdMarca);
-                tr.appendChild(tdModelo);
-                tr.appendChild(tdTipo);
-                tr.appendChild(tdStatus);
+                tr.appendChild(tdCheckbox)
+                tr.appendChild(tdPatrimonio)
+                tr.appendChild(tdBancada)
+                tr.appendChild(tdMarca)
+                tr.appendChild(tdModelo)
+                tr.appendChild(tdTipo)
+                tr.appendChild(tdStatus)
 
-                tbody.appendChild(tr);
-              });
+                tbody.appendChild(tr)
+              })
             },
             (error) => {
-              console.log(error);
+              console.log(error)
             }
-          );
+          )
         }
       })
     }
@@ -907,12 +931,13 @@ export default {
       let marca = document.getElementById('filter-marca').value
       let modelo = document.getElementById('filter-modelo').value
       if (document.getElementById('cb-ativo').checked) {
-        var status = 'Ativo'
+        var status = '1'
       } else if (document.getElementById('cb-inativo').checked) {
-        var status = 'Inativo'
+        var status = '0'
       } else if (document.getElementById('cb-manut').checked) {
-        var status = 'Manutenção'
+        var status = '2'
       }
+
       if (document.getElementById('cb-impressora').checked) {
         var tipo = 'Impressora'
       } else if (document.getElementById('cb-desktop').checked) {

@@ -2,7 +2,7 @@ type Patrimonio{
     idPatrimonio: ID!
     marca: String!
     modelo: String!
-    status: String!
+    status: Int!
     idBancada: Int!
     tipo: String!
 }
@@ -24,7 +24,7 @@ input PatrimonioFilter {
   idPatrimonio: ID
   marca: String
   modelo: String
-  status: String
+  status: Int
   idBancada: Int
   tipo: String
 }

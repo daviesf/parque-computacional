@@ -198,17 +198,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   opacity: 0.8;
   z-index: 50;
   background-color: black;
-  animation: display 0.5s ease forwards;
-}
-
-@keyframes display {
-  to {
-    display: none;
-  }
-
-  from {
-    display: block;
-  }
+  display: block;
 }
 
 .bg-dimmer {

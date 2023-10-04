@@ -22,12 +22,12 @@ const router = createRouter({
   routes: [
     { path: '/login', component: Login },
     { path: '/', component: Home },
-    { path: '/patrimonio', component: Patrimonio },
-    { path: '/bancada', component: Bancada },
-    { path: '/manutencao', component: Manutencao },
-    { path: '/helpDesk', component: HelpDesk },
-    { path: '/helpDeskUser', component: HelpDeskUser },
-    { path: '/usuario', component: Usuario },
+    { path: '/patrimonios', component: Patrimonio },
+    { path: '/bancadas', component: Bancada },
+    { path: '/consertos', component: Manutencao },
+    { path: '/helpdesk', component: HelpDesk },
+    { path: '/chamados', component: HelpDeskUser },
+    { path: '/usuarios', component: Usuario },
     { path: '/logout', component: Logout },
     { path: '/404', component: NotFound },
     { path: '/:pathMatch(.*)', redirect: '/404' },
@@ -35,7 +35,7 @@ const router = createRouter({
   ]
 })
 
-/*router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   theme();
   const AKJA12Value = document.cookie.replace(/(?:(?:^|.*;\s*)AKJA12\s*=\s*([^;]*).*$)|^.*$/, "$1");
   if (AKJA12Value) {
@@ -68,7 +68,7 @@ const router = createRouter({
       next('/login')
     }
   }
-})*/
+})
 
 const app = createApp(App)
 
