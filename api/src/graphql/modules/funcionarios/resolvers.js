@@ -75,10 +75,7 @@ export default {
 
 	Mutation: {
 		createFuncionario: async (_, { data }) => {
-			const [id] = await knex("funcionarios").insert(data);
-			const novoFuncionario = await knex("funcionarios")
-				.where("idFuncionario", id)
-				.first();
+			const novoFuncionario = await knex("funcionarios").insert(data);
 			return novoFuncionario;
 		},
 

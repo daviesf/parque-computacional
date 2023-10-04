@@ -359,86 +359,86 @@ export default {
     function carregaDados() {
       document.getElementById('usuarios-table-body').innerHTML = ''
       const query = `query Query {
-funcionarios {
-    email
-    idFuncionario
-    nome
-    status
-    tipo
-}
-}`
+      funcionarios {
+          email
+          idFuncionario
+          nome
+          status
+          tipo
+        }
+      }`
 
-//       const queryBancada = `query Query {
-//   bancadas {
-//     idBancada
-//     apelido
-//   }
-// }`
+      //       const queryBancada = `query Query {
+      //   bancadas {
+      //     idBancada
+      //     apelido
+      //   }
+      // }`
 
-authenticator().then(result => {
+      authenticator().then(result => {
         if (result == 'true') {
-      axios.post('http://localhost:4000', { query }).then(
-        (result) => {
-          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-          const funcionarios = result.data.data.funcionarios
+          axios.post('http://localhost:4000', { query }).then(
+            (result) => {
+              // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+              const funcionarios = result.data.data.funcionarios
 
-          const tbody = document.getElementById('usuarios-table-body')
+              const tbody = document.getElementById('usuarios-table-body')
 
-          funcionarios.forEach((usuario) => {
-            const tr = document.createElement('tr')
+              funcionarios.forEach((usuario) => {
+                const tr = document.createElement('tr')
 
-            const tdCheckbox = document.createElement('td')
-            tdCheckbox.className = 'collapsing'
-            const checkbox = document.createElement('div')
-            checkbox.className = 'ui fitted checkbox'
-            const inputCheckbox = document.createElement('input')
-            inputCheckbox.type = 'checkbox'
-            inputCheckbox.className = 'select-checkbox'
-            const labelCheckbox = document.createElement('label')
-            checkbox.appendChild(inputCheckbox)
-            checkbox.appendChild(labelCheckbox)
-            tdCheckbox.appendChild(checkbox)
+                const tdCheckbox = document.createElement('td')
+                tdCheckbox.className = 'collapsing'
+                const checkbox = document.createElement('div')
+                checkbox.className = 'ui fitted checkbox'
+                const inputCheckbox = document.createElement('input')
+                inputCheckbox.type = 'checkbox'
+                inputCheckbox.className = 'select-checkbox'
+                const labelCheckbox = document.createElement('label')
+                checkbox.appendChild(inputCheckbox)
+                checkbox.appendChild(labelCheckbox)
+                tdCheckbox.appendChild(checkbox)
 
-            inputCheckbox.addEventListener('change', function () {
-              const selectCheckboxes = document.getElementsByClassName('select-checkbox')
-              const selectAllCheckbox = document.getElementById('select-all')
+                inputCheckbox.addEventListener('change', function () {
+                  const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+                  const selectAllCheckbox = document.getElementById('select-all')
 
-              const isAllChecked = Array.from(selectCheckboxes).every(
-                (checkbox) => checkbox.checked
-              )
-              selectAllCheckbox.checked = isAllChecked
+                  const isAllChecked = Array.from(selectCheckboxes).every(
+                    (checkbox) => checkbox.checked
+                  )
+                  selectAllCheckbox.checked = isAllChecked
 
-              if (!this.checked) {
-                selectAllCheckbox.checked = false
-              }
-            })
+                  if (!this.checked) {
+                    selectAllCheckbox.checked = false
+                  }
+                })
 
-            // axios.post('http://localhost:4000', { query: queryBancada }).then((result) => {
-            //   const bancadas = result.data.data.bancadas
-            //   const tbody = document.getElementById('usuarios-table-body')
+                // axios.post('http://localhost:4000', { query: queryBancada }).then((result) => {
+                //   const bancadas = result.data.data.bancadas
+                //   const tbody = document.getElementById('usuarios-table-body')
 
-            //   bancadas.forEach((bancada) => {
-            //     const tdBancada = document.createElement('td')
-            //     tdBancada.textContent = bancada.idBancada
-            //     option.innerHTML = 'ID: ' + bancada.idBancada + ' | ' + bancada.apelido
-            //     tr.appendChild(tdBancada)
-            //   })
-            // })
+                //   bancadas.forEach((bancada) => {
+                //     const tdBancada = document.createElement('td')
+                //     tdBancada.textContent = bancada.idBancada
+                //     option.innerHTML = 'ID: ' + bancada.idBancada + ' | ' + bancada.apelido
+                //     tr.appendChild(tdBancada)
+                //   })
+                // })
 
-            const tdID = document.createElement('td')
-            tdID.textContent = usuario.idFuncionario
+                const tdID = document.createElement('td')
+                tdID.textContent = usuario.idFuncionario
 
-            const tdNome = document.createElement('td')
-            tdNome.textContent = usuario.nome
+                const tdNome = document.createElement('td')
+                tdNome.textContent = usuario.nome
 
-            const tdEmail = document.createElement('td')
-            tdEmail.textContent = usuario.email
+                const tdEmail = document.createElement('td')
+                tdEmail.textContent = usuario.email
 
-            // const tdBancada = document.createElement('td')
-            // tdBancada.textContent = bancada.idBancada
+                // const tdBancada = document.createElement('td')
+                // tdBancada.textContent = bancada.idBancada
 
-            const tdTipo = document.createElement('td');
-            if (usuario.tipo == 1) {
+                const tdTipo = document.createElement('td');
+                if (usuario.tipo == 1) {
                   usuario.tipo = "Administrador";
                 } else if (usuario.tipo == 2) {
                   usuario.tipo = "Usuário Comum";
@@ -446,7 +446,7 @@ authenticator().then(result => {
 
                 tdTipo.textContent = usuario.tipo;
 
-            const tdStatus = document.createElement("td");
+                const tdStatus = document.createElement("td");
                 if (usuario.status == 1) {
                   usuario.status = "Ativo";
                 } else if (usuario.status == 2) {
@@ -455,23 +455,23 @@ authenticator().then(result => {
 
                 tdStatus.textContent = usuario.status;
 
-            tr.appendChild(tdCheckbox)
-            tr.appendChild(tdID)
-            tr.appendChild(tdNome)
-            tr.appendChild(tdEmail)
-            // tr.appendChild(tdBancada)
-            tr.appendChild(tdTipo)
-            tr.appendChild(tdStatus)
+                tr.appendChild(tdCheckbox)
+                tr.appendChild(tdID)
+                tr.appendChild(tdNome)
+                tr.appendChild(tdEmail)
+                // tr.appendChild(tdBancada)
+                tr.appendChild(tdTipo)
+                tr.appendChild(tdStatus)
 
-            tbody.appendChild(tr)
-          })
-        },
-        (error) => {
-          console.log(error)
+                tbody.appendChild(tr)
+              })
+            },
+            (error) => {
+              console.log(error)
+            }
+          )
         }
-      )
-    }
-  })
+      })
     }
 
     // filtro
@@ -483,7 +483,7 @@ authenticator().then(result => {
         var tipo = 'Administrador'
       } else if (document.getElementById('cb-user').checked) {
         var tipo = 'Usuário Comum'
-      } 
+      }
       if (document.getElementById('cb-ativo').checked) {
         var status = 'Ativo'
       } else if (document.getElementById('cb-desligado').checked) {
@@ -542,118 +542,177 @@ authenticator().then(result => {
           })
 
           axios.post('http://localhost:4000', { query: queryBancada }).then((result) => {
-              const bancadas = result.data.data.bancadas
-              const tbody = document.getElementById('usuarios-table-body')
+            const bancadas = result.data.data.bancadas
+            const tbody = document.getElementById('usuarios-table-body')
 
-              bancadas.forEach((bancada) => {
-                const tdBancada = document.createElement('td')
-                tdBancada.textContent = bancada.idBancada
-                option.innerHTML = 'ID: ' + bancada.idBancada + ' | ' + bancada.apelido
-                tr.appendChild(tdBancada)
-              })
+            bancadas.forEach((bancada) => {
+              const tdBancada = document.createElement('td')
+              tdBancada.textContent = bancada.idBancada
+              option.innerHTML = 'ID: ' + bancada.idBancada + ' | ' + bancada.apelido
+              tr.appendChild(tdBancada)
             })
+          })
 
-            const tdID = document.createElement('td')
-            tdID.textContent = funcionario.idFuncionario
+          const tdID = document.createElement('td')
+          tdID.textContent = funcionario.idFuncionario
 
-            const tdNome = document.createElement('td')
-            tdNome.textContent = funcionario.nome
+          const tdNome = document.createElement('td')
+          tdNome.textContent = funcionario.nome
 
-            const tdEmail = document.createElement('td')
-            tdEmail.textContent = funcionario.email
-
-            
-
-            const tdTipo = document.createElement('td');
-            const tipoValue = funcionario.tipo;
-
-            let tipoText;
-            if (tipoValue == 1) {
-              tipoText = 'Administrador';
-            } else if (tipoValue == 2) {
-              tipoText = 'Usuário Comum';
-            } else {
-              tipoText = 'Desconhecido'; // Tratamento para outros valores de tipo
-            }
-
-            tdTipo.textContent = tipoText;
+          const tdEmail = document.createElement('td')
+          tdEmail.textContent = funcionario.email
 
 
-            const tdStatus = document.createElement('td')
-            tdStatus.textContent = funcionario.status
 
-            tr.appendChild(tdCheckbox)
-            tr.appendChild(tdID)
-            tr.appendChild(tdNome)
-            tr.appendChild(tdEmail)
-            tr.appendChild(tdTipo)
-            tr.appendChild(tdStatus)
+          const tdTipo = document.createElement('td');
+          const tipoValue = funcionario.tipo;
 
-            tbody.appendChild(tr)
+          let tipoText;
+          if (tipoValue == 1) {
+            tipoText = 'Administrador';
+          } else if (tipoValue == 2) {
+            tipoText = 'Usuário Comum';
+          } else {
+            tipoText = 'Desconhecido'; // Tratamento para outros valores de tipo
+          }
+
+          tdTipo.textContent = tipoText;
+
+
+          const tdStatus = document.createElement('td')
+          tdStatus.textContent = funcionario.status
+
+          tr.appendChild(tdCheckbox)
+          tr.appendChild(tdID)
+          tr.appendChild(tdNome)
+          tr.appendChild(tdEmail)
+          tr.appendChild(tdTipo)
+          tr.appendChild(tdStatus)
+
+          tbody.appendChild(tr)
         })
       })
     })
 
-    //Cadastrar
-    const addUsuario = document.getElementById('submit-usuario');
+    // Cadastrar
+    const addUsuario = document.getElementById('submit-usuario')
+    addUsuario.addEventListener('click', function () {
+      console.log('Iniciando cadastro')
+      let nome = document.getElementById('nome').value
+      let email = document.getElementById('email').value
+      let tipo = document.getElementById('tipo').value
+      let status = document.getElementById('status').value
+      if (status == 'ativo') {
+        status = 1
+      } else if (status == 'inativo') {
+        status = 0
+      } else if (status == 'manutenção') {
+        status = 2
+      }
+      if( tipo == "administrador"){
+        tipo = 1
+      } else if ( tipo == "usuario comum"){
+        tipo = 0
+      }
 
-// Função para verificar se um campo está vazio
-function isEmpty(value) {
-  return value.trim() === '';
-}
+      console.log('Verificando status')
 
-// Função para validar os campos
-function validateForm() {
-  let isValid = true;
+      console.log('Query')
 
-  campos.forEach((campo, index) => {
-    if (isEmpty(campo.value)) {
-      setError(index);
-      isValid = false;
-    } else {
-      removeError(index);
+      const query = `mutation Mutation($data: DadosFuncionario!) {
+      createFuncionario(data: $data) {
+        nome
+        email
+        status
+        tipo
+      }
+    }`
+
+      console.log('Variáveis')
+
+      const variables = {
+        data: {
+          nome: nome,
+          email: email,
+          tipo: parseInt(tipo),
+          status: parseInt(status),
+        }
+      }
+
+      console.log(variables)
+
+      axios.post('http://localhost:4000', { query, variables }).then(
+        (result) => {
+          console.log(result)
+          $('.popup').hide()
+          $('.dimmer').hide()
+          carregaDados()
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    })
+
+
+
+    // Função para verificar se um campo está vazio
+    function isEmpty(value) {
+      return value.trim() === '';
     }
-  });
 
-  return isValid;
-}
+    // Função para validar os campos
+    function validateForm() {
+      let isValid = true;
 
-// Função para definir um erro em um campo
-function setError(index) {
-  campos[index].style.border = '2px solid #e63636';
-  spans[index].style.display = 'block';
-}
+      campos.forEach((campo, index) => {
+        if (isEmpty(campo.value)) {
+          setError(index);
+          isValid = false;
+        } else {
+          removeError(index);
+        }
+      });
 
-// Função para remover um erro de um campo
-function removeError(index) {
-  campos[index].style.border = '';
-  spans[index].style.display = 'none';
-}
+      return isValid;
+    }
 
-addUsuario.addEventListener('click', function () {
-  console.log('Iniciando cadastro');
-  let nome = document.getElementById('nome').value;
-  let email = document.getElementById('email').value;
-  let tipo = document.getElementById('tipo').value;
+    // Função para definir um erro em um campo
+    function setError(index) {
+      campos[index].style.border = '2px solid #e63636';
+      spans[index].style.display = 'block';
+    }
 
-  if (tipo == 'administrador') {
-    tipo = 1;
-  } else if (tipo == 'usuario comum') {
-    tipo = 2;
-  }
+    // Função para remover um erro de um campo
+    function removeError(index) {
+      campos[index].style.border = '';
+      spans[index].style.display = 'none';
+    }
 
-  let status = document.getElementById('status').value;
+    addUsuario.addEventListener('click', function () {
+      console.log('Iniciando cadastro');
+      let nome = document.getElementById('nome').value;
+      let email = document.getElementById('email').value;
+      let tipo = document.getElementById('tipo').value;
 
-  if (status == 'ativo') {
-    status = 1;
-  } else if (status == 'desligado') {
-    status = 2;
-  }
+      if (tipo == 'administrador') {
+        tipo = 1;
+      } else if (tipo == 'usuario comum') {
+        tipo = 2;
+      }
 
-  console.log('Verificando status');
-  console.log('Query');
+      let status = document.getElementById('status').value;
 
-  const query = `mutation CreateFuncionario($data: DadosFuncionario!) {
+      if (status == 'ativo') {
+        status = 1;
+      } else if (status == 'desligado') {
+        status = 2;
+      }
+
+      console.log('Verificando status');
+      console.log('Query');
+
+      const query = `mutation CreateFuncionario($data: DadosFuncionario!) {
     createFuncionario(data: $data) {
       status
       nome
@@ -664,48 +723,48 @@ addUsuario.addEventListener('click', function () {
     }
   }`;
 
-  console.log('Variáveis');
+      console.log('Variáveis');
 
-  const variables = {
-    data: {
-      nome: nome,
-      email: email,
-      tipo: tipo,
-      status: status,
-    },
-  };
+      const variables = {
+        data: {
+          nome: nome,
+          email: email,
+          tipo: tipo,
+          status: status,
+        },
+      };
 
-  console.log(variables);
+      console.log(variables);
 
-  // Executa a validação
-  const isValid = validateForm();
+      // Executa a validação
+      const isValid = validateForm();
 
-  if (isValid) {
-    axios.post('http://localhost:4000', { query, variables }).then(
-      (result) => {
-        console.log(result);
-        $('.popup').hide();
-        $('.dimmer').hide();
-        carregaDados();
-      },
-      (error) => {
-        console.log(error);
+      if (isValid) {
+        axios.post('http://localhost:4000', { query, variables }).then(
+          (result) => {
+            console.log(result);
+            $('.popup').hide();
+            $('.dimmer').hide();
+            //carregaDados();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
       }
-    );
-  }
-});
+    });
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  // Executa a validação
-  validateForm();
-});
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      // Executa a validação
+      validateForm();
+    });
 
   }
 }
 
 //--------------------------------------------------------Tentei fazer o crud de usuário, não sei se deu certo :D-----------------------------------------------------------------
-//---------------------------Meu possível erro está no nome que usei nas variáveis do server eu nnão peguei do nosso server kakakak :P--------------------------------------------
+//---------------------------Meu possível erro está no nome que usei nas variáveis do server eu não peguei do nosso server kakakak :P--------------------------------------------
 // //Excluir
 // $(document).ready(function () {
 //       $("#del-patrimonio-btn").click(function () {
@@ -886,7 +945,7 @@ form.addEventListener('submit', (event) => {
 //       )
 //     })
 //--------------------------------------------------------Tentei fazer o crud de usuário, não sei se deu certo :D-----------------------------------------------------------------
-    
+
 </script>
 
 
