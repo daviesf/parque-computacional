@@ -1,7 +1,6 @@
 type Chamado {
     idChamado: ID!
     nome: String!
-    prioridade: String!
     dataHora: String!
     detalhes: String!
     idBancada: Int!

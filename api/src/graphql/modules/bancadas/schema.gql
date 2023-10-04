@@ -16,14 +16,14 @@ type Query {
 
 input DadosBancada {
   local: String!
-  status: String!
+  status: Int!
   apelido: String!
 }
 
 input BancadaFilter {
   idBancada: ID
   local: String
-  status: String
+  status: Int!
   apelido: String
 }
 
