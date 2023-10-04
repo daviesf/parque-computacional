@@ -15,7 +15,7 @@
       </li>
       <li>
         <div @click="toggleTheme1">
-          <router-link to="/patrimonio">
+          <router-link to="/patrimonios">
             <i class="keyboard outline icon"></i>
             <span class="links_name">Patrimônio</span>
           </router-link>
@@ -24,7 +24,7 @@
       </li>
       <li>
         <div @click="toggleTheme1">
-          <router-link to="/bancada">
+          <router-link to="/bancadas">
             <i class="server icon"></i>
             <span class="links_name">Bancada</span>
           </router-link>
@@ -33,7 +33,7 @@
       </li>
       <li>
         <div @click="toggleTheme1">
-          <router-link to="/manutencao">
+          <router-link to="/consertos">
             <i class="wrench icon"></i>
             <span class="links_name">Manutenção</span>
           </router-link>
@@ -42,7 +42,7 @@
       </li>
       <li>
         <div @click="toggleTheme1">
-          <router-link to="/helpDesk">
+          <router-link to="/helpdesk">
             <i class="laptop icon"></i>
             <span class="links_name">HelpDesk</span>
           </router-link>
@@ -51,7 +51,7 @@
       </li>
       <li>
         <div @click="toggleTheme1">
-          <router-link to="/usuario">
+          <router-link to="/usuarios">
             <i class="user outline icon"></i>
             <span class="links_name">Usuário</span>
           </router-link>

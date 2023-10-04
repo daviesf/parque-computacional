@@ -46,27 +46,27 @@
 
     <div class="ui container">
       <div class="ui grid centered">
-        <router-link to="/patrimonio">
+        <router-link to="/patrimonios">
           <button class="button1">
             <span class="button1-content">Patrimônio</span>
           </button>
         </router-link>
-        <router-link to="/bancada">
+        <router-link to="/bancadas">
           <button class="button1">
             <span class="button1-content">Bancada</span>
           </button>
         </router-link>
-        <router-link to="/manutencao">
+        <router-link to="/consertos">
           <button class="button1">
             <span class="button1-content">Manutenção</span>
           </button>
         </router-link>
-        <router-link to="/helpDeskAdm">
+        <router-link to="/helpdesk">
           <button class="button1">
             <span class="button1-content">HelpDesk</span>
           </button>
         </router-link>
-        <router-link to="/usuario">
+        <router-link to="/usuarios">
           <button class="button1">
             <span class="button1-content">Usuário</span>
           </button>

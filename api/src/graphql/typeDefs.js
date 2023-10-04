@@ -8,3 +8,4 @@ const typesArray = loadFilesSync(
 const typeDefs = mergeTypeDefs(typesArray);
 
 export default typeDefs;
+
