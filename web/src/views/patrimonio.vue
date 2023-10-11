@@ -102,17 +102,17 @@
                   <div class="column">
                     <div class="ui checkbox">
                       <input type="checkbox" id="cb-ativo" />
-                      <label>Ativo</label>
+                      <label>ativo</label>
                     </div>
                     <div class="ui checkbox">
                       <input type="checkbox" id="cb-inativo" />
-                      <label>Inativo</label>
+                      <label>inativo</label>
                     </div>
                   </div>
                   <div class="column">
                     <div class="ui checkbox">
                       <input type="checkbox" id="cb-manut" />
-                      <label>Manutenção</label>
+                      <label>manutenção</label>
                     </div>
                   </div>
                 </div>
@@ -245,9 +245,9 @@
                   <option value="Selecione" class="placeholder" disabled selected>
                     Selecione o status
                   </option>
-                  <option value="Ativo">Ativo</option>
-                  <option value="Inativo">Inativo</option>
-                  <option value="Manutenção">Em manutenção</option>
+                  <option value="ativo">Ativo</option>
+                  <option value="inativo">Inativo</option>
+                  <option value="manutenção">Em manutenção</option>
                 </select>
                 <span class="span-required">Selecione o Status</span>
               </div>
@@ -721,7 +721,6 @@ export default {
         if (result == 'true') {
           axios.post('http://localhost:4000', { query }).then(
             (result) => {
-              // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
               const patrimonios = result.data.data.patrimonios
 
               const tbody = document.getElementById('patrimonio-table-body')
@@ -871,6 +870,8 @@ export default {
       let modelo = document.getElementById('modelo').value
       let tipo = document.getElementById('tipo').value
       let status = document.getElementById('status').value
+      console.log('valor: olha ai')
+      console.log(status)
       if (status == 'ativo') {
         status = 1
       } else if (status == 'inativo') {
@@ -878,10 +879,6 @@ export default {
       } else if (status == 'manutenção') {
         status = 2
       }
-
-      console.log('Verificando status')
-
-      console.log('Query')
 
       const query = `mutation Mutation($idPatrimonio: ID!, $data: dadosPatrimonio) {
   updatePatrimonio(idPatrimonio: $idPatrimonio, data: $data) {
@@ -898,7 +895,7 @@ export default {
 
       const variables = {
         data: {
-          status: status,
+          status: parseInt(status),
           idBancada: parseInt(bancada),
           idPatrimonio: parseInt(cod),
           marca: marca,
@@ -1018,11 +1015,11 @@ export default {
 
           const tdStatus = document.createElement('td')
           if (patrimonio.status == 0) {
-            patrimonio.status = 'Inativo'
+            patrimonio.status = 'inativo'
           } else if (patrimonio.status == 1) {
-            patrimonio.status = 'Ativo'
+            patrimonio.status = 'ativo'
           } else if (patrimonio.status == 2) {
-            patrimonio.status = 'Manutenção'
+            patrimonio.status = 'manutenção'
           }
 
           tdStatus.textContent = patrimonio.status

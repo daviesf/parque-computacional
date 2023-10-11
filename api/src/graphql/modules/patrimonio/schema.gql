@@ -33,7 +33,7 @@ input dadosPatrimonio{
     idPatrimonio: ID!
     marca: String!
     modelo: String!
-    status: String!
+    status: Int!
     idBancada: Int!
     tipo: String!
 }
