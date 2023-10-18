@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { createPinia } from 'pinia'
 import { theme } from './script/theme.js'
 import axios from 'axios'
+// import express from 'express';
+// import multer from 'multer';
 
 import App from './App.vue'
 import Login from './views/login.vue'
@@ -72,6 +74,15 @@ router.beforeEach((to, from, next) => {
 
 const app = createApp(App)
 
+// const miniApi = express();
+// const upload = multer({ dest: 'src/assets/media' });
+
+// miniApi.post('upload',
+// upload.single('file'), (req, res) => {
+//   res.send({ message: 'Arquivo recebido com sucesso!'});
+// });
+
+// app.use('/api', miniApi)
 app.use(createPinia())
 app.use(router)
 
