@@ -69,5 +69,9 @@ export default {
 			await knex("chamados").where("idChamado", idChamado).del();
 			return true;
 		},
+		resolverChamada: async (_, {idChamado, status}) => {
+			await knex("chamados").where("idChamado", idChamado).update("status", status);
+			return status;
+		}
 	},
 };

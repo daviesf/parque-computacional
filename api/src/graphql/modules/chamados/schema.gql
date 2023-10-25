@@ -38,4 +38,5 @@ type Mutation {
     createChamado(data: DadosChamado!): Chamado!
     updateChamado(idChamado: ID!, data: DadosChamado!): Chamado!
     deleteChamado(idChamado: ID!): Boolean
+    resolverChamada(idChamado: ID!, status: Int!): Int!
 }

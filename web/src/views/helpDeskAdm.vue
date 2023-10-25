@@ -107,13 +107,11 @@
           <div class="bg-table">
             <div class="ui grid">
               <div class="sixteen wide column">
-                <div class="ui right floated small labeled icon button" id="resolve-chamado">
-                  <i class="keyboard outline icon"></i> Resolver chamado
-                </div>
-                <div class="ui left floated small button bg-button" id="marcar-resolvido-btn">
+
+                <div class="ui right floated small button bg-button" id="marcar-resolvido-btn">
                   Marcar como Resolvido
                 </div>
-                <div class="ui left floated small button bg-button" id="remover-chamado-btn">
+                <div class="ui right floated small button bg-button" id="remover-chamado-btn">
                   Remover Chamado
                 </div>
               </div>
@@ -159,95 +157,237 @@ export default {
   }
 }`
 
-authenticator().then(result => {
+      authenticator().then(result => {
         if (result == 'true') {
-      axios.post('http://localhost:4000', { query }).then(
-        (result) => {
-          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-          const chamados = result.data.data.chamados
-          const tbody = document.getElementById('helpDesk-table-body')
+          axios.post('http://localhost:4000', { query }).then(
+            (result) => {
+              // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+              const chamados = result.data.data.chamados
+              const tbody = document.getElementById('helpDesk-table-body')
 
-          chamados.forEach((chamado) => {
-            const tr = document.createElement('tr')
-            const tdCheckbox = document.createElement('td')
-            tdCheckbox.className = 'collapsing'
-            const checkbox = document.createElement('div')
-            checkbox.className = 'ui fitted checkbox'
-            const inputCheckbox = document.createElement('input')
-            inputCheckbox.type = 'checkbox'
-            inputCheckbox.className = 'select-checkbox'
-            const labelCheckbox = document.createElement('label')
-            checkbox.appendChild(inputCheckbox)
-            checkbox.appendChild(labelCheckbox)
-            tdCheckbox.appendChild(checkbox)
+              chamados.forEach((chamado) => {
+                const tr = document.createElement('tr')
+                const tdCheckbox = document.createElement('td')
+                tdCheckbox.className = 'collapsing'
+                const checkbox = document.createElement('div')
+                checkbox.className = 'ui fitted checkbox'
+                const inputCheckbox = document.createElement('input')
+                inputCheckbox.type = 'checkbox'
+                inputCheckbox.className = 'select-checkbox'
+                const labelCheckbox = document.createElement('label')
+                checkbox.appendChild(inputCheckbox)
+                checkbox.appendChild(labelCheckbox)
+                tdCheckbox.appendChild(checkbox)
 
-            inputCheckbox.addEventListener('change', function () {
-              const selectCheckboxes = document.getElementsByClassName('select-checkbox')
-              const selectAllCheckbox = document.getElementById('select-all')
+                inputCheckbox.addEventListener('change', function () {
+                  const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+                  const selectAllCheckbox = document.getElementById('select-all')
 
-              const isAllChecked = Array.from(selectCheckboxes).every(
-                (checkbox) => checkbox.checked
-              )
-              selectAllCheckbox.checked = isAllChecked
+                  const isAllChecked = Array.from(selectCheckboxes).every(
+                    (checkbox) => checkbox.checked
+                  )
+                  selectAllCheckbox.checked = isAllChecked
 
-              if (!this.checked) {
-                selectAllCheckbox.checked = false
+                  if (!this.checked) {
+                    selectAllCheckbox.checked = false
+                  }
+                })
+
+                const tdChamado = document.createElement('td')
+                tdChamado.textContent = chamado.idChamado
+
+                const tdNome = document.createElement("td");
+                nomeFuncionario(chamado.idFuncionario).then(nome => {
+                  tdNome.textContent = nome;
+                });
+
+
+                const tdBancada = document.createElement('td')
+                tdBancada.textContent = chamado.idBancada
+
+                const tddataHora = document.createElement('td')
+                tddataHora.textContent = chamado.dataHora
+
+                const tdDescricao = document.createElement('td')
+                tdDescricao.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${chamado.idChamado}', '${chamado.descricao}' , 'info')">Ver</button>`
+
+                const tdStatus = document.createElement('td');
+                const statusValue = chamado.status;
+
+                let statusText;
+                if (statusValue === 0) {
+                  statusText = 'Pendente';
+                } else if (statusValue === 1) {
+                  statusText = 'Encerrado';
+                } else if (statusValue === 2) {
+                  statusText = 'Resolvido';
+                } else {
+                  statusText = 'Desconhecido'; // Tratamento para outros valores de status
+                }
+
+                tdStatus.textContent = statusText;
+
+
+                tr.appendChild(tdCheckbox)
+                tr.appendChild(tdChamado)
+                tr.appendChild(tdNome)
+                tr.appendChild(tdBancada)
+                tr.appendChild(tddataHora)
+                tr.appendChild(tdDescricao)
+                tr.appendChild(tdStatus)
+
+                tbody.appendChild(tr)
+              })
+            },
+            (error) => {
+              console.log(error)
+            }
+          )
+        }
+      })
+    }
+
+    //Deletar ou Excluir
+    $(document).ready(function () {
+      $('#remover-chamado-btn').click(function () {
+        const selectedCheckboxes = $('input.select-checkbox:checked')
+
+        if (selectedCheckboxes.length == 0) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione a chamada que deseja excluir',
+            confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+
+            confirmButtonText: 'OK'
+          })
+          return
+        } else {
+          Swal.fire({
+            title: 'Você tem certeza?',
+            text: 'Você não poderá reverter a exclusão',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#004654',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, deletar!',
+
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              selectedCheckboxes.each(function () {
+                const selectedRow = $(this).closest('tr')
+                const selectedFields = selectedRow.find('td').slice(1, 7)
+                const codigoCell = selectedFields.eq(0).text().trim()
+
+                console.log('Código selecionado:', codigoCell)
+                console.log('Iniciando Atualização')
+                console.log('Verificando status')
+                console.log('Query')
+
+                const query = `mutation DeleteChamado($idChamado: ID!) {
+                  deleteChamado(idChamado: $idChamado)
+                }`
+
+                console.log('Variáveis')
+
+                const variables = {
+                  idChamado: parseInt(codigoCell)
+                }
+
+                console.log(variables)
+
+                axios.post('http://localhost:4000', { query, variables }).then(
+                  (result) => {
+                    console.log(result)
+                    $('.popup').hide()
+                    $('.dimmer').hide()
+                    carregaDados()
+
+                    Swal.fire({
+                      title: 'Deletado!',
+                      text: 'A chamada foi removido com sucesso!',
+                      icon: 'success',
+                      confirmButtonColor: '#004654' // Cor personalizada do botão OK
+                    })
+                  },
+                  (error) => {
+                    console.log(error)
+                  }
+                )
+              })
+            }
+          })
+        }
+      })
+    })
+
+    //Resolver Chamado
+    $(document).ready(function () {
+      $('#marcar-resolvido-btn').click(function () {
+        const selectedCheckboxes = $('input.select-checkbox:checked')
+
+        if (selectedCheckboxes.length == 0) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione uma chamada antes de resolver',
+            confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+            confirmButtonText: 'OK'
+          })
+          return
+        } else {
+          selectedCheckboxes.each(function () {
+            const selectedRow = $(this).closest('tr')
+
+            const selectedFields = selectedRow.find('td').slice(1, 7)
+
+            const formFields = $('#form input, #form select')
+
+            const codigoCell = selectedFields.eq(0).text().trim()
+
+            let status = '2'
+
+            console.log('Código selecionado:', codigoCell)
+
+            console.log('Status selecionado:', status)
+
+            console.log('Iniciando Atualização')
+
+            console.log('Verificando status')
+
+            console.log('Query')
+
+            const query = `mutation Mutation($idChamado: ID!, $status: Int!) {
+                resolverChamada(idChamado: $idChamado, status: $status)
               }
-            })
+            `
 
-            const tdChamado = document.createElement('td')
-            tdChamado.textContent = chamado.idChamado
+            console.log('Variáveis')
 
-            const tdNome = document.createElement("td");
-            nomeFuncionario(chamado.idFuncionario).then(nome => {
-              tdNome.textContent = nome;
-            });
-
-
-            const tdBancada = document.createElement('td')
-            tdBancada.textContent = chamado.idBancada
-
-            const tddataHora = document.createElement('td')
-            tddataHora.textContent = chamado.dataHora
-
-            const tdDescricao = document.createElement('td')
-            tdDescricao.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${chamado.idChamado}', '${chamado.descricao}' , 'info')">Ver</button>`
-
-            const tdStatus = document.createElement('td');
-            const statusValue = chamado.status;
-
-            let statusText;
-            if (statusValue === 0) {
-              statusText = 'Pendente';
-            } else if (statusValue === 1) {
-              statusText = 'Encerrado';
-            } else if (statusValue === 2) {
-              statusText = 'Resolvido';
-            } else {
-              statusText = 'Desconhecido'; // Tratamento para outros valores de status
+            const variables = {
+              idChamado: parseInt(codigoCell),
+              status: parseInt(status)
             }
 
-            tdStatus.textContent = statusText;
+            console.log(variables)
 
-
-            tr.appendChild(tdCheckbox)
-            tr.appendChild(tdChamado)
-            tr.appendChild(tdNome)
-            tr.appendChild(tdBancada)
-            tr.appendChild(tddataHora)
-            tr.appendChild(tdDescricao)
-            tr.appendChild(tdStatus)
-
-            tbody.appendChild(tr)
+            axios.post('http://localhost:4000', { query, variables }).then(
+              (result) => {
+                console.log(result)
+                $('.popup').hide()
+                $('.dimmer').hide()
+                carregaDados()
+              },
+              (error) => {
+                console.log(error)
+              }
+            )
           })
-        },
-        (error) => {
-          console.log(error)
         }
-      )
-    }
-  })
-    }
+      })
+    })
+
 
     function nomeFuncionario(value) {
       return new Promise((resolve, reject) => {
