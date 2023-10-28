@@ -16,7 +16,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Código da Manutenção" class="fluid" id="filter-idManutencao" />
+                  <input
+                    type="text"
+                    placeholder="Código da Manutenção"
+                    class="fluid"
+                    id="filter-idManutencao"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -28,7 +33,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Nome do patrimônio" class="fluid" id="filter-patrimonio" />
+                  <input
+                    type="text"
+                    placeholder="Nome do patrimônio"
+                    class="fluid"
+                    id="filter-patrimonio"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -40,7 +50,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Nome do funcionário" class="fluid" id="filter-funcionario" />
+                  <input
+                    type="text"
+                    placeholder="Nome do funcionário"
+                    class="fluid"
+                    id="filter-funcionario"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -114,14 +129,19 @@
           <div class="field">
             <label>Patrimônio</label>
             <select name="tipo" class="campo required" id="patrimonio" @change="patrimonioValidate">
-              <option selected value="" disabled>Selecione um Patrimônio...</option>
+              <!-- <option selected value="" disabled>Selecione um Patrimônio...</option> -->
             </select>
             <span class="span-required">Selecione algum Patrimônio</span>
           </div>
           <div class="field">
             <label>Detalhes da Manutenção</label>
-            <input type="text" name="detalhes" placeholder="Detalhes" class="campo required" id="detalhes"
-              @input="detalhesValidate" />
+            <input
+              type="text"
+              name="detalhes"
+              class="campo required"
+              id="detalhes"
+              @input="detalhesValidate"
+            />
             <span class="span-required">Insira os Detalhes</span>
           </div>
           <div class="field">
@@ -137,7 +157,7 @@
               id="funcionario"
               @change="funcionarioValidate"
             >
-              <option selected value="" disabled>Selecione um Funcionário...</option>
+              <!-- <option selected value="" disabled>Selecione um Funcionário...</option> -->
             </select>
             <span class="span-required">Selecione algum Funcionário</span>
           </div>
@@ -153,7 +173,7 @@
 <script>
 import axios from 'axios'
 import { nomeFuncionario } from '../script/nome.js'
-import { authenticator } from '../script/auth.js';
+import { authenticator } from '../script/auth.js'
 
 export default {
   name: 'Manutencao',
@@ -306,26 +326,25 @@ export default {
     }
 
     function dataValidate() {
-      const dateValue = campos[2].value;
-        
+      const dateValue = campos[2].value
+
       // Verifique se a data é vazia (não preenchida)
       if (!dateValue) {
-        return false;
+        return false
       }
-    
+
       // Verificar se a data está no formato "YYYY-MM-DD"
-      const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    
+      const dateRegex = /^\d{4}-\d{2}-\d{2}$/
+
       if (!dateRegex.test(dateValue)) {
-        return false; // Formato incorreto
+        return false // Formato incorreto
       }
-    
+
       // Se você deseja verificar limites de data, você pode fazer isso aqui
       // Por exemplo, verifique se a data não está no futuro, se necessário
-    
-      return true; // Data válida
-    }
 
+      return true // Data válida
+    }
 
     function funcionarioValidate() {
       return campos[3].value > 0
@@ -402,103 +421,101 @@ export default {
   }
 }`
 
-authenticator().then(result => {
+      authenticator().then((result) => {
         if (result == 'true') {
-      axios.post('http://localhost:4000', { query }).then(
-        (result) => {
-          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-          const consertos = result.data.data.consertos
-          let i = 0
-          const tbody = document.getElementById('manutencoes-table-body')
+          axios.post('http://localhost:4000', { query }).then(
+            (result) => {
+              // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+              const consertos = result.data.data.consertos
+              let i = 0
+              const tbody = document.getElementById('manutencoes-table-body')
 
-          consertos.forEach((conserto) => {
-            i++
-            const tr = document.createElement('tr')
-            const tdCheckbox = document.createElement('td')
-            tdCheckbox.className = 'collapsing'
-            const checkbox = document.createElement('div')
-            checkbox.className = 'ui fitted checkbox'
-            const inputCheckbox = document.createElement('input')
-            inputCheckbox.type = 'checkbox'
-            inputCheckbox.className = 'select-checkbox'
-            const labelCheckbox = document.createElement('label')
-            checkbox.appendChild(inputCheckbox)
-            checkbox.appendChild(labelCheckbox)
-            tdCheckbox.appendChild(checkbox)
+              consertos.forEach((conserto) => {
+                i++
+                const tr = document.createElement('tr')
+                const tdCheckbox = document.createElement('td')
+                tdCheckbox.className = 'collapsing'
+                const checkbox = document.createElement('div')
+                checkbox.className = 'ui fitted checkbox'
+                const inputCheckbox = document.createElement('input')
+                inputCheckbox.type = 'checkbox'
+                inputCheckbox.className = 'select-checkbox'
+                const labelCheckbox = document.createElement('label')
+                checkbox.appendChild(inputCheckbox)
+                checkbox.appendChild(labelCheckbox)
+                tdCheckbox.appendChild(checkbox)
 
-            inputCheckbox.addEventListener('change', function () {
-              const selectCheckboxes = document.getElementsByClassName('select-checkbox')
-              const selectAllCheckbox = document.getElementById('select-all')
+                inputCheckbox.addEventListener('change', function () {
+                  const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+                  const selectAllCheckbox = document.getElementById('select-all')
 
-              const isAllChecked = Array.from(selectCheckboxes).every(
-                (checkbox) => checkbox.checked
-              )
-              selectAllCheckbox.checked = isAllChecked
+                  const isAllChecked = Array.from(selectCheckboxes).every(
+                    (checkbox) => checkbox.checked
+                  )
+                  selectAllCheckbox.checked = isAllChecked
 
-              if (!this.checked) {
-                selectAllCheckbox.checked = false
-              }
-            })
+                  if (!this.checked) {
+                    selectAllCheckbox.checked = false
+                  }
+                })
 
-            const tdManutencao = document.createElement('td')
-            tdManutencao.textContent = conserto.idConserto
+                const tdManutencao = document.createElement('td')
+                tdManutencao.textContent = conserto.idConserto
 
-            const tdPatrimonio = document.createElement('td')
-            tdPatrimonio.textContent = conserto.idPatrimonio
+                const tdPatrimonio = document.createElement('td')
+                tdPatrimonio.textContent = conserto.idPatrimonio
 
-            const tdFuncionario = document.createElement("td");
-            nomeFuncionario(conserto.idFuncionario).then(nome => {
-              tdFuncionario.textContent = nome;
-            });
+                const tdFuncionario = document.createElement('td')
+                nomeFuncionario(conserto.idFuncionario).then((nome) => {
+                  tdFuncionario.textContent = nome
+                })
 
-            const tdData = document.createElement('td')
-            tdData.textContent = conserto.dataHora
+                const tdData = document.createElement('td')
+                tdData.textContent = conserto.dataHora
 
-            const tdDetalhes = document.createElement('td')
-            tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${conserto.idConserto}', '${conserto.detalhes}' , 'info')">Ver</button>`
+                const tdDetalhes = document.createElement('td')
+                tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${conserto.idConserto}', '${conserto.detalhes}' , 'info')">Ver</button>`
 
-            tr.appendChild(tdCheckbox)
-            tr.appendChild(tdManutencao)
-            tr.appendChild(tdPatrimonio)
-            tr.appendChild(tdFuncionario)
-            tr.appendChild(tdData)
-            tr.appendChild(tdDetalhes)
+                tr.appendChild(tdCheckbox)
+                tr.appendChild(tdManutencao)
+                tr.appendChild(tdPatrimonio)
+                tr.appendChild(tdFuncionario)
+                tr.appendChild(tdData)
+                tr.appendChild(tdDetalhes)
 
-            tbody.appendChild(tr)
-          })
-        },
-        (error) => {
-          console.log(error)
-        }
-        );
+                tbody.appendChild(tr)
+              })
+            },
+            (error) => {
+              console.log(error)
+            }
+          )
         }
       })
     }
 
-      //Cadastrar
-      const addManutencao = document.getElementById('submit-manutencao')
-      addManutencao.addEventListener('click', function () {
-       
+    //Cadastrar
+    const addManutencao = document.getElementById('submit-manutencao')
+    addManutencao.addEventListener('click', function () {
+      console.log('Iniciando cadastro')
+      let patrimonio = document.getElementById('patrimonio').value
+      let detalhes = document.getElementById('detalhes').value
+      let dataInput = document.getElementById('data').value
+      let funcionario = document.getElementById('funcionario').value
 
-        console.log('Iniciando cadastro')
-        let patrimonio = document.getElementById('patrimonio').value
-        let detalhes = document.getElementById('detalhes').value
-        let dataInput = document.getElementById('data').value
-        let funcionario = document.getElementById('funcionario').value
+      console.log('Verificando status')
 
-        console.log('Verificando status')
+      console.log('Query')
 
-        console.log('Query')
+      // Converter data para o formato brasileiro (dd/mm/aaaa)
+      const dateObj = new Date(dataInput)
+      const day = dateObj.getDate().toString().padStart(2, '0')
+      const month = (dateObj.getMonth() + 1).toString().padStart(2, '0')
+      const year = dateObj.getFullYear()
 
-        // Converter data para o formato brasileiro (dd/mm/aaaa)
-        const dateObj = new Date(dataInput)
-        const day = dateObj.getDate().toString().padStart(2, '0')
-        const month = (dateObj.getMonth() + 1).toString().padStart(2, '0')
-        const year = dateObj.getFullYear()
+      const formattedDate = `${day}/${month}/${year}`
 
-        const formattedDate = `${day}/${month}/${year}`
-
-        const query = `mutation CreateConserto($data: DadosConserto!) {
+      const query = `mutation CreateConserto($data: DadosConserto!) {
     createConserto(data: $data) {
       dataHora
       detalhes
@@ -507,32 +524,31 @@ authenticator().then(result => {
     }
   }`
 
-        console.log('Variáveis')
+      console.log('Variáveis')
 
-        const variables = {
-          data: {
-            idPatrimonio: parseInt(patrimonio),
-            idFuncionario: parseInt(funcionario),
-            detalhes: detalhes,
-            dataHora: formattedDate // Use "dataHora" ao invés de "dataInput"
-          }
+      const variables = {
+        data: {
+          idPatrimonio: parseInt(patrimonio),
+          idFuncionario: parseInt(funcionario),
+          detalhes: detalhes,
+          dataHora: formattedDate // Use "dataHora" ao invés de "dataInput"
         }
+      }
 
-        console.log(variables)
+      console.log(variables)
 
-        axios.post('http://localhost:4000', { query, variables }).then(
-          (result) => {
-            console.log(result)
-            $('.popup').hide()
-            $('.dimmer').hide()
-            carregaDados()
-          },
-          (error) => {
-            console.log(error)
-          }
-        )
-      })
-    
+      axios.post('http://localhost:4000', { query, variables }).then(
+        (result) => {
+          console.log(result)
+          $('.popup').hide()
+          $('.dimmer').hide()
+          carregaDados()
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    })
 
     //Deletar
     const delManutencao = document.getElementById('del-manutencao-btn')
@@ -601,7 +617,7 @@ authenticator().then(result => {
       }
     })
 
-    //Atualizar 
+    //Atualizar
     $(document).ready(function () {
       // Open the popup for updating when "Alterar" button is clicked
       $('#upd-manutencao-btn').click(function () {
@@ -634,12 +650,19 @@ authenticator().then(result => {
         const selectedFields = selectedRow.find('td').slice(1, 5)
         const formFields = $('#form input, #form select')
 
-        formFields.eq(0).prop('readonly', true).val(selectedFields.eq(2).text().trim())
-        formFields.eq(2).val(selectedFields.eq(3).text().trim())
-        formFields.eq(1).val(selectedFields.eq(0).text().trim())
-        formFields.eq(2).val(selectedFields.eq(3).text().trim())
-        formFields.eq(3).val(selectedFields.eq(4).text().trim())
-       
+        const funcionarioValue = document.getElementById('funcionario').value
+        const detalhesValue = document.getElementById('detalhes').value
+        const dataValue = document.getElementById('data').value
+
+        console.log(funcionarioValue)
+        console.log(document.getElementsByClassName('ui button desc').value)
+        console.log(dataValue)
+        console.log(formFields.eq(0).val(selectedFields.eq(0).text().trim()))
+
+        formFields.eq(0).val(selectedFields.eq(1).text().trim())
+        formFields.eq(1).val(detalhesValue)
+        formFields.eq(2).val(dataValue)
+        formFields.eq(3).val(funcionarioValue)
 
         // Change the header text to "Atualizar Patrimônio"
         $('.ui.dividing.header').text('Atualizar Patrimônio')
@@ -677,69 +700,66 @@ authenticator().then(result => {
         }
       }
 
-      axios.post('http://localhost:4000', { query, variables }).then(
-        (result) => {
-          // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-          const consertos = result.data.data.consertos
-          let i = 0
-          const tbody = document.getElementById('manutencoes-table-body')
+      axios.post('http://localhost:4000', { query, variables }).then((result) => {
+        // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
+        const consertos = result.data.data.consertos
+        let i = 0
+        const tbody = document.getElementById('manutencoes-table-body')
 
-          consertos.forEach((conserto) => {
-            i++
-            const tr = document.createElement('tr')
-            const tdCheckbox = document.createElement('td')
-            tdCheckbox.className = 'collapsing'
-            const checkbox = document.createElement('div')
-            checkbox.className = 'ui fitted checkbox'
-            const inputCheckbox = document.createElement('input')
-            inputCheckbox.type = 'checkbox'
-            inputCheckbox.className = 'select-checkbox'
-            const labelCheckbox = document.createElement('label')
-            checkbox.appendChild(inputCheckbox)
-            checkbox.appendChild(labelCheckbox)
-            tdCheckbox.appendChild(checkbox)
+        consertos.forEach((conserto) => {
+          i++
+          const tr = document.createElement('tr')
+          const tdCheckbox = document.createElement('td')
+          tdCheckbox.className = 'collapsing'
+          const checkbox = document.createElement('div')
+          checkbox.className = 'ui fitted checkbox'
+          const inputCheckbox = document.createElement('input')
+          inputCheckbox.type = 'checkbox'
+          inputCheckbox.className = 'select-checkbox'
+          const labelCheckbox = document.createElement('label')
+          checkbox.appendChild(inputCheckbox)
+          checkbox.appendChild(labelCheckbox)
+          tdCheckbox.appendChild(checkbox)
 
-            inputCheckbox.addEventListener('change', function () {
-              const selectCheckboxes = document.getElementsByClassName('select-checkbox')
-              const selectAllCheckbox = document.getElementById('select-all')
+          inputCheckbox.addEventListener('change', function () {
+            const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+            const selectAllCheckbox = document.getElementById('select-all')
 
-              const isAllChecked = Array.from(selectCheckboxes).every(
-                (checkbox) => checkbox.checked
-              )
-              selectAllCheckbox.checked = isAllChecked
+            const isAllChecked = Array.from(selectCheckboxes).every((checkbox) => checkbox.checked)
+            selectAllCheckbox.checked = isAllChecked
 
-              if (!this.checked) {
-                selectAllCheckbox.checked = false
-              }
-            })
-
-            const tdManutencao = document.createElement('td')
-            tdManutencao.textContent = conserto.idConserto
-
-            const tdPatrimonio = document.createElement('td')
-            tdPatrimonio.textContent = conserto.idPatrimonio
-
-            const tdFuncionario = document.createElement("td");
-            nomeFuncionario(conserto.idFuncionario).then(nome => {
-              tdFuncionario.textContent = nome;
-            });
-
-            const tdData = document.createElement('td')
-            tdData.textContent = conserto.dataHora
-
-            const tdDetalhes = document.createElement('td')
-            tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${conserto.idConserto}', '${conserto.detalhes}' , 'info')">Ver</button>`
-
-            tr.appendChild(tdCheckbox)
-            tr.appendChild(tdManutencao)
-            tr.appendChild(tdPatrimonio)
-            tr.appendChild(tdFuncionario)
-            tr.appendChild(tdData)
-            tr.appendChild(tdDetalhes)
-
-            tbody.appendChild(tr)
+            if (!this.checked) {
+              selectAllCheckbox.checked = false
+            }
           })
+
+          const tdManutencao = document.createElement('td')
+          tdManutencao.textContent = conserto.idConserto
+
+          const tdPatrimonio = document.createElement('td')
+          tdPatrimonio.textContent = conserto.idPatrimonio
+
+          const tdFuncionario = document.createElement('td')
+          nomeFuncionario(conserto.idFuncionario).then((nome) => {
+            tdFuncionario.textContent = nome
+          })
+
+          const tdData = document.createElement('td')
+          tdData.textContent = conserto.dataHora
+
+          const tdDetalhes = document.createElement('td')
+          tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${conserto.idConserto}', '${conserto.detalhes}' , 'info')">Ver</button>`
+
+          tr.appendChild(tdCheckbox)
+          tr.appendChild(tdManutencao)
+          tr.appendChild(tdPatrimonio)
+          tr.appendChild(tdFuncionario)
+          tr.appendChild(tdData)
+          tr.appendChild(tdDetalhes)
+
+          tbody.appendChild(tr)
         })
+      })
     })
   }
 }

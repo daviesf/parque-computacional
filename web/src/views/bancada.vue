@@ -243,19 +243,13 @@ export default {
         const selectedFields = selectedRow.find('td').slice(1, 4)
         const formFields = $('#form input, #form select')
 
-        // Obtém o valor da célula da tabela correspondente ao campo "Status"
-        const statusValue = selectedFields.eq(3).text().trim() // Assumindo que o campo "Status" está na terceira célula da tabela
+        const statusValue = document.getElementById("status").value
 
-        // Define o valor selecionado no campo "Status"
-        $('#status').val(statusValue)
-        console.log($('#status').val(statusValue))
-
-        console.log(document.getElementById("status").value)
         console.log(statusValue)
 
         formFields.eq(0).val(selectedFields.eq(1).text().trim())
         formFields.eq(1).val(selectedFields.eq(2).text().trim())
-        // formFields.eq(2).val(selectedFields.eq(3).text().trim());
+        formFields.eq(2).val(statusValue);
         cod = selectedFields.eq(0).text().trim()
 
         // Change the header text to "Atualizar Patrimônio"
