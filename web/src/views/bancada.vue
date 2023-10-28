@@ -16,7 +16,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
+                  <input
+                    type="text"
+                    placeholder="ID da bancada"
+                    class="fluid"
+                    id="filter-bancada"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -28,7 +33,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Apelido da bancada" class="fluid" id="filter-apelido" />
+                  <input
+                    type="text"
+                    placeholder="Apelido da bancada"
+                    class="fluid"
+                    id="filter-apelido"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -40,7 +50,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Local da bancada" class="fluid" id="filter-local" />
+                  <input
+                    type="text"
+                    placeholder="Local da bancada"
+                    class="fluid"
+                    id="filter-local"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -126,21 +141,33 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Apelido</label>
-            <input type="text" name="apelido" placeholder="Apelido" class="campo required" id="apelido"
-              @input="apelidoValidate" />
+            <input
+              type="text"
+              name="apelido"
+              placeholder="Apelido"
+              class="campo required"
+              id="apelido"
+              @input="apelidoValidate"
+            />
             <span class="span-required">Inisira o Apelido</span>
           </div>
           <div class="field">
             <label>Local</label>
-            <input type="text" name="local" placeholder="Local" class="campo required" id="local"
-              @input="localValidate" />
+            <input
+              type="text"
+              name="local"
+              placeholder="Local"
+              class="campo required"
+              id="local"
+              @input="localValidate"
+            />
             <span class="span-required">Inisira o Local</span>
           </div>
 
           <div class="field">
             <label>Status</label>
             <select name="status" class="campo required" id="status" @change="statusValidate">
-              <option value="" class="placeholder" disabled selected>Selecione o status</option>
+              
               <option value="ativo">Ativo</option>
               <option value="inativo">Inativo</option>
               <option value="manutencao">Em manutenção</option>
@@ -158,7 +185,7 @@
 
 <script>
 import axios from 'axios'
-import { authenticator } from '../script/auth.js';
+import { authenticator } from '../script/auth.js'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -213,12 +240,22 @@ export default {
         $('.dimmer').fadeIn()
 
         // Populate the form fields with selected row data
-        const selectedFields = selectedRow.find('td').slice(1, 5)
+        const selectedFields = selectedRow.find('td').slice(1, 4)
         const formFields = $('#form input, #form select')
+
+        // Obtém o valor da célula da tabela correspondente ao campo "Status"
+        const statusValue = selectedFields.eq(3).text().trim() // Assumindo que o campo "Status" está na terceira célula da tabela
+
+        // Define o valor selecionado no campo "Status"
+        $('#status').val(statusValue)
+        console.log($('#status').val(statusValue))
+
+        console.log(document.getElementById("status").value)
+        console.log(statusValue)
 
         formFields.eq(0).val(selectedFields.eq(1).text().trim())
         formFields.eq(1).val(selectedFields.eq(2).text().trim())
-        //formFields.eq(2).val(selectedFields.eq(3).text().trim());
+        // formFields.eq(2).val(selectedFields.eq(3).text().trim());
         cod = selectedFields.eq(0).text().trim()
 
         // Change the header text to "Atualizar Patrimônio"
@@ -581,7 +618,7 @@ export default {
     }
   }`
 
-      authenticator().then(result => {
+      authenticator().then((result) => {
         if (result == 'true') {
           axios.post('http://localhost:4000', { query }).then(
             (result) => {
@@ -591,7 +628,6 @@ export default {
               const tbody = document.getElementById('bancada-table-body')
 
               bancadas.forEach((bancada) => {
-
                 const tr = document.createElement('tr')
 
                 const tdCheckbox = document.createElement('td')
@@ -650,8 +686,7 @@ export default {
                 tr.appendChild(tdStatus)
 
                 tbody.appendChild(tr)
-              }
-              )
+              })
             },
             (error) => {
               console.log(error)
@@ -661,24 +696,24 @@ export default {
       })
     }
     const addBancada = document.getElementById('submit-bancada')
-    //Atualizar 
-    const updPatrimonio = document.getElementById("upd-bancada");
-    updPatrimonio.addEventListener("click", function () {
-      console.log("Iniciando Atualização");
+    //Atualizar
+    const updPatrimonio = document.getElementById('upd-bancada')
+    updPatrimonio.addEventListener('click', function () {
+      console.log('Iniciando Atualização')
 
-      console.log("Código selecionado:", cod);
+      console.log('Código selecionado:', cod)
 
-      let apelido = document.getElementById("apelido").value;
-      let local = document.getElementById("local").value;
-      let status = document.getElementById("status").value;
-      if (status == "ativo") {
-        status = "1";
-      } else if (status == "inativo") {
-        status = "0";
-      } else if (status == "manutencao") {
-        status = "2";
+      let apelido = document.getElementById('apelido').value
+      let local = document.getElementById('local').value
+      let status = document.getElementById('status').value
+      if (status == 'ativo') {
+        status = '1'
+      } else if (status == 'inativo') {
+        status = '0'
+      } else if (status == 'manutencao') {
+        status = '2'
       } else {
-        status = '0';
+        status = '0'
       }
 
       console.log('Verificando status')
@@ -723,53 +758,53 @@ export default {
     //Cadastrar
     // Função para verificar se um campo está vazio
     function isEmpty(value) {
-      return value.trim() === '';
+      return value.trim() === ''
     }
 
     // Função para validar os campos
     function validateForm() {
-      let isValid = true;
+      let isValid = true
 
       campos.forEach((campo, index) => {
         if (isEmpty(campo.value)) {
-          setError(index);
-          isValid = false;
+          setError(index)
+          isValid = false
         } else {
-          removeError(index);
+          removeError(index)
         }
-      });
+      })
 
-      return isValid;
+      return isValid
     }
 
     // Função para definir um erro em um campo
     function setError(index) {
-      campos[index].style.border = '2px solid #e63636';
-      spans[index].style.display = 'block';
+      campos[index].style.border = '2px solid #e63636'
+      spans[index].style.display = 'block'
     }
 
     // Função para remover um erro de um campo
     function removeError(index) {
-      campos[index].style.border = '';
-      spans[index].style.display = 'none';
+      campos[index].style.border = ''
+      spans[index].style.display = 'none'
     }
 
     addBancada.addEventListener('click', function () {
-      console.log('Iniciando cadastro');
-      let apelido = document.getElementById('apelido').value;
-      let local = document.getElementById('local').value;
-      let status = document.getElementById('status').value;
+      console.log('Iniciando cadastro')
+      let apelido = document.getElementById('apelido').value
+      let local = document.getElementById('local').value
+      let status = document.getElementById('status').value
 
       if (status == 'ativo') {
-        status = '1';
+        status = '1'
       } else if (status == 'inativo') {
-        status = '0';
+        status = '0'
       } else if (status == 'manutenção') {
-        status = '2';
+        status = '2'
       }
 
-      console.log('Verificando status');
-      console.log('Query');
+      console.log('Verificando status')
+      console.log('Query')
 
       const query = `mutation Mutation($data: DadosBancada) {
     createBancada(data: $data) {
@@ -777,44 +812,43 @@ export default {
       local
       status
     }
-  }`;
+  }`
 
-      console.log('Variáveis');
+      console.log('Variáveis')
 
       const variables = {
         data: {
           apelido: apelido,
           local: local,
-          status: status,
-        },
-      };
+          status: status
+        }
+      }
 
-      console.log(variables);
+      console.log(variables)
 
       // Executa a validação
-      const isValid = validateForm();
+      const isValid = validateForm()
 
       if (isValid) {
         axios.post('http://localhost:4000', { query, variables }).then(
           (result) => {
-            console.log(result);
-            $('.popup').hide();
-            $('.dimmer').hide();
-            carregaDados();
+            console.log(result)
+            $('.popup').hide()
+            $('.dimmer').hide()
+            carregaDados()
           },
           (error) => {
-            console.log(error);
+            console.log(error)
           }
-        );
+        )
       }
-    });
+    })
 
     form.addEventListener('submit', (event) => {
-      event.preventDefault();
+      event.preventDefault()
       // Executa a validação
-      validateForm();
-    });
-
+      validateForm()
+    })
 
     // filtro
     const filtro = document.getElementById('filter')

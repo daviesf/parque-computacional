@@ -203,9 +203,9 @@
               <div class="field">
                 <label>Tipo</label>
                 <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
-                  <option value="Selecione" class="placeholder" disabled selected>
+                  <!-- <option value="Selecione" class="placeholder" disabled selected>
                     Selecione o tipo
-                  </option>
+                  </option> -->
                   <option value="Desktop">Desktop</option>
                   <option value="Notebook">Notebook</option>
                   <option value="Impressora">Impressora</option>
@@ -242,9 +242,9 @@
               <div class="field">
                 <label>Status</label>
                 <select name="status" class="campo required" id="status" @change="statusValidate">
-                  <option value="Selecione" class="placeholder" disabled selected>
+                  <!-- <option value="Selecione" class="placeholder" disabled selected>
                     Selecione o status
-                  </option>
+                  </option> -->
                   <option value="ativo">Ativo</option>
                   <option value="inativo">Inativo</option>
                   <option value="manutenção">Em manutenção</option>
@@ -569,7 +569,21 @@ export default {
         const selectedFields = selectedRow.find('td').slice(1, 7)
         const formFields = $('#form input, #form select')
 
-        formFields.eq(0).prop('readonly', true).val(selectedFields.eq(0).text().trim())
+        console.log(document.getElementById("tipo").value)
+        console.log(document.getElementById("status").value)
+        console.log(formFields.eq(5).val(selectedFields.eq(5).text().trim()))
+
+        const statusValue = selectedFields.eq(5).text().trim() // Assumindo que o campo "Status" está na terceira célula da tabela
+
+        // Define o valor selecionado no campo "Status"
+        $('#status').val(statusValue)
+
+        const tipoValue = selectedFields.eq(3).text().trim() // Assumindo que o campo "Status" está na terceira célula da tabela
+
+        // Define o valor selecionado no campo "Status"
+        $('#tipo').val(tipoValue)
+
+        formFields.eq(0).val(selectedFields.eq(0).text().trim())
         formFields.eq(1).val(selectedFields.eq(1).text().trim())
         formFields.eq(2).val(selectedFields.eq(2).text().trim())
         formFields.eq(3).val(selectedFields.eq(2).text().trim())
@@ -578,12 +592,6 @@ export default {
 
         // Change the header text to "Atualizar Patrimônio"
         $('.ui.dividing.header').text('Atualizar Patrimônio')
-      })
-
-      // Hide the pop-up and dimmer when "Cancelar" button is clicked
-      $('.cancel-button').click(function () {
-        $('.popup').hide()
-        $('.dimmer').hide()
       })
     })
 
