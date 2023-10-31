@@ -123,9 +123,6 @@
                 <div class="ui right floated small labeled icon button" id="add-funcionario">
                   <i class="user outline icon"></i> Adicionar Funcionário
                 </div>
-                <div class="ui left floated small button bg-button" id="excluir-usuario-btn">
-                  Excluir
-                </div>
                 <div class="ui left floated small button bg-button" id="alterar-usuario-btn">
                   Alterar
                 </div>
@@ -157,17 +154,6 @@
               @input="emailValidate" />
             <span class="span-required">Insira um e-mail válido</span>
           </div>
-          <!-- <div class="field">
-            <label>Bancada</label>
-            <select name="tipo" class="campo required" id="bancada" @change="bancadaValidate">
-              <option class="placeholder" disabled selected>Selecione a bancada</option>
-              <option value="b1">Nenhuma (ID: 0)</option>
-              <option value="b2">ID: 22 | Bancada de Informática</option>
-              <option value="b3">ID: 23 | Bancada de Almoxarifado</option>
-              <option value="b4">ID: 24 | Bancada do RU</option>
-            </select>
-            <span class="span-required">Selecione alguma Bancada</span>
-          </div> -->
           <div class="field">
             <label>Tipo</label>
             <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
@@ -449,7 +435,7 @@ export default {
                 const tdStatus = document.createElement("td");
                 if (usuario.status == 1) {
                   usuario.status = "Ativo";
-                } else if (usuario.status == 2) {
+                } else if (usuario.status == 0) {
                   usuario.status = "Desligado";
                 }
 
@@ -473,6 +459,58 @@ export default {
         }
       })
     }
+
+        //Atualizar
+$(document).ready(function () {
+  // Open the popup for updating when "Alterar" button is clicked
+  $('#upd-usuario-btn').click(function () {
+    const esconder = document.querySelector('#upd-usuario')
+    esconder.style.display = 'inline'
+
+    const aparecer1 = document.querySelector('#submit-usuario')
+    aparecer1.style.display = 'none'
+
+    const selectedCheckboxes = $('input.select-checkbox:checked')
+
+    if (selectedCheckboxes.length == 0 || selectedCheckboxes.length > 1) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Selecione um valor antes de alterar',
+        confirmButtonColor: '#004654',
+        confirmButtonText: 'OK'
+      })
+      return
+    }
+
+    // Get the closest row to the selected checkbox
+    const selectedRow = selectedCheckboxes.closest('tr')
+
+    // Open the popup for updating
+    $('.dimmer').fadeIn()
+
+    // Populate the form fields with selected row data
+    const selectedFields = selectedRow.find('td').slice(1, 7)
+    const formFields = $('#form input, #form select')
+
+    const statusValue = document.getElementById("status").value
+    const tipoValue = document.getElementById("tipo").value
+
+    console.log(statusValue)
+    console.log(tipoValue)
+    console.log(formFields.eq(0).val(selectedFields.eq(0).text().trim()))
+
+    formFields.eq(0).val(selectedFields.eq(0).text().trim())
+    formFields.eq(1).val(selectedFields.eq(1).text().trim())
+    formFields.eq(2).val(tipoValue)
+    formFields.eq(3).val(selectedFields.eq(2).text().trim())
+    formFields.eq(4).val(selectedFields.eq(3).text().trim())
+    formFields.eq(5).val(statusValue)
+
+    // Change the header text to "Atualizar Patrimônio"
+    $('.ui.dividing.header').text('Atualizar Patrimônio')
+  })
+})
 
     // filtro
     const filtro = document.getElementById('filter')
@@ -594,6 +632,142 @@ export default {
       })
     })
 
+    //Desativar
+    $(document).ready(function () {
+      $('#desligar-usuario-btn').click(function () {
+        const selectedCheckboxes = $('input.select-checkbox:checked')
+
+        if (selectedCheckboxes.length == 0) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione um valor antes de desativar',
+            confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+            confirmButtonText: 'OK'
+          })
+          return
+        } else {
+          selectedCheckboxes.each(function () {
+            const selectedRow = $(this).closest('tr')
+
+            const selectedFields = selectedRow.find('td').slice(1, 7)
+
+            const formFields = $('#form input, #form select')
+
+            const codigoCell = selectedFields.eq(0).text().trim()
+            let status = '0'
+
+            console.log('Código selecionado:', codigoCell)
+
+            console.log('Status selecionado:', status)
+
+            console.log('Iniciando Atualização')
+
+            console.log('Verificando status')
+
+            console.log('Query')
+
+            const query = `mutation Mutation($idFuncionario: ID!, $status: String!) {
+  ativarFuncionario(idFuncionario: $idFuncionario, status: $status) {
+    idFuncionario
+    status
+  }
+}
+            `
+
+            console.log('Variáveis')
+
+            const variables = {
+              idFuncionario: parseInt(codigoCell),
+              status: status
+            }
+
+            console.log(variables)
+
+            axios.post('http://localhost:4000', { query, variables }).then(
+              (result) => {
+                console.log(result)
+                $('.popup').hide()
+                $('.dimmer').hide()
+                carregaDados()
+              },
+              (error) => {
+                console.log(error)
+              }
+            )
+          })
+        }
+      })
+    })
+
+        //Ativar
+        $(document).ready(function () {
+      $('#ativar-usuario-btn').click(function () {
+        const selectedCheckboxes = $('input.select-checkbox:checked')
+
+        if (selectedCheckboxes.length == 0) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione um valor antes de ativar',
+            confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+            confirmButtonText: 'OK'
+          })
+          return
+        } else {
+          selectedCheckboxes.each(function () {
+            const selectedRow = $(this).closest('tr')
+
+            const selectedFields = selectedRow.find('td').slice(1, 7)
+
+            const formFields = $('#form input, #form select')
+
+            const codigoCell = selectedFields.eq(0).text().trim()
+            let status = '1'
+
+            console.log('Código selecionado:', codigoCell)
+
+            console.log('Status selecionado:', status)
+
+            console.log('Iniciando Atualização')
+
+            console.log('Verificando status')
+
+            console.log('Query')
+
+            const query = `mutation Mutation($idFuncionario: ID!, $status: String!) {
+              ativarFuncionario(idFuncionario: $idFuncionario, status: $status) {
+                idFuncionario
+                status
+              }
+            }
+            `
+
+            console.log('Variáveis')
+
+            const variables = {
+              idFuncionario: parseInt(codigoCell),
+              status: status
+            }
+
+            console.log(variables)
+
+            axios.post('http://localhost:4000', { query, variables }).then(
+              (result) => {
+                console.log(result)
+                $('.popup').hide()
+                $('.dimmer').hide()
+                carregaDados()
+              },
+              (error) => {
+                console.log(error)
+              }
+            )
+          })
+        }
+      })
+    })
+
     // Cadastrar
     const addUsuario = document.getElementById('submit-usuario')
     addUsuario.addEventListener('click', function () {
@@ -606,9 +780,7 @@ export default {
         status = 1
       } else if (status == 'inativo') {
         status = 0
-      } else if (status == 'manutenção') {
-        status = 2
-      }
+      } 
       if( tipo == "administrador"){
         tipo = 1
       } else if ( tipo == "usuario comum"){
@@ -689,71 +861,6 @@ export default {
       spans[index].style.display = 'none';
     }
 
-    addUsuario.addEventListener('click', function () {
-      console.log('Iniciando cadastro');
-      let nome = document.getElementById('nome').value;
-      let email = document.getElementById('email').value;
-      let tipo = document.getElementById('tipo').value;
-
-      if (tipo == 'administrador') {
-        tipo = 1;
-      } else if (tipo == 'usuario comum') {
-        tipo = 2;
-      }
-
-      let status = document.getElementById('status').value;
-
-      if (status == 'ativo') {
-        status = 1;
-      } else if (status == 'desligado') {
-        status = 2;
-      }
-
-      console.log('Verificando status');
-      console.log('Query');
-
-      const query = `mutation CreateFuncionario($data: DadosFuncionario!) {
-    createFuncionario(data: $data) {
-      status
-      nome
-      tipo
-      email
-      idSession
-      idGoogle
-    }
-  }`;
-
-      console.log('Variáveis');
-
-      const variables = {
-        data: {
-          nome: nome,
-          email: email,
-          tipo: tipo,
-          status: status,
-        },
-      };
-
-      console.log(variables);
-
-      // Executa a validação
-      const isValid = validateForm();
-
-      if (isValid) {
-        axios.post('http://localhost:4000', { query, variables }).then(
-          (result) => {
-            console.log(result);
-            $('.popup').hide();
-            $('.dimmer').hide();
-            //carregaDados();
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      }
-    });
-
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       // Executa a validação
@@ -762,190 +869,6 @@ export default {
 
   }
 }
-
-//--------------------------------------------------------Tentei fazer o crud de usuário, não sei se deu certo :D-----------------------------------------------------------------
-//---------------------------Meu possível erro está no nome que usei nas variáveis do server eu não peguei do nosso server kakakak :P--------------------------------------------
-// //Excluir
-// $(document).ready(function () {
-//       $("#del-patrimonio-btn").click(function () {
-//         const selectedCheckboxes = $("input.select-checkbox:checked");
-
-//         if (selectedCheckboxes.length == 0) {
-//           Swal.fire({
-//             icon: 'error',
-//             title: 'Oops...',
-//             text: 'Selecione o patrimônio que deseja script',
-//             confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
-
-//             confirmButtonText: 'OK'
-//           })
-//           return
-
-//         } else {
-//           Swal.fire({
-//             title: 'Você tem certeza?',
-//             text: 'Você não poderá reverter a exclusão',
-//             icon: 'warning',
-//             showCancelButton: true,
-//             confirmButtonColor: '#004654',
-//             cancelButtonColor: '#d33',
-//             confirmButtonText: 'Sim, deletar!',
-
-//             cancelButtonText: 'Cancelar'
-//           }).then((result) => {
-//             if (result.isConfirmed) {
-//               selectedCheckboxes.each(function () {
-//                 const selectedRow = $(this).closest('tr')
-//                 const selectedFields = selectedRow.find('td').slice(1, 7)
-//                 const codigoCell = selectedFields.eq(0).text().trim()
-
-//                 console.log('Código selecionado:', codigoCell)
-//                 console.log('Iniciando Atualização')
-//                 console.log('Verificando status')
-//                 console.log('Query')
-
-//                 const query = `mutation Mutation($idFuncionario: ID!) {
-//               deleteFuncionario(idFuncionario: $idFuncionario)
-//             }`
-
-//                 console.log('Variáveis')
-
-//                 const variables = {
-//                   idFuncionario: parseInt(codigoCell)
-//                 }
-
-//                 console.log(variables)
-
-//                 axios.post('http://localhost:4000', { query, variables }).then(
-//                   (result) => {
-//                     console.log(result)
-//                     $('.popup').hide()
-//                     $('.dimmer').hide()
-//                     carregaDados()
-
-//                     Swal.fire({
-//                       title: 'Deletado!',
-//                       text: 'O Usuário foi removido com sucesso!',
-//                       icon: 'success',
-//                       confirmButtonColor: '#004654' // Cor personalizada do botão OK
-//                     })
-//                   },
-//                   (error) => {
-//                     console.log(error)
-//                   }
-//                 )
-//               })
-//             }
-//           })
-//         }
-//       })
-//     })
-
-//     //Puxar os campos
-//     $(document).ready(function () {
-//       // Open the popup for updating when "Alterar" button is clicked
-//       $('#upd-usuario-btn').click(function () {
-//         const esconder = document.querySelector('#upd-usuario')
-//         esconder.style.display = 'inline'
-
-//         const aparecer1 = document.querySelector('#submit-usuario')
-//         aparecer1.style.display = 'none'
-
-//         const selectedCheckboxes = $('input.select-checkbox:checked')
-
-//         if (selectedCheckboxes.length == 0 || selectedCheckboxes.length > 1) {
-//           Swal.fire({
-//             icon: 'error',
-//             title: 'Oops...',
-//             text: 'Selecione um valor antes de alterar',
-//             confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
-//             confirmButtonText: 'OK'
-//           })
-//           return
-//         }
-
-//         // Get the closest row to the selected checkbox
-//         const selectedRow = selectedCheckboxes.closest('tr')
-
-//         // Open the popup for updating
-//         $('.dimmer').fadeIn()
-
-//         // Populate the form fields with selected row data
-//         const selectedFields = selectedRow.find('td').slice(1, 7)
-//         const formFields = $('#form input, #form select')
-
-//         formFields.eq(0).prop('readonly', true).val(selectedFields.eq(0).text().trim())
-//         formFields.eq(1).val(selectedFields.eq(1).text().trim())
-//         formFields.eq(2).val(selectedFields.eq(2).text().trim())
-//         formFields.eq(3).val(selectedFields.eq(2).text().trim())
-//         formFields.eq(4).val(selectedFields.eq(3).text().trim())
-//         formFields.eq(5).val(selectedFields.eq(5).text().trim())
-
-//         // Change the header text to "Atualizar Patrimônio"
-//         $('.ui.dividing.header').text('Atualizar Usuário')
-//       })
-//     })
-
-//     // Atualizar
-//     const updUsuario = document.getElementById('upd-usuario')
-//     updPatrimonio.addEventListener('click', function () {
-//       console.log('Iniciando Atualização')
-//       let cod = document.getElementById('codigo').value
-//       let nome = document.getElementById('nome').value
-//       let email = document.getElementById('email').value
-//       let tipo = document.getElementById('tipo').value
-//       let status = document.getElementById('status').value
-//       if (status == 'ativo') {
-//         status = 1
-//       } else if (status == 'inativo') {
-//         status = 0
-//       } else if (status == 'manutenção') {
-//         status = 2
-//       }
-
-//       console.log('Verificando status')
-
-//       console.log('Query')
-
-//       const query = `mutation Mutation($idPatrimonio: ID!, $data: dadosPatrimonio) {
-//   updatePatrimonio(idPatrimonio: $idPatrimonio, data: $data) {
-//     idUsuario
-//     nome
-//     email
-//     status
-//     tipo
-//   }
-// }`
-
-//       console.log('Variáveis')
-
-//       const variables = {
-//         data: {
-//           status: status,
-//           nome: nome,
-//           idUsuario: parseInt(cod),
-//           email: email,
-//           tipo: tipo
-//         },
-//         idUsuario: parseInt(cod)
-//       }
-
-//       console.log(variables)
-
-//       axios.post('http://localhost:4000', { query, variables }).then(
-//         (result) => {
-//           console.log(result)
-//           $('.popup').hide()
-//           $('.dimmer').hide()
-//           carregaDados()
-//         },
-//         (error) => {
-//           console.log(error)
-//         }
-//       )
-//     })
-//--------------------------------------------------------Tentei fazer o crud de usuário, não sei se deu certo :D-----------------------------------------------------------------
-
 </script>
 
 

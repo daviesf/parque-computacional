@@ -27,10 +27,10 @@ input FuncionarioFilter {
 }
 
 input DadosFuncionario{
-    status: Int
-    nome: String
-    tipo: Int
-    email: String
+    status: Int!
+    nome: String!
+    tipo: Int!
+    email: String!
 }
 
 type Mutation {
@@ -39,4 +39,5 @@ type Mutation {
     updateIdSession(idFuncionario: ID!, idSession: String!): Funcionario!
     updateIdGoogle(idFuncionario: ID!, idGoogle: String!): Funcionario!
     deleteFuncionario(idFuncionario: ID!): Boolean!
+    ativarFuncionario(idFuncionario: ID!, status: String!): Funcionario!
 }

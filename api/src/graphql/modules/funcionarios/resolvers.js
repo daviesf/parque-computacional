@@ -117,5 +117,15 @@ export default {
 			await knex("funcionarios").where("idFuncionario", idFuncionario).del();
 			return true;
 		},
+
+		ativarFuncionario: async (_, { idFuncionario, status }) => {
+			await knex("funcionarios")
+				.where("idFuncionario", idFuncionario)
+				.update({ status });
+			const funcionario = await knex("Funcionarios")
+				.where("idFuncionario", idFuncionario)
+				.first();
+			return funcionario;
+		},
 	},
 };
