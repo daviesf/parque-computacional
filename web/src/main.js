@@ -3,8 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { createPinia } from 'pinia'
 import { theme } from './script/theme.js'
 import axios from 'axios'
-// import express from 'express';
-// import multer from 'multer';
 
 import App from './App.vue'
 import Login from './views/login.vue'
@@ -37,52 +35,43 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  theme();
-  const AKJA12Value = document.cookie.replace(/(?:(?:^|.*;\s*)AKJA12\s*=\s*([^;]*).*$)|^.*$/, "$1");
-  if (AKJA12Value) {
-    const query = `query ConfereSession($idSession: String!) {
-      confereSession(idSession: $idSession) {
-        nome
-        idFuncionario
-      }
-    }`
-    const variables = { idSession: AKJA12Value }
+// router.beforeEach((to, from, next) => {
+//   theme();
+//   const AKJA12Value = document.cookie.replace(/(?:(?:^|.*;\s*)AKJA12\s*=\s*([^;]*).*$)|^.*$/, "$1");
+//   if (AKJA12Value) {
+//     const query = `query ConfereSession($idSession: String!) {
+//       confereSession(idSession: $idSession) {
+//         nome
+//         idFuncionario
+//       }
+//     }`
+//     const variables = { idSession: AKJA12Value }
 
-    axios.post('http://localhost:4000', { query, variables }).then((result) => {
-      if (result.data.data.confereSession) {
-        if (to.path === '/login') {
-          next('/')
-        }
-        next()
-      } else {
-        next('/login')
-      }
-    }).catch(() => {
-      next('/login')
-    }
-    )
-  }
-  else {
-    if (to.path === '/login') {
-      next()
-    } else {
-      next('/login')
-    }
-  }
-})
+//     axios.post('http://localhost:4000', { query, variables }).then((result) => {
+//       if (result.data.data.confereSession) {
+//         if (to.path === '/login') {
+//           next('/')
+//         }
+//         next()
+//       } else {
+//         next('/login')
+//       }
+//     }).catch(() => {
+//       next('/login')
+//     }
+//     )
+//   }
+//   else {
+//     if (to.path === '/login') {
+//       next()
+//     } else {
+//       next('/login')
+//     }
+//   }
+// })
 
 const app = createApp(App)
 
-// const miniApi = express();
-// const upload = multer({ dest: 'src/assets/media' });
-
-// miniApi.post('upload',
-// upload.single('file'), (req, res) => {
-//   res.send({ message: 'Arquivo recebido com sucesso!'});
-// });
-
-// app.use('/api', miniApi)
 app.use(createPinia())
 app.use(router)
 

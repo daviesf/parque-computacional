@@ -37,11 +37,6 @@
                   ></textarea>
                   <span class="span-required">Insira a Descrição</span>
                 </div>
-                <div class="field form-hd">
-                  <label hidden></label>
-                  <input class="input-hd" type="file" multiple id="arquivo" />
-                  <p class="p-hd">Arraste ou anexe arquivos aqui.</p>
-                </div>
                 <button class="ui button" id="enviarChamado">Enviar</button>
                 <input type="reset" class="ui button" id="limparForm" value="Limpar Formulário" />
               </form>
