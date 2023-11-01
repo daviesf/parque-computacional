@@ -2,8 +2,8 @@ type Chamado {
     idChamado: ID!
     nome: String!
     dataHora: String!
+    assunto: String!
     detalhes: String!
-    idBancada: Int!
     status: Int!
     idFuncionario: Int!
 }
@@ -28,10 +28,11 @@ input FilterChamados {
 input DadosChamado {
     dataHora: String!
     detalhes: String!
+    assunto: String!
     idBancada: Int!
     status: Int!
     nome: String!
-    prioridade: String!
+    idFuncionario: Int!
 }
 
 type Mutation {
