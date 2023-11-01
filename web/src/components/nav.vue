@@ -44,7 +44,8 @@
         <div @click="toggleTheme1">
           <router-link to="/helpdesk">
             <i class="laptop icon"></i>
-            <span class="links_name">HelpDesk</span>
+            <span class="links_name">HelpD
+              esk</span>
           </router-link>
         </div>
         <span class="tooltip">Helpdesk</span>

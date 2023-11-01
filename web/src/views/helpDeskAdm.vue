@@ -296,7 +296,7 @@ export default {
 
                     Swal.fire({
                       title: 'Deletado!',
-                      text: 'A chamada foi removido com sucesso!',
+                      text: 'O chamado foi removido com sucesso!',
                       icon: 'success',
                       confirmButtonColor: '#004654' // Cor personalizada do botão OK
                     })
