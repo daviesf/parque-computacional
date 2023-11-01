@@ -16,7 +16,12 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="Nome do Funcionário" class="fluid" id="filter-nome" />
+                  <input
+                    type="text"
+                    placeholder="Nome do Funcionário"
+                    class="fluid"
+                    id="filter-nome"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
@@ -28,23 +33,16 @@
               </div>
               <div class="accordion-body">
                 <div class="ui icon input fluid">
-                  <input type="text" placeholder="E-mail do Funcionário" class="fluid" id="filter-email" />
+                  <input
+                    type="text"
+                    placeholder="E-mail do Funcionário"
+                    class="fluid"
+                    id="filter-email"
+                  />
                   <i class="search icon"></i>
                 </div>
               </div>
             </div>
-            <!-- <div class="accordion">
-              <div class="accordion-header">
-                <span>Bancada</span>
-                <span class="accordion-icon">+</span>
-              </div>
-              <div class="accordion-body">
-                <div class="ui icon input fluid">
-                  <input type="text" placeholder="ID da bancada" class="fluid" id="filter-bancada" />
-                  <i class="search icon"></i>
-                </div>
-              </div>
-            </div> -->
             <div class="accordion">
               <div class="accordion-header">
                 <span>Tipo</span>
@@ -145,19 +143,31 @@
         <form class="ui form" id="form">
           <div class="field">
             <label>Nome</label>
-            <input type="text" name="nome" placeholder="Nome" class="campo required" id="nome" @input="nomeValidate" />
+            <input
+              type="text"
+              name="nome"
+              placeholder="Nome"
+              class="campo required"
+              id="nome"
+              @input="nomeValidate"
+            />
             <span class="span-required">Insira o Nome</span>
           </div>
           <div class="field">
             <label>E-mail</label>
-            <input type="email" name="email" placeholder="E-mail" class="campo required" id="email"
-              @input="emailValidate" />
+            <input
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              class="campo required"
+              id="email"
+              @input="emailValidate"
+            />
             <span class="span-required">Insira um e-mail válido</span>
           </div>
           <div class="field">
             <label>Tipo</label>
             <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
-              <option class="placeholder" value="" disabled selected>Selecione o tipo</option>
               <option value="administrador">Administardor</option>
               <option value="usuario comum">Usuário Comum</option>
             </select>
@@ -166,13 +176,13 @@
           <div class="field">
             <label>Status</label>
             <select name="status" class="campo required" id="status" @change="statusValidate">
-              <option class="placeholder" value="" disabled selected>Selecione o status</option>
               <option value="ativo">Ativo</option>
               <option value="desligado">Desligado</option>
             </select>
             <span class="span-required">Selecione algum Status</span>
           </div>
           <button class="ui submit button" type="submit" id="submit-usuario">Adicionar</button>
+          <button class="ui submit button" type="submit" id="upd-usuario">Atualizar</button>
           <button class="ui button cancel-button" id="cancel-button">Cancelar</button>
         </form>
       </div>
@@ -182,7 +192,7 @@
 
 <script>
 import axios from 'axios'
-import { authenticator } from '../script/auth.js';
+import { authenticator } from '../script/auth.js'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Usuario',
@@ -361,7 +371,7 @@ export default {
       //   }
       // }`
 
-      authenticator().then(result => {
+      authenticator().then((result) => {
         if (result == 'true') {
           axios.post('http://localhost:4000', { query }).then(
             (result) => {
@@ -423,23 +433,23 @@ export default {
                 // const tdBancada = document.createElement('td')
                 // tdBancada.textContent = bancada.idBancada
 
-                const tdTipo = document.createElement('td');
+                const tdTipo = document.createElement('td')
                 if (usuario.tipo == 1) {
-                  usuario.tipo = "Administrador";
-                } else if (usuario.tipo == 2) {
-                  usuario.tipo = "Usuário Comum";
+                  usuario.tipo = 'Administrador'
+                } else if (usuario.tipo == 0) {
+                  usuario.tipo = 'Usuário Comum'
                 }
 
-                tdTipo.textContent = usuario.tipo;
+                tdTipo.textContent = usuario.tipo
 
-                const tdStatus = document.createElement("td");
+                const tdStatus = document.createElement('td')
                 if (usuario.status == 1) {
-                  usuario.status = "Ativo";
+                  usuario.status = 'Ativo'
                 } else if (usuario.status == 0) {
-                  usuario.status = "Desligado";
+                  usuario.status = 'Desligado'
                 }
 
-                tdStatus.textContent = usuario.status;
+                tdStatus.textContent = usuario.status
 
                 tr.appendChild(tdCheckbox)
                 tr.appendChild(tdID)
@@ -459,58 +469,6 @@ export default {
         }
       })
     }
-
-        //Atualizar
-$(document).ready(function () {
-  // Open the popup for updating when "Alterar" button is clicked
-  $('#upd-usuario-btn').click(function () {
-    const esconder = document.querySelector('#upd-usuario')
-    esconder.style.display = 'inline'
-
-    const aparecer1 = document.querySelector('#submit-usuario')
-    aparecer1.style.display = 'none'
-
-    const selectedCheckboxes = $('input.select-checkbox:checked')
-
-    if (selectedCheckboxes.length == 0 || selectedCheckboxes.length > 1) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Selecione um valor antes de alterar',
-        confirmButtonColor: '#004654',
-        confirmButtonText: 'OK'
-      })
-      return
-    }
-
-    // Get the closest row to the selected checkbox
-    const selectedRow = selectedCheckboxes.closest('tr')
-
-    // Open the popup for updating
-    $('.dimmer').fadeIn()
-
-    // Populate the form fields with selected row data
-    const selectedFields = selectedRow.find('td').slice(1, 7)
-    const formFields = $('#form input, #form select')
-
-    const statusValue = document.getElementById("status").value
-    const tipoValue = document.getElementById("tipo").value
-
-    console.log(statusValue)
-    console.log(tipoValue)
-    console.log(formFields.eq(0).val(selectedFields.eq(0).text().trim()))
-
-    formFields.eq(0).val(selectedFields.eq(0).text().trim())
-    formFields.eq(1).val(selectedFields.eq(1).text().trim())
-    formFields.eq(2).val(tipoValue)
-    formFields.eq(3).val(selectedFields.eq(2).text().trim())
-    formFields.eq(4).val(selectedFields.eq(3).text().trim())
-    formFields.eq(5).val(statusValue)
-
-    // Change the header text to "Atualizar Patrimônio"
-    $('.ui.dividing.header').text('Atualizar Patrimônio')
-  })
-})
 
     // filtro
     const filtro = document.getElementById('filter')
@@ -600,22 +558,19 @@ $(document).ready(function () {
           const tdEmail = document.createElement('td')
           tdEmail.textContent = funcionario.email
 
+          const tdTipo = document.createElement('td')
+          const tipoValue = funcionario.tipo
 
-
-          const tdTipo = document.createElement('td');
-          const tipoValue = funcionario.tipo;
-
-          let tipoText;
+          let tipoText
           if (tipoValue == 1) {
-            tipoText = 'Administrador';
+            tipoText = 'Administrador'
           } else if (tipoValue == 2) {
-            tipoText = 'Usuário Comum';
+            tipoText = 'Usuário Comum'
           } else {
-            tipoText = 'Desconhecido'; // Tratamento para outros valores de tipo
+            tipoText = 'Desconhecido' // Tratamento para outros valores de tipo
           }
 
-          tdTipo.textContent = tipoText;
-
+          tdTipo.textContent = tipoText
 
           const tdStatus = document.createElement('td')
           tdStatus.textContent = funcionario.status
@@ -700,8 +655,8 @@ $(document).ready(function () {
       })
     })
 
-        //Ativar
-        $(document).ready(function () {
+    //Ativar
+    $(document).ready(function () {
       $('#ativar-usuario-btn').click(function () {
         const selectedCheckboxes = $('input.select-checkbox:checked')
 
@@ -768,6 +723,155 @@ $(document).ready(function () {
       })
     })
 
+    let id = 0
+
+    //Abre o pop-up de Atualizar
+    $(document).ready(function () {
+      // Open the popup for updating when "Alterar" button is clicked
+      $('#alterar-usuario-btn').click(function () {
+        const esconder = document.querySelector('#upd-usuario')
+        esconder.style.display = 'inline'
+
+        const aparecer1 = document.querySelector('#submit-usuario')
+        aparecer1.style.display = 'none'
+
+        const selectedCheckboxes = $('input.select-checkbox:checked')
+
+        if (selectedCheckboxes.length == 0 || selectedCheckboxes.length > 1) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione um valor antes de alterar',
+            confirmButtonColor: '#004654',
+            confirmButtonText: 'OK'
+          })
+          return
+        }
+
+        // Get the closest row to the selected checkbox
+        const selectedRow = selectedCheckboxes.closest('tr')
+
+        // Open the popup for updating
+        $('.dimmer').fadeIn()
+
+        // Populate the form fields with selected row data
+        const selectedFields = selectedRow.find('td').slice(1, 5)
+        const formFields = $('#form input, #form select')
+
+        const statusValue = document.getElementById('status').value
+        const tipoValue = document.getElementById('tipo').value
+
+        console.log(statusValue)
+        console.log(tipoValue)
+
+        formFields.eq(0).val(selectedFields.eq(1).text().trim())
+        formFields.eq(1).val(selectedFields.eq(2).text().trim())
+        formFields.eq(2).val(tipoValue)
+        formFields.eq(3).val(statusValue)
+        id = selectedFields.eq(0).text().trim()
+
+        // Change the header text to "Atualizar Patrimônio"
+        $('.ui.dividing.header').text('Atualizar Usuário')
+      })
+    })
+
+    // Requisição no banco para Atualizar
+    const updUsuario = document.getElementById('upd-usuario')
+    updUsuario.addEventListener('click', function () {
+      console.log('Iniciando Atualização')
+
+      console.log('Id selecionado:', id)
+
+      let nome = document.getElementById('nome').value
+      let email = document.getElementById('email').value
+      let tipo = document.getElementById('tipo').value
+      let status = document.getElementById('status').value
+      if (status == 'ativo') {
+        status = 1
+      } else if (status == 'inativo') {
+        status = 0
+      }
+      if (tipo == 'administrador') {
+        tipo = 1
+      } else if (tipo == 'usuario comum') {
+        tipo = 0
+      }
+
+      const query = `mutation Mutation($idFuncionario: ID!, $data: DadosFuncionario!) {
+  updateFuncionario(idFuncionario: $idFuncionario, data: $data) {
+    nome
+    email
+    status
+    tipo
+    idFuncionario
+  }
+}`
+
+      console.log('Variáveis')
+
+      const variables = {
+        idFuncionario: parseInt(id),
+        data: {
+          nome: nome,
+          email: email,
+          tipo: parseInt(tipo),
+          status: parseInt(status)
+        }
+      }
+
+      console.log(variables)
+
+      axios.post('http://localhost:4000', { query, variables }).then(
+        (result) => {
+          console.log(result)
+          $('.popup').hide()
+          $('.dimmer').hide()
+          carregaDados()
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    })
+
+    //Pop-up de Cadastrar
+    $(document).ready(function () {
+      // eslint-disable-next-line no-undef
+      $('#add-funcionario').click(function (e) {
+        const esconder = document.querySelector('#upd-usuario')
+        esconder.style.display = 'none'
+
+        const aparecer1 = document.querySelector('#submit-usuario')
+        aparecer1.style.display = 'inline'
+        e.preventDefault()
+        $('.ui.dividing.header').text('Cadastrar Usuário')
+        $('#submit-usuario').text('Adicionar')
+        $('.dimmer').fadeIn()
+
+        const selectedRow = $(this).closest('tr')
+
+        const selectedFields = selectedRow.find('td').slice(1, 7)
+
+        const formFields = $('#form input, #form select')
+        formFields.eq(0).prop('readonly', false).val(selectedFields.eq(0).text().trim())
+        formFields.eq(1).val(selectedFields.eq(0).text().trim())
+        formFields.eq(2).val(selectedFields.eq(0).text().trim())
+        formFields.eq(3).val(selectedFields.eq(0).text().trim())
+      })
+
+      $('.cancel-button').click(function () {
+        $('.popup').hide()
+        $('.dimmer').hide()
+      })
+      // eslint-disable-next-line no-undef
+      $('.dimmer').click(function (e) {
+        // eslint-disable-next-line no-undef
+        if ($(e.target).hasClass('dimmer')) {
+          $(this).fadeOut()
+        }
+      })
+    })
+
     // Cadastrar
     const addUsuario = document.getElementById('submit-usuario')
     addUsuario.addEventListener('click', function () {
@@ -780,10 +884,10 @@ $(document).ready(function () {
         status = 1
       } else if (status == 'inativo') {
         status = 0
-      } 
-      if( tipo == "administrador"){
+      }
+      if (tipo == 'administrador') {
         tipo = 1
-      } else if ( tipo == "usuario comum"){
+      } else if (tipo == 'usuario comum') {
         tipo = 0
       }
 
@@ -807,7 +911,7 @@ $(document).ready(function () {
           nome: nome,
           email: email,
           tipo: parseInt(tipo),
-          status: parseInt(status),
+          status: parseInt(status)
         }
       }
 
@@ -826,50 +930,46 @@ $(document).ready(function () {
       )
     })
 
-
-
     // Função para verificar se um campo está vazio
     function isEmpty(value) {
-      return value.trim() === '';
+      return value.trim() === ''
     }
 
     // Função para validar os campos
     function validateForm() {
-      let isValid = true;
+      let isValid = true
 
       campos.forEach((campo, index) => {
         if (isEmpty(campo.value)) {
-          setError(index);
-          isValid = false;
+          setError(index)
+          isValid = false
         } else {
-          removeError(index);
+          removeError(index)
         }
-      });
+      })
 
-      return isValid;
+      return isValid
     }
 
     // Função para definir um erro em um campo
     function setError(index) {
-      campos[index].style.border = '2px solid #e63636';
-      spans[index].style.display = 'block';
+      campos[index].style.border = '2px solid #e63636'
+      spans[index].style.display = 'block'
     }
 
     // Função para remover um erro de um campo
     function removeError(index) {
-      campos[index].style.border = '';
-      spans[index].style.display = 'none';
+      campos[index].style.border = ''
+      spans[index].style.display = 'none'
     }
 
     form.addEventListener('submit', (event) => {
-      event.preventDefault();
+      event.preventDefault()
       // Executa a validação
-      validateForm();
-    });
-
+      validateForm()
+    })
   }
 }
 </script>
-
 
 <style src="../assets/pages.css"></style>
