@@ -537,56 +537,56 @@ export default {
     })
 
     //Atualizar
-$(document).ready(function () {
-  // Open the popup for updating when "Alterar" button is clicked
-  $('#upd-patrimonio-btn').click(function () {
-    const esconder = document.querySelector('#upd-patrimonio')
-    esconder.style.display = 'inline'
+    $(document).ready(function () {
+      // Open the popup for updating when "Alterar" button is clicked
+      $('#upd-patrimonio-btn').click(function () {
+        const esconder = document.querySelector('#upd-patrimonio')
+        esconder.style.display = 'inline'
 
-    const aparecer1 = document.querySelector('#submit-patrimonio')
-    aparecer1.style.display = 'none'
+        const aparecer1 = document.querySelector('#submit-patrimonio')
+        aparecer1.style.display = 'none'
 
-    const selectedCheckboxes = $('input.select-checkbox:checked')
+        const selectedCheckboxes = $('input.select-checkbox:checked')
 
-    if (selectedCheckboxes.length == 0 || selectedCheckboxes.length > 1) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Selecione um valor antes de alterar',
-        confirmButtonColor: '#004654',
-        confirmButtonText: 'OK'
+        if (selectedCheckboxes.length == 0 || selectedCheckboxes.length > 1) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecione um valor antes de alterar',
+            confirmButtonColor: '#004654',
+            confirmButtonText: 'OK'
+          })
+          return
+        }
+
+        // Get the closest row to the selected checkbox
+        const selectedRow = selectedCheckboxes.closest('tr')
+
+        // Open the popup for updating
+        $('.dimmer').fadeIn()
+
+        // Populate the form fields with selected row data
+        const selectedFields = selectedRow.find('td').slice(1, 7)
+        const formFields = $('#form input, #form select')
+
+        const statusValue = document.getElementById('status').value
+        const tipoValue = document.getElementById('tipo').value
+
+        console.log(statusValue)
+        console.log(tipoValue)
+        console.log(formFields.eq(0).val(selectedFields.eq(0).text().trim()))
+
+        formFields.eq(0).val(selectedFields.eq(0).text().trim())
+        formFields.eq(1).val(selectedFields.eq(1).text().trim())
+        formFields.eq(2).val(tipoValue)
+        formFields.eq(3).val(selectedFields.eq(2).text().trim())
+        formFields.eq(4).val(selectedFields.eq(3).text().trim())
+        formFields.eq(5).val(statusValue)
+
+        // Change the header text to "Atualizar Patrimônio"
+        $('.ui.dividing.header').text('Atualizar Patrimônio')
       })
-      return
-    }
-
-    // Get the closest row to the selected checkbox
-    const selectedRow = selectedCheckboxes.closest('tr')
-
-    // Open the popup for updating
-    $('.dimmer').fadeIn()
-
-    // Populate the form fields with selected row data
-    const selectedFields = selectedRow.find('td').slice(1, 7)
-    const formFields = $('#form input, #form select')
-
-    const statusValue = document.getElementById("status").value
-    const tipoValue = document.getElementById("tipo").value
-
-    console.log(statusValue)
-    console.log(tipoValue)
-    console.log(formFields.eq(0).val(selectedFields.eq(0).text().trim()))
-
-    formFields.eq(0).val(selectedFields.eq(0).text().trim())
-    formFields.eq(1).val(selectedFields.eq(1).text().trim())
-    formFields.eq(2).val(tipoValue)
-    formFields.eq(3).val(selectedFields.eq(2).text().trim())
-    formFields.eq(4).val(selectedFields.eq(3).text().trim())
-    formFields.eq(5).val(statusValue)
-
-    // Change the header text to "Atualizar Patrimônio"
-    $('.ui.dividing.header').text('Atualizar Patrimônio')
-  })
-})
+    })
 
     // Placeholder
     const tipoSelect = document.querySelector('select[name="tipo"]')
@@ -1038,6 +1038,6 @@ $(document).ready(function () {
     })
   }
 }
-</script> 
+</script>
 
 <style src="../assets/pages.css"></style>

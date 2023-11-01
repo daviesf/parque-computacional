@@ -167,7 +167,6 @@
           <div class="field">
             <label>Status</label>
             <select name="status" class="campo required" id="status" @change="statusValidate">
-              
               <option value="ativo">Ativo</option>
               <option value="inativo">Inativo</option>
               <option value="manutencao">Em manutenção</option>
@@ -243,13 +242,13 @@ export default {
         const selectedFields = selectedRow.find('td').slice(1, 4)
         const formFields = $('#form input, #form select')
 
-        const statusValue = document.getElementById("status").value
+        const statusValue = document.getElementById('status').value
 
         console.log(statusValue)
 
         formFields.eq(0).val(selectedFields.eq(1).text().trim())
         formFields.eq(1).val(selectedFields.eq(2).text().trim())
-        formFields.eq(2).val(statusValue);
+        formFields.eq(2).val(statusValue)
         cod = selectedFields.eq(0).text().trim()
 
         // Change the header text to "Atualizar Patrimônio"
