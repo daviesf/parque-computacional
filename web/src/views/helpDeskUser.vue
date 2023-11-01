@@ -46,20 +46,22 @@
           <div class="columnHelpDesk">
             <div class="ui segment">
               <h3 class="ui header">Meus Chamados</h3>
-              <table class="ui celled table">
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Assunto</th>
-                    <th>Prioridade</th>
-                    <th>Descrição</th>
-                    <th>Arquivo</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody id="tableBody"></tbody>
-              </table>
+              <div style="overflow-y: auto">
+                <table class="ui celled table">
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>E-mail</th>
+                      <th>Assunto</th>
+                      <th>Prioridade</th>
+                      <th>Descrição</th>
+                      <th>Arquivo</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableBody"></tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
