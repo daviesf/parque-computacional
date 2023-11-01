@@ -31,7 +31,7 @@
                   <textarea
                     name="description"
                     rows="2"
-                    class="campo auto-expand required"
+                    class="campo auto-expand required textarea"
                     id="descricao"
                     @input="descricaoValidate"
                   ></textarea>
@@ -65,14 +65,14 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="logout-button">
-    <router-link to="/logout">
-      <i class="sign out icon hpu"></i>
-    </router-link>
-    <div class="logout-display">
-      <p>Logout</p>
+    <div class="logout-button">
+      <router-link to="/logout">
+        <i class="sign out icon hpu"></i>
+      </router-link>
+      <div class="logout-display">
+        <p>Logout</p>
+      </div>
     </div>
   </div>
 </template>

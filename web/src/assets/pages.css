@@ -963,3 +963,8 @@ td.td-desc {
 .form-hd .button-hd:active {
   border: 0;
 }
+
+.textarea {
+  resize: vertical;
+  max-height: 200px;
+}
