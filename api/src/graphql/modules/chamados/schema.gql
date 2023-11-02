@@ -1,6 +1,5 @@
 type Chamado {
     idChamado: ID!
-    nome: String!
     dataHora: String!
     assunto: String!
     detalhes: String!
@@ -29,9 +28,7 @@ input DadosChamado {
     dataHora: String!
     detalhes: String!
     assunto: String!
-    idBancada: Int!
     status: Int!
-    nome: String!
     idFuncionario: Int!
 }
 

@@ -34,6 +34,7 @@
                     class="campo auto-expand required textarea"
                     id="descricao"
                     @input="descricaoValidate"
+                    maxlength="200"
                   ></textarea>
                   <span class="span-required">Insira a Descrição</span>
                 </div>
@@ -47,22 +48,17 @@
           <div class="columnHelpDesk">
             <div class="ui segment">
               <h3 class="ui header">Meus Chamados</h3>
-              <div style="overflow-y: auto">
-                <table class="ui celled table">
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>E-mail</th>
-                      <th>Assunto</th>
-                      <th>Prioridade</th>
-                      <th>Descrição</th>
-                      <th>Arquivo</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tableBody"></tbody>
-                </table>
-              </div>
+              <table class="ui celled table">
+                <thead>
+                  <tr>
+                    <th class="wide-250">Assunto</th>
+                    <th class="wide-100">Detalhes</th>
+                    <th class="wide-150">Data e Hora da Abertura</th>
+                    <th class="wide-100">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -81,6 +77,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { authenticator } from '../script/auth'
+
 export default {
   name: 'HelpDeskUser',
   created() {
@@ -158,23 +157,33 @@ export default {
       console.log('Iniciando cadastro')
       let assunto = document.getElementById('assunto').value
       let descricao = document.getElementById('descricao').value
-      let status = 'Pendente'
+      if (descricao.length > 200) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Descrição com mais de 200 caracteres',
+          confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
+
+          confirmButtonText: 'OK'
+        })
+      }
+      const idFuncionario = document.cookie.replace(
+        /(?:(?:^|.*;\s*)identity3\s*=\s*([^;]*).*$)|^.*$/,
+        '$1'
+      )
 
       console.log('Query')
 
-      const query = `mutation CreateChamado($data: DadosChamado!) {
-    createChamado(data: $data) {
-      idChamado
-      nome
-      status
-      idBancada
-      detalhes
-      dataHora
-      prioridade
-    }
-  }`
-
-      console.log('Variáveis')
+      const query = `mutation Mutation($data: DadosChamado!) {
+  createChamado(data: $data) {
+    dataHora
+    assunto
+    detalhes
+    status
+    idFuncionario
+  }
+}
+`
 
       // Obtém a data e hora atual
       const dataHoraAtual = new Date()
@@ -183,26 +192,13 @@ export default {
       const variables = {
         data: {
           assunto: assunto,
-          descricao: descricao,
-          status: status,
-          dataHora: dataHoraString
+          detalhes: descricao,
+          status: 0,
+          dataHora: dataHoraString,
+          idFuncionario: parseInt(atob(idFuncionario))
         }
       }
-
-      //     // Consulta para obter o ID e outras variáveis do funcionário pelo email
-      //     const queryFuncionarioByEmail = `
-      //     query FuncionariosByEmail($email: String!) {
-      //   funcionariosByEmail(email: $email) {
-      //     idBancada
-      //   }
-      // }
-      //   `;
-
-      //   // Variáveis para a consulta do funcionário
-      //   const variablesFuncionario = {
-      //     email: email,
-      //   };
-
+      console.log('aa')
       console.log(variables)
 
       axios.post('http://localhost:4000', { query, variables }).then(
@@ -221,6 +217,65 @@ export default {
         $('.form-hd .p-hd').text(this.files.length + ' arquivo(s) selecionado.')
       })
     })
+
+    function carregaDados() {
+      document.getElementById('tableBody').innerHTML = ''
+      const query = `
+        query Query {
+  chamados {
+    dataHora
+    assunto
+    detalhes
+    status
+  }
+}
+      `
+      authenticator().then((result) => {
+        if (result == 'true') {
+          axios.post('http://localhost:4000', { query }).then((result) => {
+            const chamados = result.data.data.chamados
+            const tbody = document.getElementById('tableBody')
+
+            chamados.forEach((chamado) => {
+              const tr = document.createElement('tr')
+              const tdAssunto = document.createElement('td')
+              tdAssunto.textContent = chamado.assunto
+
+              const tdDetalhes = document.createElement('td')
+              tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${chamado.idChamado}', '${chamado.detalhes}' , 'info')">Ver</button>`
+
+              const tdDataHora = document.createElement('td')
+              tdDataHora.textContent = chamado.dataHora
+
+              const tdStatus = document.createElement('td')
+              const statusValue = chamado.status
+
+              let statusText
+              if (statusValue === 0) {
+                statusText = 'Pendente'
+              } else if (statusValue === 1) {
+                statusText = 'Encerrado'
+              } else if (statusValue === 2) {
+                statusText = 'Resolvido'
+              } else {
+                statusText = 'Desconhecido'
+              }
+
+              tdStatus.textContent = statusText
+
+              tr.appendChild(tdAssunto)
+              tr.appendChild(tdDetalhes)
+              tr.appendChild(tdDataHora)
+              tr.appendChild(tdStatus)
+
+              tbody.appendChild(tr)
+            })
+          })
+        }
+      })
+    }
+
+    carregaDados()
   }
 }
 </script>

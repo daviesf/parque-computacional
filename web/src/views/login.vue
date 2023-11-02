@@ -147,6 +147,12 @@ export default {
             '; expires=' +
             new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() +
             '; path=/'
+            document.cookie =
+            'identity3=' +
+            btoa(updatedUser.idFuncionario) +
+            '; expires=' +
+            new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toUTCString() +
+            '; path=/'
 
           if (updatedUser.tipo == 1) {
             window.location.href = '/'

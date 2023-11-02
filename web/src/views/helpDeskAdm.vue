@@ -43,6 +43,7 @@
                 </div>
               </div>
             </div>
+
             <div class="accordion">
               <div class="accordion-header">
                 <span>Descrição</span>
@@ -110,7 +111,6 @@
                   </td>
                   <th class="wide-50">ID</th>
                   <th class="wide-150">Nome</th>
-                  <th class="wide-80">Bancada</th>
                   <th class="wide-150">Data e hora</th>
                   <th class="wide-50">Descrição</th>
                   <th class="wide-80">Status</th>
@@ -158,13 +158,12 @@ export default {
 
     carregaDados()
 
-    async function carregaDados() {
+    function carregaDados() {
       document.getElementById('helpDesk-table-body').innerHTML = ''
       const query = `query Chamados {
   chamados {
     dataHora
     detalhes
-    idBancada
     idChamado
     status
     idFuncionario
@@ -218,6 +217,7 @@ export default {
                 const tdBancada = document.createElement('td')
                 tdBancada.textContent = chamado.idBancada
 
+
                 const tddataHora = document.createElement('td')
                 tddataHora.textContent = chamado.dataHora
 
@@ -243,7 +243,6 @@ export default {
                 tr.appendChild(tdCheckbox)
                 tr.appendChild(tdChamado)
                 tr.appendChild(tdNome)
-                tr.appendChild(tdBancada)
                 tr.appendChild(tddataHora)
                 tr.appendChild(tdDescricao)
                 tr.appendChild(tdStatus)
@@ -318,7 +317,7 @@ export default {
 
                     Swal.fire({
                       title: 'Deletado!',
-                      text: 'A chamada foi removido com sucesso!',
+                      text: 'O chamado foi removido com sucesso!',
                       icon: 'success',
                       confirmButtonColor: '#004654' // Cor personalizada do botão OK
                     })
