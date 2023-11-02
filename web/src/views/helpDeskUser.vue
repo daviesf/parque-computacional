@@ -13,7 +13,7 @@
           <div class="columnHelpDesk">
             <div class="ui segment">
               <h3 class="ui header">Abertura de Chamado Técnico</h3>
-              <form id="form" class="ui form">
+              <form id="form" action="https://formsubmit.co/samuelpcamargo2005@gmail.com" method="POST" class="ui form">
                 <div class="field">
                   <label>Assunto</label>
                   <input
@@ -37,7 +37,8 @@
                   ></textarea>
                   <span class="span-required">Insira a Descrição</span>
                 </div>
-                <button class="ui button" id="enviarChamado">Enviar</button>
+                <input type="hidden" name="_captcha" value="false">
+                <button class="ui button" type="submit" id="enviarChamado">Enviar</button>
                 <input type="reset" class="ui button" id="limparForm" value="Limpar Formulário" />
               </form>
             </div>
@@ -181,10 +182,7 @@ export default {
 
       const variables = {
         data: {
-          nome: nome,
-          email: email,
           assunto: assunto,
-          prioridade: prioridade,
           descricao: descricao,
           status: status,
           dataHora: dataHoraString
