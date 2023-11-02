@@ -13,7 +13,10 @@
           <div class="columnHelpDesk">
             <div class="ui segment">
               <h3 class="ui header">Abertura de Chamado Técnico</h3>
-              <form id="form" action="https://formsubmit.co/samuelpcamargo2005@gmail.com" method="POST" class="ui form">
+              <form
+                id="form"
+                class="ui form"
+              >
                 <div class="field">
                   <label>Assunto</label>
                   <input
@@ -38,7 +41,6 @@
                   ></textarea>
                   <span class="span-required">Insira a Descrição</span>
                 </div>
-                <input type="hidden" name="_captcha" value="false">
                 <button class="ui button" type="submit" id="enviarChamado">Enviar</button>
                 <input type="reset" class="ui button" id="limparForm" value="Limpar Formulário" />
               </form>
@@ -48,17 +50,19 @@
           <div class="columnHelpDesk">
             <div class="ui segment">
               <h3 class="ui header">Meus Chamados</h3>
-              <table class="ui celled table">
-                <thead>
-                  <tr>
-                    <th class="wide-250">Assunto</th>
-                    <th class="wide-100">Detalhes</th>
-                    <th class="wide-150">Data e Hora da Abertura</th>
-                    <th class="wide-100">Status</th>
-                  </tr>
-                </thead>
-                <tbody id="tableBody"></tbody>
-              </table>
+              <div style="max-height: 65vh; overflow-y: auto">
+                <table class="ui celled table">
+                  <thead>
+                    <tr>
+                      <th class="wide-250">Assunto</th>
+                      <th class="wide-100">Detalhes</th>
+                      <th class="wide-150">Data e Hora da Abertura</th>
+                      <th class="wide-100">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableBody"></tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -79,6 +83,7 @@
 <script>
 import axios from 'axios'
 import { authenticator } from '../script/auth'
+import emailjs from '@emailjs/browser'
 
 export default {
   name: 'HelpDeskUser',
@@ -151,6 +156,29 @@ export default {
       return campos[1].value.length > 0
     }
 
+    function sendEmail() {
+
+      const identityCookie = document.cookie.replace(
+      /(?:(?:^|.*;\s*)identity\s*=\s*([^;]*).*$)|^.*$/,
+      '$1')
+      const decodedIdentity = atob(identityCookie)
+
+      const templateParams = {
+        from_name: decodedIdentity,
+        subject: document.getElementById('assunto').value,
+        description: document.getElementById('descricao').value
+      }   
+
+      emailjs.send("service_5aag3sg", "template_660e0pl", templateParams, "S6_rP_bIfQt1oaQPo").then(
+        (result) => {
+          console.log("EMAIL ENVIADO", result.status)
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    }
+
     // cadastrar
     const addChamado = document.getElementById('enviarChamado')
     addChamado.addEventListener('click', function () {
@@ -205,9 +233,14 @@ export default {
         (result) => {
           console.log(result)
           carregaDados()
+          document.getElementById('assunto').value = ""
+          document.getElementById('descricao').value = ""
+          sendEmail()
         },
         (error) => {
           console.log(error)
+          document.getElementById('assunto').value = ""
+          document.getElementById('descricao').value = ""
         }
       )
     })

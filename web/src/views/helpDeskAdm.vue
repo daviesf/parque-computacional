@@ -28,24 +28,6 @@
             </div>
             <div class="accordion">
               <div class="accordion-header">
-                <span>Bancada</span>
-                <span class="accordion-icon">+</span>
-              </div>
-              <div class="accordion-body">
-                <div class="ui icon input fluid">
-                  <input
-                    type="text"
-                    placeholder="ID da bancada"
-                    class="fluid"
-                    id="filter-idBancada"
-                  />
-                  <i class="search icon"></i>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion">
-              <div class="accordion-header">
                 <span>Descrição</span>
                 <span class="accordion-icon">+</span>
               </div>
