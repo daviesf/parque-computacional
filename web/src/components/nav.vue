@@ -89,7 +89,6 @@
       </li>
     </ul>
   </div>
-
 </template>
 
 <script>
@@ -116,7 +115,6 @@ export default {
         app2.classList.add('inverted')
         app2.classList.add('dark-mode')
         document.cookie = 'theme=dark;path=/'
-
       } else {
         // Voltar ao modo normal
         themeIcon.classList.replace('sun', 'moon')
@@ -125,7 +123,6 @@ export default {
         app2.classList.remove('inverted')
         app2.classList.remove('dark-mode')
         document.cookie = 'theme=light;path=/'
-
       }
     },
     toggleTheme1() {

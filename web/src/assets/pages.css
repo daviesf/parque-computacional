@@ -193,7 +193,7 @@ a sintaxe @media. Att Davie e Samuka em 05/04/2023 */
   align-items: center;
 }
 
-.sidebar.open~.bg-dimmer {
+.sidebar.open ~ .bg-dimmer {
   backdrop-filter: blur(10px);
   opacity: 0.8;
   z-index: 50;
@@ -415,9 +415,8 @@ select.placeholder {
 .home_title .hello1 {
   font-family: SFProBold;
   font-size: 70px;
-  color: #fff
+  color: #fff;
 }
-
 
 .home_title .welcome {
   padding-bottom: px;
@@ -593,15 +592,15 @@ select.placeholder {
   transition: all 0.3s;
 }
 
-.ui.two.column.grid>.column {
+.ui.two.column.grid > .column {
   width: 50%;
 }
 
-.ui.two.column.grid>.column:first-child {
+.ui.two.column.grid > .column:first-child {
   padding-right: 10px;
 }
 
-.ui.two.column.grid>.column:last-child {
+.ui.two.column.grid > .column:last-child {
   padding-left: 10px;
 }
 
@@ -888,7 +887,6 @@ td.td-desc {
   /* Espaçamento interno vertical */
 }
 
-
 .navhelp {
   height: 101.5vh;
   background-color: rgb(0, 70, 84);
@@ -919,7 +917,6 @@ td.td-desc {
   border: 2px dashed rgb(156, 156, 156);
 }
 
-
 .form-hd .p-hd {
   width: 100%;
   height: 100%;
@@ -927,7 +924,6 @@ td.td-desc {
   line-height: 170px;
   color: #000000;
   font-size: 15px;
-
 }
 
 .form-hd .input-hd {
@@ -954,14 +950,14 @@ td.td-desc {
   margin-top: -20px;
   margin-left: -4px;
   border-radius: 4px;
-  border-bottom: 4px solid #117A60;
-  transition: all .2s ease;
+  border-bottom: 4px solid #117a60;
+  transition: all 0.2s ease;
   outline: none;
 }
 
 .form-hd .button-hd:hover {
   background: #149174;
-  color: #0C5645;
+  color: #0c5645;
 }
 
 .form-hd .button-hd:active {

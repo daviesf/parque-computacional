@@ -651,21 +651,21 @@ export default {
         const formFields = $('#form input, #form select')
 
         const funcionarioValue = document.getElementById('funcionario').value
+        const patrimonioValue = document.getElementById('patrimonio').value
         const detalhesValue = document.getElementById('detalhes').value
         const dataValue = document.getElementById('data').value
 
-        console.log(funcionarioValue)
-        console.log(document.getElementsByClassName('ui button desc').value)
         console.log(dataValue)
-        console.log(formFields.eq(0).val(selectedFields.eq(0).text().trim()))
+        console.log(detalhesValue)
 
-        formFields.eq(0).val(selectedFields.eq(1).text().trim())
+
+        formFields.eq(0).val(patrimonioValue)
         formFields.eq(1).val(detalhesValue)
         formFields.eq(2).val(dataValue)
         formFields.eq(3).val(funcionarioValue)
 
         // Change the header text to "Atualizar Patrimônio"
-        $('.ui.dividing.header').text('Atualizar Patrimônio')
+        $('.ui.dividing.header').text('Alterar Manutenção')
       })
 
       // Hide the pop-up and dimmer when "Cancelar" button is clicked
