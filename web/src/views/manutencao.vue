@@ -580,7 +580,7 @@ export default {
             selectedCheckboxes.each(function () {
               const selectedRow = $(this).closest('tr')
               const selectedFields = selectedRow.find('td').slice(1, 7)
-              const codigoMantencao = selectedFields.eq(0).text().trim()
+              const codigoManutencao = selectedFields.eq(0).text().trim()
 
               const query = `
               mutation DeleteConserto($idConserto: ID!) {
@@ -589,7 +589,7 @@ export default {
             `
 
               const variables = {
-                idConserto: parseInt(codigoMantencao)
+                idConserto: parseInt(codigoManutencao)
               }
 
               axios.post('http://localhost:4000', { query, variables }).then(
@@ -674,6 +674,60 @@ export default {
         $('.dimmer').hide()
       })
     })
+
+    const updManutencao = document.getElementById('upd-manutencao')
+    updManutencao.addEventListener('click', function () {
+      console.log('Iniciando Atualização')
+      const funcionario = document.getElementById('funcionario').value
+      const patrimonio = document.getElementById('patrimonio').value
+      const detalhes = document.getElementById('detalhes').value
+      const data = document.getElementById('data').value
+
+      const selectedCheckboxes = $('input.select-checkbox:checked')
+      const selectedRow = selectedCheckboxes.closest('tr')
+
+      const selectedFields = selectedRow.find('td').slice(1, 7)
+      const codigoManutencao = selectedFields.eq(0).text().trim()
+
+      const query = `mutation Mutation($idConserto: ID!, $data: DadosConserto!) {
+  updateConserto(idConserto: $idConserto, data: $data) {
+    dataHora
+    detalhes
+    idConserto
+    idFuncionario
+    idPatrimonio
+  }
+}`
+
+      console.log('Variáveis')
+
+      const variables = {
+        data: {
+          idFuncionario: parseInt(funcionario),
+          idPatrimonio: parseInt(patrimonio),
+          detalhes: detalhes,
+          dataHora: data,
+          idConserto: parseInt(codigoManutencao)
+        },
+        idConserto: parseInt(codigoManutencao)
+      }
+
+      console.log(variables)
+
+      axios.post('http://localhost:4000', { query, variables }).then(
+        (result) => {
+          console.log(result)
+          $('.popup').hide()
+          $('.dimmer').hide()
+          carregaDados()
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    })
+
+
     // filtro
     const filtro = document.getElementById('filter')
     filtro.addEventListener('click', function () {
