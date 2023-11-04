@@ -892,9 +892,12 @@ export default {
   }
 }`
 
+      console.log('Código selecionado:', cod)
+
       console.log('Variáveis')
 
       const variables = {
+        idPatrimonio: parseInt(cod),
         data: {
           status: parseInt(status),
           idBancada: parseInt(bancada),
@@ -902,8 +905,7 @@ export default {
           marca: marca,
           modelo: modelo,
           tipo: tipo
-        },
-        idPatrimonio: parseInt(cod)
+        }
       }
 
       console.log(variables)

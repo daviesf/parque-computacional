@@ -690,8 +690,8 @@ export default {
     }
     const addBancada = document.getElementById('submit-bancada')
     //Atualizar
-    const updPatrimonio = document.getElementById('upd-bancada')
-    updPatrimonio.addEventListener('click', function () {
+    const updBancada = document.getElementById('upd-bancada')
+    updBancada.addEventListener('click', function () {
       console.log('Iniciando Atualização')
 
       console.log('Código selecionado:', cod)
@@ -705,8 +705,6 @@ export default {
         status = '0'
       } else if (status == 'manutencao') {
         status = '2'
-      } else {
-        status = '0'
       }
 
       console.log('Verificando status')
@@ -729,7 +727,7 @@ export default {
         data: {
           apelido: apelido,
           local: local,
-          status: status
+          status: parseInt(status)
         }
       }
 
