@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div class="ui grid">
+    <div class="ui grid ">
       <div class="six wide column navhelp">
-        <div class="home_title">
+        <div class="home_title_helpdesk">
           <div id="saude" class="hello1">Olá, [nome]</div>
           <div class="welcome1">Seja bem-vindo ao sistema de chamados técnicos!</div>
           <img src="../assets/media/hd1.gif" alt="GIF HELPDESK" class="img-hd" />
@@ -50,7 +50,7 @@
           <div class="columnHelpDesk">
             <div class="ui segment">
               <h3 class="ui header">Meus Chamados</h3>
-              <div style="max-height: 65vh; overflow-y: auto">
+              <div class="tabela-hd">
                 <table class="ui celled table">
                   <thead>
                     <tr>
@@ -162,15 +162,18 @@ export default {
       /(?:(?:^|.*;\s*)identity\s*=\s*([^;]*).*$)|^.*$/,
       '$1')
       const decodedIdentity = atob(identityCookie)
+      const subjectValue = document.getElementById('assunto').value
+      const descriptionValue = document.getElementById('descricao').value
 
       const templateParams = {
         from_name: decodedIdentity,
-        subject: document.getElementById('assunto').value,
-        description: document.getElementById('descricao').value
+        subject: subjectValue,
+        description: descriptionValue
       }   
 
       emailjs.send("service_5aag3sg", "template_660e0pl", templateParams, "S6_rP_bIfQt1oaQPo").then(
         (result) => {
+          console.log(templateParams)
           console.log("EMAIL ENVIADO", result.status)
         },
         (error) => {
@@ -233,9 +236,9 @@ export default {
         (result) => {
           console.log(result)
           carregaDados()
+          sendEmail()
           document.getElementById('assunto').value = ""
           document.getElementById('descricao').value = ""
-          sendEmail()
         },
         (error) => {
           console.log(error)

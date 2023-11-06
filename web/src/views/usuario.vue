@@ -94,7 +94,7 @@
           </div>
         </div>
 
-        <div class="eleven wide column" style="margin-top: 30px">
+        <div class="eleven wide column" style="margin-top: 20px">
           <div style="max-height: 65vh; overflow-y: auto">
             <table class="ui compact celled definition table">
               <thead>

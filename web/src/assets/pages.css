@@ -390,14 +390,33 @@ select.placeholder {
 
 .home_title_helpdesk {
   display: flex;
-  align-items: left;
-  justify-content: left;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  font-size: 2em;
+  font-size: 6em;
   padding: 0.4em;
   line-height: 1.2;
   font-weight: 700;
   color: white;
+}
+
+.home_title_helpdesk .hello1 {
+  font-family: SFProBold;
+  font-size: 70px;
+  color: #fff;
+}
+
+.home_title_helpdesk .welcome {
+  padding-bottom: px;
+  font-size: 0.5em;
+}
+
+.home_title_helpdesk .welcome1 {
+  padding-top: 5px;
+  font-size: 33px;
+  text-align: center;
+  max-width: 80%;
+  color: #fff;
 }
 
 .home_title {
@@ -871,6 +890,32 @@ td.td-desc {
     font-family: SFProBold;
     color: #00000083;
   }
+
+  .navhelp {
+    min-height: 140vh;
+  }
+  
+  .tabela-hd {
+    min-height: 48vh; 
+    overflow-y: auto
+  }
+
+  .home_title_helpdesk {
+    font-size: 3em;
+  }
+
+  .hello1 {
+    font-size: 60px !important;
+  }
+
+  .welcome1 {
+    font-size: 30px !important;
+  }
+
+  .img-hd {
+    padding-top: 1em;
+    height: 450px;
+  }
 }
 
 .dark-mode #add-patrimonio {
@@ -893,6 +938,11 @@ td.td-desc {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.tabela-hd {
+  max-height: 40vh; 
+  overflow-y: auto
 }
 
 .navhelp2 {

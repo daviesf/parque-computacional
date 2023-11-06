@@ -128,7 +128,7 @@
           </div>
         </div>
 
-        <div class="eleven wide column tabelinha" style="margin-top: 30px">
+        <div class="eleven wide column tabelinha" style="margin-top: 20px">
           <div style="max-height: 65vh; overflow-y: auto">
             <table class="ui compact celled definition table">
               <thead>
@@ -156,9 +156,9 @@
                 <div class="ui right floated small labeled icon button" id="add-patrimonio">
                   <i class="keyboard outline icon"></i> Adicionar Patrimônio
                 </div>
-                <div class="ui left floated small button bg-button" id="del-patrimonio-btn">
+                <!-- <div class="ui left floated small button bg-button" id="del-patrimonio-btn">
                   Excluir
-                </div>
+                </div> -->
                 <div class="ui left floated small button bg-button" id="upd-patrimonio-btn">
                   Alterar
                 </div>

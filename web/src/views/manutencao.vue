@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <div class="eleven wide column" style="margin-top: 30px">
+        <div class="eleven wide column" style="margin-top: 20px">
           <div style="max-height: 65vh; overflow-y: auto">
             <table class="ui compact celled definition table">
               <thead>
@@ -112,9 +112,9 @@
                 <div class="ui left floated small button bg-button" id="del-manutencao-btn">
                   Excluir
                 </div>
-                <div class="ui left floated small button bg-button" id="upd-manutencao-btn">
+                <!-- <div class="ui left floated small button bg-button" id="upd-manutencao-btn">
                   Alterar
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -129,7 +129,7 @@
           <div class="field">
             <label>Patrimônio</label>
             <select name="tipo" class="campo required" id="patrimonio" @change="patrimonioValidate">
-              <!-- <option selected value="" disabled>Selecione um Patrimônio...</option> -->
+              <option selected value="" disabled>Selecione um Patrimônio...</option>
             </select>
             <span class="span-required">Selecione algum Patrimônio</span>
           </div>
@@ -157,7 +157,7 @@
               id="funcionario"
               @change="funcionarioValidate"
             >
-              <!-- <option selected value="" disabled>Selecione um Funcionário...</option> -->
+              <option selected value="" disabled>Selecione um Funcionário...</option>
             </select>
             <span class="span-required">Selecione algum Funcionário</span>
           </div>
@@ -474,7 +474,7 @@ export default {
                 tdData.textContent = conserto.dataHora
 
                 const tdDetalhes = document.createElement('td')
-                tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${conserto.idConserto}', '${conserto.detalhes}' , 'info')">Ver</button>`
+                tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" name="details" onclick="Swal.fire('Descrição ID ${conserto.idConserto}', '${conserto.detalhes}' , 'info')">Ver</button>`
 
                 tr.appendChild(tdCheckbox)
                 tr.appendChild(tdManutencao)
@@ -652,7 +652,7 @@ export default {
 
         const funcionarioValue = document.getElementById('funcionario').value
         const patrimonioValue = document.getElementById('patrimonio').value
-        const detalhesValue = document.getElementById('detalhes').value
+        const detalhesValue = document.getElementsByName("details")[0].value;
         const dataValue = document.getElementById('data').value
 
         console.log(dataValue)
