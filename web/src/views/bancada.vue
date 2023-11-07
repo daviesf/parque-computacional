@@ -126,7 +126,7 @@
                 <!-- <div class="ui left floated small button" id="del-bancada-btn">Excluir</div> -->
                 <div class="ui left floated small button" id="upd-bancada-btn">Alterar</div>
                 <div class="ui left floated small button" id="ativar-bancada-btn">Ativar</div>
-                <div class="ui left floated small button" id="desativar-bancada-btn">Desativar</div>
+                <div class="ui left floated small button" id="desativar-bancada-btn">Inativar</div>
               </div>
             </div>
           </div>

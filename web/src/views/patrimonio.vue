@@ -68,27 +68,9 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                <div class="ui two column grid">
-                  <div class="column">
-                    <div class="ui checkbox">
-                      <input type="checkbox" class="select-checkbox" id="cb-impressora" />
-                      <label>Impressora</label>
-                    </div>
-                    <div class="ui checkbox">
-                      <input type="checkbox" class="select-checkbox" id="cb-notebook" />
-                      <label>Notebook</label>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui checkbox">
-                      <input type="checkbox" class="select-checkbox" id="cb-desktop" />
-                      <label>Desktop</label>
-                    </div>
-                    <div class="ui checkbox">
-                      <input type="checkbox" class="select-checkbox" id="cb-monitor" />
-                      <label>Monitor</label>
-                    </div>
-                  </div>
+                 <div class="ui icon input fluid">
+                  <input type="text" placeholder="Ex: Impressora" class="fluid" id="filter-tipo" />
+                  <i class="search icon"></i>
                 </div>
               </div>
             </div>
@@ -102,17 +84,17 @@
                   <div class="column">
                     <div class="ui checkbox">
                       <input type="checkbox" id="cb-ativo" />
-                      <label>ativo</label>
+                      <label>Ativo</label>
                     </div>
                     <div class="ui checkbox">
                       <input type="checkbox" id="cb-inativo" />
-                      <label>inativo</label>
+                      <label>Inativo</label>
                     </div>
                   </div>
                   <div class="column">
                     <div class="ui checkbox">
                       <input type="checkbox" id="cb-manut" />
-                      <label>manutenção</label>
+                      <label>Manutenção</label>
                     </div>
                   </div>
                 </div>
@@ -166,7 +148,7 @@
                   Ativar
                 </div>
                 <div class="ui left floated small button bg-button" id="desativar-patrimonio-btn">
-                  Desativar
+                  Inativar
                 </div>
               </div>
             </div>
@@ -202,15 +184,14 @@
               </div>
               <div class="field">
                 <label>Tipo</label>
-                <select name="tipo" class="campo required" id="tipo" @change="tipoValidate">
-                  <!-- <option value="Selecione" class="placeholder" disabled selected>
-                    Selecione o tipo
-                  </option> -->
-                  <option value="Desktop">Desktop</option>
-                  <option value="Notebook">Notebook</option>
-                  <option value="Impressora">Impressora</option>
-                  <option value="Monitor">Monitor</option>
-                </select>
+                <input
+                  type="text"
+                  name="tipo"
+                  placeholder="Tipo"
+                  class="campo required"
+                  id="tipo"
+                  @input="tipoValidate"
+                />
                 <span class="span-required">Selecione um tipo</span>
               </div>
             </div>
@@ -930,6 +911,7 @@ export default {
       let bancada = document.getElementById('filter-bancada').value
       let marca = document.getElementById('filter-marca').value
       let modelo = document.getElementById('filter-modelo').value
+      let tipo = document.getElementById('filter-tipo').value
       if (document.getElementById('cb-ativo').checked) {
         var status = '1'
       } else if (document.getElementById('cb-inativo').checked) {
@@ -937,16 +919,7 @@ export default {
       } else if (document.getElementById('cb-manut').checked) {
         var status = '2'
       }
-
-      if (document.getElementById('cb-impressora').checked) {
-        var tipo = 'Impressora'
-      } else if (document.getElementById('cb-desktop').checked) {
-        var tipo = 'Desktop'
-      } else if (document.getElementById('cb-notebook').checked) {
-        var tipo = 'Notebook'
-      } else if (document.getElementById('cb-monitor').checked) {
-        var tipo = 'Monitor'
-      }
+      
       const query = `query Query($filter: PatrimonioFilter) {
   searchPatrimonios(filter: $filter) {
     idBancada
