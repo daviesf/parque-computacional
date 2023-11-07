@@ -37,7 +37,7 @@ if (cookie) {
         if (user.tipo == 1) {
           console.log('Administrador')
           window.location.href = '/'
-        } else if (user.tipo == 2) {
+        } else if (user.tipo == 0) {
           console.log('Usuário comum')
           window.location.href = '/helpdeskuser'
         } else {

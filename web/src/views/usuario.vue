@@ -514,7 +514,7 @@ export default {
           nome: nome,
           email: email,
           tipo: tipo,
-          status: status
+          status: parseInt(status)
         }
       }
 
@@ -580,7 +580,7 @@ export default {
           let tipoText
           if (tipoValue == 1) {
             tipoText = 'Administrador'
-          } else if (tipoValue == 2) {
+          } else if (tipoValue == 0) {
             tipoText = 'Usuário Comum'
           } else {
             tipoText = 'Desconhecido' // Tratamento para outros valores de tipo

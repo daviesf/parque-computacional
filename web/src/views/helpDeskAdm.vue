@@ -130,16 +130,16 @@ export default {
   mounted() {
     function theme() {
       const themeIcon = document.getElementById('theme-icon')
-      const theme = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, "$1");
+      const theme = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, '$1')
       const app2 = document.querySelector('table')
       if (theme) {
-          if (theme == 'dark') {
-              app2.classList.add('inverted')
-              app2.classList.add('dark-mode')
-          } else if (theme == 'light') {
-              app2.classList.remove('inverted')
-              app2.classList.remove('dark-mode')
-          }
+        if (theme == 'dark') {
+          app2.classList.add('inverted')
+          app2.classList.add('dark-mode')
+        } else if (theme == 'light') {
+          app2.classList.remove('inverted')
+          app2.classList.remove('dark-mode')
+        }
       }
     }
 
@@ -215,12 +215,16 @@ export default {
                 const tdBancada = document.createElement('td')
                 tdBancada.textContent = chamado.idBancada
 
-
                 const tddataHora = document.createElement('td')
                 tddataHora.textContent = chamado.dataHora
 
                 const tdDescricao = document.createElement('td')
-                tdDescricao.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${chamado.idChamado}', '${chamado.descricao}' , 'info')">Ver</button>`
+                tdDescricao.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire({
+  icon: 'info',
+  title: 'Descrição ID ${chamado.idChamado}',
+  text: '${chamado.detalhes}',
+  confirmButtonColor: '#004654'
+})">Ver</button>`
 
                 const tdStatus = document.createElement('td')
                 const statusValue = chamado.status

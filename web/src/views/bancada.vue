@@ -704,7 +704,7 @@ export default {
         }
       })
     }
-    const addBancada = document.getElementById('submit-bancada')
+    
     //Atualizar
     const updBancada = document.getElementById('upd-bancada')
     updBancada.addEventListener('click', function () {
@@ -796,6 +796,7 @@ export default {
       spans[index].style.display = 'none'
     }
 
+    const addBancada = document.getElementById('submit-bancada')
     addBancada.addEventListener('click', function () {
       console.log('Iniciando cadastro')
       let apelido = document.getElementById('apelido').value
@@ -827,16 +828,12 @@ export default {
         data: {
           apelido: apelido,
           local: local,
-          status: status
+          status: parseInt(status)
         }
       }
 
       console.log(variables)
 
-      // Executa a validação
-      const isValid = validateForm()
-
-      if (isValid) {
         axios.post('http://localhost:4000', { query, variables }).then(
           (result) => {
             console.log(result)
@@ -848,7 +845,6 @@ export default {
             console.log(error)
           }
         )
-      }
     })
 
     form.addEventListener('submit', (event) => {
@@ -883,7 +879,7 @@ export default {
           idBancada: parseInt(bancada),
           apelido: apelido,
           local: local,
-          status: status
+          status: parseInt(status)
         }
       }
 

@@ -4,8 +4,6 @@
     <iframe
       id="dash"
       title="Report Section"
-      width="100%"
-      height="680px"
       src="https://app.powerbi.com/view?r=eyJrIjoiMDZmMjRjYWUtMzA2Ny00ZGFmLTk4YzctMTBhZDM0OTI3OTU3IiwidCI6ImI0NzQxYTgyLTZiNmUtNDNhNS1hZDZlLTEwNDQ1MTFhYWVkNiJ9"
       frameborder="0"
       allowFullScreen="true"
@@ -37,7 +35,17 @@ export default {
 
         var styleElement = novaJanela.document.createElement('style')
         styleElement.type = 'text/css'
-        styleElement.textContent = '@media print { @page { size: landscape; } }'
+        styleElement.textContent = `
+  @media print {
+    @page {
+      size: landscape;
+    }
+    #dash {
+      width: 100%; /* Defina a largura desejada */
+      height: 700px; /* Defina a altura desejada */
+    }
+  }
+`
 
         // Adicione o elemento 'style' ao cabeçalho do documento da nova janela
         novaJanela.document.head.appendChild(styleElement)
