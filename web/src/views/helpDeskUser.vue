@@ -128,10 +128,6 @@ export default {
       spans[index].style.display = 'none'
     }
 
-    document.getElementById('limparForm').addEventListener('click', function (event) {
-      document.querySelector('.form-hd .p-hd').textContent = 'Arraste ou anexe arquivos aqui.'
-    })
-
     function validateForm() {
       const validations = [
         { index: 0, isValid: assuntoValidate },

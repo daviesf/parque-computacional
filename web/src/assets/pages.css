@@ -1018,3 +1018,16 @@ td.td-desc {
   resize: vertical;
   max-height: 200px;
 }
+
+.ui.dividing.header {
+  color: black;
+  background-color: white !important;
+  
+}
+
+@media print {
+  @page {
+    size: landscape;
+  }
+}
+
