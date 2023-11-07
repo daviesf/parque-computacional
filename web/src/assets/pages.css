@@ -755,7 +755,7 @@ td.td-desc {
   transition: 0.5s;
 }
 
-.dark-mode .logo_name {
+.dark-mode .logo_name .darkmode.div.div.div.main{
   color: #fff;
 }
 
@@ -795,6 +795,13 @@ td.td-desc {
   color: #fff;
 }
 
+.dark-mode h2 {
+  color: #fff;
+}
+
+.dark-mode p {
+  color: #fff;
+}
 .dark-mode .button1 {
   background-color: #737373;
 }
@@ -1029,5 +1036,9 @@ td.td-desc {
   @page {
     size: landscape;
   }
+}
+
+.logout-button:hover {
+  cursor: pointer;
 }
 

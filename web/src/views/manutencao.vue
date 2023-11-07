@@ -474,7 +474,12 @@ export default {
                 tdData.textContent = conserto.dataHora
 
                 const tdDetalhes = document.createElement('td')
-                tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" name="details" onclick="Swal.fire('Descrição ID ${conserto.idConserto}', '${conserto.detalhes}' , 'info')">Ver</button>`
+                tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" name="details" onclick="Swal.fire({
+  icon: 'info',
+  title: 'Descrição ID ${conserto.idConserto}',
+  text: '${conserto.detalhes}',
+  confirmButtonColor: '#004654'
+})">Ver</button>`
 
                 tr.appendChild(tdCheckbox)
                 tr.appendChild(tdManutencao)
@@ -652,12 +657,11 @@ export default {
 
         const funcionarioValue = document.getElementById('funcionario').value
         const patrimonioValue = document.getElementById('patrimonio').value
-        const detalhesValue = document.getElementsByName("details")[0].value;
+        const detalhesValue = document.getElementsByName('details')[0].value
         const dataValue = document.getElementById('data').value
 
         console.log(dataValue)
         console.log(detalhesValue)
-
 
         formFields.eq(0).val(patrimonioValue)
         formFields.eq(1).val(detalhesValue)
@@ -726,7 +730,6 @@ export default {
         }
       )
     })
-
 
     // filtro
     const filtro = document.getElementById('filter')

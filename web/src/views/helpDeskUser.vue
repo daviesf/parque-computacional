@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="ui grid ">
+    <div class="ui grid">
       <div class="six wide column navhelp">
         <div class="home_title_helpdesk">
           <div id="saude" class="hello1">Olá, [nome]</div>
@@ -13,10 +13,7 @@
           <div class="columnHelpDesk">
             <div class="ui segment">
               <h3 class="ui header">Abertura de Chamado Técnico</h3>
-              <form
-                id="form"
-                class="ui form"
-              >
+              <form id="form" class="ui form">
                 <div class="field">
                   <label>Assunto</label>
                   <input
@@ -56,7 +53,7 @@
                     <tr>
                       <th class="wide-250">Assunto</th>
                       <th class="wide-100">Detalhes</th>
-                      <th class="wide-150">Data e Hora da Abertura</th>
+                      <th class="wide-150">Data e Hora</th>
                       <th class="wide-100">Status</th>
                     </tr>
                   </thead>
@@ -96,6 +93,7 @@ export default {
     this.$emit('hideFooter', false)
   },
   mounted() {
+    carregaDados()
     if (localStorage.getItem('name') != null) {
       const name = JSON.parse(localStorage.getItem('name'))
       document.getElementById('saude').innerHTML = 'Olá, ' + name
@@ -153,10 +151,10 @@ export default {
     }
 
     function sendEmail() {
-
       const identityCookie = document.cookie.replace(
-      /(?:(?:^|.*;\s*)identity\s*=\s*([^;]*).*$)|^.*$/,
-      '$1')
+        /(?:(?:^|.*;\s*)identity\s*=\s*([^;]*).*$)|^.*$/,
+        '$1'
+      )
       const decodedIdentity = atob(identityCookie)
       const subjectValue = document.getElementById('assunto').value
       const descriptionValue = document.getElementById('descricao').value
@@ -165,12 +163,12 @@ export default {
         from_name: decodedIdentity,
         subject: subjectValue,
         description: descriptionValue
-      }   
+      }
 
-      emailjs.send("service_5aag3sg", "template_660e0pl", templateParams, "S6_rP_bIfQt1oaQPo").then(
+      emailjs.send('service_5aag3sg', 'template_660e0pl', templateParams, 'S6_rP_bIfQt1oaQPo').then(
         (result) => {
           console.log(templateParams)
-          console.log("EMAIL ENVIADO", result.status)
+          console.log('EMAIL ENVIADO', result.status)
         },
         (error) => {
           console.log(error)
@@ -233,13 +231,13 @@ export default {
           console.log(result)
           carregaDados()
           sendEmail()
-          document.getElementById('assunto').value = ""
-          document.getElementById('descricao').value = ""
+          document.getElementById('assunto').value = ''
+          document.getElementById('descricao').value = ''
         },
         (error) => {
           console.log(error)
-          document.getElementById('assunto').value = ""
-          document.getElementById('descricao').value = ""
+          document.getElementById('assunto').value = ''
+          document.getElementById('descricao').value = ''
         }
       )
     })
@@ -255,6 +253,7 @@ export default {
       const query = `
         query Query {
   chamados {
+    idChamado
     dataHora
     assunto
     detalhes
@@ -274,7 +273,12 @@ export default {
               tdAssunto.textContent = chamado.assunto
 
               const tdDetalhes = document.createElement('td')
-              tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire('Descrição ID ${chamado.idChamado}', '${chamado.detalhes}' , 'info')">Ver</button>`
+              tdDetalhes.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire({
+  icon: 'info',
+  title: 'Descrição ID ${chamado.idChamado}',
+  text: '${chamado.detalhes}',
+  confirmButtonColor: '#004654'
+})">Ver</button>`
 
               const tdDataHora = document.createElement('td')
               tdDataHora.textContent = chamado.dataHora
@@ -306,8 +310,6 @@ export default {
         }
       })
     }
-
-    carregaDados()
   }
 }
 </script>

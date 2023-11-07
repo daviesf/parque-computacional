@@ -249,7 +249,7 @@ export default {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Selecione a chamada que deseja excluir',
+            text: 'Selecione o chamado que deseja excluir',
             confirmButtonColor: '#004654', // Cor padrão do botão Confirmar
 
             confirmButtonText: 'OK'

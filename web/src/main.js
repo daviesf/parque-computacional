@@ -35,40 +35,54 @@ const router = createRouter({
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   theme();
-//   const AKJA12Value = document.cookie.replace(/(?:(?:^|.*;\s*)AKJA12\s*=\s*([^;]*).*$)|^.*$/, "$1");
-//   if (AKJA12Value) {
-//     const query = `query ConfereSession($idSession: String!) {
-//       confereSession(idSession: $idSession) {
-//         nome
-//         idFuncionario
-//       }
-//     }`
-//     const variables = { idSession: AKJA12Value }
+router.beforeEach((to, from, next) => {
+  theme();
+  const AKJA12Value = document.cookie.replace(/(?:(?:^|.*;\s*)AKJA12\s*=\s*([^;]*).*$)|^.*$/, "$1");
+  
+  if (AKJA12Value) {
+    const query = `query ConfereSession($idSession: String!) {
+      confereSession(idSession: $idSession) {
+        nome
+        idFuncionario
+        tipo
+      }
+    }`
+    const variables = { idSession: AKJA12Value }
 
-//     axios.post('http://localhost:4000', { query, variables }).then((result) => {
-//       if (result.data.data.confereSession) {
-//         if (to.path === '/login') {
-//           next('/')
-//         }
-//         next()
-//       } else {
-//         next('/login')
-//       }
-//     }).catch(() => {
-//       next('/login')
-//     }
-//     )
-//   }
-//   else {
-//     if (to.path === '/login') {
-//       next()
-//     } else {
-//       next('/login')
-//     }
-//   }
-// })
+    axios.post('http://localhost:4000', { query, variables }).then((result) => {
+      console.log(result);
+      if (result.data.data.confereSession) {
+        if (result.data.data.confereSession.tipo == 0 && to.path != '/chamados' && to.path != '/logout') {
+          // Redirecionar para /chamados se o tipo for 0 e o usuário não estiver em /chamados
+          return next('/chamados');
+        }
+        if (result.data.data.confereSession.tipo == 1 && to.path == '/chamados') {
+          return next('/404')
+        }
+        if (to.path === '/login') {
+          // Redirecionar para a página inicial se o usuário tentar acessar a página de login
+          return next('/');
+        }
+        // Continuar a navegação
+        return next();
+      } else {
+        // Redirecionar para a página de login se a sessão não for válida
+        return next('/login');
+      }
+    }).catch(() => {
+      // Redirecionar para a página de login em caso de erro
+      return next('/login');
+    });
+  } else {
+    if (to.path === '/login') {
+      // Permitir acesso à página de login
+      return next();
+    } else {
+      // Redirecionar para a página de login se o usuário não estiver autenticado
+      return next('/login');
+    }
+  }
+});
 
 const app = createApp(App)
 

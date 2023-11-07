@@ -110,19 +110,19 @@ export default {
       if (themeIcon.classList.contains('moon')) {
         // Ativar o modo escuro
         themeIcon.classList.replace('moon', 'sun')
+        document.cookie = 'theme=dark;path=/'
         app.classList.add('dark-mode')
         app1.classList.add('dark-mode')
         app2.classList.add('inverted')
         app2.classList.add('dark-mode')
-        document.cookie = 'theme=dark;path=/'
       } else {
         // Voltar ao modo normal
         themeIcon.classList.replace('sun', 'moon')
+        document.cookie = 'theme=light;path=/'
         app.classList.remove('dark-mode')
         app1.classList.remove('dark-mode')
         app2.classList.remove('inverted')
         app2.classList.remove('dark-mode')
-        document.cookie = 'theme=light;path=/'
       }
     },
     toggleTheme1() {
@@ -133,12 +133,13 @@ export default {
 
       if (themeIcon.classList.contains('sun')) {
         // Ativar o modo escuro
+        document.cookie = 'theme=dark;path=/'
         app.classList.add('dark-mode')
         app1.classList.add('dark-mode')
         app2.classList.add('inverted')
-        document.cookie = 'theme=dark;path=/'
       } else {
         // Voltar ao modo normal
+        document.cookie = 'theme=light;path=/'
         app.classList.remove('dark-mode')
         app1.classList.remove('dark-mode')
         app2.classList.remove('inverted')
