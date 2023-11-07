@@ -1,6 +1,6 @@
 <template>
-  <div class="ui active inverted dimmer">
-    <div class="ui text loader">Efetuando log-out</div>
+  <div class="ui active inverted dimmer" id="bkg">
+    <div class="ui text loader" id="logoutp">Efetuando log-out</div>
     <div id="counter"></div>
   </div>
 </template>
@@ -12,6 +12,26 @@ export default {
     this.$emit('hideNavbar', false) // Emitir o evento para mostrar a navbar novamente
   },
   mounted() {
+    function theme() {
+      const theme = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, "$1");
+      const app1 = document.querySelector('#bkg')
+      const app2 = document.querySelector('#logoutp')
+      const app3 = document.querySelector('#counter')
+      if (theme) {
+          if (theme == 'dark') {
+              app1.classList.add('dark-mode')
+              app2.classList.add('dark-mode')
+              app3.classList.add('dark-mode')
+
+          } else if (theme == 'light') {
+              app1.classList.remove('dark-mode')
+              app2.classList.remove('dark-mode')
+              app3.classList.remove('dark-mode')
+          }
+      }
+    }
+
+    theme()
     this.$emit('hideNavbar', true) // Emitir o evento para ocultar a navbar
     const cookies = document.cookie.split(';')
     localStorage.removeItem('name')

@@ -253,6 +253,22 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Patrimonio',
   mounted() {
+    function theme() {
+      const themeIcon = document.getElementById('theme-icon')
+      const theme = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, "$1");
+      const app2 = document.querySelector('table')
+      if (theme) {
+          if (theme == 'dark') {
+              app2.classList.add('inverted')
+              app2.classList.add('dark-mode')
+          } else if (theme == 'light') {
+              app2.classList.remove('inverted')
+              app2.classList.remove('dark-mode')
+          }
+      }
+    }
+
+    theme()
     const selectCheckboxes = document.getElementsByClassName('select-checkbox')
     const selectAllCheckbox = document.getElementById('select-all')
 
