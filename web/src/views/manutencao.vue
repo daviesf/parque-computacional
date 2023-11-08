@@ -779,11 +779,11 @@ export default {
 
       const query = `query SearchBancadas($filter: ConsertosFilter) {
   searchConsertos(filter: $filter) {
-    dataHora
     idConserto
-    detalhes
-    idFuncionario
     idPatrimonio
+    idFuncionario
+    dataHora
+    detalhes
   }
 }`
       const variables = {
@@ -795,9 +795,15 @@ export default {
         }
       }
 
+      console.log(variables);
+
       axios.post('http://localhost:4000', { query, variables }).then((result) => {
         // Supondo que a variável "result" contenha o objeto com os dados retornados da busca
-        const consertos = result.data.data.consertos
+        console.log(result)
+        const consertos = result.data.data.searchConsertos
+        console.log('=====')
+        console.log(consertos)
+        document.getElementById('manutencoes-table-body').innerHTML = ''
         let i = 0
         const tbody = document.getElementById('manutencoes-table-body')
 

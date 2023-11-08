@@ -4,9 +4,9 @@
     <iframe title="Report Section" id="dash"
       src="https://app.powerbi.com/view?r=eyJrIjoiZjE4OWNlYTUtOTc3Ni00NjUxLTgwN2EtNjdhYTFhMjczMDQwIiwidCI6ImI0NzQxYTgyLTZiNmUtNDNhNS1hZDZlLTEwNDQ1MTFhYWVkNiJ9"
       frameborder="0" allowFullScreen="true"></iframe>
-    <div class="ui grid centered">
+    <div class="ui grid centered" onclick="imprimir()" id="print">
       <button class="button2">
-        <span class="button2-content" id="print" onclick="imprimir()">Imprimir</span>
+        <span class="button2-content">Imprimir</span>
       </button>
     </div>
   </div>

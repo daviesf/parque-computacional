@@ -804,11 +804,11 @@ export default {
       let status = document.getElementById('status').value
 
       if (status == 'ativo') {
-        status = '1'
+        status = 1
       } else if (status == 'inativo') {
-        status = '0'
+        status = 0
       } else if (status == 'manutenção') {
-        status = '2'
+        status = 2
       }
 
       console.log('Verificando status')
@@ -834,6 +834,7 @@ export default {
 
       console.log(variables)
 
+
       axios.post('http://localhost:4000', { query, variables }).then(
         (result) => {
           console.log(result)
@@ -845,6 +846,7 @@ export default {
           console.log(error)
         }
       )
+
     })
 
     form.addEventListener('submit', (event) => {

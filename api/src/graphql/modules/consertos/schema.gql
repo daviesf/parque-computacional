@@ -14,10 +14,10 @@ type Query {
 }
 
 input ConsertosFilter {
-    idConserto: ID!
-    dataHora: String!
-    idPatrimonio: Int!
-    idFuncionario: Int!
+    idConserto: ID
+    dataHora: String
+    idPatrimonio: Int
+    idFuncionario: Int
 }
 
 input DadosConserto {
