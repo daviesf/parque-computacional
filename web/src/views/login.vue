@@ -156,7 +156,7 @@ export default {
 
           if (updatedUser.tipo == 1) {
             window.location.href = '/'
-          } else if (updatedUser.tipo == 0) {
+          } else if (updatedUser.tipo == 2) {
             window.location.href = '/chamados'
           } else {
             console.log('Erro na verificação do tipo de usuário.')
