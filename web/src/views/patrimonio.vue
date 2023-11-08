@@ -68,7 +68,7 @@
                 <span class="accordion-icon">+</span>
               </div>
               <div class="accordion-body">
-                 <div class="ui icon input fluid">
+                <div class="ui icon input fluid">
                   <input type="text" placeholder="Ex: Impressora" class="fluid" id="filter-tipo" />
                   <i class="search icon"></i>
                 </div>
@@ -255,16 +255,16 @@ export default {
   mounted() {
     function theme() {
       const themeIcon = document.getElementById('theme-icon')
-      const theme = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, "$1");
+      const theme = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, '$1')
       const app2 = document.querySelector('table')
       if (theme) {
-          if (theme == 'dark') {
-              app2.classList.add('inverted')
-              app2.classList.add('dark-mode')
-          } else if (theme == 'light') {
-              app2.classList.remove('inverted')
-              app2.classList.remove('dark-mode')
-          }
+        if (theme == 'dark') {
+          app2.classList.add('inverted')
+          app2.classList.add('dark-mode')
+        } else if (theme == 'light') {
+          app2.classList.remove('inverted')
+          app2.classList.remove('dark-mode')
+        }
       }
     }
 
@@ -935,7 +935,7 @@ export default {
       } else if (document.getElementById('cb-manut').checked) {
         var status = '2'
       }
-      
+
       const query = `query Query($filter: PatrimonioFilter) {
   searchPatrimonios(filter: $filter) {
     idBancada
@@ -952,7 +952,7 @@ export default {
           idBancada: parseInt(bancada),
           marca: marca,
           modelo: modelo,
-          status: status,
+          status: parseInt(status),
           tipo: tipo
         }
       }

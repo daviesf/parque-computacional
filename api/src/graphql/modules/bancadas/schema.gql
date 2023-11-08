@@ -1,6 +1,6 @@
 type Bancada {
   idBancada: ID!
-  local: String
+  local: String!
   status: Int!
   apelido: String!
 }
