@@ -1,7 +1,7 @@
 <template>
   <div class="home-section">
     <h1>Dashboard informativo PowerBI</h1>
-    <iframe title="Report Section" width="600" height="373.5"
+    <iframe title="Report Section" id="dash"
       src="https://app.powerbi.com/view?r=eyJrIjoiZjE4OWNlYTUtOTc3Ni00NjUxLTgwN2EtNjdhYTFhMjczMDQwIiwidCI6ImI0NzQxYTgyLTZiNmUtNDNhNS1hZDZlLTEwNDQ1MTFhYWVkNiJ9"
       frameborder="0" allowFullScreen="true"></iframe>
     <div class="ui grid centered">
