@@ -43,7 +43,7 @@
                 </div>
               </div>
             </div>
-            <div class="accordion">
+            <!-- <div class="accordion">
               <div class="accordion-header">
                 <span>Funcionário</span>
                 <span class="accordion-icon">+</span>
@@ -70,7 +70,7 @@
                   <input type="date" name="example" id="filter-data" />
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="item">
               <div class="ui icon input fluid">
@@ -764,7 +764,7 @@ export default {
       const variables1 = {
         nome: document.getElementById('filter-funcionario').value
       }
-      le
+
       axios.post('http://localhost:4000', { query1, variables1 }).then(
         (result) => {
           console.log(result)
@@ -789,7 +789,7 @@ export default {
       const variables = {
         filter: {
           idConserto: parseInt(idManutencao),
-          idFuncionario: parseInt(idFunc),
+          idFuncionario: parseInt(funcionario),
           idPatrimonio: parseInt(codPatrimonio),
           dataHora: dataManutencao
         }
