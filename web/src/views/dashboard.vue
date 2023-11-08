@@ -1,13 +1,9 @@
 <template>
   <div class="home-section">
     <h1>Dashboard informativo PowerBI</h1>
-    <iframe
-      id="dash"
-      title="Report Section"
-      src="https://app.powerbi.com/view?r=eyJrIjoiMDZmMjRjYWUtMzA2Ny00ZGFmLTk4YzctMTBhZDM0OTI3OTU3IiwidCI6ImI0NzQxYTgyLTZiNmUtNDNhNS1hZDZlLTEwNDQ1MTFhYWVkNiJ9"
-      frameborder="0"
-      allowFullScreen="true"
-    ></iframe>
+    <iframe title="Report Section" width="600" height="373.5"
+      src="https://app.powerbi.com/view?r=eyJrIjoiZjE4OWNlYTUtOTc3Ni00NjUxLTgwN2EtNjdhYTFhMjczMDQwIiwidCI6ImI0NzQxYTgyLTZiNmUtNDNhNS1hZDZlLTEwNDQ1MTFhYWVkNiJ9"
+      frameborder="0" allowFullScreen="true"></iframe>
     <div class="ui grid centered">
       <button class="button2">
         <span class="button2-content" id="print" onclick="imprimir()">Imprimir</span>
