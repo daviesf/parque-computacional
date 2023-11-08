@@ -749,11 +749,33 @@ export default {
 
     // filtro
     const filtro = document.getElementById('filter')
-    filtro.addEventListener('click', function () {
+    filter.addEventListener('click', function () {
       let idManutencao = document.getElementById('filter-idManutencao').value
       let codPatrimonio = document.getElementById('filter-patrimonio').value
       let funcionario = document.getElementById('filter-funcionario').value
       let dataManutencao = document.getElementById('filter-data').value
+
+      const query1 = `query Query($nome: String!) {
+  funcionariosByNome(nome: $nome) {
+    idFuncionario
+  }
+}`
+
+      const variables1 = {
+        nome: document.getElementById('filter-funcionario').value
+      }
+      le
+      axios.post('http://localhost:4000', { query1, variables1 }).then(
+        (result) => {
+          console.log(result)
+          funcionario = result.data.data.funcionariosByNome.idFuncionario
+          console.log('aaa')
+          console.log(funcionario)
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
 
       const query = `query SearchBancadas($filter: ConsertosFilter) {
   searchConsertos(filter: $filter) {
@@ -767,7 +789,7 @@ export default {
       const variables = {
         filter: {
           idConserto: parseInt(idManutencao),
-          idFuncionario: parseInt(funcionario),
+          idFuncionario: parseInt(idFunc),
           idPatrimonio: parseInt(codPatrimonio),
           dataHora: dataManutencao
         }

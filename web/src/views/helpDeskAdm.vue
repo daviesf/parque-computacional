@@ -20,7 +20,7 @@
                     type="text"
                     placeholder="Nome do funcionário"
                     class="fluid"
-                    id="filter-funcionário"
+                    id="filter-funcionario"
                   />
                   <i class="search icon"></i>
                 </div>
@@ -53,17 +53,11 @@
                   <div class="column">
                     <div class="ui checkbox">
                       <input type="checkbox" id="cb-ativo" />
-                      <label>Ativo</label>
+                      <label>Resolvido</label>
                     </div>
                     <div class="ui checkbox">
                       <input type="checkbox" id="cb-inativo" />
-                      <label>Inativo</label>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui checkbox">
-                      <input type="checkbox" id="cb-manut" />
-                      <label>Manutenção</label>
+                      <label>Pendente</label>
                     </div>
                   </div>
                 </div>
@@ -260,6 +254,133 @@ export default {
       })
     }
 
+    // filtro
+
+    document.getElementById('filter').addEventListener('click', function () {
+      let descricao = document.getElementById('filter-descricao').value
+      let funcionario = document.getElementById('filter-funcionario').value
+
+      if (document.getElementById('cb-ativo').checked) {
+        var status = 0
+      } else if (document.getElementById('cb-inativo').checked) {
+        var status = 1
+      }
+
+      const query0 = `query FuncionariosByNome($nome: String!) {
+  funcionariosByNome(nome: $nome) {
+    idFuncionario
+  }
+}`
+
+      const variables0 = {
+        nome: funcionario
+      }
+
+      axios.post('http://localhost:4000', { query0, variables0 }).then(
+        (result) => {
+          console.log(result)
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+
+      const query = `query SearchChamados($filter: FilterChamados) {
+  searchChamados(filter: $filter) {
+    dataHora
+    detalhes
+    idChamado
+    idFuncionario
+    status
+  }
+}`
+
+      const variables = {
+        filter: {
+          status: status,
+          detalhes: descricao,
+          idFuncionario: funcionario
+        }
+      }
+
+      axios.post('http://localhost:4000', { query, variables }).then((result) => {
+        console.log(result)
+        document.getElementById('patrimonio-table-body').innerHTML = ''
+        const chamados = result.data.data.searchChamados
+        const tbody = document.getElementById('patrimonio-table-body')
+
+        chamados.forEach((chamado) => {
+          const tr = document.createElement('tr')
+
+          const tdCheckbox = document.createElement('td')
+          tdCheckbox.className = 'collapsing'
+          const checkbox = document.createElement('div')
+          checkbox.className = 'ui fitted checkbox'
+          const inputCheckbox = document.createElement('input')
+          inputCheckbox.type = 'checkbox'
+          inputCheckbox.className = 'select-checkbox'
+          const labelCheckbox = document.createElement('label')
+          checkbox.appendChild(inputCheckbox)
+          checkbox.appendChild(labelCheckbox)
+          tdCheckbox.appendChild(checkbox)
+
+          inputCheckbox.addEventListener('change', function () {
+            const selectCheckboxes = document.getElementsByClassName('select-checkbox')
+            const selectAllCheckbox = document.getElementById('select-all')
+
+            const isAllChecked = Array.from(selectCheckboxes).every((checkbox) => checkbox.checked)
+            selectAllCheckbox.checked = isAllChecked
+
+            if (!this.checked) {
+              selectAllCheckbox.checked = false
+            }
+          })
+
+          const tdChamado = document.createElement('td')
+          tdChamado.textContent = chamado.idChamado
+
+          const tdFuncionario = document.createElement('td')
+          tdFuncionario.textContent = nomeFuncionario(chamado.idFuncionario)
+
+          const tdData = document.createElement('td')
+          tdData.textContent = patrimonio.dataHora
+
+          const tdDescricao = document.createElement('td')
+          tdDescricao.innerHTML = `<button type="submit" class="ui button desc" onclick="Swal.fire({
+  icon: 'info',
+  title: 'Descrição ID ${chamado.idChamado}',
+  text: '${chamado.detalhes}',
+  confirmButtonColor: '#004654'
+})">Ver</button>`
+
+          const tdStatus = document.createElement('td')
+          const statusValue = chamado.status
+
+          let statusText
+          if (statusValue === 0) {
+            statusText = 'Pendente'
+          } else if (statusValue === 1) {
+            statusText = 'Encerrado'
+          } else if (statusValue === 2) {
+            statusText = 'Resolvido'
+          } else {
+            statusText = 'Desconhecido' // Tratamento para outros valores de status
+          }
+
+          tdStatus.textContent = statusText
+
+          tr.appendChild(tdCheckbox)
+          tr.appendChild(tdChamado)
+          tr.appendChild(tdNome)
+          tr.appendChild(tddataHora)
+          tr.appendChild(tdDescricao)
+          tr.appendChild(tdStatus)
+
+          tbody.appendChild(tr)
+        })
+      })
+    })
+
     //Deletar ou Excluir
     $(document).ready(function () {
       $('#remover-chamado-btn').click(function () {
@@ -427,6 +548,15 @@ export default {
         )
       })
     }
+
+    const accordions = document.querySelectorAll('.accordion')
+
+    accordions.forEach((accordion) => {
+      const accordionHeader = accordion.querySelector('.accordion-header')
+      accordionHeader.addEventListener('click', () => {
+        accordion.classList.toggle('active')
+      })
+    })
   }
 }
 </script>

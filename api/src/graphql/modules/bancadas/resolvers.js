@@ -32,15 +32,7 @@ export default {
 					builder.where("apelido", "like", `%${filter.apelido}%`);
 				}
 				if (filter.status) {
-					let statusValue;
-					if (filter.status === 'Ativo') {
-						statusValue = 1;
-					} else if (filter.status === 'Inativo') {
-						statusValue = 0;
-					} else if (filter.status === 'Manutenção') {
-						statusValue = 2;
-					}
-					builder.where("status", statusValue);
+					builder.where("status", filter.status);
 				}
 
 			});

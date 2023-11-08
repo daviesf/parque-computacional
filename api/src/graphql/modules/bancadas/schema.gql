@@ -1,8 +1,8 @@
 type Bancada {
   idBancada: ID!
-  local: String
-  status: Int
-  apelido: String
+  local: String!
+  status: Int!
+  apelido: String!
 }
 
 type Query {
@@ -28,7 +28,7 @@ input BancadaFilter {
 }
 
 type Mutation {
-  createBancada(data: DadosBancada): Bancada!
+  createBancada(data: DadosBancada!): Bancada!
   updateBancada(idBancada: ID!, data: DadosBancada!): Bancada!
   deleteBancada(idBancada: ID!): Boolean!
   ativarBancada(idBancada: ID, status: String): Bancada!

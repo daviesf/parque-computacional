@@ -199,16 +199,16 @@ export default {
   mounted() {
     function theme() {
       const themeIcon = document.getElementById('theme-icon')
-      const theme = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, "$1");
+      const theme = document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/, '$1')
       const app2 = document.querySelector('table')
       if (theme) {
-          if (theme == 'dark') {
-              app2.classList.add('inverted')
-              app2.classList.add('dark-mode')
-          } else if (theme == 'light') {
-              app2.classList.remove('inverted')
-              app2.classList.remove('dark-mode')
-          }
+        if (theme == 'dark') {
+          app2.classList.add('inverted')
+          app2.classList.add('dark-mode')
+        } else if (theme == 'light') {
+          app2.classList.remove('inverted')
+          app2.classList.remove('dark-mode')
+        }
       }
     }
 
@@ -452,7 +452,7 @@ export default {
                 const tdTipo = document.createElement('td')
                 if (usuario.tipo == 1) {
                   usuario.tipo = 'Administrador'
-                } else if (usuario.tipo == 0) {
+                } else if (usuario.tipo == 2) {
                   usuario.tipo = 'Usuário Comum'
                 }
 
@@ -461,7 +461,7 @@ export default {
                 const tdStatus = document.createElement('td')
                 if (usuario.status == 1) {
                   usuario.status = 'Ativo'
-                } else if (usuario.status == 0) {
+                } else if (usuario.status == 2) {
                   usuario.status = 'Desligado'
                 }
 
@@ -494,13 +494,17 @@ export default {
       if (document.getElementById('cb-adm').checked) {
         var tipo = 1
       } else if (document.getElementById('cb-user').checked) {
-        var tipo = 0
+        var tipo = 2
       }
+
+      var status = 1
       if (document.getElementById('cb-ativo').checked) {
-        var status = 1
-      } else if (document.getElementById('cb-desligado').checked) {
-        var status = 0
+        status = 1
       }
+      if (document.getElementById('cb-desligado').checked) {
+        status = 2
+      }
+
       const query = `query SearchFuncionarios($filter: FuncionarioFilter) {
   searchFuncionarios(filter: $filter) {
     nome
@@ -554,18 +558,6 @@ export default {
             }
           })
 
-          // axios.post('http://localhost:4000', { query: queryBancada }).then((result) => {
-          //   const bancadas = result.data.data.bancadas
-          //   const tbody = document.getElementById('usuarios-table-body')
-
-          //   bancadas.forEach((bancada) => {
-          //     const tdBancada = document.createElement('td')
-          //     tdBancada.textContent = bancada.idBancada
-          //     option.innerHTML = 'ID: ' + bancada.idBancada + ' | ' + bancada.apelido
-          //     tr.appendChild(tdBancada)
-          //   })
-          // })
-
           const tdID = document.createElement('td')
           tdID.textContent = funcionario.idFuncionario
 
@@ -581,7 +573,7 @@ export default {
           let tipoText
           if (tipoValue == 1) {
             tipoText = 'Administrador'
-          } else if (tipoValue == 0) {
+          } else if (tipoValue == 2) {
             tipoText = 'Usuário Comum'
           } else {
             tipoText = 'Desconhecido' // Tratamento para outros valores de tipo
@@ -595,7 +587,7 @@ export default {
           let statusText
           if (statusValue == 1) {
             statusText = 'Ativo'
-          } else if (statusValue == 0) {
+          } else if (statusValue == 2) {
             statusText = 'Desligado'
           } else {
             statusText = 'Desconhecido' // Tratamento para outros valores de tipo
@@ -817,12 +809,12 @@ export default {
       if (status == 'ativo') {
         status = 1
       } else if (status == 'inativo') {
-        status = 0
+        status = 2
       }
       if (tipo == 'administrador') {
         tipo = 1
       } else if (tipo == 'usuario comum') {
-        tipo = 0
+        tipo = 2
       }
 
       const query = `mutation Mutation($idFuncionario: ID!, $data: DadosFuncionario!) {
@@ -911,12 +903,12 @@ export default {
       if (status == 'ativo') {
         status = 1
       } else if (status == 'inativo') {
-        status = 0
+        status = 2
       }
       if (tipo == 'administrador') {
         tipo = 1
       } else if (tipo == 'usuario comum') {
-        tipo = 0
+        tipo = 2
       }
 
       console.log('Verificando status')

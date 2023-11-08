@@ -4,7 +4,7 @@ const authKey = "a1b2c3d4e5f6g7h8i9j0";
 
 function generatePassword(length) {
 	const chars =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
 	let password = "";
 	for (let i = 0; i < length; i++) {
 		password += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -35,7 +35,7 @@ export default {
 		totalFuncionarios: async () => {
 			const [count] = await knex("funcionarios").count("* as total");
 			return count.total;
-		  },	
+		},
 		searchFuncionarios: async (_, { filter }) => {
 			const funcionarios = await knex("funcionarios").where((builder) => {
 				if (filter.nome) {
