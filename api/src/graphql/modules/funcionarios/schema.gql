@@ -22,8 +22,11 @@ type Query {
 }
 
 input FuncionarioFilter {
-    status: String
+    idFuncionario: ID
+    status: Int
     nome: String
+    tipo: Int
+    email: String
 }
 
 input DadosFuncionario{

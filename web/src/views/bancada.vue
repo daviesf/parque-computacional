@@ -860,11 +860,11 @@ export default {
       let apelido = document.getElementById('filter-apelido').value
       let local = document.getElementById('filter-local').value
       if (document.getElementById('cb-ativo').checked) {
-        var status = 'Ativo'
+        var status = 1
       } else if (document.getElementById('cb-inativo').checked) {
-        var status = 'Inativo'
+        var status = 0
       } else if (document.getElementById('cb-manut').checked) {
-        var status = 'Manutenção'
+        var status = 2
       }
       const query = `query SearchBancadas($filter: BancadaFilter) {
   searchBancadas(filter: $filter) {

@@ -492,18 +492,19 @@ export default {
       let nome = document.getElementById('filter-nome').value
       let email = document.getElementById('filter-email').value
       if (document.getElementById('cb-adm').checked) {
-        var tipo = 'Administrador'
+        var tipo = 1
       } else if (document.getElementById('cb-user').checked) {
-        var tipo = 'Usuário Comum'
+        var tipo = 0
       }
       if (document.getElementById('cb-ativo').checked) {
-        var status = 'Ativo'
+        var status = 1
       } else if (document.getElementById('cb-desligado').checked) {
-        var status = 'Desligado'
+        var status = 0
       }
       const query = `query SearchFuncionarios($filter: FuncionarioFilter) {
   searchFuncionarios(filter: $filter) {
     nome
+    idFuncionario
     email
     status
     tipo
@@ -513,7 +514,7 @@ export default {
         filter: {
           nome: nome,
           email: email,
-          tipo: tipo,
+          tipo: parseInt(tipo),
           status: parseInt(status)
         }
       }
@@ -553,17 +554,17 @@ export default {
             }
           })
 
-          axios.post('http://localhost:4000', { query: queryBancada }).then((result) => {
-            const bancadas = result.data.data.bancadas
-            const tbody = document.getElementById('usuarios-table-body')
+          // axios.post('http://localhost:4000', { query: queryBancada }).then((result) => {
+          //   const bancadas = result.data.data.bancadas
+          //   const tbody = document.getElementById('usuarios-table-body')
 
-            bancadas.forEach((bancada) => {
-              const tdBancada = document.createElement('td')
-              tdBancada.textContent = bancada.idBancada
-              option.innerHTML = 'ID: ' + bancada.idBancada + ' | ' + bancada.apelido
-              tr.appendChild(tdBancada)
-            })
-          })
+          //   bancadas.forEach((bancada) => {
+          //     const tdBancada = document.createElement('td')
+          //     tdBancada.textContent = bancada.idBancada
+          //     option.innerHTML = 'ID: ' + bancada.idBancada + ' | ' + bancada.apelido
+          //     tr.appendChild(tdBancada)
+          //   })
+          // })
 
           const tdID = document.createElement('td')
           tdID.textContent = funcionario.idFuncionario
@@ -589,7 +590,18 @@ export default {
           tdTipo.textContent = tipoText
 
           const tdStatus = document.createElement('td')
-          tdStatus.textContent = funcionario.status
+          const statusValue = funcionario.status
+
+          let statusText
+          if (statusValue == 1) {
+            statusText = 'Ativo'
+          } else if (statusValue == 0) {
+            statusText = 'Desligado'
+          } else {
+            statusText = 'Desconhecido' // Tratamento para outros valores de tipo
+          }
+
+          tdStatus.textContent = statusText
 
           tr.appendChild(tdCheckbox)
           tr.appendChild(tdID)

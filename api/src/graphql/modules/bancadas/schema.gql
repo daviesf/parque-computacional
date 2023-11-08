@@ -23,7 +23,7 @@ input DadosBancada {
 input BancadaFilter {
   idBancada: ID
   local: String
-  status: Int!
+  status: Int
   apelido: String
 }
 

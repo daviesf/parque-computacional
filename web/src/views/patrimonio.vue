@@ -1007,11 +1007,11 @@ export default {
 
           const tdStatus = document.createElement('td')
           if (patrimonio.status == 0) {
-            patrimonio.status = 'inativo'
+            patrimonio.status = 'Inativo'
           } else if (patrimonio.status == 1) {
-            patrimonio.status = 'ativo'
+            patrimonio.status = 'Ativo'
           } else if (patrimonio.status == 2) {
-            patrimonio.status = 'manutenção'
+            patrimonio.status = 'Manutenção'
           }
 
           tdStatus.textContent = patrimonio.status

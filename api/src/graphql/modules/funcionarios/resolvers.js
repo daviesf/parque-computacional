@@ -42,13 +42,16 @@ export default {
 					builder.where("nome", "like", `%${filter.nome}%`);
 				}
 				if (filter.email) {
-					builder.where("email", filter.email);
+					builder.where("email", "like", `%${filter.email}%`);
 				}
 				if (filter.status) {
 					builder.where("status", filter.status);
 				}
 				if (filter.tipo) {
 					builder.where("tipo", filter.tipo);
+				}
+				if (filter.idFuncionario) {
+					builder.where("idFuncionario", filter.idFuncionario);
 				}
 			});
 			return funcionarios;
