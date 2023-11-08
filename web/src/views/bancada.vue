@@ -804,11 +804,11 @@ export default {
       let status = document.getElementById('status').value
 
       if (status == 'ativo') {
-        status = '1'
+        status = 1
       } else if (status == 'inativo') {
-        status = '0'
+        status = 0
       } else if (status == 'manutenção') {
-        status = '2'
+        status = 2
       }
 
       console.log('Verificando status')
@@ -843,6 +843,7 @@ export default {
           },
           (error) => {
             console.log(error)
+            
           }
         )
     })
