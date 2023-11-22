@@ -203,6 +203,7 @@ connection: {
 ```
 
 7. Execute a API:
+   
 Se for em versão de desenvolvimento:
 ```
 npm run dev
