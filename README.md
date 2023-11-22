@@ -329,12 +329,44 @@ npm run serve
 
 - É necessário que o usuário acesse o site https://www.emailjs.com/
 - O usuário deverá criar uma conta e fazer a configuração do seu ambiente.
-- [Outras definições que o Samuel irá colocar aqui]
-- Acesse o arquivo web/src/views/helpDeskUser.vue e altere, na linha 172 o seguinte trecho:
+- Acesse a página de Email Services e conecte o email desejado.
+- Faça a instalação da dependência utilizando npm:
+```git
+npm install @emailjs/browser --save
+```
+- Em seguida no site, entre na página de Email Templates e crie um novo template, siga o exemplo e se houver alterações lembre-se de alterar no código o templateParams no arquivo web/src/views/helpDeskUser.vue na linha 166:
+```
+  Subject:
+  Chamado Técnico de: {{from_name}}
   ```
-  SUA_PUBLIC_KEY
+```
+  Content:
+    Olá, Administrador,
+
+    {{from_name}} abriu um novo chamado:
+
+    Assunto: {{subject}}
+
+    Descrição: {{description}}
+
+    Secretaria de Administração Regional - UNICAMP
+    Controle do Parque Computacional
+
+    Este e-mail foi enviado automaticamente, não responda a este e-mail.
+```
+- Acesse o arquivo web/src/views/helpDeskUser.vue e altere na linha 172 com as informações da sua conta o seguinte trecho:
   ```
-  pela chave dada pelo EmailJS após a configuração no site.
+  SEU_SERVICE_ID
+  SEU_TEMPLATE_ID 
+  SUA_PUBLIC_KEY 
+  ```
+  SEU_SERVICE_ID encontra-se na página de Email Services 
+  
+  SEU_TEMPLATE_ID encontra-se na página de Email Templates
+  
+  SUA_PUBLIC_KEY encontra-se na página de Account
+
+- Caso ainda reste alguma dúvida, indicamos um vídeo excelente do Sujeito Programador que explica o passo a passo da configuração do emailjs: https://www.youtube.com/watch?v=Zbg1BHOVzRg
 
 ### Para que o login via Google seja funcional:
 
