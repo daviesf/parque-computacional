@@ -185,7 +185,7 @@ export default {
     }
 
     google.accounts.id.initialize({
-      client_id: '1090697719532-djuhtf5mi9r69ci55jr16ib9hg9ssnbc.apps.googleusercontent.com',
+      client_id: 'YOUR_CLIENT_ID',
       callback: handleCredentialResponse
     })
     google.accounts.id.renderButton(
