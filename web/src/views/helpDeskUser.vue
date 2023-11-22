@@ -154,31 +154,31 @@ export default {
       return campos[1].value.length > 0
     }
 
-    // function sendEmail() {
-    //   const identityCookie = document.cookie.replace(
-    //     /(?:(?:^|.*;\s*)identity\s*=\s*([^;]*).*$)|^.*$/,
-    //     '$1'
-    //   )
-    //   const decodedIdentity = atob(identityCookie)
-    //   const subjectValue = document.getElementById('assunto').value
-    //   const descriptionValue = document.getElementById('descricao').value
+    function sendEmail() {
+      const identityCookie = document.cookie.replace(
+        /(?:(?:^|.*;\s*)identity\s*=\s*([^;]*).*$)|^.*$/,
+        '$1'
+      )
+      const decodedIdentity = atob(identityCookie)
+      const subjectValue = document.getElementById('assunto').value
+      const descriptionValue = document.getElementById('descricao').value
 
-    //   const templateParams = {
-    //     from_name: decodedIdentity,
-    //     subject: subjectValue,
-    //     description: descriptionValue
-    //   }
+      const templateParams = {
+        from_name: decodedIdentity,
+        subject: subjectValue,
+        description: descriptionValue
+      }
 
-    //   emailjs.send('SEU_SERVICE_ID', 'SEU_TEMPLATE_ID', templateParams, 'SUA_PUBLIC_KEY').then(
-    //     (result) => {
-    //       console.log(templateParams)
-    //       console.log('EMAIL ENVIADO', result.status)
-    //     },
-    //     (error) => {
-    //       console.log(error)
-    //     }
-    //   )
-    // }
+      emailjs.send('SEU_SERVICE_ID', 'SEU_TEMPLATE_ID', templateParams, 'SUA_PUBLIC_KEY').then(
+        (result) => {
+          console.log(templateParams)
+          console.log('EMAIL ENVIADO', result.status)
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    }
 
     // cadastrar
     const addChamado = document.getElementById('enviarChamado')
@@ -234,7 +234,7 @@ export default {
         (result) => {
           console.log(result)
           carregaDados()
-          // sendEmail()
+          sendEmail()
           document.getElementById('assunto').value = ''
           document.getElementById('descricao').value = ''
         },
