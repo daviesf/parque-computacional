@@ -364,10 +364,13 @@ Nos dois casos acima, você deverá substituir o *YOUR_CLIENT_ID*, mantendo-se a
 ```
 pelo seu iframe contendo seu dashboard. A nossa equipe disponibiliza na pasta raiz um arquivo .pbix que você pode usar como base para montar o seu dashboard.
 
-! Importante: Para recolher os dados do banco de dados, é necessário usar as credenciais do banco de dados MySQL usando o driver de conexão, que pode ser encontrado em:
+>> Importante: Para recolher os dados do banco de dados, é necessário usar as credenciais do banco de dados MySQL usando o driver de conexão, que pode ser encontrado em:
 ```
 https://learn.microsoft.com/pt-br/power-query/connectors/mysql-database
 ```
+
+#### Nossa equipe se coloca a total disposição para eventuais dúvidas ou problemas.
+
 
 
 
