@@ -39,9 +39,9 @@ Esse projeto é usado pelas seguintes empresas:
 
 ## Documentação da API e WEB
 
-Para possível uso externo, ressalta-se a licença [], permitindo a utilização do código, entretanto, deve-se dar os créditos. Seguem as 
+Essa interface já está moldada aos propósitos da aplicação, não sendo necessária grossas mudanças em sua estrutura, apenas no que se refere no tutorial de instalação da referida.
 
-A API é moldada usando GraphQL, o que a dá características específicas que se diferencia de uma API Rest, ou seja, não há diversos endpoints, apenas um, conforme o exemplo:
+A API é moldada usando GraphQL, o que a dá características específicas que se diferencia de uma API Rest, ou seja, não há diversos endpoints, apenas um, conforme os exemplos:
 
 Quando falamos de "field", são as informações desejadas que se busca no banco, podendo escolher o que se busca, se são algumas informações ou todas.
 
