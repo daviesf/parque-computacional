@@ -3,6 +3,8 @@
 
 O projeto de Controle do Parque Computacional da SAR na UNICAMP visa otimizar e gerenciar eficientemente os recursos computacionais disponíveis na universidade. O sistema é centralizado e automatizado para o monitoramento, alocação e gerenciamento desses recursos.
 
+Na raiz do projeto encontra-se um PDF da documentação utilizada na apresentação do Projeto Integrador II em 2023 do Colégio Técnico de Limeira da UNICAMP.
+
 **Status:** 100% concluído
 
 ## Stack utilizada
