@@ -403,6 +403,10 @@ pelo seu iframe contendo seu dashboard. A nossa equipe disponibiliza na pasta ra
 https://learn.microsoft.com/pt-br/power-query/connectors/mysql-database
 ```
 
+## Licença
+
+Este projeto é licenciado sob a [Licença Creative Commons Atribuição 4.0 Internacional](https://creativecommons.org/licenses/by/4.0/deed.pt_BR)
+
 #### Nossa equipe se coloca a total disposição para eventuais dúvidas ou problemas.
 
 
