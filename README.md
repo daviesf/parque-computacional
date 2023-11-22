@@ -330,11 +330,7 @@ npm run serve
 - É necessário que o usuário acesse o site https://www.emailjs.com/
 - O usuário deverá criar uma conta e fazer a configuração do seu ambiente.
 - Acesse a página de Email Services e conecte o email desejado.
-- Faça a instalação da dependência utilizando npm:
-```git
-npm install @emailjs/browser --save
-```
-- Em seguida no site, entre na página de Email Templates e crie um novo template, siga o exemplo e se houver alterações lembre-se de alterar no código o templateParams no arquivo web/src/views/helpDeskUser.vue na linha 166:
+- Entre na página de Email Templates e crie um novo template, siga o exemplo e se houver alterações lembre-se de alterar no código o templateParams no arquivo web/src/views/helpDeskUser.vue na linha 166:
 ```
   Subject:
   Chamado Técnico de: {{from_name}}
