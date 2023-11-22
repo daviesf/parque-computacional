@@ -68,7 +68,7 @@ Quando falamos de "field", são as informações desejadas que se busca no banco
 
 #### Retorna um patrimônio pesquisado por ID:
 
-```
+```gql
 query Query($idPatrimonio: ID!) {
   patrimonio(idPatrimonio: $idPatrimonio) {
     [fields requeridos]
@@ -168,7 +168,7 @@ Seguir o passo a passo da instalação.
 
 ```
 Para linux, passar os comandos em sequência no terminal:
-```
+```git
 sudo apt-get install curl
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -176,23 +176,23 @@ sudo apt-get install git-all
 ```
 
 2. Clonar o repositório em questão com o seguinte comando no terminal.
-```
+```git
 git clone https://github.com/daviesf/projeto-integrador
 ```
 
 3. Acessar a pasta em que o repositório foi clonado.
 4. Acessar a pasta 'api':
-```
+```git
 cd api
 ```
 5. Instalar todas as dependências para a API funcionar:
-```
+```git
 npm install
 npm run build
 ```
 
 6. É necessário alterar as informações do banco contidas no arquivo src/mysql.js. Informações em **MAIÚSCULAS** devem ser alteradas.
-```
+```js
 connection: {
 		host: "IP DO SERVIDOR",
 		user: "USUÁRIO DO SERVIDOR",
@@ -205,11 +205,11 @@ connection: {
 7. Execute a API:
    
 Se for em versão de desenvolvimento:
-```
+```git
 npm run dev
 ```
 Se for em produção (o comando *npm run build* deve ser executado apenas uma vez):
-```
+```git
 npm run build
 npm start
 ```
@@ -224,7 +224,7 @@ http://localhost:4000/
 É necessário ter conhecimentos básicos de MySQL para instanciar um banco de dados. Este banco de dados deve se manter ligado enquanto ser necessário que a aplicação funcione.
 
 Use os comandos abaixo para criação das 5 tabelas. Você pode copiá-los todos e colar juntos ou executá-los separadamente.
-```
+```sql
 CREATE TABLE `bancadas` (
 `idBancada` int NOT NULL AUTO_INCREMENT,
    `local` varchar(45) DEFAULT NULL,
@@ -294,7 +294,7 @@ Seguir o passo a passo da instalação.
 
 ```
 Para linux, passar os comandos em sequência no terminal:
-```
+```git
 sudo apt-get install curl
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -302,22 +302,22 @@ sudo apt-get install git-all
 ```
 
 2. Clonar o repositório em questão com o seguinte comando no terminal.
-```
+```git
 git clone https://github.com/daviesf/projeto-integrador
 ```
 
 3. Acessar a pasta em que o repositório foi clonado.
 4. Acessar a pasta 'web':
-```
+```git
 cd web
 ```
 5. Instalar todas as dependências para a aplicação funcionar:
-```
+```git
 npm install
 ```
 
 6. Inicie a aplicação:
-```
+```git
 npm run serve
 ```
 
@@ -344,12 +344,12 @@ e logue em sua conta de desenvolvimento.
 No Console Google Cloud, o usuário deverá criar um novo projeto inserindo as informações do seu site, como nome desejado, além de domínios utilizados, desenvolvedores e relacionados.
 Após isso, deverá ser criado uma credencial OAuth com mais informações solicitadas pelo Google, e assim, liberar uma **CHAVE DE API**, que deverá ser substituída em locais específicos da aplicação:
 1. Linha 16 e 17 do arquivo web/index.html
-```
+```html
 <meta name="google-signin-client_id"
     content="YOUR_CLIENT_ID">
 ```
 2. Linha 188 do arquivo web/views/login.vue
-```
+```js
 client_id: 'YOUR_CLIENT_ID',
 ```
 
