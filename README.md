@@ -11,8 +11,6 @@ O projeto de Controle do Parque Computacional da SAR na UNICAMP visa otimizar e 
 
 **Banco de dados:** MySQL
 
-
-
 ## Screenshots
 
 ![Tela inicial](https://img001.prntscr.com/file/img001/PGw94Q1zS5y8dKzIVXgAxQ.png)
@@ -24,22 +22,12 @@ Figura 2: Tela de Patrimônios
 ![API](https://img001.prntscr.com/file/img001/7GKGF7LNTQuacAnGKAx0yg.png)
 Figura 3: API
 
-
-
-
-
-
-
 ## Autores
 
 - [@daviesf](https://www.github.com/daviesf)
 - [@SamukaCode](https://www.github.com/SamukaCode)
 - [@NelsonModenezNeto](https://www.github.com/NelsonModenezNeto)
 - [@NelsonLuisModenezJunior](https://www.github.com/NelsonLuisModenezJunior)
-
-
-
-
 
 ## Será usado por
 
@@ -59,7 +47,7 @@ Quando falamos de "field", são as informações desejadas que se busca no banco
 
 #### Retorna todos os patrimônios:  
 
-```http
+```
   query Query {
   patrimonios {
     [fields requeridos]
@@ -80,7 +68,7 @@ Quando falamos de "field", são as informações desejadas que se busca no banco
 
 #### Retorna um patrimônio pesquisado por ID:
 
-```http
+```
 query Query($idPatrimonio: ID!) {
   patrimonio(idPatrimonio: $idPatrimonio) {
     [fields requeridos]
@@ -158,9 +146,13 @@ Seguem os fields para cada 'classe':
 
 =====================================
 
+## Como instalar a aplicação?
+
+É necessário seguir um passo a passo importante iniciando a API, o banco de dados, a aplicação web, login via Google, o email de e-mails e, opcionalmente, o dashboard.
+
 ### Para iniciar a API:
 
-É necessário possuir **Node.js** instalado do computador ou no servidor para que a API se instale.
+É necessário possuir **Node.js** e **Git** instalado do computador ou no servidor para que a API se instale e inicie.
 
 1. Instalar node.js e git:
 Para windows:
@@ -228,6 +220,8 @@ http://localhost:4000/
 
 ### Criação de tabelas no banco de dados:
 
+É necessário ter conhecimentos básicos de MySQL para instanciar um banco de dados. Este banco de dados deve se manter ligado enquanto ser necessário que a aplicação funcione.
+
 Use os comandos abaixo para criação das 5 tabelas. Você pode copiá-los todos e colar juntos ou executá-los separadamente.
 ```
 CREATE TABLE `bancadas` (
@@ -278,6 +272,101 @@ CREATE TABLE `bancadas` (
    PRIMARY KEY (`idPatrimonio`),
    KEY `idbancada_idx` (`idBancada`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+
+### Para iniciar a aplicação WEB:
+
+É necessário possuir **Node.js** e **Git** instalado do computador ou no servidor para que a aplicação se instale e inicie.
+Se você já tem Node e Git instalados, pule ao passo 2.
+
+1. Instalar node.js e git:
+Para windows:
+```
+Acessar o site: https://nodejs.org/en
+Fazer o download da versão mais recente.
+Seguir o passo a passo da instalação.
+
+Para o Git:
+https://git-scm.com/downloads
+Fazer o download da versão mais recente.
+Seguir o passo a passo da instalação.
+
+```
+Para linux, passar os comandos em sequência no terminal:
+```
+sudo apt-get install curl
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt-get install git-all
+```
+
+2. Clonar o repositório em questão com o seguinte comando no terminal.
+```
+git clone https://github.com/daviesf/projeto-integrador
+```
+
+3. Acessar a pasta em que o repositório foi clonado.
+4. Acessar a pasta 'web':
+```
+cd web
+```
+5. Instalar todas as dependências para a aplicação funcionar:
+```
+npm install
+```
+
+6. Inicie a aplicação:
+```
+npm run serve
+```
+
+### Para que o envio de e-mails seja funcional:
+
+- É necessário que o usuário acesse o site https://www.emailjs.com/
+- O usuário deverá criar uma conta e fazer a configuração do seu ambiente.
+- [Outras definições que o Samuel irá colocar aqui]
+- Acesse o arquivo web/src/views/helpDeskUser.vue e altere, na linha 172 o seguinte trecho:
+  ```
+  SUA_PUBLIC_KEY
+  ```
+  pela chave dada pelo EmailJS após a configuração no site.
+
+### Para que o login via Google seja funcional:
+
+Os usuários com permissão de acesso ao sistema são feitos via página de funcionarios, em que o e-mail inserido deve ser propriamente um e-mail Google Workspace (não necessariamente dominio gmail.com), devendo o o desenvolvedor configurar o ambiente para que o login funcione:
+
+Se faz necessário que o usuário acesse o site:
+```
+https://console.cloud.google.com/project?pli=1
+```
+e logue em sua conta de desenvolvimento.
+No Console Google Cloud, o usuário deverá criar um novo projeto inserindo as informações do seu site, como nome desejado, além de domínios utilizados, desenvolvedores e relacionados.
+Após isso, deverá ser criado uma credencial OAuth com mais informações solicitadas pelo Google, e assim, liberar uma **CHAVE DE API**, que deverá ser substituída em locais específicos da aplicação:
+1. Linha 16 e 17 do arquivo web/index.html
+```
+<meta name="google-signin-client_id"
+    content="YOUR_CLIENT_ID">
+```
+2. Linha 188 do arquivo web/views/login.vue
+```
+client_id: 'YOUR_CLIENT_ID',
+```
+
+Nos dois casos acima, você deverá substituir o *YOUR_CLIENT_ID*, mantendo-se as aspas, obrigatoriamente.
+
+### A aplicação possui um dashboard em que o usuário é livre para inserir seu Dashboard criado usando PowerBI
+- No arquivo web/src/views/dashboard.vue altere a linha 4 que contém
+```html
+<iframe [...]><iframe>
+```
+pelo seu iframe contendo seu dashboard. A nossa equipe disponibiliza na pasta raiz um arquivo .pbix que você pode usar como base para montar o seu dashboard.
+
+! Importante: Para recolher os dados do banco de dados, é necessário usar as credenciais do banco de dados MySQL usando o driver de conexão, que pode ser encontrado em:
+```
+https://learn.microsoft.com/pt-br/power-query/connectors/mysql-database
+```
+
+
 
 
 
