@@ -1,7 +1,9 @@
 
 # Controle do Parque Computacional
 
-O projeto de Controle do Parque Computacional da SAR na UNICAMP visa otimizar e gerenciar eficientemente os recursos computacionais disponíveis na universidade. Será desenvolvido um sistema centralizado e automatizado para o monitoramento, alocação e gerenciamento desses recursos.
+O projeto de Controle do Parque Computacional da SAR na UNICAMP visa otimizar e gerenciar eficientemente os recursos computacionais disponíveis na universidade. O sistema é centralizado e automatizado para o monitoramento, alocação e gerenciamento desses recursos.
+
+**Status:** 100% concluído
 
 ## Stack utilizada
 
